@@ -64,6 +64,15 @@ const T = {
         ],
       },
       {
+        title: 'Subscribe & Save',
+        items: [
+          { q: 'How does Subscribe & Save work?', a: 'Choose Subscribe & Save on a product page and pick how often you want a delivery: every 30, 60 or 90 days. You get 15% off every delivery, and each order ships automatically at the subscription price.' },
+          { q: 'Can I pause, skip or cancel my subscription?', a: 'Yes, anytime and without fees. There is no binding period. Log in to your account to skip a delivery, change the interval or cancel. Changes apply to your next order.' },
+          { q: 'When am I charged?', a: 'You pay for the first order at checkout. After that, each delivery is charged on its scheduled date, using the payment method you chose at checkout.' },
+          { q: 'Does the multi-buy saving apply to subscriptions?', a: 'Yes. Choose 2 or 3 packs per delivery and the multi-buy saving is added on top of the 15% subscription discount.' },
+        ],
+      },
+      {
         title: 'Returns & guarantee',
         items: [
           { q: 'What is the 60-day money-back guarantee?', a: 'If you are not satisfied, contact us within 60 days of delivery and we will refund your purchase. See our Returns & guarantee policy for the details.' },
@@ -121,6 +130,15 @@ const T = {
           { q: 'Hvor leverer I til?', a: 'Lande, leveringstid og fragtpris vises i checkout, før du betaler.' },
           { q: 'Hvordan følger jeg min ordre?', a: 'Du får en bekræftelse på e-mail med sporing, så snart din ordre er afsendt.' },
           { q: 'Hvilke betalingsmetoder kan jeg bruge?', a: 'Alle betalingsmetoder i vores sikre Shopify checkout, som vises, når du går til kassen.' },
+        ],
+      },
+      {
+        title: 'Abonnér & Spar',
+        items: [
+          { q: 'Hvordan fungerer Abonnér & Spar?', a: 'Vælg Abonnér & Spar på en produktside, og vælg hvor ofte du vil have en levering: hver 30., 60. eller 90. dag. Du får 15 % rabat på hver levering, og hver ordre sendes automatisk til abonnementsprisen.' },
+          { q: 'Kan jeg sætte mit abonnement på pause, springe over eller opsige det?', a: 'Ja, når som helst og uden gebyrer. Der er ingen binding. Log ind på din konto for at springe en levering over, skifte interval eller opsige. Ændringer gælder fra din næste ordre.' },
+          { q: 'Hvornår bliver jeg trukket?', a: 'Du betaler for den første ordre i checkout. Derefter trækkes hver levering på den planlagte dato med den betalingsmetode, du valgte i checkout.' },
+          { q: 'Gælder mængderabatten også for abonnementer?', a: 'Ja. Vælg 2 eller 3 pakker pr. levering, så lægges mængderabatten oven i abonnementsrabatten på 15 %.' },
         ],
       },
       {
