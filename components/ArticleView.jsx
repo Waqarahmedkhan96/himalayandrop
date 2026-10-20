@@ -2,7 +2,13 @@
 // Article page: editorial layout with a reading-progress ring, cover reveal and
 // animated content blocks. Renders either Shopify HTML or local content blocks.
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import Link from './LLink';
+import { useLang } from './LangProvider';
+
+const T = {
+  en: { journal: 'Journal', min: 'min read', explore: 'Explore the collection', keep: 'Keep reading' },
+  da: { journal: 'Journal', min: 'min. læsning', explore: 'Se kollektionen', keep: 'Læs videre' },
+};
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { formatDate } from '@/lib/shopify';
 import JournalCard from './JournalCard';
@@ -33,6 +39,8 @@ function Block({ b }) {
 
 export default function ArticleView({ post, related }) {
   const root = useRef(null);
+  const lang = useLang();
+  const t = T[lang];
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -77,14 +85,14 @@ export default function ArticleView({ post, related }) {
       </div>
 
       <header className="article-head">
-        <p className="crumb"><Link href="/blog/">Journal</Link> · {post.category}</p>
+        <p className="crumb"><Link href="/blog/">{t.journal}</Link> · {post.category}</p>
         <h1><span className="line"><span>{post.title}</span></span></h1>
-        <p className="journal-meta">{formatDate(post.date)} · {post.readMin} min read · Himalayan Drop</p>
+        <p className="journal-meta"><time dateTime={post.date}>{formatDate(post.date, lang)}</time> · {post.readMin} {t.min} · Himalayan Drop</p>
         {post.excerpt && <p className="lede">{post.excerpt}</p>}
       </header>
 
       <div className="article-cover">
-        <img src={post.cover} alt="" />
+        <img src={post.cover} alt={post.title} />
       </div>
 
       {post.html ? (
@@ -99,12 +107,12 @@ export default function ArticleView({ post, related }) {
         <svg viewBox="0 0 140 40" width="140" height="40" fill="none" stroke="#cca25e" strokeWidth="1.3" aria-hidden="true">
           <path d="M0 38 L36 10 L48 20 L70 2 L92 22 L104 14 L140 38" />
         </svg>
-        <Link href="/shop/" className="btn gold">Explore the collection <Arrow /></Link>
+        <Link href="/shop/" className="btn gold">{t.explore} <Arrow /></Link>
       </div>
 
       {related.length > 0 && (
         <section className="related container">
-          <h2>Keep reading</h2>
+          <h2>{t.keep}</h2>
           <div className="journal-grid">
             {related.map((p) => <JournalCard key={p.slug} post={p} />)}
           </div>

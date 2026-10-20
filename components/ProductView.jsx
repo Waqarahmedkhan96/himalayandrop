@@ -1,6 +1,12 @@
 'use client';
 import { useRef, useState } from 'react';
-import Link from 'next/link';
+import Link from './LLink';
+import { useT } from './LangProvider';
+
+const T = {
+  en: { images: 'Product images', shop: 'Shop', soon: 'Launching soon', vat: 'incl. VAT', buy: 'Buy now', add: 'Add to cart', trust: ['Harvested above 5,000 m', 'Danish brand', 'Lab report per batch'], ingredient: 'Ingredient', amount: 'Amount', how: 'How to use', storage: 'Storage', caution: 'Caution', lab: 'Lab results', labText: 'Each batch is tested by an independent lab for heavy metals, quality and fulvic acid. Look up your batch number on our Lab results page.' },
+  da: { images: 'Produktbilleder', shop: 'Shop', soon: 'Lanceres snart', vat: 'inkl. moms', buy: 'Køb nu', add: 'Læg i kurv', trust: ['Høstet over 5.000 m', 'Dansk brand', 'Rapport for hver batch'], ingredient: 'Ingrediens', amount: 'Mængde', how: 'Sådan bruger du det', storage: 'Opbevaring', caution: 'Advarsler', lab: 'Laboratorieresultater', labText: 'Hver batch testes af et uafhængigt laboratorium for tungmetaller, kvalitet og fulvinsyre. Find dit batchnummer på siden Laboratorieresultater.' },
+};
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { useCart } from '@/lib/cart';
 import { formatMoney } from '@/lib/shopify';
@@ -10,6 +16,7 @@ import { Arrow } from './Arrow';
 export default function ProductView({ product }) {
   const root = useRef(null);
   const { addItem, buyNow, busy } = useCart();
+  const t = useT(T);
 
   // First slide is the clean packshot, then the packaging photos.
   const slides = [
@@ -42,10 +49,10 @@ export default function ProductView({ product }) {
   };
 
   const details = [
-    product.directions && { q: 'How to use', a: product.directions },
-    product.storage && { q: 'Storage', a: product.storage },
-    product.caution && { q: 'Caution', a: product.caution },
-    { q: 'Lab results', a: 'Each batch is tested by an independent lab for heavy metals, quality and fulvic acid. Look up your batch number on our Lab results page.' },
+    product.directions && { q: t.how, a: product.directions },
+    product.storage && { q: t.storage, a: product.storage },
+    product.caution && { q: t.caution, a: product.caution },
+    { q: t.lab, a: t.labText },
   ].filter(Boolean);
 
   const f = product.formula;
@@ -58,7 +65,7 @@ export default function ProductView({ product }) {
             <img key={slide.src} src={slide.src} alt={slide.alt} />
           </div>
           {slides.length > 1 && (
-            <div className="pdp-thumbs" role="tablist" aria-label="Product images">
+            <div className="pdp-thumbs" role="tablist" aria-label={t.images}>
               {slides.map((s, i) => (
                 <button
                   key={s.src}
@@ -77,13 +84,13 @@ export default function ProductView({ product }) {
         </div>
         <div className="pdp-info">
           <p className="crumb">
-            <Link href="/shop/">Shop</Link> / {product.title}
+            <Link href="/shop/">{t.shop}</Link> / {product.title}
           </p>
           <h1>
             <span className="line"><span>{product.title}</span></span>
           </h1>
           <p className="sub">{product.subtitle}</p>
-          <p className="price">{product.amount != null ? formatMoney(product.amount, product.currency) : product.price || 'Launching soon'} <span className="vat">incl. VAT</span></p>
+          <p className="price">{product.amount != null ? formatMoney(product.amount, product.currency) : product.price || t.soon} <span className="vat">{t.vat}</span></p>
           <p className="desc">{product.description}</p>
           {product.facts && (
             <dl className="pdp-facts">
@@ -94,16 +101,14 @@ export default function ProductView({ product }) {
           )}
           <div className="pdp-actions">
             <button className="btn gold block" onClick={() => buyNow(product.variantId)} disabled={busy}>
-              Buy now <Arrow />
+              {t.buy} <Arrow />
             </button>
             <button className="btn outline block" onClick={() => addItem(product.variantId)} disabled={busy}>
-              Add to cart
+              {t.add}
             </button>
           </div>
           <div className="pdp-trust">
-            <span>Harvested above 5,000 m</span>
-            <span>Danish brand</span>
-            <span>Lab report per batch</span>
+            {t.trust.map((x) => <span key={x}>{x}</span>)}
           </div>
           {f && (
             <div className="pdp-formula">
@@ -112,7 +117,7 @@ export default function ProductView({ product }) {
                 <span>{f.serving}</span>
               </div>
               <table>
-                <thead><tr><th scope="col">Ingredient</th><th scope="col">Amount</th></tr></thead>
+                <thead><tr><th scope="col">{t.ingredient}</th><th scope="col">{t.amount}</th></tr></thead>
                 <tbody>
                   {f.rows.map(([n, a]) => (
                     <tr key={n}><th scope="row">{n}</th><td>{a}</td></tr>

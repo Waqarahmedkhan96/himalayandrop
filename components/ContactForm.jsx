@@ -5,10 +5,15 @@
 // Forms) inside onSubmit.
 import { useState } from 'react';
 import { Arrow } from './Arrow';
+import { useT } from './LangProvider';
 
-const subjects = ['Order & delivery', 'Product question', 'Lab reports', 'Returns & guarantee', 'Wholesale & partners', 'Press'];
+const T = {
+  en: { subjects: ['Order & delivery', 'Product question', 'Lab reports', 'Returns & guarantee', 'Wholesale & partners', 'Press'], thanks: 'Thank you.', thanksText: 'Your message is on its way. We’ll reply by email.', again: 'Send another message', first: 'First name', last: 'Last name', email: 'Email *', chooseSubject: 'Choose a subject', subject: 'Subject *', order: 'Order number (optional)', message: 'Message *', consent: 'I agree that Himalayan Drop may use my details to answer this message.', sending: 'Sending…', send: 'Send message' },
+  da: { subjects: ['Ordre og levering', 'Spørgsmål om et produkt', 'Laboratorierapporter', 'Returnering og garanti', 'Forhandlere og samarbejde', 'Presse'], thanks: 'Tak.', thanksText: 'Din besked er sendt. Vi svarer på e-mail.', again: 'Send en ny besked', first: 'Fornavn', last: 'Efternavn', email: 'E-mail *', chooseSubject: 'Vælg et emne', subject: 'Emne *', order: 'Ordrenummer (valgfrit)', message: 'Besked *', consent: 'Jeg accepterer, at Himalayan Drop må bruge mine oplysninger til at besvare denne besked.', sending: 'Sender…', send: 'Send besked' },
+};
 
 export default function ContactForm() {
+  const t = useT(T);
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
 
@@ -30,9 +35,9 @@ export default function ContactForm() {
           <circle cx="32" cy="32" r="30" fill="none" stroke="#cca25e" strokeWidth="1.5" />
           <path d="M20 33l8 8 16-17" fill="none" stroke="#cca25e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        <h3>Thank you.</h3>
-        <p>Your message is on its way. We’ll reply by email.</p>
-        <button type="button" className="btn ghost small" onClick={() => setSent(false)}>Send another message</button>
+        <h3>{t.thanks}</h3>
+        <p>{t.thanksText}</p>
+        <button type="button" className="btn ghost small" onClick={() => setSent(false)}>{t.again}</button>
       </div>
     );
   }
@@ -42,39 +47,39 @@ export default function ContactForm() {
       <div className="field-row">
         <div className="field">
           <input id="first" name="first" placeholder=" " autoComplete="given-name" />
-          <label htmlFor="first">First name</label>
+          <label htmlFor="first">{t.first}</label>
         </div>
         <div className="field">
           <input id="last" name="last" placeholder=" " autoComplete="family-name" />
-          <label htmlFor="last">Last name</label>
+          <label htmlFor="last">{t.last}</label>
         </div>
       </div>
       <div className="field">
         <input id="cemail" name="email" type="email" required placeholder=" " autoComplete="email" />
-        <label htmlFor="cemail">Email *</label>
+        <label htmlFor="cemail">{t.email}</label>
       </div>
       <div className="field select">
         <select id="subject" name="subject" defaultValue="" required>
-          <option value="" disabled>Choose a subject</option>
-          {subjects.map((s) => <option key={s}>{s}</option>)}
+          <option value="" disabled>{t.chooseSubject}</option>
+          {t.subjects.map((s) => <option key={s}>{s}</option>)}
         </select>
-        <label htmlFor="subject">Subject *</label>
+        <label htmlFor="subject">{t.subject}</label>
         <svg className="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
       </div>
       <div className="field">
         <input id="order" name="order" placeholder=" " />
-        <label htmlFor="order">Order number (optional)</label>
+        <label htmlFor="order">{t.order}</label>
       </div>
       <div className="field">
         <textarea id="message" name="message" rows="5" required placeholder=" " />
-        <label htmlFor="message">Message *</label>
+        <label htmlFor="message">{t.message}</label>
       </div>
       <label className="consent">
         <input type="checkbox" required />
-        <span>I agree that Himalayan Drop may use my details to answer this message.</span>
+        <span>{t.consent}</span>
       </label>
       <button className="btn gold block" type="submit" disabled={busy}>
-        {busy ? 'Sending…' : 'Send message'} <Arrow />
+        {busy ? t.sending : t.send} <Arrow />
       </button>
     </form>
   );

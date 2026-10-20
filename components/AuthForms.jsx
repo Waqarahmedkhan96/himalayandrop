@@ -4,6 +4,12 @@
 // storefront token the customer read/write permissions).
 import SimpleForm from './SimpleForm';
 import { isShopifyConnected, storefront } from '@/lib/shopify';
+import { useT } from './LangProvider';
+
+const T = {
+  en: { login: 'Log in', back: 'Welcome back.', loggedIn: 'You are now logged in.', email: 'Email', password: 'Password', create: 'Create account', welcome: 'Welcome to Base Camp.', ready: 'Your account is ready, and your first 100 Summit Rewards points are on their way.', first: 'First name', last: 'Last name', newPass: 'Password (min. 8 characters)', consent: 'Yes, send me launch news and offers by email. Unsubscribe anytime.' },
+  da: { login: 'Log ind', back: 'Velkommen tilbage.', loggedIn: 'Du er nu logget ind.', email: 'E-mail', password: 'Adgangskode', create: 'Opret konto', welcome: 'Velkommen til Base Camp.', ready: 'Din konto er klar, og dine første 100 Summit Rewards-point er på vej.', first: 'Fornavn', last: 'Efternavn', newPass: 'Adgangskode (mindst 8 tegn)', consent: 'Ja tak, send mig nyheder og tilbud på e-mail. Du kan altid afmelde dig.' },
+};
 
 async function login({ email, password }) {
   if (!isShopifyConnected) return new Promise((r) => setTimeout(r, 600));
@@ -28,35 +34,37 @@ async function register({ firstName, lastName, email, password, consent }) {
 }
 
 export function LoginForm() {
+  const t = useT(T);
   return (
     <SimpleForm
       id="login"
-      submit="Log in"
-      thanks="Welcome back."
-      thanksText="You are now logged in."
+      submit={t.login}
+      thanks={t.back}
+      thanksText={t.loggedIn}
       onSend={login}
       fields={[
-        { name: 'email', label: 'Email', type: 'email', required: true, autoComplete: 'email' },
-        { name: 'password', label: 'Password', type: 'password', required: true, autoComplete: 'current-password' },
+        { name: 'email', label: t.email, type: 'email', required: true, autoComplete: 'email' },
+        { name: 'password', label: t.password, type: 'password', required: true, autoComplete: 'current-password' },
       ]}
     />
   );
 }
 
 export function RegisterForm() {
+  const t = useT(T);
   return (
     <SimpleForm
       id="register"
-      submit="Create account"
-      thanks="Welcome to Base Camp."
-      thanksText="Your account is ready, and your first 100 Summit Rewards points are on their way."
+      submit={t.create}
+      thanks={t.welcome}
+      thanksText={t.ready}
       onSend={register}
       fields={[
-        [{ name: 'firstName', label: 'First name', required: true, autoComplete: 'given-name' }, { name: 'lastName', label: 'Last name', autoComplete: 'family-name' }],
-        { name: 'email', label: 'Email', type: 'email', required: true, autoComplete: 'email' },
-        { name: 'password', label: 'Password (min. 8 characters)', type: 'password', required: true, minLength: 8, autoComplete: 'new-password' },
+        [{ name: 'firstName', label: t.first, required: true, autoComplete: 'given-name' }, { name: 'lastName', label: t.last, autoComplete: 'family-name' }],
+        { name: 'email', label: t.email, type: 'email', required: true, autoComplete: 'email' },
+        { name: 'password', label: t.newPass, type: 'password', required: true, minLength: 8, autoComplete: 'new-password' },
       ]}
-      consent={{ required: false, text: 'Yes, send me launch news and offers by email. Unsubscribe anytime.' }}
+      consent={{ required: false, text: t.consent }}
     />
   );
 }

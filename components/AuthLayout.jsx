@@ -1,8 +1,11 @@
-import Link from 'next/link';
+'use client';
+import Link from './LLink';
 import { Icon } from './Icons';
+import { useLang } from './LangProvider';
 
 // Split layout for login/register: brand panel on one side, form on the other.
 export default function AuthLayout({ title, accent, lead, children, switchText, switchHref, switchLabel }) {
+  const da = useLang() === 'da';
   return (
     <section className="auth">
       <div className="auth-card">
@@ -13,11 +16,11 @@ export default function AuthLayout({ title, accent, lead, children, switchText, 
           </svg>
           <img src="/images/logo-mark.png" alt="" width="48" height="59" />
           <p className="eyebrow">Summit Rewards</p>
-          <h2>Members climb <em className="gold-text">higher.</em></h2>
+          <h2>{da ? 'Medlemmer når' : 'Members climb'} <em className="gold-text">{da ? 'højere.' : 'higher.'}</em></h2>
           <ul>
-            <li><Icon name="star" size={16} /> Points on every order</li>
-            <li><Icon name="truck" size={16} /> Faster checkout</li>
-            <li><Icon name="clock" size={16} /> Order history and tracking</li>
+            <li><Icon name="star" size={16} /> {da ? 'Point på hver ordre' : 'Points on every order'}</li>
+            <li><Icon name="truck" size={16} /> {da ? 'Hurtigere checkout' : 'Faster checkout'}</li>
+            <li><Icon name="clock" size={16} /> {da ? 'Ordrehistorik og sporing' : 'Order history and tracking'}</li>
           </ul>
         </div>
         <div className="auth-form">
