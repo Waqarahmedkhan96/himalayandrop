@@ -53,7 +53,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`} aria-label={t.mobile} aria-hidden={!menuOpen} data-lenis-prevent>
+      <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`} aria-label={t.mobile} aria-hidden={!menuOpen} inert={!menuOpen} data-lenis-prevent>
         {(() => {
           const tab = menuOpen ? 0 : -1;
           const shop = menu[0];
@@ -111,7 +111,7 @@ export default function Header() {
                 <Link href="/account/login/" onClick={close} tabIndex={tab}>{t.login}</Link>
                 <Link href="/account/register/" onClick={close} tabIndex={tab}>{t.create}</Link>
               </div>
-              <LangSwitch className="m-lang" onNavigate={close} />
+              <LangSwitch className="m-lang" onNavigate={close} tabIndex={tab} />
               <svg className="mn-ridge" viewBox="0 0 400 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
                 <path d="M0 120 L54 70 L80 86 L140 28 L184 74 L212 58 L272 104 L310 82 L400 116" fill="none" stroke="#cca25e" strokeWidth="1.2" />
                 <path d="M0 120 L40 98 L110 110 L176 84 L240 106 L306 92 L400 118" fill="none" stroke="#cca25e" strokeOpacity="0.4" strokeWidth="1" />

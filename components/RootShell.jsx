@@ -13,12 +13,13 @@ export default function RootShell({ lang, children }) {
   return (
     <html lang={lang}>
       <body>
+        <a href="#main" className="skip-link">{lang === 'da' ? 'Gå til indhold' : 'Skip to content'}</a>
         <JsonLd data={organizationLd(lang)} />
         <LangProvider lang={lang}>
           <CartProvider>
             <SmoothScroll />
             <Header />
-            <main>{children}</main>
+            <main id="main" tabIndex={-1}>{children}</main>
             <Footer />
             <CartDrawer />
             <OfferPopup />

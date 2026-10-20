@@ -17,7 +17,7 @@ function targetFor(pathname, to, current) {
   return to === 'da' ? localizeHref(base, 'da') : base;
 }
 
-export default function LangSwitch({ className = '', onNavigate }) {
+export default function LangSwitch({ className = '', onNavigate, tabIndex }) {
   const lang = useLang();
   const pathname = usePathname();
   return (
@@ -33,6 +33,7 @@ export default function LangSwitch({ className = '', onNavigate }) {
           aria-current={lang === code ? 'true' : undefined}
           className={lang === code ? 'on' : ''}
           onClick={onNavigate}
+          tabIndex={tabIndex}
         >
           {short}
         </a>

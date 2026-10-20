@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { Arrow } from './Arrow';
 import { useLang } from './LangProvider';
+import { validateForm } from '@/lib/validate';
 
 const T = {
   en: { send: 'Send', thanks: 'Thank you. We’ll be in touch.', error: 'Something went wrong. Please try again.', choose: 'Choose', wait: 'Please wait…' },
@@ -11,7 +12,8 @@ const T = {
 };
 
 export default function SimpleForm({ id, fields, submit, thanks, thanksText, consent, onSend }) {
-  const t = T[useLang()];
+  const lang = useLang();
+  const t = T[lang];
   submit = submit || t.send;
   thanks = thanks || t.thanks;
   const [sent, setSent] = useState(false);
@@ -20,6 +22,12 @@ export default function SimpleForm({ id, fields, submit, thanks, thanksText, con
 
   const handle = async (e) => {
     e.preventDefault();
+    const bad = validateForm(e.target, lang);
+    if (bad) {
+      setError(bad.msg);
+      bad.el.focus();
+      return;
+    }
     setBusy(true);
     setError('');
     try {
@@ -48,7 +56,7 @@ export default function SimpleForm({ id, fields, submit, thanks, thanksText, con
   }
 
   return (
-    <form className="contact-form demo-form" onSubmit={handle} data-thanks={thanks} data-thanks-text={thanksText || ''}>
+    <form className="contact-form demo-form" noValidate onSubmit={handle} data-thanks={thanks} data-thanks-text={thanksText || ''}>
       {fields.map((row, ri) => (
         <div className={Array.isArray(row) ? 'field-row' : undefined} key={ri} style={Array.isArray(row) ? undefined : { display: 'contents' }}>
           {(Array.isArray(row) ? row : [row]).map((f) => {
