@@ -1725,3 +1725,8 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h2, html[data-lang='ar'] h3 { line
 html[data-lang='ur'] h1, html[data-lang='ur'] h2, html[data-lang='ur'] h3, html[data-lang='ur'] h1 .line { line-height: 1.95 !important; }
 html[data-lang='ur'] h1 .line > span { padding-block: .12em; }
 html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !important; }
+
+/* Shortcut pills: centred as one even row on tablets and desktop */
+@media (min-width: 768px) {
+  .quick-row { justify-content: center; flex-wrap: wrap; overflow: visible; gap: 12px; }
+}
