@@ -1,7 +1,9 @@
+// Brand action icon: a lightning bolt (replaces the old arrow everywhere).
+// Colour comes from CSS: gold on maroon, maroon on gold buttons.
 export function Arrow({ size = 16 }) {
   return (
-    <svg className="arrow" width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-      <path d="M2 8h11M9 4l4 4-4 4" />
+    <svg className="arrow bolt" width={Math.round(size * 1.2)} height={Math.round(size * 1.2)} viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15.9 1 5.9 13.9h5.3L8.1 23l10-12.6h-5.3Z" />
     </svg>
   );
 }
