@@ -1,8 +1,9 @@
-// /sitemap.xml: every page in English and Danish, each linked to its
-// counterpart with hreflang, so search engines index both languages.
-import { SITE_URL } from '@/lib/i18n';
+// /sitemap.xml: every page in every language, each linked to all its
+// counterparts with hreflang (with country codes: de-DE, ar-AE, ur-PK ...).
+import { SITE_URL, LOCALES, LANGS, localizeHref } from '@/lib/i18n';
 import { getProducts } from '@/lib/shopify';
-import { postsEn, counterpartSlug } from '@/lib/posts';
+import { POST_SLUGS } from '@/lib/postSlugs';
+import { postsEn } from '@/lib/posts';
 import { policies } from '@/lib/policies';
 
 export const dynamic = 'force-static';
@@ -20,29 +21,29 @@ const STATIC = [
   ['/certificates/', 0.5, 'monthly'],
   ['/reviews/', 0.5, 'weekly'],
   ['/contact/', 0.4, 'yearly'],
-  ['/distributors/', 0.4, 'yearly'],
+  ['/distributors/', 0.6, 'monthly'],
   ['/rewards/', 0.4, 'monthly'],
 ];
 
 const url = (p) => `${SITE_URL}${p}`;
 
-function pair(en, da, priority, changeFrequency, lastModified = new Date()) {
-  const languages = { en: url(en), da: url(da), 'x-default': url(en) };
-  return [
-    { url: url(en), lastModified, changeFrequency, priority, alternates: { languages } },
-    { url: url(da), lastModified, changeFrequency, priority, alternates: { languages } },
-  ];
+// One entry per language, all pointing at each other.
+function group(pathFor, priority, changeFrequency, lastModified = new Date()) {
+  const languages = {};
+  for (const l of LOCALES) languages[LANGS[l].hreflang] = url(pathFor(l));
+  languages['x-default'] = url(pathFor('en'));
+  return LOCALES.map((l) => ({ url: url(pathFor(l)), lastModified, changeFrequency, priority, alternates: { languages } }));
 }
 
 export default async function sitemap() {
   const products = await getProducts();
   return [
-    ...STATIC.flatMap(([p, pr, cf]) => pair(p, p === '/' ? '/da/' : `/da${p}`, pr, cf)),
-    ...products.flatMap((p) => pair(`/products/${p.handle}/`, `/da/products/${p.handle}/`, 0.9, 'weekly')),
+    ...STATIC.flatMap(([p, pr, cf]) => group((l) => localizeHref(p, l), pr, cf)),
+    ...products.flatMap((p) => group((l) => localizeHref(`/products/${p.handle}/`, l), 0.9, 'weekly')),
     ...postsEn.flatMap((p) => {
-      const da = counterpartSlug(p.slug, 'da');
-      return pair(`/blog/${p.slug}/`, da ? `/da/blog/${da}/` : '/da/blog/', 0.6, 'monthly', new Date(p.date));
+      const slugs = POST_SLUGS[p.id] || {};
+      return group((l) => localizeHref(slugs[l] ? `/blog/${slugs[l]}/` : '/blog/', l), 0.6, 'monthly', new Date(p.updated || p.date));
     }),
-    ...Object.keys(policies).flatMap((s) => pair(`/policies/${s}/`, `/da/policies/${s}/`, 0.2, 'yearly')),
+    ...Object.keys(policies).flatMap((s) => group((l) => localizeHref(`/policies/${s}/`, l), 0.2, 'yearly')),
   ];
 }

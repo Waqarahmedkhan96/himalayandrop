@@ -4,19 +4,24 @@ import JsonLd from '@/components/JsonLd';
 import { getArticle, getArticles } from '@/lib/shopify';
 import { counterpartSlug } from '@/lib/posts';
 import { buildMeta, breadcrumbLd, abs, BRAND } from '@/lib/seo';
-import { localizeHref, SITE_URL } from '@/lib/i18n';
+import { localizeHref, SITE_URL, LOCALES, LANGS } from '@/lib/i18n';
 import { refs } from '@/lib/sources';
+
+const HOME = { en: 'Home', da: 'Forside', de: 'Startseite', fr: 'Accueil', es: 'Inicio', ar: 'الرئيسية', ur: 'ہوم' };
 
 export async function params(lang) {
   const posts = await getArticles(lang);
   return posts.map((p) => ({ slug: p.slug }));
 }
 
+// The same article in every language (slugs are written per language).
 function altPaths(slug, lang) {
-  const other = counterpartSlug(slug, lang === 'da' ? 'en' : 'da');
-  const self = `/blog/${slug}/`;
-  const otherPath = other ? `/blog/${other}/` : '/blog/';
-  return lang === 'da' ? { en: otherPath, da: `/da${self}` } : { en: self, da: `/da${otherPath}` };
+  return Object.fromEntries(
+    LOCALES.map((l) => {
+      const s = l === lang ? slug : counterpartSlug(slug, l, lang);
+      return [l, localizeHref(s ? `/blog/${s}/` : '/blog/', l)];
+    })
+  );
 }
 
 export async function meta(lang, slug) {
@@ -40,13 +45,13 @@ export default async function ArticlePageView({ lang, slug }) {
     dateModified: post.updated || post.date,
     articleSection: post.category,
     ...(post.sources?.length ? { citation: refs(...post.sources).map((r) => r.url) } : {}),
-    inLanguage: lang,
+    inLanguage: LANGS[lang].hreflang,
     mainEntityOfPage: abs(path),
     author: { '@type': 'Organization', name: BRAND, url: SITE_URL },
     publisher: { '@id': `${SITE_URL}/#organization` },
   };
   const crumbs = breadcrumbLd([
-    [lang === 'da' ? 'Forside' : 'Home', localizeHref('/', lang)],
+    [HOME[lang] || HOME.en, localizeHref('/', lang)],
     ['Journal', localizeHref('/blog/', lang)],
     [post.title, path],
   ]);
@@ -54,7 +59,7 @@ export default async function ArticlePageView({ lang, slug }) {
   const faqLd = faqBlock && {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    inLanguage: lang,
+    inLanguage: LANGS[lang].hreflang,
     mainEntity: faqBlock.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })),
   };
   return (
