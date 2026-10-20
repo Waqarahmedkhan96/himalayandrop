@@ -6,6 +6,8 @@ const isStaticExport = process.env.STATIC_EXPORT === '1';
 const nextConfig = {
   // Every URL ends in a slash (/shop/), matching canonical links and the sitemap.
   trailingSlash: true,
+  // A branded 404 for every unknown address (the site has two root layouts).
+  experimental: { globalNotFound: true },
   ...(isStaticExport ? { output: 'export' } : {}),
   images: {
     unoptimized: isStaticExport,
