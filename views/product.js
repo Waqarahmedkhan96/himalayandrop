@@ -7,7 +7,11 @@ import { getProduct, getProducts, isShopifyConnected } from '@/lib/shopify';
 import { productSeo } from '@/lib/products';
 import { kindOf } from '@/lib/benefits';
 import { buildMeta, breadcrumbLd, abs, BRAND } from '@/lib/seo';
-import { localizeHref } from '@/lib/i18n';
+import { localizeHref, tr } from '@/lib/i18n';
+
+const CATEGORY = { en: 'Food supplement', da: 'Kosttilskud', de: 'Nahrungsergänzungsmittel', fr: 'Complément alimentaire', es: 'Complemento alimenticio', ar: 'مكمل غذائي', ur: 'غذائی سپلیمنٹ' };
+const HOME = { en: 'Home', da: 'Forside', de: 'Startseite', fr: 'Accueil', es: 'Inicio', ar: 'الرئيسية', ur: 'ہوم' };
+const SHOP = { en: 'Shop', da: 'Shop', de: 'Shop', fr: 'Boutique', es: 'Tienda', ar: 'المتجر', ur: 'شاپ' };
 
 export async function params() {
   const products = await getProducts();
@@ -42,7 +46,7 @@ export default async function ProductPageView({ lang, handle }) {
     url,
     image: [product.image, ...(product.gallery || []).map((g) => g.src)].filter(Boolean).map((src) => (src.startsWith('http') ? src : abs(src))),
     brand: { '@type': 'Brand', name: BRAND },
-    category: lang === 'da' ? 'Kosttilskud' : 'Food supplement',
+    category: tr(CATEGORY, lang),
     // Price and stock are only published once they come from Shopify, so
     // search results never show placeholder prices.
     ...(isShopifyConnected && product.amount != null
@@ -59,8 +63,8 @@ export default async function ProductPageView({ lang, handle }) {
       : {}),
   };
   const crumbs = breadcrumbLd([
-    [lang === 'da' ? 'Forside' : 'Home', localizeHref('/', lang)],
-    ['Shop', localizeHref('/shop/', lang)],
+    [tr(HOME, lang), localizeHref('/', lang)],
+    [tr(SHOP, lang), localizeHref('/shop/', lang)],
     [product.title, localizeHref(`/products/${handle}/`, lang)],
   ]);
 
