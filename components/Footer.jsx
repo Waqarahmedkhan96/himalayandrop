@@ -83,7 +83,7 @@ export default function Footer() {
 
           <p className="disclaimer">{t.disclaimer}</p>
           <div className="footer-bottom">
-            <span>© {new Date().getFullYear()} Himalayan Drop. {t.rights}</span>
+            <span>© 2024 Himalayan Drop. {t.rights}</span>
             <span className="legal-links">{legal.map(([l, h]) => <Link key={l} href={h}>{l}</Link>)}</span>
           </div>
         </div>
