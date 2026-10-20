@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from './LLink';
 import { Arrow } from './Arrow';
 
 export default function ProductCard({ product }) {

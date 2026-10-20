@@ -2,7 +2,13 @@
 // Product card: the full product on a soft stage, attribute badges, amount
 // picker, price that updates with the amount, Buy now and Add to cart.
 import { useState } from 'react';
-import Link from 'next/link';
+import Link from './LLink';
+import { useT } from './LangProvider';
+
+const T = {
+  en: { soon: 'Launching soon', vat: 'incl. VAT', choose: 'Choose amount', buy: 'Buy now', add: 'Add to cart', details: 'View details' },
+  da: { soon: 'Lanceres snart', vat: 'inkl. moms', choose: 'Vælg antal', buy: 'Køb nu', add: 'Læg i kurv', details: 'Se produktet' },
+};
 import { useCart } from '@/lib/cart';
 import { formatMoney } from '@/lib/shopify';
 import { Icon } from './Icons';
@@ -10,6 +16,7 @@ import { Arrow } from './Arrow';
 
 export default function ShopCard({ product }) {
   const { addItem, buyNow, busy } = useCart();
+  const t = useT(T);
   const [opt, setOpt] = useState(0);
   const href = `/products/${product.handle}/`;
   const options = product.options || [];
@@ -37,12 +44,12 @@ export default function ShopCard({ product }) {
         <p className="shop-sub">{product.subtitle}</p>
 
         <div className="price-row">
-          <span className="shop-price">{unit || 'Launching soon'}</span>
-          {unit && <span className="vat">incl. VAT</span>}
+          <span className="shop-price">{unit || t.soon}</span>
+          {unit && <span className="vat">{t.vat}</span>}
         </div>
 
         {options.length > 0 && (
-          <div className="options" role="radiogroup" aria-label="Choose amount">
+          <div className="options" role="radiogroup" aria-label={t.choose}>
             {options.map((o, i) => (
               <button key={o} type="button" role="radio" aria-checked={opt === i} className={opt === i ? 'on' : ''} onClick={() => setOpt(i)}>
                 {o}
@@ -53,12 +60,12 @@ export default function ShopCard({ product }) {
 
         <div className="shop-actions">
           <button type="button" className="btn gold block" disabled={busy} onClick={() => buyNow(product.variantId, qty)}>
-            Buy now{total && qty > 1 ? ` · ${total}` : ''} <Arrow />
+            {t.buy}{total && qty > 1 ? ` · ${total}` : ''} <Arrow />
           </button>
           <button type="button" className="btn block outline" disabled={busy} onClick={() => addItem(product.variantId, qty)}>
-            <Icon name="cart" size={18} /> Add to cart
+            <Icon name="cart" size={18} /> {t.add}
           </button>
-          <Link href={href} className="details-link">View details <Arrow size={14} /></Link>
+          <Link href={href} className="details-link">{t.details} <Arrow size={14} /></Link>
         </div>
       </div>
     </article>

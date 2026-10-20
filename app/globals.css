@@ -1279,3 +1279,14 @@ em { font-style: italic; }
 }
 .badge.b-shield, .badge.b-pin { background: #e8eef0; color: #2f5562; }
 .badge.b-box, .badge.b-clock { background: #f1ebe2; color: #6b4b2a; }
+
+/* ═════════ Language switch (EN / DA) ═════════ */
+.lang-switch { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: var(--pill); box-shadow: inset 0 0 0 1px rgba(226, 196, 135, 0.35); }
+.lang-switch a { display: inline-grid; place-items: center; min-width: 34px; padding: 6px 9px; border-radius: var(--pill); font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; color: rgba(247, 241, 232, 0.72); transition: background 0.3s, color 0.3s; }
+.lang-switch a:hover { color: var(--cream); }
+.lang-switch a.on { background: var(--gold-grad); color: var(--maroon-ink); }
+.lang-switch a:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; }
+.d-lang { display: none; }
+@media (min-width: 1100px) { .d-lang { display: inline-flex; margin-right: 8px; } }
+.mobile-nav .m-lang { align-self: flex-start; margin: 4px 0 24px; }
+.mobile-nav .m-lang a { font-family: var(--sans); font-size: 14px; line-height: 1; border: 0; padding: 10px 16px; }

@@ -3,10 +3,19 @@
 // Only show a certification you actually hold, and link the certificate.
 import { useRef } from 'react';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
-import { seals, Seal } from './Seal';
+import { getSeals, Seal } from './Seal';
+import { useLang } from './LangProvider';
+
+const T = {
+  en: { eyebrow: 'Proof, not promises', h: 'Certified &', hg: 'tested.', p: 'Produced under recognised quality standards, tested for heavy metals batch by batch, and backed by a 60-day money-back guarantee.' },
+  da: { eyebrow: 'Bevis, ikke løfter', h: 'Certificeret og', hg: 'testet.', p: 'Produceret efter anerkendte kvalitetsstandarder, testet for tungmetaller batch for batch og med 60 dages penge-tilbage-garanti.' },
+};
 
 export default function Certifications() {
   const root = useRef(null);
+  const lang = useLang();
+  const t = T[lang];
+  const seals = getSeals(lang);
 
   useGSAP(
     () => {
@@ -24,9 +33,9 @@ export default function Certifications() {
     <section id="certifications" ref={root} className="cert-section">
       <div className="cert-card">
         <div className="cert-head">
-          <span className="eyebrow">Proof, not promises</span>
-          <h2>Certified &amp; <em className="gold-text">tested.</em></h2>
-          <p>Produced under recognised quality standards, tested for heavy metals batch by batch, and backed by a 60-day money-back guarantee.</p>
+          <span className="eyebrow">{t.eyebrow}</span>
+          <h2>{t.h} <em className="gold-text">{t.hg}</em></h2>
+          <p>{t.p}</p>
         </div>
         <ul className="seals">
           {seals.map((s) => (

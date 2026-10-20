@@ -1,5 +1,15 @@
 // Certification seal drawn in code. `prefix` keeps gradient ids unique per page.
 // Only show a certification you actually hold, and link the certificate.
+export const sealsDa = [
+  { id: 'gmp', ring: 'GOD FREMSTILLINGSPRAKSIS · ', main: ['GMP'], sub: 'Certificeret' },
+  { id: 'iso22000', ring: 'LEDELSE AF FØDEVARESIKKERHED · ', main: ['ISO', '22000'], sub: 'Certificeret' },
+  { id: 'iso9001', ring: 'KVALITETSLEDELSESSYSTEM · ', main: ['ISO', '9001'], sub: 'Certificeret' },
+  { id: 'metals', ring: 'UAFHÆNGIGT LABORATORIUM · ', main: ['TUNG-', 'METALLER'], sub: 'Testet' },
+  { id: 'guarantee', ring: '100% PENGE-TILBAGE-GARANTI · ', main: ['60'], sub: 'Dage' },
+];
+
+export const getSeals = (lang) => (lang === 'da' ? sealsDa : seals);
+
 export const seals = [
   { id: 'gmp', ring: 'GOOD MANUFACTURING PRACTICE · ', main: ['GMP'], sub: 'Certified' },
   { id: 'iso22000', ring: 'FOOD SAFETY MANAGEMENT · ', main: ['ISO', '22000'], sub: 'Certified' },

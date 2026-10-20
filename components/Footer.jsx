@@ -2,14 +2,31 @@
 // Footer. The top edge is a Himalayan ridge silhouette, and the divider above
 // the small print is a gold mountain line that draws itself as you reach it.
 import { useMemo, useRef } from 'react';
-import Link from 'next/link';
+import Link from './LLink';
 import Logo from './Logo';
-import { footer, legal } from '@/lib/site';
+import { site } from '@/lib/site';
+import { useLang } from './LangProvider';
+
+const T = {
+  en: {
+    tagline: 'A modern approach to a timeless natural substance. Designed in Denmark.',
+    disclaimer: 'Food supplement. Do not exceed the recommended daily dose. Food supplements should not be used as a substitute for a varied, balanced diet and a healthy lifestyle. Keep out of reach of children.',
+    rights: 'All rights reserved.',
+  },
+  da: {
+    tagline: 'En moderne tilgang til et tidløst naturstof. Designet i Danmark.',
+    disclaimer: 'Kosttilskud. Den anbefalede daglige dosis bør ikke overskrides. Kosttilskud bør ikke anvendes som erstatning for en varieret og balanceret kost og en sund livsstil. Opbevares utilgængeligt for børn.',
+    rights: 'Alle rettigheder forbeholdes.',
+  },
+};
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { ridgePoints, toLine, toShape } from '@/lib/mountains';
 
 export default function Footer() {
   const root = useRef(null);
+  const lang = useLang();
+  const t = T[lang];
+  const { footer, legal } = site[lang];
   const { back, front, frontLine, divider } = useMemo(() => {
     const b = ridgePoints(101, 120, 105, 5, 1200, 0.3);
     const f = ridgePoints(202, 135, 80, 8, 1200, 0.3);
@@ -46,7 +63,7 @@ export default function Footer() {
           <div className="footer-top">
             <div>
               <Logo size={28} />
-              <p className="tagline">A modern approach to a timeless natural substance. Designed in Denmark.</p>
+              <p className="tagline">{t.tagline}</p>
             </div>
             <div className="footer-cols">
               {footer.map((col) => (
@@ -64,12 +81,9 @@ export default function Footer() {
             <path className="draw" d={divider} fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
           </svg>
 
-          <p className="disclaimer">
-            Food supplement. Do not exceed the recommended daily dose. Food supplements should not be used as a
-            substitute for a varied, balanced diet and a healthy lifestyle. Keep out of reach of children.
-          </p>
+          <p className="disclaimer">{t.disclaimer}</p>
           <div className="footer-bottom">
-            <span>© {new Date().getFullYear()} Himalayan Drop. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Himalayan Drop. {t.rights}</span>
             <span className="legal-links">{legal.map(([l, h]) => <Link key={l} href={h}>{l}</Link>)}</span>
           </div>
         </div>

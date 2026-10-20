@@ -2,8 +2,9 @@
 // How-to-use tabs: Resin / Gummies / Drops / Capsules, each with four illustrated steps.
 import { useState } from 'react';
 import { Icon } from './Icons';
+import { useLang } from './LangProvider';
 
-const guides = {
+const guidesEn = {
   Resin: {
     img: '/images/pack-gold.webp',
     steps: [
@@ -42,14 +43,55 @@ const guides = {
   },
 };
 
+const guidesDa = {
+  Resin: {
+    img: '/images/pack-gold.webp',
+    steps: [
+      ['jar', 'Afmål', 'Tag en ærtestor mængde med skeen. Følg den daglige dosis på etiketten.'],
+      ['drop', 'Opløs', 'Rør den ud i et glas varmt vand eller te. Varmt, aldrig kogende.'],
+      ['clock', 'Vent lidt', 'Giv den et par minutter, og rør af og til, til der ikke er mere på skeen.'],
+      ['sun', 'Nyd det', 'Drik det langsomt. Jordagtig og røget; lidt honning er velkommen.'],
+    ],
+  },
+  Vingummi: {
+    img: '/images/pack-gummies.webp',
+    steps: [
+      ['berry', 'Tag to', 'Voksne: tyg 2 vingummi dagligt. To vingummi er én portion.'],
+      ['clock', 'Samme tid hver dag', 'Til morgenmaden eller din første kop te er nemmest at huske.'],
+      ['leaf', 'Tyg grundigt', 'Jordbærsmag med seks aktive ingredienser. Intet vand nødvendigt.'],
+      ['box', 'Luk dåsen', 'Luk den godt, og opbevar den tørt under 25 °C, væk fra sollys.'],
+    ],
+  },
+  Dråber: {
+    img: '/images/pack-drops.webp',
+    steps: [
+      ['filter', 'Ryst godt', 'Ryst flasken let før hver brug.'],
+      ['drop', 'Tre dråber', 'Voksne: 3 dråber dagligt, direkte eller i vand eller te.'],
+      ['clock', 'Før måltidet', 'Tag dem cirka 30 minutter før et måltid.'],
+      ['sun', 'Stuetemperatur', 'Luk godt. Opbevares ved stuetemperatur, ikke i køleskab.'],
+    ],
+  },
+  Kapsler: {
+    img: '/images/pack-capsules.webp',
+    steps: [
+      ['capsule', 'Tag to', 'Voksne: tag 2 kapsler dagligt. To kapsler er én portion.'],
+      ['drop', 'Med vand', 'Synk dem med et glas vand. Ingen smag, ingen afmåling.'],
+      ['clock', 'Samme tid hver dag', 'Stil bøtten ved din morgenrutine.'],
+      ['sun', 'Køligt og tørt', 'Luk godt, og opbevar væk fra direkte sollys.'],
+    ],
+  },
+};
+
 export default function HowToTabs() {
+  const lang = useLang();
+  const guides = lang === 'da' ? guidesDa : guidesEn;
   const names = Object.keys(guides);
   const [tab, setTab] = useState(names[0]);
   const g = guides[tab];
 
   return (
     <div className="howto">
-      <div className="filter-row tabs" role="tablist" aria-label="Choose a product">
+      <div className="filter-row tabs" role="tablist" aria-label={lang === 'da' ? 'Vælg et produkt' : 'Choose a product'}>
         {names.map((n) => (
           <button key={n} type="button" role="tab" aria-selected={tab === n} className={tab === n ? 'on' : ''} onClick={() => setTab(n)}>
             {n}

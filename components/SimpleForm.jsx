@@ -3,8 +3,17 @@
 // Connect `onSend` to a form service or Shopify when you go live.
 import { useState } from 'react';
 import { Arrow } from './Arrow';
+import { useLang } from './LangProvider';
 
-export default function SimpleForm({ id, fields, submit = 'Send', thanks = 'Thank you. We’ll be in touch.', thanksText, consent, onSend }) {
+const T = {
+  en: { send: 'Send', thanks: 'Thank you. We’ll be in touch.', error: 'Something went wrong. Please try again.', choose: 'Choose', wait: 'Please wait…' },
+  da: { send: 'Send', thanks: 'Tak. Vi vender tilbage.', error: 'Noget gik galt. Prøv igen.', choose: 'Vælg', wait: 'Vent venligst…' },
+};
+
+export default function SimpleForm({ id, fields, submit, thanks, thanksText, consent, onSend }) {
+  const t = T[useLang()];
+  submit = submit || t.send;
+  thanks = thanks || t.thanks;
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -19,7 +28,7 @@ export default function SimpleForm({ id, fields, submit = 'Send', thanks = 'Than
       else await new Promise((r) => setTimeout(r, 600));
       setSent(true);
     } catch (err) {
-      setError(err.message || 'Something went wrong. Please try again.');
+      setError(err.message || t.error);
     } finally {
       setBusy(false);
     }
@@ -48,7 +57,7 @@ export default function SimpleForm({ id, fields, submit = 'Send', thanks = 'Than
               return (
                 <div className="field select" key={f.name}>
                   <select id={fid} name={f.name} defaultValue="" required={f.required}>
-                    <option value="" disabled>{f.placeholder || 'Choose'}</option>
+                    <option value="" disabled>{f.placeholder || t.choose}</option>
                     {f.options.map((o) => <option key={o}>{o}</option>)}
                   </select>
                   <label htmlFor={fid}>{f.label}{f.required ? ' *' : ''}</label>
@@ -81,7 +90,7 @@ export default function SimpleForm({ id, fields, submit = 'Send', thanks = 'Than
       )}
       {error && <p className="form-error" role="alert">{error}</p>}
       <button className="btn gold block" type="submit" disabled={busy}>
-        {busy ? 'Please wait…' : submit} <Arrow />
+        {busy ? t.wait : submit} <Arrow />
       </button>
     </form>
   );

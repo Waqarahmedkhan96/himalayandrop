@@ -4,7 +4,9 @@ const isStaticExport = process.env.STATIC_EXPORT === '1';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  ...(isStaticExport ? { output: 'export', trailingSlash: true } : {}),
+  // Every URL ends in a slash (/shop/), matching canonical links and the sitemap.
+  trailingSlash: true,
+  ...(isStaticExport ? { output: 'export' } : {}),
   images: {
     unoptimized: isStaticExport,
     remotePatterns: [{ protocol: 'https', hostname: 'cdn.shopify.com' }],

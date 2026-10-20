@@ -2,7 +2,13 @@
 // "Inspired by the mountains": layered SVG range in brand colours. Each ridge moves
 // at its own speed on scroll, and a gold line traces the highest ridge.
 import { useMemo, useRef } from 'react';
-import Link from 'next/link';
+import Link from './LLink';
+import { useT } from './LangProvider';
+
+const T = {
+  en: { aria: 'Himalayan mountain ridges at sunset', eyebrow: 'Our story', l1: 'Inspired by', l2: 'the mountains.', p: 'Himalayan Drop is built on a deep respect for nature and a fascination with what the mountains offer. We bring that slow, high-altitude patience to a modern daily ritual, designed in Denmark.', cta: 'Read our story' },
+  da: { aria: 'Bjergkamme i solnedgang', eyebrow: 'Vores historie', l1: 'Inspireret af', l2: 'bjergene.', p: 'Himalayan Drop bygger på en dyb respekt for naturen og en fascination af det, bjergene giver os. Vi bringer den langsomme tålmodighed fra de store højder ind i et moderne dagligt ritual, designet i Danmark.', cta: 'Læs vores historie' },
+};
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { ridgePoints, toLine, toShape } from '@/lib/mountains';
 import { Arrow } from './Arrow';
@@ -17,6 +23,7 @@ const layers = [
 
 export default function Story() {
   const root = useRef(null);
+  const t = useT(T);
   const shapes = useMemo(
     () => layers.map((l) => {
       const pts = ridgePoints(l.seed, l.base, l.amp, l.peaks);
@@ -52,7 +59,7 @@ export default function Story() {
     <section id="story" className="story" ref={root} style={{ scrollMarginTop: 20 }}>
       <div className="story-card">
         <div className="story-art">
-          <svg viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Himalayan mountain ridges at sunset">
+          <svg viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label={t.aria}>
             <defs>
               <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0" stopColor="#f6e6c8" />
@@ -85,17 +92,14 @@ export default function Story() {
         </div>
 
         <div className="story-copy">
-          <span className="eyebrow">Our story</span>
+          <span className="eyebrow">{t.eyebrow}</span>
           <h2>
-            <span className="line"><span>Inspired by</span></span>
-            <span className="line"><span><em className="gold-text">the mountains.</em></span></span>
+            <span className="line"><span>{t.l1}</span></span>
+            <span className="line"><span><em className="gold-text">{t.l2}</em></span></span>
           </h2>
-          <p>
-            Himalayan Drop is built on a deep respect for nature and a fascination with what the mountains offer. We
-            bring that slow, high-altitude patience to a modern daily ritual, designed in Denmark.
-          </p>
+          <p>{t.p}</p>
           <Link href="/#ritual" className="btn gold">
-            Read our story <Arrow />
+            {t.cta} <Arrow />
           </Link>
         </div>
       </div>

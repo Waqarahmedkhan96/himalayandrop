@@ -3,7 +3,8 @@
 // line by line, the packaging rises into the centre and floats, and on scroll
 // the product lifts while the mountains drift (parallax).
 import { useMemo, useRef } from 'react';
-import Link from 'next/link';
+import Link from './LLink';
+import { useT } from './LangProvider';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { ridgePoints, toLine } from '@/lib/mountains';
 import { Arrow } from './Arrow';
@@ -14,8 +15,14 @@ const ridges = [
   { seed: 31, base: 450, amp: 150, peaks: 7, op: 0.4, w: 1 },
 ];
 
+const T = {
+  en: { eyebrow: 'Gold Edition · Shilajit Resin', l1: 'A grounded', l2: 'daily ritual.', lead: 'Pure Himalayan shilajit, sealed in amber glass and finished in gold.', shop: 'Shop the collection', story: 'Our story', alt: 'Himalayan Drop Shilajit Resin Gold Edition: maroon gift box and amber jar with gold lid', chips: ['Himalayan sourced', 'Lab report per batch', 'Danish brand'] },
+  da: { eyebrow: 'Gold Edition · Shilajit Resin', l1: 'Et jordnært', l2: 'dagligt ritual.', lead: 'Ren Himalaya shilajit, forseglet i ravfarvet glas og afsluttet i guld.', shop: 'Se kollektionen', story: 'Vores historie', alt: 'Himalayan Drop Shilajit Resin Gold Edition: bordeaux gaveæske og ravfarvet krukke med guldlåg', chips: ['Fra Himalaya', 'Rapport for hver batch', 'Dansk brand'] },
+};
+
 export default function Hero() {
   const root = useRef(null);
+  const t = useT(T);
   const lines = useMemo(() => ridges.map((r) => ({ ...r, d: toLine(ridgePoints(r.seed, r.base, r.amp, r.peaks)) })), []);
 
   useGSAP(
@@ -74,17 +81,17 @@ export default function Hero() {
         </svg>
 
         <div className="hero-copy">
-          <span className="eyebrow">Gold Edition · Shilajit Resin</span>
+          <span className="eyebrow">{t.eyebrow}</span>
           <h1>
-            <span className="line"><span>A grounded</span></span>
-            <span className="line"><span><em className="gold-text">daily ritual.</em></span></span>
+            <span className="line"><span>{t.l1}</span></span>
+            <span className="line"><span><em className="gold-text">{t.l2}</em></span></span>
           </h1>
-          <p className="hero-lead">Pure Himalayan shilajit, sealed in amber glass and finished in gold.</p>
+          <p className="hero-lead">{t.lead}</p>
           <div className="hero-ctas">
             <Link href="/#collection" className="btn gold">
-              Shop the collection <Arrow />
+              {t.shop} <Arrow />
             </Link>
-            <Link href="/#story" className="btn ghost">Our story</Link>
+            <Link href="/#story" className="btn ghost">{t.story}</Link>
           </div>
         </div>
 
@@ -92,7 +99,7 @@ export default function Hero() {
           <span className="hero-shadow" aria-hidden="true" />
           <img
             src="/images/cut-maroon-set.webp"
-            alt="Himalayan Drop Shilajit Resin Gold Edition: maroon gift box and amber jar with gold lid"
+            alt={t.alt}
             width="1400"
             height="888"
             fetchPriority="high"
@@ -100,9 +107,7 @@ export default function Hero() {
         </div>
 
         <ul className="hero-chips">
-          <li>Himalayan sourced</li>
-          <li>Lab report per batch</li>
-          <li>Danish brand</li>
+          {t.chips.map((c) => <li key={c}>{c}</li>)}
         </ul>
       </div>
     </section>

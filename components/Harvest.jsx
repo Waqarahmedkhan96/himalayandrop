@@ -4,6 +4,24 @@
 // from the front, the summit marker pulses and the altitude counts up.
 import { useMemo, useRef } from 'react';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
+import { useLang } from './LangProvider';
+
+const T = {
+  en: {
+    eyebrow: 'Where it comes from', h: 'Harvested high in', hg: 'the Himalayas.',
+    p: 'Shilajit forms slowly in high mountain rock, far above roads and towns. Ours is hand-collected above 5,000 metres near Skardu, in the shadow of K2, then purified and lab-tested before it is sealed in glass.',
+    alt: 'Harvest altitude', num: '5,000', facts: [['Skardu', 'Origin'], ['Per batch', 'Lab tested'], ['UV glass', 'Light protected']],
+    aria: 'Contour line drawing of a peak inspired by K2, with the Bottleneck marked and the harvest zone above 5,000 metres',
+    zone: 'HARVEST ZONE · 5,000 M+', bneck: '≈ 8,200 M', peak: 'K2 · 8,611 M', cap: 'Illustration inspired by K2 and its Bottleneck', locale: 'en-US',
+  },
+  da: {
+    eyebrow: 'Hvor den kommer fra', h: 'Høstet højt oppe i', hg: 'Himalaya.',
+    p: 'Shilajit dannes langsomt i klipper højt oppe i bjergene, langt over veje og byer. Vores samles med håndkraft over 5.000 meter ved Skardu, i skyggen af K2, og renses og testes i laboratoriet, før den forsegles i glas.',
+    alt: 'Høsthøjde', num: '5.000', facts: [['Skardu', 'Oprindelse'], ['Hver batch', 'Laboratorietestet'], ['UV-glas', 'Lysbeskyttet']],
+    aria: 'Konturtegning af en top inspireret af K2, med Bottleneck markeret og høstzonen over 5.000 meter',
+    zone: 'HØSTZONE · 5.000 M+', bneck: '≈ 8.200 M', peak: 'K2 · 8.611 M', cap: 'Illustration inspireret af K2 og dens Bottleneck', locale: 'da-DK',
+  },
+};
 
 const W = 600;
 const H = 380;
@@ -51,6 +69,7 @@ function contourLines(count = 34) {
 
 export default function Harvest() {
   const root = useRef(null);
+  const t = T[useLang()];
   const lines = useMemo(() => contourLines(), []);
   const peakY = 300 - 250;
   const harvestY = yAt(5000);
@@ -73,7 +92,7 @@ export default function Harvest() {
         .from('.summit', { scale: 0, transformOrigin: 'center', duration: 0.8, ease: 'back.out(3)' }, 1.4)
         .from('.k2-label', { opacity: 0, x: 12, stagger: 0.2, duration: 0.9, ease: 'expo.out' }, 1.6)
         .from('.harvest-zone', { scaleX: 0, transformOrigin: 'left center', duration: 1.4, ease: 'expo.inOut' }, 1.2)
-        .to(counter, { v: 5000, duration: 2, ease: 'power3.out', onUpdate: () => (num.textContent = Math.round(counter.v).toLocaleString('en-US')) }, 0.6);
+        .to(counter, { v: 5000, duration: 2, ease: 'power3.out', onUpdate: () => (num.textContent = Math.round(counter.v).toLocaleString(t.locale)) }, 0.6);
       gsap.to('.contour', { yPercent: -6, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: 1 } });
     },
     { scope: root }
@@ -83,29 +102,24 @@ export default function Harvest() {
     <section id="harvest" className="harvest-section" ref={root}>
       <div className="harvest-card">
         <div className="harvest-copy">
-          <span className="eyebrow">Where it comes from</span>
-          <h2>Harvested high in <em className="gold-text">the Himalayas.</em></h2>
-          <p>
-            Shilajit forms slowly in high mountain rock, far above roads and towns. Ours is collected above
-            5,000 metres, then purified and tested before it is sealed in amber glass.
-          </p>
+          <span className="eyebrow">{t.eyebrow}</span>
+          <h2>{t.h} <em className="gold-text">{t.hg}</em></h2>
+          <p>{t.p}</p>
           <div className="alt">
-            <span className="alt-label">Harvest altitude</span>
+            <span className="alt-label">{t.alt}</span>
             <span className="alt-value">
               <span className="alt-gt">›</span>
-              <span className="alt-num">5,000</span>
+              <span className="alt-num">{t.num}</span>
               <span className="alt-unit">m</span>
             </span>
           </div>
           <ul className="harvest-facts">
-            <li><strong>Himalayas</strong><span>Origin</span></li>
-            <li><strong>Per batch</strong><span>Lab tested</span></li>
-            <li><strong>Amber glass</strong><span>Light protected</span></li>
+            {t.facts.map(([a, b]) => <li key={a}><strong>{a}</strong><span>{b}</span></li>)}
           </ul>
         </div>
 
         <div className="harvest-art">
-          <svg viewBox={`0 -80 ${W} ${H + 80}`} role="img" aria-label="Contour line drawing of a peak inspired by K2, with the Bottleneck marked and the harvest zone above 5,000 metres">
+          <svg viewBox={`0 -80 ${W} ${H + 80}`} role="img" aria-label={t.aria}>
             <defs>
               <linearGradient id="contour-gold" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0" stopColor="#a8803f" />
@@ -126,22 +140,22 @@ export default function Harvest() {
             <g className="harvest-zone">
               <line x1="0" y1={harvestY} x2={W} y2={harvestY} stroke="#e2c487" strokeWidth="1" strokeDasharray="6 6" opacity="0.7" />
               <rect x="0" y={harvestY - 28} width="190" height="22" rx="11" fill="rgba(42,1,7,0.75)" />
-              <text x="12" y={harvestY - 13} fill="#eed9a6" fontSize="11.5" fontWeight="700" letterSpacing="1.8" fontFamily="Manrope Variable, Manrope, sans-serif">HARVEST ZONE · 5,000 M+</text>
+              <text x="12" y={harvestY - 13} fill="#eed9a6" fontSize="11.5" fontWeight="700" letterSpacing="1.8" fontFamily="Manrope Variable, Manrope, sans-serif">{t.zone}</text>
             </g>
             <g className="k2-label">
               <path d={`M ${0.515 * W + 6} ${bottleY} L ${0.515 * W + 70} ${bottleY - 22} L ${0.515 * W + 120} ${bottleY - 22}`} fill="none" stroke="#e2c487" strokeWidth="1" />
               <circle cx={0.515 * W} cy={bottleY + 2} r="4" fill="#eed9a6" />
               <text x={0.515 * W + 126} y={bottleY - 18} fill="#eed9a6" fontSize="13" fontStyle="italic" fontFamily="Playfair Display Variable, Playfair Display, serif">The Bottleneck</text>
-              <text x={0.515 * W + 126} y={bottleY - 3} fill="rgba(247,241,232,0.6)" fontSize="10" letterSpacing="1.5" fontFamily="Manrope Variable, Manrope, sans-serif">≈ 8,200 M</text>
+              <text x={0.515 * W + 126} y={bottleY - 3} fill="rgba(247,241,232,0.6)" fontSize="10" letterSpacing="1.5" fontFamily="Manrope Variable, Manrope, sans-serif">{t.bneck}</text>
             </g>
             <g className="summit" transform={`translate(${0.465 * W} ${peakY - 4})`}>
               <circle r="26" fill="url(#summit-glow)" className="summit-pulse" />
               <circle r="5.5" fill="#fff6e2" />
               <line x1="0" y1="-10" x2="0" y2="-44" stroke="#e2c487" strokeWidth="1" strokeDasharray="3 3" />
-              <text y="-52" textAnchor="middle" fill="#eed9a6" fontSize="13" fontWeight="700" letterSpacing="2" fontFamily="Manrope Variable, Manrope, sans-serif">K2 · 8,611 M</text>
+              <text y="-52" textAnchor="middle" fill="#eed9a6" fontSize="13" fontWeight="700" letterSpacing="2" fontFamily="Manrope Variable, Manrope, sans-serif">{t.peak}</text>
             </g>
           </svg>
-          <p className="art-caption">Illustration inspired by K2 and its Bottleneck</p>
+          <p className="art-caption">{t.cap}</p>
         </div>
       </div>
     </section>

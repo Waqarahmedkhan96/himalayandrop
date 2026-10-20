@@ -1,5 +1,5 @@
 // Small shared building blocks for the inner pages, in the site's existing style.
-import Link from 'next/link';
+import Link from './LLink';
 import { Icon } from './Icons';
 import { Arrow } from './Arrow';
 
