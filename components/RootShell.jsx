@@ -3,6 +3,7 @@ import SmoothScroll from './SmoothScroll';
 import Header from './Header';
 import Footer from './Footer';
 import CartDrawer from './CartDrawer';
+import OfferPopup from './OfferPopup';
 import JsonLd from './JsonLd';
 import { LangProvider } from './LangProvider';
 import { CartProvider } from '@/lib/cart';
@@ -20,6 +21,7 @@ export default function RootShell({ lang, children }) {
             <main>{children}</main>
             <Footer />
             <CartDrawer />
+            <OfferPopup />
           </CartProvider>
         </LangProvider>
       </body>

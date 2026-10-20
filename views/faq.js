@@ -4,6 +4,8 @@ import Reveal from '@/components/Reveal';
 import FaqBrowser from '@/components/FaqBrowser';
 import JsonLd from '@/components/JsonLd';
 import { Arrow } from '@/components/Arrow';
+import Sources from '@/components/Sources';
+import { refs } from '@/lib/sources';
 import { pageMeta } from '@/lib/seo';
 import { tr } from '@/lib/i18n';
 
@@ -12,7 +14,7 @@ export const meta = (lang) => pageMeta('faq', lang, '/faq/');
 const T = {
   en: {
     hero: { eyebrow: 'FAQ', title: 'Questions,', accent: 'answered.', lead: 'Everything about the product, using it, our lab testing, orders and the guarantee.' },
-    help: 'Didn’t find your answer?', contact: 'Contact us',
+    help: 'Didn’t find your answer?', contact: 'Contact us', sources: 'Sources', research: 'Read: shilajit and testosterone, the research', researchHref: '/blog/shilajit-and-testosterone-what-the-research-says/',
     groups: [
       {
         title: 'The product',
@@ -34,6 +36,15 @@ const T = {
           { q: 'When is the best time to take it?', a: 'Whenever it fits your routine. Many people pair it with their first tea of the day, which makes it easy to remember.' },
           { q: 'Can I take it if I am pregnant or on medication?', a: 'Please ask your doctor first if you are pregnant, breastfeeding, take medication or have a medical condition.' },
           { q: 'The resin has become hard. Is that normal?', a: 'Yes. Resin firms up in the cold and softens with warmth. Hold the jar in your hands for a minute.' },
+        ],
+      },
+      {
+        title: 'Research & safety',
+        items: [
+          { q: 'What is shilajit made of?', a: 'Mostly humic substances (fulvic and humic acids), together with minerals such as calcium, potassium and magnesium, trace elements, amino acids, fatty acids and phenolic compounds. The exact composition varies by region and batch [1].' },
+          { q: 'What does the research say about shilajit?', a: 'Shilajit has a long history of traditional use. Scientific research includes laboratory and animal studies and a small number of human trials. Reviews describe the early results as encouraging but call for larger, independent studies [2, 3].' },
+          { q: 'Does shilajit increase testosterone?', a: 'One small randomised, placebo-controlled trial in healthy men aged 45–55 found higher testosterone after 90 days of a purified extract [4]. The evidence is limited, and no health claim for shilajit is authorised in the EU. Our article on shilajit and testosterone goes through the studies.' },
+          { q: 'Is shilajit safe?', a: 'Purified shilajit has generally been well tolerated in studies [2]. The main risk is contamination: untested products can contain heavy metals [5], which is why every Himalayan Drop batch is tested against EU limits [6]. Not for children or pregnant or breastfeeding women.' },
         ],
       },
       {
@@ -63,7 +74,7 @@ const T = {
   },
   da: {
     hero: { eyebrow: 'FAQ', title: 'Spørgsmål,', accent: 'besvaret.', lead: 'Alt om produktet, brugen, vores laboratorietest, ordrer og garantien.' },
-    help: 'Fandt du ikke dit svar?', contact: 'Kontakt os',
+    help: 'Fandt du ikke dit svar?', contact: 'Kontakt os', sources: 'Kilder', research: 'Læs: shilajit og testosteron, forskningen', researchHref: '/blog/shilajit-og-testosteron-hvad-siger-forskningen/',
     groups: [
       {
         title: 'Produktet',
@@ -85,6 +96,15 @@ const T = {
           { q: 'Hvornår er det bedste tidspunkt at tage det?', a: 'Når det passer ind i din rutine. Mange kobler det til dagens første kop te, så det er nemt at huske.' },
           { q: 'Kan jeg tage det, hvis jeg er gravid eller tager medicin?', a: 'Spørg din læge først, hvis du er gravid, ammer, tager medicin eller har en sygdom.' },
           { q: 'Resinen er blevet hård. Er det normalt?', a: 'Ja. Resin bliver fast i kulde og blød i varme. Hold krukken i hænderne et minuts tid.' },
+        ],
+      },
+      {
+        title: 'Forskning og sikkerhed',
+        items: [
+          { q: 'Hvad består shilajit af?', a: 'Hovedsageligt humusstoffer (fulvinsyre og huminsyre) sammen med mineraler som calcium, kalium og magnesium, sporstoffer, aminosyrer, fedtsyrer og fenoliske forbindelser. Den præcise sammensætning varierer med region og batch [1].' },
+          { q: 'Hvad siger forskningen om shilajit?', a: 'Shilajit har en lang tradition. Forskningen omfatter laboratorie- og dyreforsøg samt et lille antal forsøg på mennesker. Gennemgange beskriver de tidlige resultater som opmuntrende, men efterlyser større og uafhængige undersøgelser [2, 3].' },
+          { q: 'Øger shilajit testosteron?', a: 'Ét lille randomiseret, placebokontrolleret forsøg med raske mænd på 45–55 år fandt højere testosteron efter 90 dage med et renset ekstrakt [4]. Evidensen er begrænset, og ingen sundhedsanprisning for shilajit er godkendt i EU. Vores artikel om shilajit og testosteron gennemgår undersøgelserne.' },
+          { q: 'Er shilajit sikkert?', a: 'Renset shilajit har generelt været veltolereret i undersøgelserne [2]. Den største risiko er forurening: utestede produkter kan indeholde tungmetaller [5], og derfor testes hver batch fra Himalayan Drop mod EU’s grænseværdier [6]. Ikke til børn, gravide eller ammende.' },
         ],
       },
       {
@@ -133,6 +153,8 @@ export default function FaqView({ lang }) {
       <Reveal as="section" className="section tight-top">
         <div className="container narrow" data-reveal>
           <FaqBrowser groups={t.groups} />
+          <p className="faq-research"><Link href={t.researchHref}>{t.research} <Arrow size={14} /></Link></p>
+          <Sources items={refs('kamgar2025', 'stohs2014', 'wilson2011', 'pandit2016', 'saper2008', 'reg2023915')} title={t.sources} id="faq-sources" />
           <div className="faq-help">
             <p>{t.help}</p>
             <Link href="/contact/" className="btn">{t.contact} <Arrow /></Link>
