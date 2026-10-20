@@ -13,6 +13,7 @@ import Process from '@/components/Process';
 import Certifications from '@/components/Certifications';
 import Newsletter from '@/components/Newsletter';
 import JournalSection from '@/components/JournalSection';
+import BenefitsExplorer from '@/components/BenefitsExplorer';
 import { getProducts, getArticles } from '@/lib/shopify';
 
 export default async function HomePage() {
@@ -22,6 +23,7 @@ export default async function HomePage() {
       <Hero />
       <QuickLinks />
       <Collection products={products} />
+      <BenefitsExplorer />
       <Reviews />
       <Harvest />
       <Process />

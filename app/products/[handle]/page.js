@@ -1,6 +1,9 @@
 import { notFound } from 'next/navigation';
 import { getProduct, getProducts } from '@/lib/shopify';
 import ProductView from '@/components/ProductView';
+import BenefitsExplorer from '@/components/BenefitsExplorer';
+import Comparison from '@/components/Comparison';
+import { kindOf } from '@/lib/benefits';
 
 // Pre-build a page for every product.
 export async function generateStaticParams() {
@@ -22,5 +25,12 @@ export default async function ProductPage({ params }) {
   const { handle } = await params;
   const product = await getProduct(handle);
   if (!product) notFound();
-  return <ProductView product={product} />;
+  const kind = kindOf(handle);
+  return (
+    <>
+      <ProductView product={product} />
+      <BenefitsExplorer initial={kind} />
+      <Comparison initial={kind} />
+    </>
+  );
 }
