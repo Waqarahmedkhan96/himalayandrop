@@ -21,7 +21,7 @@ const T = {
     label: 'First order offer', close: 'Close',
     q1: 'Would you', q2: 'like', pct: '10%', off: 'off?', sub: 'On your first order.',
     yes: 'Yes, please', no: 'No, thanks',
-    emailTitle: 'Where should we send it?', email: 'Your email address', send: 'Get my 10% code',
+    emailTitle: 'Where should we send it?', email: 'Your email address', send: 'Get my 10% code', wait: 'Please wait…', invalid: 'Please enter a valid email address.', failed: 'Something went wrong. Please try again.',
     consent: 'By signing up you agree to receive emails from Himalayan Drop. Unsubscribe anytime.',
     done: 'Welcome to the mountain.', codeText: 'Use this code at checkout:', copy: 'Copy code', copied: 'Copied', shop: 'Shop now',
     terms: 'One use per customer, first order only.',
@@ -30,7 +30,7 @@ const T = {
     label: 'Tilbud på første ordre', close: 'Luk',
     q1: 'Vil du', q2: 'have', pct: '10%', off: 'rabat?', sub: 'På din første ordre.',
     yes: 'Ja tak', no: 'Nej tak',
-    emailTitle: 'Hvor skal vi sende den hen?', email: 'Din e-mailadresse', send: 'Få min rabatkode',
+    emailTitle: 'Hvor skal vi sende den hen?', email: 'Din e-mailadresse', send: 'Få min rabatkode', wait: 'Vent venligst…', invalid: 'Skriv en gyldig e-mailadresse.', failed: 'Noget gik galt. Prøv igen.',
     consent: 'Ved at tilmelde dig accepterer du at modtage e-mails fra Himalayan Drop. Du kan altid afmelde dig.',
     done: 'Velkommen til bjerget.', codeText: 'Brug denne kode i checkout:', copy: 'Kopiér kode', copied: 'Kopieret', shop: 'Køb nu',
     terms: 'Kan bruges én gang pr. kunde, kun på første ordre.',
@@ -50,6 +50,7 @@ export default function OfferPopup() {
   const [step, setStep] = useState('ask'); // ask | email | code
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [error, setError] = useState('');
   const card = useRef(null);
   const lastFocus = useRef(null);
 
@@ -103,11 +104,20 @@ export default function OfferPopup() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const email = String(new FormData(e.target).get('email') || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      setError(t.invalid);
+      e.target.email.focus();
+      return;
+    }
+    setError('');
     setBusy(true);
     try {
-      await subscribe(new FormData(e.target).get('email'));
+      await subscribe(email);
       remember('claimed');
       setStep('code');
+    } catch {
+      setError(t.failed);
     } finally {
       setBusy(false);
     }
@@ -156,10 +166,11 @@ export default function OfferPopup() {
                 <button type="button" className="offer-no" onClick={() => close('declined')}>{t.no}</button>
               </>
             ) : (
-              <form className="offer-form" onSubmit={onSubmit}>
+              <form className="offer-form" onSubmit={onSubmit} noValidate>
                 <label htmlFor="offer-email" className="offer-label">{t.emailTitle}</label>
-                <input id="offer-email" name="email" type="email" required autoComplete="email" placeholder={t.email} />
-                <button type="submit" className="btn gold block offer-yes" disabled={busy}>{t.send} <Arrow /></button>
+                <input id="offer-email" name="email" type="email" required autoComplete="email" placeholder={t.email} aria-invalid={!!error} aria-describedby={error ? 'offer-error' : undefined} />
+                {error && <p className="form-error offer-error" id="offer-error" role="alert">{error}</p>}
+                <button type="submit" className="btn gold block offer-yes" disabled={busy}>{busy ? t.wait : t.send} <Arrow /></button>
                 <p className="offer-terms">{t.consent}</p>
               </form>
             )}

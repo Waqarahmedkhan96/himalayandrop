@@ -5,7 +5,8 @@
 // Forms) inside onSubmit.
 import { useState } from 'react';
 import { Arrow } from './Arrow';
-import { useT } from './LangProvider';
+import { useLang } from './LangProvider';
+import { validateForm } from '@/lib/validate';
 
 const T = {
   en: { subjects: ['Order & delivery', 'Product question', 'Lab reports', 'Returns & guarantee', 'Wholesale & partners', 'Press'], thanks: 'Thank you.', thanksText: 'Your message is on its way. We’ll reply by email.', again: 'Send another message', first: 'First name', last: 'Last name', email: 'Email *', chooseSubject: 'Choose a subject', subject: 'Subject *', order: 'Order number (optional)', message: 'Message *', consent: 'I agree that Himalayan Drop may use my details to answer this message.', sending: 'Sending…', send: 'Send message' },
@@ -13,12 +14,21 @@ const T = {
 };
 
 export default function ContactForm() {
-  const t = useT(T);
+  const lang = useLang();
+  const t = T[lang] || T.en;
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const bad = validateForm(e.target, lang);
+    if (bad) {
+      setError(bad.msg);
+      bad.el.focus();
+      return;
+    }
+    setError('');
     setBusy(true);
     // const data = Object.fromEntries(new FormData(e.target));
     // await fetch('https://formspree.io/f/your-id', { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json' } });
@@ -43,7 +53,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={onSubmit} noValidate={false}>
+    <form className="contact-form" onSubmit={onSubmit} noValidate>
       <div className="field-row">
         <div className="field">
           <input id="first" name="first" placeholder=" " autoComplete="given-name" />
@@ -75,9 +85,10 @@ export default function ContactForm() {
         <label htmlFor="message">{t.message}</label>
       </div>
       <label className="consent">
-        <input type="checkbox" required />
+        <input type="checkbox" name="consent" required />
         <span>{t.consent}</span>
       </label>
+      {error && <p className="form-error" role="alert">{error}</p>}
       <button className="btn gold block" type="submit" disabled={busy}>
         {busy ? t.sending : t.send} <Arrow />
       </button>
