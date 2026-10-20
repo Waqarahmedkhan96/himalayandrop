@@ -8,7 +8,6 @@ export const sealsDa = [
   { id: 'guarantee', ring: '100% PENGE-TILBAGE-GARANTI · ', main: ['60'], sub: 'Dage' },
 ];
 
-export const getSeals = (lang) => (lang === 'da' ? sealsDa : seals);
 
 export const seals = [
   { id: 'gmp', ring: 'GOOD MANUFACTURING PRACTICE · ', main: ['GMP'], sub: 'Certified' },
@@ -17,6 +16,16 @@ export const seals = [
   { id: 'metals', ring: 'INDEPENDENT LABORATORY · ', main: ['HEAVY', 'METALS'], sub: 'Tested' },
   { id: 'guarantee', ring: '100% MONEY-BACK GUARANTEE · ', main: ['60'], sub: 'Days' },
 ];
+
+const sealRings = (rings, subs, metals) => seals.map((s, i) => ({ ...s, ring: rings[i], sub: subs[i], ...(s.id === 'metals' ? { main: metals } : {}) }));
+const sealsBy = {
+  da: sealsDa,
+  de: sealRings(['GUTE HERSTELLUNGSPRAXIS · ', 'LEBENSMITTELSICHERHEIT · ', 'QUALITÄTSMANAGEMENT · ', 'UNABHÄNGIGES LABOR · ', '100 % GELD-ZURÜCK-GARANTIE · '], ['Zertifiziert', 'Zertifiziert', 'Zertifiziert', 'Geprüft', 'Tage'], ['SCHWER-', 'METALLE']),
+  fr: sealRings(['BONNES PRATIQUES DE FABRICATION · ', 'SÉCURITÉ DES ALIMENTS · ', 'MANAGEMENT DE LA QUALITÉ · ', 'LABORATOIRE INDÉPENDANT · ', 'SATISFAIT OU REMBOURSÉ · '], ['Certifié', 'Certifié', 'Certifié', 'Testé', 'Jours'], ['MÉTAUX', 'LOURDS']),
+  es: sealRings(['BUENAS PRÁCTICAS DE FABRICACIÓN · ', 'SEGURIDAD ALIMENTARIA · ', 'GESTIÓN DE LA CALIDAD · ', 'LABORATORIO INDEPENDIENTE · ', 'GARANTÍA DE DEVOLUCIÓN · '], ['Certificado', 'Certificado', 'Certificado', 'Analizado', 'Días'], ['METALES', 'PESADOS']),
+};
+// Arabic and Urdu keep the English seal rings: they are certification marks.
+export const getSeals = (lang) => sealsBy[lang] || seals;
 
 export function Seal({ s, prefix = 'h' }) {
   const gid = `${prefix}-g-${s.id}`;

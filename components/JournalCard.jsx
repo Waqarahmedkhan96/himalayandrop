@@ -4,9 +4,19 @@ import { formatDate } from '@/lib/shopify';
 import { useLang } from './LangProvider';
 import { Arrow } from './Arrow';
 
+const W = {
+  en: { min: 'min read', read: 'Read article' },
+  da: { min: 'min. læsning', read: 'Læs artiklen' },
+  de: { min: 'Min. Lesezeit', read: 'Artikel lesen' },
+  fr: { min: 'min de lecture', read: 'Lire l’article' },
+  es: { min: 'min de lectura', read: 'Leer artículo' },
+  ar: { min: 'دقائق للقراءة', read: 'اقرأ المقال' },
+  ur: { min: 'منٹ کا مطالعہ', read: 'مضمون پڑھیں' },
+};
+
 export default function JournalCard({ post, featured = false }) {
   const lang = useLang();
-  const da = lang === 'da';
+  const t = W[lang] || W.en;
   return (
     <Link href={`/blog/${post.slug}/`} className={`journal-card ${featured ? 'featured' : ''}`}>
       <span className="journal-media">
@@ -14,10 +24,10 @@ export default function JournalCard({ post, featured = false }) {
         <span className="card-tag">{post.category}</span>
       </span>
       <span className="journal-body">
-        <span className="journal-meta">{formatDate(post.date, lang)} · {post.readMin} {da ? 'min. læsning' : 'min read'}</span>
+        <span className="journal-meta">{formatDate(post.date, lang)} · {post.readMin} {t.min}</span>
         <h3>{post.title}</h3>
         {featured && <span className="journal-excerpt">{post.excerpt}</span>}
-        <span className="journal-more">{da ? 'Læs artiklen' : 'Read article'} <Arrow size={14} /></span>
+        <span className="journal-more">{t.read} <Arrow size={14} /></span>
       </span>
     </Link>
   );

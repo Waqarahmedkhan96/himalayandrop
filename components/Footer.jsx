@@ -18,6 +18,31 @@ const T = {
     disclaimer: 'Kosttilskud. Den anbefalede daglige dosis bør ikke overskrides. Kosttilskud bør ikke anvendes som erstatning for en varieret og balanceret kost og en sund livsstil. Opbevares utilgængeligt for børn.',
     rights: 'Alle rettigheder forbeholdes.',
   },
+  de: {
+    tagline: 'Ein moderner Zugang zu einer zeitlosen Naturessenz. Gestaltet in Dänemark.',
+    disclaimer: 'Nahrungsergänzungsmittel. Die empfohlene tägliche Verzehrmenge nicht überschreiten. Nahrungsergänzungsmittel sind kein Ersatz für eine abwechslungsreiche und ausgewogene Ernährung und eine gesunde Lebensweise. Außerhalb der Reichweite von Kindern aufbewahren.',
+    rights: 'Alle Rechte vorbehalten.',
+  },
+  fr: {
+    tagline: 'Une approche moderne d’une substance naturelle intemporelle. Conçu au Danemark.',
+    disclaimer: 'Complément alimentaire. Ne pas dépasser la dose journalière recommandée. Les compléments alimentaires ne doivent pas être utilisés comme substituts d’un régime alimentaire varié et équilibré et d’un mode de vie sain. Tenir hors de portée des jeunes enfants.',
+    rights: 'Tous droits réservés.',
+  },
+  es: {
+    tagline: 'Una mirada moderna a una sustancia natural atemporal. Diseñado en Dinamarca.',
+    disclaimer: 'Complemento alimenticio. No superar la dosis diaria expresamente recomendada. Los complementos alimenticios no deben utilizarse como sustituto de una dieta variada y equilibrada y de un estilo de vida saludable. Mantener fuera del alcance de los niños más pequeños.',
+    rights: 'Todos los derechos reservados.',
+  },
+  ar: {
+    tagline: 'رؤية عصرية لمادة طبيعية خالدة. مصمم في الدنمارك.',
+    disclaimer: 'مكمل غذائي. لا تتجاوز الجرعة اليومية الموصى بها. لا تُستخدم المكملات الغذائية بديلاً عن نظام غذائي متنوع ومتوازن ونمط حياة صحي. يُحفظ بعيداً عن متناول الأطفال.',
+    rights: 'جميع الحقوق محفوظة.',
+  },
+  ur: {
+    tagline: 'ایک لازوال قدرتی جزو کا جدید انداز۔ ڈنمارک میں ڈیزائن۔',
+    disclaimer: 'غذائی سپلیمنٹ۔ تجویز کردہ روزانہ خوراک سے زیادہ استعمال نہ کریں۔ غذائی سپلیمنٹ متوازن اور متنوع غذا اور صحت مند طرزِ زندگی کا متبادل نہیں ہیں۔ بچوں کی پہنچ سے دور رکھیں۔',
+    rights: 'جملہ حقوق محفوظ ہیں۔',
+  },
 };
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { ridgePoints, toLine, toShape } from '@/lib/mountains';
@@ -83,7 +108,7 @@ export default function Footer() {
 
           <p className="disclaimer">{t.disclaimer}</p>
           <div className="footer-bottom">
-            <span suppressHydrationWarning>© 2024–{new Date().getFullYear()} Himalayan Drop. {t.rights}</span>
+            <span suppressHydrationWarning><bdi dir="ltr">© 2024–{new Date().getFullYear()} Himalayan Drop.</bdi> {t.rights}</span>
             <span className="legal-links">{legal.map(([l, h]) => <Link key={l} href={h}>{l}</Link>)}</span>
           </div>
         </div>

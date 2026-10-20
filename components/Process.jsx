@@ -59,9 +59,56 @@ const stepsDa = [
   { key: 'pack', eyebrow: 'Forseglet til dig', title: 'Pakket i UV-beskyttet glas', text: 'Til sidst forsegles resinen i vores UV-beskyttede krukker, så den når frem til dig, præcis som den forlod bjerget.', fact: 'Klar til dit ritual' },
 ];
 
+const mk = (rows) => stepsEn.map((s, i) => ({ ...s, eyebrow: rows[i][0], title: rows[i][1], text: rows[i][2], fact: rows[i][3] }));
+const stepsDe = mk([
+  ['Über 5.000 m', 'Von Hand gesammelt', 'Hoch im Himalaya steigen unsere Sammler zu den Felswänden über 5.000 Metern und sammeln die Shilajit-haltigen Steine von Hand.', 'Handverlesen'],
+  ['Brechen & lösen', 'Vom Stein zur Flüssigkeit', 'Die Steine werden zerkleinert und in reinem Wasser eingeweicht, bis sich das Harz löst und das Gestein zurückbleibt.', 'Nur reines Wasser'],
+  ['Reinigen', 'Wieder und wieder gefiltert', 'Die Flüssigkeit wird mehrfach gefiltert und von Sand, Stein und allem befreit, was nicht ins Harz gehört.', 'Mehrfach gefiltert'],
+  ['Bis zu 60 Tage', 'Langsam sonnengetrocknet', 'Die Flüssigkeit ruht in großen UV-geschützten Glasgefäßen in Stahlschalen und trocknet langsam in der Sonne. Je nach Wetter dauert das bis zu 60 Tage.', 'Ohne Hitze, ohne Eile'],
+  ['Jede Charge', 'Im Labor geprüft', 'Jede Charge wird im Labor auf Schwermetalle und Gesamtqualität geprüft, und ihr Fulvinsäure-Anteil wird vor der Freigabe gemessen.', 'Bericht je Charge'],
+  ['Für dich versiegelt', 'In UV-geschütztes Glas abgefüllt', 'Zum Schluss wird das Harz in unsere hochwertigen UV-geschützten Gläser gefüllt, damit es dich genau so erreicht, wie es den Berg verlassen hat.', 'Bereit für dein Ritual'],
+]);
+const stepsFr = mk([
+  ['Au-dessus de 5 000 m', 'Récolté à la main', 'Haut dans l’Himalaya, nos récolteurs grimpent jusqu’aux parois rocheuses au-dessus de 5 000 mètres et ramassent à la main les pierres porteuses de shilajit.', 'Récolté à la main'],
+  ['Briser et dissoudre', 'De la pierre au liquide', 'Les pierres sont brisées puis trempées dans de l’eau pure, jusqu’à ce que la résine se dissolve et laisse la roche derrière elle.', 'Uniquement de l’eau pure'],
+  ['Purifier', 'Filtré encore et encore', 'Le liquide est filtré plusieurs fois pour retirer le sable, la pierre et tout ce qui n’a pas sa place dans la résine.', 'Filtrations multiples'],
+  ['Jusqu’à 60 jours', 'Séché lentement au soleil', 'Le liquide repose dans de grands bocaux en verre anti-UV, posés dans des bassines en acier, et sèche lentement au soleil. Selon la météo, cela prend jusqu’à 60 jours.', 'Sans chaleur, sans hâte'],
+  ['Chaque lot', 'Testé en laboratoire', 'Chaque lot est testé en laboratoire pour les métaux lourds et la qualité globale, et son taux d’acide fulvique est mesuré avant d’être validé.', 'Rapport par lot'],
+  ['Scellé pour vous', 'Conditionné en verre anti-UV', 'Enfin, la résine est scellée dans nos pots premium anti-UV, pour vous parvenir exactement telle qu’elle a quitté la montagne.', 'Prêt pour votre rituel'],
+]);
+const stepsEs = mk([
+  ['Más de 5.000 m', 'Recolectado a mano', 'En lo alto del Himalaya, nuestros recolectores suben a las paredes de roca a más de 5.000 metros y recogen a mano las piedras con shilajit.', 'Recolectado a mano'],
+  ['Romper y disolver', 'De piedra a líquido', 'Las piedras se rompen y se dejan en agua pura hasta que la resina se disuelve y la roca queda atrás.', 'Solo agua pura'],
+  ['Purificar', 'Filtrado una y otra vez', 'El líquido se filtra varias veces para eliminar arena, piedra y todo lo que no pertenece a la resina.', 'Varios filtrados'],
+  ['Hasta 60 días', 'Secado lentamente al sol', 'El líquido reposa en grandes tarros de vidrio con protección UV, dentro de cuencos de acero, y se seca despacio al sol. Según el tiempo, tarda hasta 60 días.', 'Sin calor, sin prisa'],
+  ['Cada lote', 'Analizado en laboratorio', 'Cada lote se analiza en laboratorio en metales pesados y calidad general, y se mide su porcentaje de ácido fúlvico antes de liberarlo.', 'Informe por lote'],
+  ['Sellado para ti', 'Envasado en vidrio con protección UV', 'Por último, la resina se sella en nuestros tarros premium con protección UV, para que te llegue tal como salió de la montaña.', 'Listo para tu ritual'],
+]);
+const stepsAr = mk([
+  ['فوق 5000 متر', 'يُجمع يدوياً', 'في أعالي الهيمالايا، يتسلق جامعونا الواجهات الصخرية فوق 5000 متر ويجمعون الأحجار الحاملة للشيلاجيت بأيديهم.', 'جمع يدوي'],
+  ['التكسير والإذابة', 'من الحجر إلى السائل', 'تُكسّر الأحجار وتُنقع في ماء نقي حتى يذوب الراتنج ويترك الصخر خلفه.', 'ماء نقي فقط'],
+  ['التنقية', 'تصفية بعد تصفية', 'يُصفّى السائل عدة مرات لإزالة الرمل والحجارة وكل ما لا ينتمي إلى الراتنج.', 'تصفية متعددة'],
+  ['حتى 60 يوماً', 'يجف ببطء تحت الشمس', 'يستقر السائل في أوانٍ زجاجية كبيرة محمية من الأشعة فوق البنفسجية داخل أوعية فولاذية، ويجف ببطء تحت الشمس. يستغرق ذلك حتى 60 يوماً حسب الطقس.', 'بلا حرارة وبلا استعجال'],
+  ['كل دفعة', 'مفحوص في المختبر', 'تُفحص كل دفعة مخبرياً للمعادن الثقيلة والجودة العامة، وتُقاس نسبة حمض الفولفيك قبل اعتمادها.', 'تقرير لكل دفعة'],
+  ['محفوظ لأجلك', 'معبأ في زجاج محمي من الأشعة', 'أخيراً يُحفظ الراتنج في عبواتنا الفاخرة المحمية من الأشعة فوق البنفسجية، ليصلك تماماً كما غادر الجبل.', 'جاهز لطقسك'],
+]);
+const stepsUr = mk([
+  ['5,000 میٹر سے بلند', 'ہاتھ سے چناؤ', 'ہمالیہ کی بلندیوں پر ہمارے چننے والے 5,000 میٹر سے اوپر چٹانوں تک چڑھتے ہیں اور سلاجیت والے پتھر ہاتھ سے جمع کرتے ہیں۔', 'ہاتھ سے چنا گیا'],
+  ['توڑنا اور حل کرنا', 'پتھر سے مائع تک', 'پتھروں کو توڑ کر خالص پانی میں بھگویا جاتا ہے، یہاں تک کہ ریزن حل ہو جائے اور پتھر الگ رہ جائے۔', 'صرف خالص پانی'],
+  ['صفائی', 'بار بار چھانا گیا', 'مائع کو کئی بار چھانا جاتا ہے تاکہ ریت، پتھر اور ہر وہ چیز نکل جائے جو ریزن کا حصہ نہیں۔', 'کئی مرتبہ فلٹر'],
+  ['60 دن تک', 'دھوپ میں آہستہ خشک', 'مائع بڑے UV سے محفوظ شیشے کے برتنوں میں، اسٹیل کے پیالوں میں رکھ کر دھوپ میں آہستہ آہستہ خشک ہوتا ہے۔ موسم کے مطابق اس میں 60 دن تک لگتے ہیں۔', 'نہ آنچ، نہ جلدی'],
+  ['ہر بیچ', 'لیب میں ٹیسٹ', 'ہر بیچ کا بھاری دھاتوں اور مجموعی معیار کے لیے لیب ٹیسٹ ہوتا ہے، اور جاری کرنے سے پہلے فلوک ایسڈ کی فیصد ناپی جاتی ہے۔', 'ہر بیچ کی رپورٹ'],
+  ['آپ کے لیے بند', 'UV سے محفوظ شیشے میں پیک', 'آخر میں ریزن کو ہمارے پریمیم UV سے محفوظ برتنوں میں بند کیا جاتا ہے، تاکہ یہ آپ تک ویسا ہی پہنچے جیسا پہاڑ سے نکلا۔', 'آپ کے معمول کے لیے تیار'],
+]);
+
 const T = {
   en: { steps: stepsEn, alt: '5,000 m+', day: 'DAY', checks: ['Heavy metals', 'Quality', 'Fulvic acid %'], eyebrow: 'Our process', h: 'From mountain', hg: 'to jar.', lead: 'Six patient steps, and up to 60 days in the sun. Scroll to follow the journey.', within: 'The Mountain', withinG: 'within.' },
   da: { steps: stepsDa, alt: '5.000 m+', day: 'DAG', checks: ['Tungmetaller', 'Kvalitet', 'Fulvinsyre %'], eyebrow: 'Vores proces', h: 'Fra bjerg', hg: 'til krukke.', lead: 'Seks tålmodige trin og op til 60 dage i solen. Scroll og følg rejsen.', within: 'The Mountain', withinG: 'within.' },
+  de: { steps: stepsDe, alt: '5.000 m+', day: 'TAG', checks: ['Schwermetalle', 'Qualität', 'Fulvinsäure %'], eyebrow: 'Unser Prozess', h: 'Vom Berg', hg: 'ins Glas.', lead: 'Sechs geduldige Schritte und bis zu 60 Tage in der Sonne. Scrolle, um der Reise zu folgen.', within: 'The Mountain', withinG: 'within.' },
+  fr: { steps: stepsFr, alt: '5 000 m+', day: 'JOUR', checks: ['Métaux lourds', 'Qualité', 'Acide fulvique %'], eyebrow: 'Notre processus', h: 'De la montagne', hg: 'au pot.', lead: 'Six étapes patientes et jusqu’à 60 jours au soleil. Faites défiler pour suivre le voyage.', within: 'The Mountain', withinG: 'within.' },
+  es: { steps: stepsEs, alt: '5.000 m+', day: 'DÍA', checks: ['Metales pesados', 'Calidad', 'Ácido fúlvico %'], eyebrow: 'Nuestro proceso', h: 'De la montaña', hg: 'al tarro.', lead: 'Seis pasos pacientes y hasta 60 días al sol. Desplázate para seguir el viaje.', within: 'The Mountain', withinG: 'within.' },
+  ar: { steps: stepsAr, alt: '+5,000 م', day: 'يوم', checks: ['المعادن الثقيلة', 'الجودة', 'نسبة حمض الفولفيك'], eyebrow: 'مراحل الإنتاج', h: 'من الجبل', hg: 'إلى العبوة.', lead: 'ست خطوات متأنية وحتى 60 يوماً تحت الشمس. مرّر لتتبع الرحلة.', within: 'The Mountain', withinG: 'within.' },
+  ur: { steps: stepsUr, alt: '+5,000 میٹر', day: 'دن', checks: ['بھاری دھاتیں', 'معیار', 'فلوک ایسڈ %'], eyebrow: 'ہمارا طریقہ', h: 'پہاڑ سے', hg: 'برتن تک۔', lead: 'چھ صبر آزما مراحل اور 60 دن تک دھوپ۔ سفر دیکھنے کے لیے اسکرول کریں۔', within: 'The Mountain', withinG: 'within.' },
 };
 
 function Scene({ k, day, t }) {

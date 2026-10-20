@@ -11,6 +11,11 @@ import { getKinds, getBenefits } from '@/lib/benefits';
 const T = {
   en: { eyebrow: 'Why it belongs in your ritual', h: 'One mountain,', hg: 'four rituals.', p: 'Choose a format to see what makes it ours.', choose: 'Choose a product', discover: 'Discover' },
   da: { eyebrow: 'Derfor hører den til i dit ritual', h: 'Ét bjerg,', hg: 'fire ritualer.', p: 'Vælg en form og se, hvad der gør den til vores.', choose: 'Vælg et produkt', discover: 'Se' },
+  de: { eyebrow: 'Warum es in dein Ritual gehört', h: 'Ein Berg,', hg: 'vier Rituale.', p: 'Wähle eine Form und sieh, was sie besonders macht.', choose: 'Produkt wählen', discover: 'Entdecken' },
+  fr: { eyebrow: 'Pourquoi l’adopter', h: 'Une montagne,', hg: 'quatre rituels.', p: 'Choisissez un format pour découvrir ce qui le distingue.', choose: 'Choisir un produit', discover: 'Découvrir' },
+  es: { eyebrow: 'Por qué forma parte de tu ritual', h: 'Una montaña,', hg: 'cuatro rituales.', p: 'Elige un formato y descubre qué lo hace nuestro.', choose: 'Elige un producto', discover: 'Descubrir' },
+  ar: { eyebrow: 'لماذا يستحق مكاناً في طقسك', h: 'جبل واحد،', hg: 'أربعة طقوس.', p: 'اختر شكلاً لترى ما يميّزه.', choose: 'اختر منتجاً', discover: 'اكتشف' },
+  ur: { eyebrow: 'یہ آپ کے معمول کا حصہ کیوں ہے', h: 'ایک پہاڑ،', hg: 'چار انداز۔', p: 'کوئی شکل منتخب کریں اور اس کی خاصیت دیکھیں۔', choose: 'پروڈکٹ منتخب کریں', discover: 'دیکھیں' },
 };
 import KindTabs from './KindTabs';
 import { Icon } from './Icons';

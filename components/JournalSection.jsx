@@ -9,6 +9,11 @@ import { Arrow } from './Arrow';
 const T = {
   en: { eyebrow: 'The journal', a: 'Notes from', b: 'the mountains.', all: 'All articles' },
   da: { eyebrow: 'Journalen', a: 'Noter fra', b: 'bjergene.', all: 'Alle artikler' },
+  de: { eyebrow: 'Das Journal', a: 'Notizen aus', b: 'den Bergen.', all: 'Alle Artikel' },
+  fr: { eyebrow: 'Le journal', a: 'Notes venues', b: 'des montagnes.', all: 'Tous les articles' },
+  es: { eyebrow: 'El journal', a: 'Notas desde', b: 'las montañas.', all: 'Todos los artículos' },
+  ar: { eyebrow: 'المدونة', a: 'ملاحظات من', b: 'الجبال.', all: 'جميع المقالات' },
+  ur: { eyebrow: 'بلاگ', a: 'پہاڑوں سے', b: 'نوٹس۔', all: 'تمام مضامین' },
 };
 
 export default function JournalSection({ posts }) {

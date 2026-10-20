@@ -42,6 +42,86 @@ const T = {
       { eyebrow: 'Hjælp', title: 'Bestil et certifikat', text: 'Vi mailer den PDF, du har brug for.', cta: 'Kontakt os', href: '/contact/' },
     ],
   },
+  de: {
+    hero: { eyebrow: 'Zertifikate', title: 'Standards, die du', accent: 'prüfen kannst.', lead: 'Die Qualitätssysteme, nach denen wir herstellen, die Prüfungen jeder Charge und das Versprechen hinter jedem Glas.' },
+    details: {
+      gmp: { title: 'GMP-zertifiziert', text: 'Gute Herstellungspraxis: Die Produktion folgt dokumentierten, hygienischen und gleichbleibenden Abläufen, kontrolliert durch Audits.', file: null },
+      iso22000: { title: 'ISO 22000', text: 'Internationaler Standard für Lebensmittelsicherheits-Management, vom Rohstoff bis zur Abfüllung.', file: null },
+      iso9001: { title: 'ISO 9001', text: 'Internationaler Standard für Qualitätsmanagement: klare Abläufe, Rückverfolgbarkeit und stetige Verbesserung.', file: null },
+      metals: { title: 'Auf Schwermetalle geprüft', text: 'Jede Charge wird von einem unabhängigen Labor auf Blei, Cadmium, Quecksilber und Arsen geprüft.', file: '/lab-results/' },
+      guarantee: { title: '60 Tage Garantie', text: 'Nicht zufrieden? Melde dich innerhalb von 60 Tagen nach Lieferung und wir erstatten deinen Kauf.', file: '/policies/refund-policy/' },
+    },
+    view: 'Zertifikat ansehen', more: 'Mehr erfahren', onRequest: 'Zertifikat auf Anfrage', notice: 'Zertifikate als PDF kannst du über unsere Kontaktseite anfordern.',
+    ctas: [
+      { eyebrow: 'Jede Charge', title: 'Laborergebnisse', text: 'Finde den Bericht zu deinem Glas.', cta: 'Laborergebnisse ansehen', href: '/lab-results/', dark: true },
+      { eyebrow: 'Prozess', title: 'Unser Shilajit', text: 'Herkunft, Reinigung und Trocknung.', cta: 'Mehr erfahren', href: '/our-shilajit/' },
+      { eyebrow: 'Hilfe', title: 'Zertifikat anfordern', text: 'Wir senden dir das benötigte PDF per E-Mail.', cta: 'Kontakt', href: '/contact/' },
+    ],
+  },
+  fr: {
+    hero: { eyebrow: 'Certificats', title: 'Des normes', accent: 'vérifiables.', lead: 'Les systèmes qualité de notre production, les tests réussis par chaque lot et la promesse derrière chaque pot.' },
+    details: {
+      gmp: { title: 'Certifié GMP', text: 'Bonnes pratiques de fabrication : une production qui suit des procédures documentées, hygiéniques et constantes, contrôlées par audit.', file: null },
+      iso22000: { title: 'ISO 22000', text: 'Norme internationale de management de la sécurité des aliments, de la matière première au conditionnement.', file: null },
+      iso9001: { title: 'ISO 9001', text: 'Norme internationale de management de la qualité : processus clairs, traçabilité et amélioration continue.', file: null },
+      metals: { title: 'Métaux lourds testés', text: 'Chaque lot est testé par un laboratoire indépendant pour le plomb, le cadmium, le mercure et l’arsenic.', file: '/lab-results/' },
+      guarantee: { title: 'Garantie 60 jours', text: 'Pas satisfait ? Contactez-nous dans les 60 jours suivant la livraison et nous vous remboursons.', file: '/policies/refund-policy/' },
+    },
+    view: 'Voir le certificat', more: 'En savoir plus', onRequest: 'Certificat sur demande', notice: 'Les certificats en PDF peuvent être demandés via notre page contact.',
+    ctas: [
+      { eyebrow: 'Chaque lot', title: 'Résultats de laboratoire', text: 'Consultez le rapport de votre pot.', cta: 'Voir les résultats', href: '/lab-results/', dark: true },
+      { eyebrow: 'Processus', title: 'Notre shilajit', text: 'Origine, purification et séchage.', cta: 'En savoir plus', href: '/our-shilajit/' },
+      { eyebrow: 'Aide', title: 'Demander un certificat', text: 'Nous vous enverrons le PDF par e-mail.', cta: 'Nous contacter', href: '/contact/' },
+    ],
+  },
+  es: {
+    hero: { eyebrow: 'Certificados', title: 'Estándares que', accent: 'puedes comprobar.', lead: 'Los sistemas de calidad con los que producimos, los análisis que supera cada lote y la promesa detrás de cada tarro.' },
+    details: {
+      gmp: { title: 'Certificado GMP', text: 'Buenas prácticas de fabricación: la producción sigue procedimientos documentados, higiénicos y constantes, verificados por auditoría.', file: null },
+      iso22000: { title: 'ISO 22000', text: 'Norma internacional de gestión de la seguridad alimentaria, desde la materia prima hasta el envasado.', file: null },
+      iso9001: { title: 'ISO 9001', text: 'Norma internacional de gestión de la calidad: procesos claros, trazabilidad y mejora continua.', file: null },
+      metals: { title: 'Metales pesados analizados', text: 'Un laboratorio independiente analiza cada lote en plomo, cadmio, mercurio y arsénico.', file: '/lab-results/' },
+      guarantee: { title: 'Garantía de 60 días', text: '¿No estás satisfecho? Escríbenos en los 60 días siguientes a la entrega y te devolvemos el dinero.', file: '/policies/refund-policy/' },
+    },
+    view: 'Ver certificado', more: 'Saber más', onRequest: 'Certificado a petición', notice: 'Puedes pedir los certificados en PDF a través de nuestra página de contacto.',
+    ctas: [
+      { eyebrow: 'Cada lote', title: 'Resultados de laboratorio', text: 'Consulta el informe de tu tarro.', cta: 'Ver resultados', href: '/lab-results/', dark: true },
+      { eyebrow: 'Proceso', title: 'Nuestro shilajit', text: 'Origen, purificación y secado.', cta: 'Saber más', href: '/our-shilajit/' },
+      { eyebrow: 'Ayuda', title: 'Pedir un certificado', text: 'Te enviamos por correo el PDF que necesites.', cta: 'Contacto', href: '/contact/' },
+    ],
+  },
+  ar: {
+    hero: { eyebrow: 'الشهادات', title: 'معايير يمكنك', accent: 'التحقق منها.', lead: 'أنظمة الجودة التي ننتج وفقها، والفحوص التي تجتازها كل دفعة، والوعد خلف كل عبوة.' },
+    details: {
+      gmp: { title: 'معتمد GMP', text: 'ممارسات التصنيع الجيدة: إنتاج يتبع إجراءات موثقة وصحية وثابتة، تخضع للتدقيق.', file: null },
+      iso22000: { title: 'ISO 22000', text: 'معيار دولي لإدارة سلامة الغذاء، يغطي كل خطوة من المادة الخام إلى التعبئة.', file: null },
+      iso9001: { title: 'ISO 9001', text: 'معيار دولي لإدارة الجودة: عمليات واضحة وتتبع وتحسين مستمر.', file: null },
+      metals: { title: 'مفحوص للمعادن الثقيلة', text: 'يفحص مختبر مستقل كل دفعة للرصاص والكادميوم والزئبق والزرنيخ.', file: '/lab-results/' },
+      guarantee: { title: 'ضمان 60 يوماً', text: 'غير راضٍ؟ تواصل معنا خلال 60 يوماً من الاستلام وسنعيد لك المبلغ.', file: '/policies/refund-policy/' },
+    },
+    view: 'عرض الشهادة', more: 'اعرف المزيد', onRequest: 'الشهادة عند الطلب', notice: 'يمكن طلب الشهادات بصيغة PDF عبر صفحة التواصل.',
+    ctas: [
+      { eyebrow: 'كل دفعة', title: 'نتائج المختبر', text: 'اعثر على تقرير عبوتك.', cta: 'عرض النتائج', href: '/lab-results/', dark: true },
+      { eyebrow: 'مراحل الإنتاج', title: 'الشيلاجيت لدينا', text: 'المصدر والتنقية والتجفيف.', cta: 'اعرف المزيد', href: '/our-shilajit/' },
+      { eyebrow: 'المساعدة', title: 'اطلب شهادة', text: 'سنرسل لك ملف PDF الذي تحتاجه.', cta: 'اتصل بنا', href: '/contact/' },
+    ],
+  },
+  ur: {
+    hero: { eyebrow: 'سرٹیفکیٹس', title: 'ایسے معیار جنہیں آپ', accent: 'جانچ سکتے ہیں۔', lead: 'وہ معیاری نظام جن کے تحت ہم تیار کرتے ہیں، ہر بیچ کے ٹیسٹ اور ہر برتن کے پیچھے ہمارا وعدہ۔' },
+    details: {
+      gmp: { title: 'GMP سرٹیفائیڈ', text: 'گڈ مینوفیکچرنگ پریکٹس: پیداوار دستاویزی، صاف ستھرے اور یکساں طریقوں سے، آڈٹ کے ذریعے جانچی جاتی ہے۔', file: null },
+      iso22000: { title: 'ISO 22000', text: 'فوڈ سیفٹی مینجمنٹ کا بین الاقوامی معیار، خام مال سے پیکنگ تک ہر مرحلے کے لیے۔', file: null },
+      iso9001: { title: 'ISO 9001', text: 'کوالٹی مینجمنٹ کا بین الاقوامی معیار: واضح طریقہ کار، ٹریس ایبلٹی اور مسلسل بہتری۔', file: null },
+      metals: { title: 'بھاری دھاتوں کا ٹیسٹ', text: 'ہر بیچ ایک آزاد لیبارٹری میں سیسے، کیڈمیم، پارے اور سنکھیا کے لیے ٹیسٹ ہوتا ہے۔', file: '/lab-results/' },
+      guarantee: { title: '60 دن کی گارنٹی', text: 'مطمئن نہیں؟ ترسیل کے 60 دن کے اندر رابطہ کریں اور ہم رقم واپس کر دیں گے۔', file: '/policies/refund-policy/' },
+    },
+    view: 'سرٹیفکیٹ دیکھیں', more: 'مزید جانیں', onRequest: 'سرٹیفکیٹ درخواست پر', notice: 'سرٹیفکیٹس کی PDF ہمارے رابطہ صفحے سے منگوائی جا سکتی ہے۔',
+    ctas: [
+      { eyebrow: 'ہر بیچ', title: 'لیب رپورٹس', text: 'اپنے برتن کی رپورٹ دیکھیں۔', cta: 'لیب رپورٹس دیکھیں', href: '/lab-results/', dark: true },
+      { eyebrow: 'طریقہ', title: 'ہمارا سلاجیت', text: 'ماخذ، صفائی اور خشک کرنا۔', cta: 'مزید جانیں', href: '/our-shilajit/' },
+      { eyebrow: 'مدد', title: 'سرٹیفکیٹ منگوائیں', text: 'ہم آپ کو مطلوبہ PDF ای میل کر دیں گے۔', cta: 'رابطہ کریں', href: '/contact/' },
+    ],
+  },
 };
 
 export default function CertificatesView({ lang }) {

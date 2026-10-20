@@ -20,6 +20,36 @@ const T = {
     originCity: 'Høstes her', ask: 'Kontakt', tap: 'Tryk på en by for at kontakte vores partner der.',
     legendPin: 'Land med forhandler', legendSource: 'Skardu, hvor vores shilajit høstes', swipe: 'Swipe på kortet for at se Golfen og Pakistan',
   },
+  de: {
+    map: 'Karte unseres Händlernetzes', all: 'Alle', clear: 'Alle Länder anzeigen',
+    cities: (n) => (n === 1 ? '1 Stadt' : `${n} Städte`), contact: 'Dein Kontakt', home: 'Unser Zuhause', origin: 'Unsere Quelle',
+    originCity: 'Hier geerntet', ask: 'Kontakt', tap: 'Tippe auf eine Stadt, um unseren Partner dort zu kontaktieren.',
+    legendPin: 'Land mit Händler', legendSource: 'Skardu, wo unser Shilajit geerntet wird', swipe: 'Wische über die Karte für den Golf und Pakistan',
+  },
+  fr: {
+    map: 'Carte de notre réseau de distributeurs', all: 'Tous', clear: 'Afficher tous les pays',
+    cities: (n) => (n === 1 ? '1 ville' : `${n} villes`), contact: 'Votre contact', home: 'Notre maison', origin: 'Notre source',
+    originCity: 'Récolté ici', ask: 'Contacter', tap: 'Touchez une ville pour contacter notre partenaire sur place.',
+    legendPin: 'Pays avec distributeur', legendSource: 'Skardu, où notre shilajit est récolté', swipe: 'Faites glisser la carte vers le Golfe et le Pakistan',
+  },
+  es: {
+    map: 'Mapa de nuestra red de distribuidores', all: 'Todos', clear: 'Mostrar todos los países',
+    cities: (n) => (n === 1 ? '1 ciudad' : `${n} ciudades`), contact: 'Tu contacto', home: 'Nuestra casa', origin: 'Nuestro origen',
+    originCity: 'Se recolecta aquí', ask: 'Contactar', tap: 'Toca una ciudad para contactar con nuestro socio allí.',
+    legendPin: 'País con distribuidor', legendSource: 'Skardu, donde se recolecta nuestro shilajit', swipe: 'Desliza el mapa para ver el Golfo y Pakistán',
+  },
+  ar: {
+    map: 'خريطة شبكة موزعينا', all: 'الكل', clear: 'عرض جميع الدول',
+    cities: (n) => (n === 1 ? 'مدينة واحدة' : n === 2 ? 'مدينتان' : `${n} مدن`), contact: 'جهة الاتصال', home: 'موطننا', origin: 'مصدرنا',
+    originCity: 'يُجمع هنا', ask: 'تواصل', tap: 'اضغط على مدينة للتواصل مع شريكنا هناك.',
+    legendPin: 'دولة بها موزع', legendSource: 'سكردو، حيث يُجمع الشيلاجيت لدينا', swipe: 'اسحب الخريطة لرؤية الخليج وباكستان',
+  },
+  ur: {
+    map: 'ہمارے ڈسٹری بیوٹر نیٹ ورک کا نقشہ', all: 'سب', clear: 'تمام ممالک دکھائیں',
+    cities: (n) => (n === 1 ? '1 شہر' : `${n} شہر`), contact: 'آپ کا رابطہ', home: 'ہمارا گھر', origin: 'ہمارا ماخذ',
+    originCity: 'یہاں سے حاصل کیا جاتا ہے', ask: 'رابطہ کریں', tap: 'وہاں ہمارے پارٹنر سے رابطے کے لیے کسی شہر پر ٹیپ کریں۔',
+    legendPin: 'ڈسٹری بیوٹر والا ملک', legendSource: 'اسکردو، جہاں سے ہمارا سلاجیت حاصل ہوتا ہے', swipe: 'خلیج اور پاکستان دیکھنے کے لیے نقشہ سوائپ کریں',
+  },
 };
 
 const W = 668.8;
@@ -96,7 +126,7 @@ export default function DistributorNetwork({ formId = 'dist' }) {
       </p>
 
       <div className="dn-tabs" role="tablist">
-        {[{ id: 'all', en: t.all, da: t.all }, ...REGIONS].map((r) => (
+        {[{ id: 'all', [lang]: t.all }, ...REGIONS].map((r) => (
           <button
             type="button"
             role="tab"

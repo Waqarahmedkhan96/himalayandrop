@@ -9,6 +9,11 @@ import { useLang } from './LangProvider';
 const T = {
   en: { eyebrow: 'Proof, not promises', h: 'Certified &', hg: 'tested.', p: 'Produced under recognised quality standards, tested for heavy metals batch by batch, and backed by a 60-day money-back guarantee.' },
   da: { eyebrow: 'Bevis, ikke løfter', h: 'Certificeret og', hg: 'testet.', p: 'Produceret efter anerkendte kvalitetsstandarder, testet for tungmetaller batch for batch og med 60 dages penge-tilbage-garanti.' },
+  de: { eyebrow: 'Beweise statt Versprechen', h: 'Zertifiziert &', hg: 'geprüft.', p: 'Hergestellt nach anerkannten Qualitätsstandards, Charge für Charge auf Schwermetalle geprüft und mit 60 Tagen Geld-zurück-Garantie.' },
+  fr: { eyebrow: 'Des preuves, pas des promesses', h: 'Certifié et', hg: 'testé.', p: 'Produit selon des normes de qualité reconnues, testé lot par lot pour les métaux lourds et couvert par une garantie satisfait ou remboursé de 60 jours.' },
+  es: { eyebrow: 'Pruebas, no promesas', h: 'Certificado y', hg: 'analizado.', p: 'Producido bajo normas de calidad reconocidas, analizado lote a lote en metales pesados y con garantía de devolución de 60 días.' },
+  ar: { eyebrow: 'إثبات لا وعود', h: 'معتمد', hg: 'ومفحوص.', p: 'يُنتج وفق معايير جودة معترف بها، ويُفحص للمعادن الثقيلة دفعة بدفعة، مع ضمان استرداد المال لمدة 60 يوماً.' },
+  ur: { eyebrow: 'وعدے نہیں، ثبوت', h: 'سرٹیفائیڈ اور', hg: 'ٹیسٹڈ۔', p: 'تسلیم شدہ معیار کے تحت تیار، ہر بیچ میں بھاری دھاتوں کا ٹیسٹ اور 60 دن کی منی بیک گارنٹی۔' },
 };
 
 export default function Certifications() {

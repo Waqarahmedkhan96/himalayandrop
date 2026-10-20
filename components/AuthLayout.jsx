@@ -1,11 +1,21 @@
 'use client';
 import Link from './LLink';
 import { Icon } from './Icons';
-import { useLang } from './LangProvider';
+import { useT } from './LangProvider';
+
+const T = {
+  en: { h: 'Members climb', hg: 'higher.', perks: ['Points on every order', 'Faster checkout', 'Order history and tracking'] },
+  da: { h: 'Medlemmer når', hg: 'højere.', perks: ['Point på hver ordre', 'Hurtigere checkout', 'Ordrehistorik og sporing'] },
+  de: { h: 'Mitglieder steigen', hg: 'höher.', perks: ['Punkte bei jeder Bestellung', 'Schnellerer Checkout', 'Bestellverlauf und Sendungsverfolgung'] },
+  fr: { h: 'Les membres montent', hg: 'plus haut.', perks: ['Des points à chaque commande', 'Paiement plus rapide', 'Historique et suivi des commandes'] },
+  es: { h: 'Los miembros llegan', hg: 'más alto.', perks: ['Puntos en cada pedido', 'Pago más rápido', 'Historial y seguimiento de pedidos'] },
+  ar: { h: 'الأعضاء يصعدون', hg: 'أعلى.', perks: ['نقاط مع كل طلب', 'دفع أسرع', 'سجل الطلبات وتتبعها'] },
+  ur: { h: 'ممبرز پہنچتے ہیں', hg: 'مزید بلندی تک۔', perks: ['ہر آرڈر پر پوائنٹس', 'تیز چیک آؤٹ', 'آرڈر ہسٹری اور ٹریکنگ'] },
+};
 
 // Split layout for login/register: brand panel on one side, form on the other.
 export default function AuthLayout({ title, accent, lead, children, switchText, switchHref, switchLabel }) {
-  const da = useLang() === 'da';
+  const t = useT(T);
   return (
     <section className="auth">
       <div className="auth-card">
@@ -16,11 +26,11 @@ export default function AuthLayout({ title, accent, lead, children, switchText, 
           </svg>
           <img src="/images/logo-mark.png" alt="" width="48" height="59" />
           <p className="eyebrow">Summit Rewards</p>
-          <h2>{da ? 'Medlemmer når' : 'Members climb'} <em className="gold-text">{da ? 'højere.' : 'higher.'}</em></h2>
+          <h2>{t.h} <em className="gold-text">{t.hg}</em></h2>
           <ul>
-            <li><Icon name="star" size={16} /> {da ? 'Point på hver ordre' : 'Points on every order'}</li>
-            <li><Icon name="truck" size={16} /> {da ? 'Hurtigere checkout' : 'Faster checkout'}</li>
-            <li><Icon name="clock" size={16} /> {da ? 'Ordrehistorik og sporing' : 'Order history and tracking'}</li>
+            <li><Icon name="star" size={16} /> {t.perks[0]}</li>
+            <li><Icon name="truck" size={16} /> {t.perks[1]}</li>
+            <li><Icon name="clock" size={16} /> {t.perks[2]}</li>
           </ul>
         </div>
         <div className="auth-form">

@@ -8,6 +8,11 @@ import { useLang } from './LangProvider';
 const T = {
   en: { journal: 'Journal', min: 'min read', explore: 'Explore the collection', keep: 'Keep reading', toc: 'In this article', sources: 'Sources', updated: 'Updated', faq: 'Frequently asked questions', view: 'View product' },
   da: { journal: 'Journal', min: 'min. læsning', explore: 'Se kollektionen', keep: 'Læs videre', toc: 'I denne artikel', sources: 'Kilder', updated: 'Opdateret', faq: 'Ofte stillede spørgsmål', view: 'Se produktet' },
+  de: { journal: 'Journal', min: 'Min. Lesezeit', explore: 'Die Kollektion entdecken', keep: 'Weiterlesen', toc: 'In diesem Artikel', sources: 'Quellen', updated: 'Aktualisiert', faq: 'Häufige Fragen', view: 'Produkt ansehen' },
+  fr: { journal: 'Journal', min: 'min de lecture', explore: 'Découvrir la collection', keep: 'Continuer la lecture', toc: 'Dans cet article', sources: 'Sources', updated: 'Mis à jour', faq: 'Questions fréquentes', view: 'Voir le produit' },
+  es: { journal: 'Journal', min: 'min de lectura', explore: 'Descubre la colección', keep: 'Sigue leyendo', toc: 'En este artículo', sources: 'Fuentes', updated: 'Actualizado', faq: 'Preguntas frecuentes', view: 'Ver producto' },
+  ar: { journal: 'المدونة', min: 'دقائق للقراءة', explore: 'اكتشف المجموعة', keep: 'تابع القراءة', toc: 'في هذا المقال', sources: 'المصادر', updated: 'آخر تحديث', faq: 'الأسئلة الشائعة', view: 'عرض المنتج' },
+  ur: { journal: 'بلاگ', min: 'منٹ کا مطالعہ', explore: 'کلیکشن دیکھیں', keep: 'مزید پڑھیں', toc: 'اس مضمون میں', sources: 'حوالہ جات', updated: 'تازہ کاری', faq: 'عام سوالات', view: 'پروڈکٹ دیکھیں' },
 };
 
 export const slugify = (s) => s.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/æ/g, 'ae').replace(/ø/g, 'oe').replace(/å/g, 'aa').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
