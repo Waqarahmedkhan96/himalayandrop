@@ -1113,3 +1113,113 @@ em { font-style: italic; }
 .nav .nav-panel a.nav-feature { border-radius: 18px; padding: 10px; color: var(--cream); }
 .nav .nav-panel a.nav-feature:hover { background: var(--maroon-deep); }
 @media (min-width: 768px) { .batch-row { grid-template-columns: 140px minmax(180px, 1.2fr) minmax(0, 1fr) auto; gap: 18px; } }
+
+/* ═════════ Collection CTA ═════════ */
+.collection-more { flex-direction: column; align-items: center; gap: 14px; margin-top: 56px; text-align: center; color: var(--gold); }
+.collection-more p { font-family: var(--display); font-style: italic; font-size: 19px; color: var(--muted); }
+.cm-peak { width: 110px; height: 32px; }
+.cm-btn { min-height: 56px; padding: 0 34px; font-size: 16px; }
+
+/* ═════════ Product switcher (shared) ═════════ */
+.kind-tabs {
+  display: flex; gap: 4px; width: max-content; max-width: 100%; margin: 0 auto 28px; padding: 5px;
+  border-radius: var(--pill); background: #fff; box-shadow: 0 0 0 1px var(--line), 0 14px 30px -18px rgba(64, 1, 10, 0.35);
+}
+.kind-tabs button {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px 0 6px; border: 0;
+  border-radius: var(--pill); background: transparent; font-weight: 700; font-size: 14px; color: var(--ink);
+  transition: background 0.4s var(--ease), color 0.3s;
+}
+.kind-tabs button:hover { background: var(--cream-2); }
+.kind-tabs button.on { background: var(--maroon); color: var(--cream); }
+.kind-thumb { width: 36px; height: 36px; border-radius: 50%; background: var(--cream-2); display: grid; place-items: center; overflow: hidden; }
+.kind-tabs button.on .kind-thumb { background: rgba(247, 241, 232, 0.14); }
+.kind-thumb img { width: 28px; height: 28px; object-fit: contain; }
+
+/* ═════════ Benefits infographic ═════════ */
+.bx-section .section-head h2 { font-size: clamp(36px, 8.5vw, 60px); }
+.bx-card {
+  border-radius: var(--r-xl); padding: 26px 16px 28px;
+  background: radial-gradient(70% 60% at 25% 50%, #fffaf2 0%, rgba(255, 250, 242, 0) 70%), linear-gradient(180deg, #f3ebdf 0%, #e9dccb 100%);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.bx-panel[hidden] { display: none; }
+.bx-lines { display: none; }
+.bx-disc {
+  position: relative; width: min(78vw, 300px); aspect-ratio: 1; margin: 0 auto; border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #fffdf8 0%, #f4ece0 70%, #e8dccb 100%);
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.55), 0 30px 60px -30px rgba(64, 1, 10, 0.45), inset 0 -10px 30px rgba(204, 162, 94, 0.15);
+  display: grid; place-items: center;
+}
+.bx-glow { position: absolute; left: 22%; right: 22%; bottom: 20%; height: 8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(64, 1, 10, 0.3), transparent); filter: blur(5px); }
+.bx-disc img { position: absolute; left: 22%; top: 14%; width: 56%; height: 58%; object-fit: contain; filter: drop-shadow(0 18px 18px rgba(64, 1, 10, 0.3)); }
+.bx-disc-label { position: absolute; left: 0; right: 0; bottom: 9%; text-align: center; display: grid; gap: 2px; }
+.bx-disc-label span { font-family: var(--display); font-size: 17px; color: var(--maroon); }
+.bx-disc-label em { font-size: 11.5px; color: var(--muted); font-style: normal; letter-spacing: 0.02em; }
+.bx-pills { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 10px; }
+.bx-pill {
+  position: relative; display: flex; align-items: center; gap: 14px; padding: 12px 46px 12px 12px;
+  border-radius: 999px; background: #fff; box-shadow: 0 0 0 1px rgba(204, 162, 94, 0.35), 0 16px 30px -20px rgba(64, 1, 10, 0.35);
+}
+.bx-icon { width: 48px; height: 48px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--maroon); color: var(--gold-soft); box-shadow: inset 0 0 0 2px rgba(226, 196, 135, 0.35); }
+.bx-text strong { display: block; font-family: var(--display); font-weight: 500; font-size: 17.5px; line-height: 1.2; }
+.bx-text span { display: block; font-size: 13px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+.bx-num { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-family: var(--display); font-size: 18px; color: var(--gold); }
+.bx-cta { display: flex; justify-content: center; margin-top: 24px; }
+
+@media (min-width: 1000px) {
+  .bx-card { padding: 34px 40px 36px; }
+  .bx-stage { position: relative; aspect-ratio: 1000 / 560; }
+  .bx-lines { display: block; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .bx-disc { position: absolute; width: 34%; left: 13%; top: 19.6%; margin: 0; aspect-ratio: 1; }
+  .bx-disc-label span { font-size: 19px; }
+  .bx-pills { margin: 0; position: absolute; left: 59%; right: 0; top: 0; bottom: 0; display: block; }
+  .bx-pill { position: absolute; left: 0; right: 0; top: var(--y); transform: translateY(-50%); }
+}
+
+/* ═════════ Comparison ═════════ */
+.cmp-section .section-head h2 { font-size: clamp(34px, 8vw, 58px); }
+.cmp-panel[hidden] { display: none; }
+.cmp-grid { display: grid; grid-template-columns: 1fr 1fr; max-width: 1040px; margin: 0 auto; }
+.cmp-row { display: contents; }
+.cmp-label {
+  grid-column: 1 / -1; padding: 18px 4px 8px; font-size: 11px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+}
+.cmp-head .cmp-label { display: none; }
+.cmp-ours, .cmp-market { display: flex; gap: 10px; align-items: flex-start; padding: 14px 14px; font-size: 14px; line-height: 1.45; }
+.cmp-ours { background: var(--maroon-deep); color: var(--cream); border-radius: 18px 0 0 18px; }
+.cmp-market { background: #ece5db; color: #6d625b; border-radius: 0 18px 18px 0; }
+.cmp-ours .cmp-mark { flex: none; color: var(--gold-soft); margin-top: 1px; }
+.cmp-market .cmp-mark { flex: none; color: #a99e94; margin-top: 1px; }
+.cmp-head .cmp-ours, .cmp-head .cmp-market { flex-direction: column; align-items: center; text-align: center; padding: 18px 10px; border-radius: 22px 22px 0 0; gap: 8px; }
+.cmp-head .cmp-ours { position: relative; padding-top: 104px; margin-top: 50px; box-shadow: 0 -20px 50px -30px rgba(64, 1, 10, 0.6); }
+.cmp-head .cmp-market { padding-top: 82px; margin-top: 72px; }
+.cmp-product { position: absolute; top: -56px; left: 50%; width: 140px; height: 150px; object-fit: contain; transform: translateX(-50%); filter: drop-shadow(0 20px 18px rgba(20, 2, 5, 0.5)); }
+.cmp-jar { position: absolute; width: 74px; margin-top: -78px; }
+.cmp-head .cmp-market { position: relative; }
+.cmp-head .cmp-market .cmp-jar { position: absolute; top: 4px; left: 50%; transform: translateX(-50%); margin: 0; }
+.cmp-head strong { font-family: var(--display); font-weight: 500; font-size: 17px; line-height: 1.25; }
+.cmp-head .cmp-ours strong { color: var(--gold-soft); }
+.cmp-note { text-align: center; margin-top: 18px; font-size: 12.5px; color: var(--muted); }
+
+@media (min-width: 768px) {
+  .cmp-grid { grid-template-columns: 0.8fr 1.2fr 1.2fr; }
+  .cmp-label { grid-column: auto; display: flex; align-items: center; padding: 22px 20px; font-family: var(--display); font-size: 19px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--ink); border-bottom: 1px solid rgba(204, 162, 94, 0.45); }
+  .cmp-head .cmp-label { display: block; border: 0; }
+  .cmp-ours, .cmp-market { padding: 22px 24px; font-size: 15.5px; border-radius: 0; align-items: center; }
+  .cmp-ours { border-bottom: 1px solid rgba(204, 162, 94, 0.3); box-shadow: 0 0 0 0 transparent; }
+  .cmp-market { border-bottom: 1px solid rgba(204, 162, 94, 0.45); }
+  .cmp-ours span:not(.cmp-mark) { font-weight: 500; }
+  .cmp-row:not(.cmp-head) .cmp-ours { box-shadow: 16px 0 40px -30px rgba(20, 2, 5, 0.6), -16px 0 40px -30px rgba(20, 2, 5, 0.6); position: relative; z-index: 1; }
+  .cmp-head .cmp-ours { border-radius: 26px 26px 0 0; padding: 116px 24px 26px; margin-top: 56px; z-index: 1; }
+  .cmp-head .cmp-market { border-radius: 26px 26px 0 0; padding: 96px 24px 26px; margin-top: 96px; }
+  .cmp-row.last .cmp-ours { border-radius: 0 0 26px 26px; border-bottom: 0; }
+  .cmp-row.last .cmp-market { border-radius: 0 0 26px 0; border-bottom: 0; }
+  .cmp-product { width: 170px; height: 180px; top: -62px; }
+  .cmp-head .cmp-market .cmp-jar { width: 86px; top: 4px; }
+  .cmp-head strong { font-size: 20px; }
+}
+
+/* K2 art caption */
+.harvest-art .art-caption { margin: 10px 20px 18px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(226,196,135,.55); text-align: center; }
+@media (min-width: 1000px) { .harvest-art .art-caption { text-align: right; margin: 6px 0 0; } }
