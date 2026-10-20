@@ -11,7 +11,7 @@ export const metadata = {
 const why = [
   { icon: 'star', title: 'A premium brand', text: 'Gift-ready packaging in maroon and gold that stands out on any shelf.' },
   { icon: 'shield', title: 'Proof built in', text: 'Batch numbers and lab reports your customers can check themselves.' },
-  { icon: 'box', title: 'Three formats', text: 'Resin, gummies and drops, for every kind of customer.' },
+  { icon: 'box', title: 'Four formats', text: 'Resin, gummies, drops and capsules, for every kind of customer.' },
   { icon: 'globe', title: 'Support from Denmark', text: 'Product training, marketing assets and a direct contact person.' },
 ];
 

@@ -7,7 +7,7 @@ import Comparison from '@/components/Comparison';
 
 export const metadata = {
   title: 'Shop · Himalayan Drop',
-  description: 'Shop Himalayan Drop shilajit resin, gummies and drops.',
+  description: 'Shop Himalayan Drop shilajit resin, gummies, drops and capsules.',
 };
 
 export default async function ShopPage() {

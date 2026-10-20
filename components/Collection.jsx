@@ -10,9 +10,9 @@ export default function Collection({ products }) {
         <div className="section-head">
           <span className="eyebrow" data-reveal>The collection</span>
           <h2 data-reveal="lines">
-            <span className="line"><span>Four ways to begin.</span></span>
+            <span className="line"><span>Five ways to begin.</span></span>
           </h2>
-          <p data-reveal>Resin, gummies and drops, each in packaging made to keep.</p>
+          <p data-reveal>Resin, gummies, drops and capsules, each in packaging made to keep.</p>
         </div>
         <div className="shop-grid" data-reveal="stagger">
           {products.map((p) => (

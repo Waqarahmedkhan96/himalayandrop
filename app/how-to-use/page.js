@@ -5,7 +5,7 @@ import { SectionHead, CtaCards } from '@/components/Blocks';
 
 export const metadata = {
   title: 'How to Use · Himalayan Drop',
-  description: 'How to take Himalayan Drop shilajit resin, gummies and drops, step by step.',
+  description: 'How to take Himalayan Drop shilajit resin, gummies, drops and capsules, step by step.',
 };
 
 const notes = [
@@ -52,7 +52,7 @@ export default function HowToUsePage() {
           <CtaCards
             items={[
               { eyebrow: 'Shop', title: 'Choose your format', text: 'Resin, gummies or drops.', cta: 'Shop now', href: '/shop/', dark: true },
-              { eyebrow: 'Journal', title: 'Which one suits you?', text: 'A simple comparison of the three formats.', cta: 'Read article', href: '/blog/resin-gummies-or-drops/' },
+              { eyebrow: 'Journal', title: 'Which one suits you?', text: 'A simple comparison of the four formats.', cta: 'Read article', href: '/blog/resin-gummies-or-drops/' },
               { eyebrow: 'Questions', title: 'FAQ', text: 'Answers about using, storing and ordering.', cta: 'Read FAQ', href: '/faq/' },
             ]}
           />
