@@ -2,6 +2,7 @@
 // Floating pill header with dropdown menus (desktop) and a grouped full-screen
 // menu (phones). Hides when you scroll down, comes back when you scroll up.
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from './LLink';
 import Logo from './Logo';
 import LangSwitch from './LangSwitch';
@@ -36,6 +37,27 @@ export default function Header() {
   const { menu } = site[lang];
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hold, setHold] = useState(false);
+  const pathname = usePathname();
+
+  // Any navigation closes the phone menu, also back/forward and #anchors.
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+  useEffect(() => {
+    const shut = () => setMenuOpen(false);
+    window.addEventListener('hashchange', shut);
+    window.addEventListener('popstate', shut);
+    return () => { window.removeEventListener('hashchange', shut); window.removeEventListener('popstate', shut); };
+  }, []);
+
+  // Desktop dropdowns open on hover; after a click they stay shut until the
+  // mouse leaves the menu.
+  const navClick = (e) => {
+    if (!e.target.closest('.nav-panel a, .nav-top')) return;
+    setHold(true);
+    document.activeElement?.blur?.();
+  };
 
   useEffect(() => {
     let last = window.scrollY;
@@ -129,7 +151,7 @@ export default function Header() {
       <header className={`header ${hidden && !menuOpen ? 'hidden' : ''}`}>
         <div className="header-inner">
           <Logo size={26} />
-          <nav className="nav" aria-label={t.main}>
+          <nav className={`nav ${hold ? 'nav-hold' : ''}`} aria-label={t.main} onClickCapture={navClick} onMouseLeave={() => setHold(false)}>
             {menu.map((g) =>
               g.items ? (
                 <div className="nav-group" key={g.label}>
