@@ -72,7 +72,7 @@ export default function Header() {
                 <div className="mn-grid">
                   {products.map((it, i) => (
                     <Link key={it.href} href={it.href} onClick={close} tabIndex={tab} className="mn-card" style={{ '--i': i }}>
-                      <span className="mn-img"><img src={it.img} alt="" loading="lazy" /></span>
+                      <span className="mn-img"><img src={it.img} alt="" loading="lazy" />{it.badge && <span className="mn-badge">{it.badge}</span>}</span>
                       <span className="mn-txt">
                         <strong>{it.label}</strong>
                         <em>{it.blurb}</em>

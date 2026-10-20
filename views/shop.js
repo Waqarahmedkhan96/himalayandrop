@@ -4,6 +4,7 @@ import Reveal from '@/components/Reveal';
 import BenefitsExplorer from '@/components/BenefitsExplorer';
 import Comparison from '@/components/Comparison';
 import JsonLd from '@/components/JsonLd';
+import BundleTeaser from '@/components/BundleTeaser';
 import { getProducts } from '@/lib/shopify';
 import { pageMeta, abs } from '@/lib/seo';
 import { localizeHref, tr } from '@/lib/i18n';
@@ -36,6 +37,7 @@ export default async function ShopView({ lang }) {
           </div>
         </div>
       </Reveal>
+      <BundleTeaser />
       <BenefitsExplorer />
       <Comparison />
     </>
