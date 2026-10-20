@@ -10,6 +10,11 @@ export const meta = (lang) => pageMeta('reviews', lang, '/reviews/');
 const T = {
   en: { eyebrow: 'Reviews', title: 'In their', accent: 'own words.', sample: 'Sample reviews shown for layout. Real, verified customer reviews appear here after launch.', real: 'Verified reviews from Himalayan Drop customers.' },
   da: { eyebrow: 'Anmeldelser', title: 'Med deres', accent: 'egne ord.', sample: 'Eksempler på anmeldelser vist til layout. Rigtige, verificerede kundeanmeldelser vises her efter lanceringen.', real: 'Verificerede anmeldelser fra Himalayan Drops kunder.' },
+  de: { eyebrow: 'Bewertungen', title: 'In ihren', accent: 'eigenen Worten.', sample: 'Beispielbewertungen zur Darstellung. Echte, verifizierte Kundenbewertungen erscheinen hier nach dem Start.', real: 'Verifizierte Bewertungen von Himalayan Drop Kunden.' },
+  fr: { eyebrow: 'Avis', title: 'Avec leurs', accent: 'propres mots.', sample: 'Avis d’exemple pour la mise en page. Les vrais avis clients vérifiés apparaîtront ici après le lancement.', real: 'Avis vérifiés de clients Himalayan Drop.' },
+  es: { eyebrow: 'Opiniones', title: 'En sus', accent: 'propias palabras.', sample: 'Opiniones de ejemplo para el diseño. Las opiniones verificadas de clientes aparecerán aquí tras el lanzamiento.', real: 'Opiniones verificadas de clientes de Himalayan Drop.' },
+  ar: { eyebrow: 'آراء العملاء', title: 'بكلماتهم', accent: 'الخاصة.', sample: 'آراء تجريبية لعرض التصميم. ستظهر آراء العملاء الحقيقية الموثقة هنا بعد الإطلاق.', real: 'آراء موثقة من عملاء Himalayan Drop.' },
+  ur: { eyebrow: 'ریویوز', title: 'ان کے', accent: 'اپنے الفاظ میں۔', sample: 'ڈیزائن کے لیے نمونہ ریویوز۔ اصل تصدیق شدہ ریویوز لانچ کے بعد یہاں آئیں گے۔', real: 'Himalayan Drop کے گاہکوں کے تصدیق شدہ ریویوز۔' },
 };
 
 // No review schema is added while reviews are samples: publishing invented

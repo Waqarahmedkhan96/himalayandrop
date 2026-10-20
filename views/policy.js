@@ -17,6 +17,11 @@ export function meta(lang, slug) {
 const T = {
   en: { eyebrow: 'Policies', nav: 'Policies', template: 'Template text. Replace it with your own policy in Shopify admin → Settings → Policies, checked by a legal adviser.' },
   da: { eyebrow: 'Politikker', nav: 'Politikker', template: 'Skabelontekst. Erstat den med din egen politik i Shopify admin → Settings → Policies, gennemgået af en juridisk rådgiver.' },
+  de: { eyebrow: 'Richtlinien', nav: 'Richtlinien', template: 'Vorlagentext. Ersetze ihn durch deine eigene, rechtlich geprüfte Richtlinie in Shopify Admin → Einstellungen → Richtlinien.' },
+  fr: { eyebrow: 'Politiques', nav: 'Politiques', template: 'Texte modèle. Remplacez-le par votre propre politique dans Shopify admin → Paramètres → Politiques, vérifiée par un conseiller juridique.' },
+  es: { eyebrow: 'Políticas', nav: 'Políticas', template: 'Texto de plantilla. Sustitúyelo por tu propia política en Shopify admin → Configuración → Políticas, revisada por un asesor legal.' },
+  ar: { eyebrow: 'السياسات', nav: 'السياسات', template: 'نص نموذجي. استبدله بسياستك الخاصة في لوحة Shopify ← الإعدادات ← السياسات، بعد مراجعته من مستشار قانوني.' },
+  ur: { eyebrow: 'پالیسیاں', nav: 'پالیسیاں', template: 'نمونہ متن۔ اسے Shopify ایڈمن ← سیٹنگز ← پالیسیز میں اپنی قانونی طور پر جانچی ہوئی پالیسی سے بدلیں۔' },
 };
 
 export default async function PolicyView({ lang, slug }) {

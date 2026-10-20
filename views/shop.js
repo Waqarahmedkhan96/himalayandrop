@@ -14,6 +14,11 @@ export const meta = (lang) => pageMeta('shop', lang, '/shop/');
 const T = {
   en: { eyebrow: 'The shop', title: 'Shop the', accent: 'collection.', lead: 'Resin, gummies and drops. Choose one, or save with two or three.' },
   da: { eyebrow: 'Shoppen', title: 'Shop', accent: 'kollektionen.', lead: 'Resin, vingummi og dråber. Vælg én, eller spar ved at købe to eller tre.' },
+  de: { eyebrow: 'Der Shop', title: 'Entdecke die', accent: 'Kollektion.', lead: 'Harz, Gummies, Tropfen und Kapseln. Wähle eins, oder spare mit zwei oder drei.' },
+  fr: { eyebrow: 'La boutique', title: 'Découvrez la', accent: 'collection.', lead: 'Résine, gommes, gouttes et gélules. Choisissez-en un, ou économisez avec deux ou trois.' },
+  es: { eyebrow: 'La tienda', title: 'Descubre la', accent: 'colección.', lead: 'Resina, gominolas, gotas y cápsulas. Elige uno, o ahorra con dos o tres.' },
+  ar: { eyebrow: 'المتجر', title: 'تسوّق', accent: 'المجموعة.', lead: 'راتنج وعلكات وقطرات وكبسولات. اختر واحداً، أو وفّر مع اثنين أو ثلاثة.' },
+  ur: { eyebrow: 'شاپ', title: 'کلیکشن', accent: 'خریدیں۔', lead: 'ریزن، گمیز، ڈراپس اور کیپسول۔ ایک منتخب کریں، یا دو یا تین کے ساتھ بچت کریں۔' },
 };
 
 export default async function ShopView({ lang }) {
