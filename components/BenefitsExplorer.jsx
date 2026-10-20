@@ -130,7 +130,7 @@ export default function BenefitsExplorer({ initial = 'resin', id = 'benefits' })
       <div className="container">
         <div className="section-head">
           <span className="eyebrow">Why it belongs in your ritual</span>
-          <h2>One mountain, <em className="gold-text">three rituals.</em></h2>
+          <h2>One mountain, <em className="gold-text">four rituals.</em></h2>
           <p>Choose a format to see what makes it ours.</p>
         </div>
         <KindTabs active={active} onChange={change} label="Choose a product" />
