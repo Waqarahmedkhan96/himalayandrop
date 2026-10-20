@@ -2,7 +2,13 @@
 // "Himalayan Drop vs the market" comparison, one table per product family.
 import { useRef, useState } from 'react';
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/gsap';
-import { kinds, comparison, benefits } from '@/lib/benefits';
+import { getKinds, getComparison, getBenefits } from '@/lib/benefits';
+import { useLang } from './LangProvider';
+
+const T = {
+  en: { eyebrow: 'Choose with confidence', h: 'Himalayan Drop', hg: 'vs. the market.', p: 'What goes into every jar, compared with what you often find elsewhere.', choose: 'Compare a product', market: ['Typical market', 'products'], note: 'The market column describes common practices, not any specific brand.', aria: (x) => `${x} compared with typical market products` },
+  da: { eyebrow: 'Vælg med ro i maven', h: 'Himalayan Drop', hg: 'mod markedet.', p: 'Hvad der kommer i hver krukke, sammenlignet med det, du ofte finder andre steder.', choose: 'Sammenlign et produkt', market: ['Typiske produkter', 'på markedet'], note: 'Kolonnen for markedet beskriver almindelig praksis, ikke et bestemt brand.', aria: (x) => `${x} sammenlignet med typiske produkter på markedet` },
+};
 import KindTabs from './KindTabs';
 
 function Check() {
@@ -32,20 +38,19 @@ function MarketJar() {
   );
 }
 
-function Table({ kind, active }) {
-  const rows = comparison[kind.key];
+function Table({ kind, active, rows, title, t }) {
   return (
     <div className="cmp-panel" data-tab-panel={kind.key} hidden={!active}>
-      <div className="cmp-grid" role="table" aria-label={`${benefits[kind.key].title} compared with typical market products`}>
+      <div className="cmp-grid" role="table" aria-label={t.aria(title)}>
         <div className="cmp-row cmp-head" role="row">
           <span className="cmp-label" role="columnheader" />
           <div className="cmp-ours" role="columnheader">
             <img src={kind.image} alt="" className="cmp-product" />
-            <strong>Himalayan Drop<br />{benefits[kind.key].title}</strong>
+            <strong>Himalayan Drop<br />{title}</strong>
           </div>
           <div className="cmp-market" role="columnheader">
             <MarketJar />
-            <strong>Typical market<br />products</strong>
+            <strong>{t.market[0]}<br />{t.market[1]}</strong>
           </div>
         </div>
         {rows.map(([label, ours, market], i) => (
@@ -62,6 +67,11 @@ function Table({ kind, active }) {
 
 export default function Comparison({ initial = 'resin', id = 'compare' }) {
   const root = useRef(null);
+  const lang = useLang();
+  const t = T[lang];
+  const kinds = getKinds(lang);
+  const comparison = getComparison(lang);
+  const benefits = getBenefits(lang);
   const [active, setActive] = useState(initial);
 
   const animateIn = (key) => {
@@ -95,15 +105,15 @@ export default function Comparison({ initial = 'resin', id = 'compare' }) {
     <section id={id} className="section cmp-section" ref={root}>
       <div className="container">
         <div className="section-head">
-          <span className="eyebrow">Choose with confidence</span>
-          <h2>Himalayan Drop <em className="gold-text">vs. the market.</em></h2>
-          <p>What goes into every jar, compared with what you often find elsewhere.</p>
+          <span className="eyebrow">{t.eyebrow}</span>
+          <h2>{t.h} <em className="gold-text">{t.hg}</em></h2>
+          <p>{t.p}</p>
         </div>
-        <KindTabs active={active} onChange={change} label="Compare a product" />
+        <KindTabs active={active} onChange={change} label={t.choose} />
         {kinds.map((k) => (
-          <Table key={k.key} kind={k} active={active === k.key} />
+          <Table key={k.key} kind={k} active={active === k.key} rows={comparison[k.key]} title={benefits[k.key].title} t={t} />
         ))}
-        <p className="cmp-note">The market column describes common practices, not any specific brand.</p>
+        <p className="cmp-note">{t.note}</p>
       </div>
     </section>
   );

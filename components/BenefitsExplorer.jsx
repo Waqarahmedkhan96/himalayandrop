@@ -3,9 +3,15 @@
 // numbered node per benefit, each linked by a dotted line to its card.
 // Switching product swaps image and benefits with an animated transition.
 import { useRef, useState } from 'react';
-import Link from 'next/link';
+import Link from './LLink';
+import { useLang } from './LangProvider';
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/gsap';
-import { kinds, benefits } from '@/lib/benefits';
+import { getKinds, getBenefits } from '@/lib/benefits';
+
+const T = {
+  en: { eyebrow: 'Why it belongs in your ritual', h: 'One mountain,', hg: 'four rituals.', p: 'Choose a format to see what makes it ours.', choose: 'Choose a product', discover: 'Discover' },
+  da: { eyebrow: 'Derfor hører den til i dit ritual', h: 'Ét bjerg,', hg: 'fire ritualer.', p: 'Vælg en form og se, hvad der gør den til vores.', choose: 'Vælg et produkt', discover: 'Se' },
+};
 import KindTabs from './KindTabs';
 import { Icon } from './Icons';
 import { Arrow } from './Arrow';
@@ -31,8 +37,7 @@ function arcPath(a0, a1, r = R) {
   return `M ${p(a0)} A ${r} ${r} 0 0 1 ${p(a1)}`;
 }
 
-function Panel({ kind, active }) {
-  const b = benefits[kind.key];
+function Panel({ kind, active, b, t }) {
   const pts = layout(b.items.length);
   const a0 = pts[0].theta - 0.32;
   const a1 = pts[pts.length - 1].theta + 0.32;
@@ -83,7 +88,7 @@ function Panel({ kind, active }) {
         </ol>
       </div>
       <div className="bx-cta">
-        <Link href={kind.href} className="btn">Discover {b.title} <Arrow /></Link>
+        <Link href={kind.href} className="btn">{t.discover} {b.title} <Arrow /></Link>
       </div>
     </div>
   );
@@ -91,6 +96,10 @@ function Panel({ kind, active }) {
 
 export default function BenefitsExplorer({ initial = 'resin', id = 'benefits' }) {
   const root = useRef(null);
+  const lang = useLang();
+  const t = T[lang];
+  const kinds = getKinds(lang);
+  const benefits = getBenefits(lang);
   const [active, setActive] = useState(initial);
 
   const animateIn = (key) => {
@@ -129,14 +138,14 @@ export default function BenefitsExplorer({ initial = 'resin', id = 'benefits' })
     <section id={id} className="section bx-section" ref={root}>
       <div className="container">
         <div className="section-head">
-          <span className="eyebrow">Why it belongs in your ritual</span>
-          <h2>One mountain, <em className="gold-text">four rituals.</em></h2>
-          <p>Choose a format to see what makes it ours.</p>
+          <span className="eyebrow">{t.eyebrow}</span>
+          <h2>{t.h} <em className="gold-text">{t.hg}</em></h2>
+          <p>{t.p}</p>
         </div>
-        <KindTabs active={active} onChange={change} label="Choose a product" />
+        <KindTabs active={active} onChange={change} label={t.choose} />
         <div className="bx-card">
           {kinds.map((k) => (
-            <Panel key={k.key} kind={k} active={active === k.key} />
+            <Panel key={k.key} kind={k} active={active === k.key} b={benefits[k.key]} t={t} />
           ))}
         </div>
       </div>

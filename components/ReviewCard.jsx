@@ -1,11 +1,14 @@
+'use client';
 import { Stars } from './Icons';
+import { useLang } from './LangProvider';
 
 export default function ReviewCard({ r }) {
+  const lang = useLang();
   return (
     <figure className="review">
       <div className="review-top">
         <Stars rating={r.rating} />
-        {r.sample && <span className="sample-tag">Sample</span>}
+        {r.sample && <span className="sample-tag">{lang === 'da' ? 'Eksempel' : 'Sample'}</span>}
       </div>
       <blockquote>{r.text}</blockquote>
       <figcaption>

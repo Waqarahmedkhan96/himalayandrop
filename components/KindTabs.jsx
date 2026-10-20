@@ -1,8 +1,10 @@
 'use client';
 // Luxury segmented switcher: Resin / Gummies / Drops, with product thumbnails.
-import { kinds } from '@/lib/benefits';
+import { getKinds } from '@/lib/benefits';
+import { useLang } from './LangProvider';
 
 export default function KindTabs({ active, onChange, label }) {
+  const kinds = getKinds(useLang());
   return (
     <div className="kind-tabs" role="tablist" aria-label={label}>
       {kinds.map((k) => (

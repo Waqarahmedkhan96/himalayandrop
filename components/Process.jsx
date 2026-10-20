@@ -3,8 +3,9 @@
 // while you scroll through a tall track; scroll progress decides which step is
 // active. Each step has its own animated scene, and a gold rail shows progress.
 import { useEffect, useRef, useState } from 'react';
+import { useLang } from './LangProvider';
 
-const steps = [
+const stepsEn = [
   {
     key: 'harvest',
     eyebrow: 'Above 5,000 m',
@@ -49,7 +50,21 @@ const steps = [
   },
 ];
 
-function Scene({ k, day }) {
+const stepsDa = [
+  { key: 'harvest', eyebrow: 'Over 5.000 m', title: 'Samlet med håndkraft', text: 'Højt oppe i bjergene klatrer vores høstfolk op til klippevæggene over 5.000 meter og samler de shilajit-holdige sten med hånden.', fact: 'Håndhøstet' },
+  { key: 'break', eyebrow: 'Knus og opløs', title: 'Fra sten til væske', text: 'Stenene knuses og lægges i blød i rent vand, indtil resinen opløses og stenen bliver tilbage.', fact: 'Kun rent vand' },
+  { key: 'filter', eyebrow: 'Rensning', title: 'Filtreret igen og igen', text: 'Væsken filtreres flere gange, så sand, sten og alt, der ikke hører til i resinen, fjernes.', fact: 'Flere filtreringer' },
+  { key: 'sun', eyebrow: 'Op til 60 dage', title: 'Langsomt tørret af solen', text: 'Væsken hviler i store UV-beskyttede glaskrukker i stålskåle og tørrer langsomt i solen. Afhængigt af vejret tager det op til 60 dage.', fact: 'Ingen varme, ingen hast' },
+  { key: 'lab', eyebrow: 'Hver batch', title: 'Testet i laboratoriet', text: 'Hver batch testes for tungmetaller og kvalitet, og indholdet af fulvinsyre måles, før den frigives.', fact: 'Rapport for hver batch' },
+  { key: 'pack', eyebrow: 'Forseglet til dig', title: 'Pakket i UV-beskyttet glas', text: 'Til sidst forsegles resinen i vores UV-beskyttede krukker, så den når frem til dig, præcis som den forlod bjerget.', fact: 'Klar til dit ritual' },
+];
+
+const T = {
+  en: { steps: stepsEn, alt: '5,000 m+', day: 'DAY', checks: ['Heavy metals', 'Quality', 'Fulvic acid %'], eyebrow: 'Our process', h: 'From mountain', hg: 'to jar.', lead: 'Six patient steps, and up to 60 days in the sun. Scroll to follow the journey.', within: 'The Mountain', withinG: 'within.' },
+  da: { steps: stepsDa, alt: '5.000 m+', day: 'DAG', checks: ['Tungmetaller', 'Kvalitet', 'Fulvinsyre %'], eyebrow: 'Vores proces', h: 'Fra bjerg', hg: 'til krukke.', lead: 'Seks tålmodige trin og op til 60 dage i solen. Scroll og følg rejsen.', within: 'The Mountain', withinG: 'within.' },
+};
+
+function Scene({ k, day, t }) {
   switch (k) {
     case 'harvest':
       return (
@@ -58,7 +73,7 @@ function Scene({ k, day }) {
           <path className="sc-snow" d="M205 140 L230 90 L255 135 L240 128 L230 140 L218 130 Z" />
           <path className="sc-trail" d="M60 335 C120 320 140 290 170 270 S220 210 228 120" />
           <g className="sc-flag"><line x1="228" y1="118" x2="228" y2="70" /><path d="M228 70 L262 80 L228 92 Z" /></g>
-          <text className="sc-label" x="270" y="66">5,000 m+</text>
+          <text className="sc-label" x="270" y="66">{t.alt}</text>
           <g className="sc-stones">
             <path d="M120 345 l14 -12 l18 4 l6 14 l-16 8 l-18 -2 Z" />
             <path d="M168 350 l10 -14 l16 2 l8 12 l-14 8 Z" />
@@ -113,7 +128,7 @@ function Scene({ k, day }) {
           <rect className="sc-liquid" x="134" y="215" width="112" height="106" rx="10" />
           <rect className="sc-lid" x="142" y="134" width="96" height="18" rx="5" />
           <path className="sc-bowl" d="M70 320 Q80 370 190 372 Q300 370 310 320 Z" />
-          <text className="sc-day" x="200" y="252" textAnchor="middle">DAY {day}</text>
+          <text className="sc-day" x="200" y="252" textAnchor="middle">{t.day} {day}</text>
         </svg>
       );
     case 'lab':
@@ -124,11 +139,11 @@ function Scene({ k, day }) {
           <path className="sc-flask-liquid" d="M70 250 L190 250 L208 300 Q212 322 190 322 L70 322 Q48 322 52 300 Z" />
           <g className="sc-bubbles"><circle cx="110" cy="300" r="5" /><circle cx="140" cy="310" r="4" /><circle cx="160" cy="295" r="3" /></g>
           <g className="sc-checks">
-            {['Heavy metals', 'Quality', 'Fulvic acid %'].map((t, i) => (
-              <g key={t} className={`ck ck${i}`} transform={`translate(240 ${130 + i * 62})`}>
+            {t.checks.map((c, i) => (
+              <g key={c} className={`ck ck${i}`} transform={`translate(240 ${130 + i * 62})`}>
                 <circle cx="14" cy="0" r="14" />
                 <path d="M7 0 l5 5 l9 -10" />
-                <text x="38" y="5">{t}</text>
+                <text x="38" y="5">{c}</text>
               </g>
             ))}
           </g>
@@ -145,6 +160,8 @@ function Scene({ k, day }) {
 }
 
 export default function Process() {
+  const t = T[useLang()];
+  const steps = t.steps;
   const track = useRef(null);
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -169,7 +186,7 @@ export default function Process() {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
     };
-  }, []);
+  }, [steps.length]);
 
   const sunIndex = steps.findIndex((s) => s.key === 'sun');
   const day = active > sunIndex ? 60 : active < sunIndex ? 1 : Math.max(1, Math.round(inStep * 60));
@@ -177,9 +194,9 @@ export default function Process() {
   return (
     <section id="process" className="process">
       <div className="container process-intro">
-        <span className="eyebrow">Our process</span>
-        <h2>From mountain <em className="gold-text">to jar.</em></h2>
-        <p>Six patient steps, and up to 60 days in the sun. Scroll to follow the journey.</p>
+        <span className="eyebrow">{t.eyebrow}</span>
+        <h2>{t.h} <em className="gold-text">{t.hg}</em></h2>
+        <p>{t.lead}</p>
       </div>
 
       <div className="process-track" ref={track} style={{ height: `${steps.length * 90 + 60}vh` }}>
@@ -195,7 +212,7 @@ export default function Process() {
             <div className="process-stage">
               {steps.map((s, i) => (
                 <div key={s.key} className={`scene scene-${s.key} ${i === active ? 'active' : i < active ? 'past' : ''}`}>
-                  <Scene k={s.key} day={day} />
+                  <Scene k={s.key} day={day} t={t} />
                 </div>
               ))}
             </div>
@@ -224,7 +241,7 @@ export default function Process() {
           <path d="M0 58 L52 22 L70 34 L104 4 L136 36 L152 26 L220 58" />
         </svg>
         <p className="eyebrow">Himalayan Drop</p>
-        <h2>The Mountain <em className="gold-text">within.</em></h2>
+        <h2>{t.within} <em className="gold-text">{t.withinG}</em></h2>
       </div>
 
       {/* Screen readers and search engines get the full story as a plain list. */}

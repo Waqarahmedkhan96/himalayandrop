@@ -5,8 +5,15 @@ import { useMemo, useState } from 'react';
 import Reveal from './Reveal';
 import { Arrow } from './Arrow';
 import { ridgePoints, toLine } from '@/lib/mountains';
+import { useT } from './LangProvider';
+
+const T = {
+  en: { eyebrow: 'Letters from Himalayan Drop', h: 'Stay close to', hg: 'the source.', lead: 'Launch news and stories, delivered thoughtfully.', thanks: 'Thank you. We’ll be in touch.', label: 'Email address', ph: 'Your email address', btn: 'Subscribe', note: 'By subscribing, you agree to receive our emails. Unsubscribe anytime.' },
+  da: { eyebrow: 'Breve fra Himalayan Drop', h: 'Hold dig tæt på', hg: 'kilden.', lead: 'Nyheder om lanceringen og historier fra bjergene, sendt med omtanke.', thanks: 'Tak. Vi skriver snart.', label: 'E-mailadresse', ph: 'Din e-mailadresse', btn: 'Tilmeld', note: 'Ved at tilmelde dig accepterer du at modtage vores e-mails. Du kan altid afmelde dig.' },
+};
 
 export default function Newsletter() {
+  const t = useT(T);
   const [sent, setSent] = useState(false);
   const lines = useMemo(() => [
     toLine(ridgePoints(5, 300, 220, 4)),
@@ -27,19 +34,19 @@ export default function Newsletter() {
             <path key={i} d={d} fill="none" stroke="#e2c487" strokeWidth={i ? 1 : 1.4} vectorEffect="non-scaling-stroke" />
           ))}
         </svg>
-        <span className="eyebrow">Letters from Himalayan Drop</span>
-        <h2>Stay close to <em className="gold-text">the source.</em></h2>
-        <p className="lead">Launch news and stories, delivered thoughtfully.</p>
+        <span className="eyebrow">{t.eyebrow}</span>
+        <h2>{t.h} <em className="gold-text">{t.hg}</em></h2>
+        <p className="lead">{t.lead}</p>
         {sent ? (
-          <p className="nl-thanks" role="status">Thank you. We’ll be in touch.</p>
+          <p className="nl-thanks" role="status">{t.thanks}</p>
         ) : (
           <form className="nl-form" onSubmit={onSubmit}>
-            <label htmlFor="email" className="sr-only">Email address</label>
-            <input id="email" name="email" type="email" required placeholder="Your email address" autoComplete="email" />
-            <button className="btn gold" type="submit">Subscribe <Arrow size={14} /></button>
+            <label htmlFor="email" className="sr-only">{t.label}</label>
+            <input id="email" name="email" type="email" required placeholder={t.ph} autoComplete="email" />
+            <button className="btn gold" type="submit">{t.btn} <Arrow size={14} /></button>
           </form>
         )}
-        <p className="nl-note">By subscribing, you agree to receive our emails. Unsubscribe anytime.</p>
+        <p className="nl-note">{t.note}</p>
       </div>
     </Reveal>
   );
