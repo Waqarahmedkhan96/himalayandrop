@@ -9,11 +9,16 @@ import { validateForm } from '@/lib/validate';
 const T = {
   en: { send: 'Send', thanks: 'Thank you. We’ll be in touch.', error: 'Something went wrong. Please try again.', choose: 'Choose', wait: 'Please wait…' },
   da: { send: 'Send', thanks: 'Tak. Vi vender tilbage.', error: 'Noget gik galt. Prøv igen.', choose: 'Vælg', wait: 'Vent venligst…' },
+  de: { send: 'Senden', thanks: 'Danke. Wir melden uns.', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.', choose: 'Auswählen', wait: 'Bitte warten…' },
+  fr: { send: 'Envoyer', thanks: 'Merci. Nous revenons vers vous.', error: 'Une erreur est survenue. Veuillez réessayer.', choose: 'Choisir', wait: 'Veuillez patienter…' },
+  es: { send: 'Enviar', thanks: 'Gracias. Te responderemos pronto.', error: 'Algo ha salido mal. Inténtalo de nuevo.', choose: 'Elegir', wait: 'Espera un momento…' },
+  ar: { send: 'إرسال', thanks: 'شكراً لك. سنتواصل معك.', error: 'حدث خطأ ما. يرجى المحاولة مرة أخرى.', choose: 'اختر', wait: 'يرجى الانتظار…' },
+  ur: { send: 'بھیجیں', thanks: 'شکریہ۔ ہم رابطہ کریں گے۔', error: 'کچھ غلط ہو گیا۔ دوبارہ کوشش کریں۔', choose: 'منتخب کریں', wait: 'براہِ کرم انتظار کریں…' },
 };
 
 export default function SimpleForm({ id, fields, submit, thanks, thanksText, consent, onSend }) {
   const lang = useLang();
-  const t = T[lang];
+  const t = T[lang] || T.en;
   submit = submit || t.send;
   thanks = thanks || t.thanks;
   const [sent, setSent] = useState(false);
