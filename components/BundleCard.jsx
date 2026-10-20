@@ -44,7 +44,7 @@ export default function BundleCard({ bundle: b }) {
           <ul>
             {items.map((p) => (
               <li key={p.handle}>
-                <Link href={`/products/${p.handle}/`}><img src={p.image} alt="" loading="lazy" />{p.title}</Link>
+                <Link href={`/products/${p.handle}/`}><img src={p.image.replace('/images/pack-', '/images/thumbs/pack-')} alt="" loading="lazy" />{p.title}</Link>
                 <span>{p.amount != null ? money(p.amount) : ''}</span>
               </li>
             ))}
