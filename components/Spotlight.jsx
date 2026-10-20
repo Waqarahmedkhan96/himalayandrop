@@ -1,11 +1,11 @@
 'use client';
-// Gummies spotlight: the pouch floats and turns slightly as you scroll past.
+// Gummies spotlight: the tin floats and turns slightly as you scroll past.
 import { useRef } from 'react';
 import Link from 'next/link';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { Arrow } from './Arrow';
 
-const ingredients = ['Shilajit', 'Ashwagandha', 'Sea moss', 'Lion’s mane', 'Burdock root', 'Black seed'];
+const ingredients = ['Shilajit', 'L-Citrulline', 'Panax ginseng', 'Zinc', 'Selenium', 'Sea moss', 'Black seed'];
 
 export default function Spotlight() {
   const root = useRef(null);
@@ -30,16 +30,16 @@ export default function Spotlight() {
     <section id="gummies" ref={root} style={{ scrollMarginTop: 80 }}>
       <div className="spot">
         <div className="spot-media">
-          <img src="/images/cut-gummies-pouch.webp" alt="Himalayan Drop Shilajit Gummies, strawberry, Gold Edition pouch" width="800" height="1186" loading="lazy" />
+          <img src="/images/cut-gummies-tin.webp" alt="Himalayan Drop Shilajit Gummies Gold Edition tin, strawberry flavour" width="628" height="1100" loading="lazy" />
         </div>
         <div className="spot-copy">
-          <span className="eyebrow">New · Strawberry</span>
+          <span className="eyebrow">Gold Edition · Strawberry</span>
           <h2>
             <span className="line"><span>Shilajit Gummies</span></span>
           </h2>
           <p>
-            The same Himalayan shilajit in a soft strawberry gummy, blended with five botanicals. An easy way to keep the
-            ritual when you are on the move.
+            500 mg of our shilajit in every serving, in a soft strawberry gummy with six companion ingredients. An easy way
+            to keep the ritual when you are on the move.
           </p>
           <div className="spot-facts">
             <div><strong>60</strong><span>Gummies</span></div>

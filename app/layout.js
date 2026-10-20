@@ -13,11 +13,11 @@ import { CartProvider } from '@/lib/cart';
 export const metadata = {
   title: 'Himalayan Drop · Shilajit Resin, Gummies & Drops',
   description:
-    'Himalayan Drop is a Danish shilajit brand. Discover our shilajit resin, gummies and drops, sourced from the Himalayas and lab tested.',
+    'Himalayan Drop is a Danish shilajit brand. Discover our shilajit resin, gummies, drops and capsules, harvested above 5,000 m and lab tested.',
   icons: { icon: '/favicon.png' },
   openGraph: {
     title: 'Himalayan Drop',
-    description: 'A grounded daily ritual. Shilajit resin, gummies and drops.',
+    description: 'A grounded daily ritual. Shilajit resin, gummies, drops and capsules.',
     images: ['/images/hero-resin-maroon.webp'],
   },
 };

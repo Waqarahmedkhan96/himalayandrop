@@ -14,9 +14,10 @@ const groups = [
     title: 'The product',
     items: [
       { q: 'What is shilajit?', a: 'A dark, resin-like substance that forms slowly in high mountain rock over many years. It has been part of traditional practices across the Himalayas for generations.' },
-      { q: 'Where does Himalayan Drop shilajit come from?', a: 'It is collected by hand above 5,000 metres in the Himalayas, then purified, sun-dried and tested before packing.' },
+      { q: 'Where does Himalayan Drop shilajit come from?', a: 'From the heights of Skardu, Pakistan, the gateway to K2. It is collected by hand above 5,000 metres, then purified, sun-dried and tested before packing.' },
       { q: 'What is the difference between Gold and Silver Resin?', a: 'Both are Himalayan shilajit resin in UV-protected glass. The Gold Edition is our signature resin in a gift-ready box; the Silver Edition is our everyday resin.' },
-      { q: 'What is in the gummies?', a: 'Shilajit with strawberry flavour and five botanicals: ashwagandha, sea moss, lion’s mane, burdock root and black seed. See the label for the full ingredient list.' },
+      { q: 'What is in the gummies, drops and capsules?', a: 'All three combine shilajit with L-citrulline, Panax ginseng, zinc, selenium, sea moss and black seed. The gummies are strawberry, the drops elderberry, and the capsules have no taste. Each product page lists every ingredient and amount.' },
+      { q: 'What is in the resin?', a: 'Only one thing: pure shilajit resin. No fillers, carriers or flavours.' },
     ],
   },
   {

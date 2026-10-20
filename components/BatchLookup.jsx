@@ -6,10 +6,11 @@ import { useState } from 'react';
 import { Icon } from './Icons';
 
 export const batches = [
-  { id: 'HD-G-2611', product: 'Shilajit Gold Resin', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
-  { id: 'HD-S-2611', product: 'Shilajit Silver Resin', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
+  { id: 'HD-G-2611', product: 'Shilajit Resin Gold Edition', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
+  { id: 'HD-S-2611', product: 'Shilajit Resin Silver Edition', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
   { id: 'HD-GU-2611', product: 'Shilajit Gummies', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
   { id: 'HD-D-2611', product: 'Shilajit Drops', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
+  { id: 'HD-C-2611', product: 'Shilajit Capsules', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
 ];
 
 const checks = ['Heavy metals', 'Quality', 'Fulvic acid %'];

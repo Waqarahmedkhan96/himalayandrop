@@ -1,5 +1,5 @@
 'use client';
-// How-to-use tabs: Resin / Gummies / Drops, each with four illustrated steps.
+// How-to-use tabs: Resin / Gummies / Drops / Capsules, each with four illustrated steps.
 import { useState } from 'react';
 import { Icon } from './Icons';
 
@@ -16,19 +16,28 @@ const guides = {
   Gummies: {
     img: '/images/pack-gummies.webp',
     steps: [
-      ['berry', 'Take two', 'Two gummies make one serving. Follow the daily dose on your label.'],
+      ['berry', 'Take two', 'Adults: chew 2 gummies daily. Two gummies make one serving.'],
       ['clock', 'Same time daily', 'With breakfast or your morning tea is easiest to remember.'],
-      ['leaf', 'Chew well', 'Strawberry flavour with five botanicals. No water needed.'],
-      ['box', 'Close the pouch', 'Seal it after use and keep it cool and dry.'],
+      ['leaf', 'Chew well', 'Strawberry flavour with six companion ingredients. No water needed.'],
+      ['box', 'Close the tin', 'Keep it tightly closed, dry and below 25 °C, away from sunlight.'],
     ],
   },
   Drops: {
     img: '/images/pack-drops.webp',
     steps: [
-      ['drop', 'Fill the dropper', 'Squeeze the bulb and fill to the dose on your label.'],
-      ['filter', 'Add to a drink', 'Water, tea or a smoothie. Warm or cool, never boiling.'],
-      ['star', 'Stir & sip', 'Mix well and drink. Quick enough for busy mornings.'],
-      ['sun', 'Store in the dark', 'Close tightly and keep away from direct sunlight.'],
+      ['filter', 'Shake well', 'Give the bottle a gentle shake before every use.'],
+      ['drop', 'Three drops', 'Adults: 3 drops daily, directly or in water or tea.'],
+      ['clock', 'Before food', 'Take them about 30 minutes before a meal.'],
+      ['sun', 'Room temperature', 'Close tightly. Store at room temperature, not in the fridge.'],
+    ],
+  },
+  Capsules: {
+    img: '/images/pack-capsules.webp',
+    steps: [
+      ['capsule', 'Take two', 'Adults: take 2 capsules daily. Two capsules make one serving.'],
+      ['drop', 'With water', 'Swallow them with a glass of water. No taste, no measuring.'],
+      ['clock', 'Same time daily', 'Keep the bottle next to your morning routine.'],
+      ['sun', 'Cool and dry', 'Close tightly and keep away from direct sunlight.'],
     ],
   },
 };

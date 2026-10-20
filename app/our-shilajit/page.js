@@ -73,7 +73,7 @@ export default function OurShilajitPage() {
           <CtaCards
             items={[
               { eyebrow: 'Proof', title: 'Lab results', text: 'Look up the report for the batch number on your jar.', cta: 'See lab results', href: '/lab-results/', dark: true },
-              { eyebrow: 'Ritual', title: 'How to use', text: 'Resin, gummies and drops, step by step.', cta: 'Read the guide', href: '/how-to-use/' },
+              { eyebrow: 'Ritual', title: 'How to use', text: 'Resin, gummies, drops and capsules, step by step.', cta: 'Read the guide', href: '/how-to-use/' },
               { eyebrow: 'Journey', title: 'The process', text: 'Follow the six steps from mountain to jar.', cta: 'Watch the story', href: '/#process' },
             ]}
           />

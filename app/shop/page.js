@@ -2,10 +2,12 @@ import PageHero from '@/components/PageHero';
 import ShopCard from '@/components/ShopCard';
 import Reveal from '@/components/Reveal';
 import { getProducts } from '@/lib/shopify';
+import BenefitsExplorer from '@/components/BenefitsExplorer';
+import Comparison from '@/components/Comparison';
 
 export const metadata = {
   title: 'Shop · Himalayan Drop',
-  description: 'Shop Himalayan Drop shilajit resin, gummies and drops.',
+  description: 'Shop Himalayan Drop shilajit resin, gummies, drops and capsules.',
 };
 
 export default async function ShopPage() {
@@ -22,6 +24,8 @@ export default async function ShopPage() {
           </div>
         </div>
       </Reveal>
+      <BenefitsExplorer />
+      <Comparison />
     </>
   );
 }

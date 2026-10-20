@@ -138,7 +138,7 @@ function Scene({ k, day }) {
       return (
         <div className="sc-pack">
           <span className="sc-pack-glow" />
-          <img src="/images/cut-maroon-set.webp" alt="" loading="lazy" />
+          <img src="/images/cut-resin-box.webp" alt="" loading="lazy" />
         </div>
       );
   }
