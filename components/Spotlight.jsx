@@ -19,6 +19,36 @@ const T = {
     p: '500 mg af vores shilajit i hver portion, i en blød vingummi med jordbærsmag og seks aktive ingredienser. En nem måde at holde fast i ritualet, når du er på farten.',
     facts: [['60', 'Vingummi'], ['30', 'Portioner'], ['2', 'Pr. portion']], aria: 'Ingredienser', cta: 'Se shilajit vingummi',
   },
+  de: {
+    ingredients: ['Shilajit', 'L-Citrullin', 'Panax Ginseng', 'Zink', 'Selen', 'Seemoos', 'Schwarzkümmel'],
+    alt: 'Himalayan Drop Shilajit Gummies Gold Edition Dose, Erdbeere', eyebrow: 'Gold Edition · Erdbeere',
+    p: '500 mg unseres Shilajit in jeder Portion, in einem weichen Erdbeer-Gummy mit sechs begleitenden Zutaten. Ein einfacher Weg, dein Ritual auch unterwegs beizubehalten.',
+    facts: [['60', 'Gummies'], ['30', 'Portionen'], ['2', 'Pro Portion']], aria: 'Zutaten', cta: 'Gummies entdecken',
+  },
+  fr: {
+    ingredients: ['Shilajit', 'L-citrulline', 'Panax ginseng', 'Zinc', 'Sélénium', 'Mousse de mer', 'Nigelle'],
+    alt: 'Boîte Himalayan Drop Shilajit Gummies Gold Edition, goût fraise', eyebrow: 'Gold Edition · Fraise',
+    p: '500 mg de notre shilajit par portion, dans une gomme moelleuse à la fraise avec six ingrédients complémentaires. Une façon simple de garder le rituel en déplacement.',
+    facts: [['60', 'Gommes'], ['30', 'Portions'], ['2', 'Par portion']], aria: 'Ingrédients', cta: 'Découvrir les gommes',
+  },
+  es: {
+    ingredients: ['Shilajit', 'L-citrulina', 'Panax ginseng', 'Zinc', 'Selenio', 'Musgo marino', 'Comino negro'],
+    alt: 'Lata Himalayan Drop Shilajit Gummies Gold Edition, sabor fresa', eyebrow: 'Gold Edition · Fresa',
+    p: '500 mg de nuestro shilajit en cada porción, en una gominola suave de fresa con seis ingredientes que lo acompañan. Una forma fácil de mantener el ritual cuando estás fuera.',
+    facts: [['60', 'Gominolas'], ['30', 'Porciones'], ['2', 'Por porción']], aria: 'Ingredientes', cta: 'Descubre las gominolas',
+  },
+  ar: {
+    ingredients: ['شيلاجيت', 'إل-سيترولين', 'جينسنغ', 'زنك', 'سيلينيوم', 'طحلب بحري', 'حبة سوداء'],
+    alt: 'علبة علكات شيلاجيت Himalayan Drop الإصدار الذهبي بنكهة الفراولة', eyebrow: 'الإصدار الذهبي · فراولة',
+    p: '500 ملغ من الشيلاجيت في كل حصة، في علكة طرية بنكهة الفراولة مع ستة مكونات مرافقة. طريقة سهلة للحفاظ على طقسك أثناء التنقل.',
+    facts: [['60', 'علكة'], ['30', 'حصة'], ['2', 'لكل حصة']], aria: 'المكونات', cta: 'اكتشف العلكات',
+  },
+  ur: {
+    ingredients: ['سلاجیت', 'ایل-سٹرولین', 'جنسنگ', 'زنک', 'سیلینیم', 'سی ماس', 'کلونجی'],
+    alt: 'Himalayan Drop سلاجیت گمیز گولڈ ایڈیشن ٹن، اسٹرابیری ذائقہ', eyebrow: 'گولڈ ایڈیشن · اسٹرابیری',
+    p: 'ہر خوراک میں ہمارا 500 ملی گرام سلاجیت، نرم اسٹرابیری گمی میں چھ ساتھی اجزاء کے ساتھ۔ سفر میں بھی اپنا معمول برقرار رکھنے کا آسان طریقہ۔',
+    facts: [['60', 'گمیز'], ['30', 'خوراکیں'], ['2', 'فی خوراک']], aria: 'اجزاء', cta: 'گمیز دیکھیں',
+  },
 };
 
 export default function Spotlight() {

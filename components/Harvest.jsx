@@ -21,6 +21,41 @@ const T = {
     aria: 'Konturtegning af en top inspireret af K2, med Bottleneck markeret og høstzonen over 5.000 meter',
     zone: 'HØSTZONE · 5.000 M+', bneck: '≈ 8.200 M', peak: 'K2 · 8.611 M', cap: 'Illustration inspireret af K2 og dens Bottleneck', locale: 'da-DK',
   },
+  de: {
+    eyebrow: 'Woher es kommt', h: 'Geerntet hoch oben im', hg: 'Himalaya.',
+    p: 'Shilajit entsteht langsam in hohem Gebirgsgestein, weit oberhalb von Straßen und Städten. Unseres wird von Hand über 5.000 Metern nahe Skardu gesammelt, im Schatten des K2, dann gereinigt und im Labor geprüft, bevor es in Glas versiegelt wird.',
+    alt: 'Erntehöhe', num: '5.000', facts: [['Skardu', 'Herkunft'], ['Je Charge', 'Laborgeprüft'], ['UV-Glas', 'Lichtgeschützt']],
+    aria: 'Höhenlinien-Zeichnung eines Gipfels nach dem Vorbild des K2, mit markiertem Flaschenhals und der Erntezone über 5.000 Metern',
+    zone: 'ERNTEZONE · 5.000 M+', bneck: '≈ 8.200 M', peak: 'K2 · 8.611 M', cap: 'Illustration nach dem Vorbild des K2 und seines Flaschenhalses', locale: 'de-DE',
+  },
+  fr: {
+    eyebrow: 'D’où il vient', h: 'Récolté au cœur de', hg: 'l’Himalaya.',
+    p: 'Le shilajit se forme lentement dans la roche de haute montagne, bien au-dessus des routes et des villes. Le nôtre est récolté à la main au-dessus de 5 000 mètres près de Skardu, à l’ombre du K2, puis purifié et testé en laboratoire avant d’être scellé dans le verre.',
+    alt: 'Altitude de récolte', num: '5 000', facts: [['Skardu', 'Origine'], ['Par lot', 'Testé en labo'], ['Verre UV', 'Protégé de la lumière']],
+    aria: 'Dessin en courbes de niveau d’un sommet inspiré du K2, avec le Goulet marqué et la zone de récolte au-dessus de 5 000 mètres',
+    zone: 'ZONE DE RÉCOLTE · 5 000 M+', bneck: '≈ 8 200 M', peak: 'K2 · 8 611 M', cap: 'Illustration inspirée du K2 et de son Goulet', locale: 'fr-FR',
+  },
+  es: {
+    eyebrow: 'De dónde viene', h: 'Recolectado en lo alto del', hg: 'Himalaya.',
+    p: 'El shilajit se forma lentamente en la roca de alta montaña, muy por encima de carreteras y pueblos. El nuestro se recoge a mano a más de 5.000 metros cerca de Skardu, a la sombra del K2, y se purifica y analiza en laboratorio antes de sellarse en vidrio.',
+    alt: 'Altitud de recolección', num: '5.000', facts: [['Skardu', 'Origen'], ['Por lote', 'Analizado'], ['Vidrio UV', 'Protegido de la luz']],
+    aria: 'Dibujo de curvas de nivel de una cumbre inspirada en el K2, con el Cuello de Botella marcado y la zona de recolección por encima de 5.000 metros',
+    zone: 'ZONA DE RECOLECCIÓN · 5.000 M+', bneck: '≈ 8.200 M', peak: 'K2 · 8.611 M', cap: 'Ilustración inspirada en el K2 y su Cuello de Botella', locale: 'es-ES',
+  },
+  ar: {
+    eyebrow: 'من أين يأتي', h: 'يُجمع في أعالي', hg: 'جبال الهيمالايا.',
+    p: 'يتكوّن الشيلاجيت ببطء في صخور الجبال العالية، بعيداً عن الطرق والمدن. يُجمع الشيلاجيت لدينا يدوياً على ارتفاع يزيد عن 5000 متر قرب سكردو، في ظل قمة K2، ثم يُنقّى ويُفحص مخبرياً قبل أن يُحفظ في الزجاج.',
+    alt: 'ارتفاع الجمع', num: '5,000', facts: [['سكردو', 'المصدر'], ['لكل دفعة', 'مفحوص مخبرياً'], ['زجاج UV', 'محمي من الضوء']],
+    aria: 'رسم بخطوط الكنتور لقمة مستوحاة من K2، مع تحديد عنق الزجاجة ومنطقة الجمع فوق 5000 متر',
+    zone: 'منطقة الجمع · +5,000 م', bneck: '≈ 8,200 م', peak: 'K2 · 8,611 م', cap: 'رسم مستوحى من قمة K2 وعنق الزجاجة', locale: 'en-US',
+  },
+  ur: {
+    eyebrow: 'یہ کہاں سے آتا ہے', h: 'ہمالیہ کی', hg: 'بلندیوں سے۔',
+    p: 'سلاجیت اونچے پہاڑی پتھروں میں سڑکوں اور شہروں سے بہت دور آہستہ آہستہ بنتا ہے۔ ہمارا سلاجیت اسکردو کے قریب، کے ٹو کے سائے میں 5,000 میٹر سے زیادہ بلندی سے ہاتھ سے چنا جاتا ہے، پھر صاف کر کے لیب میں ٹیسٹ کیا جاتا ہے اور شیشے میں بند کیا جاتا ہے۔',
+    alt: 'چناؤ کی بلندی', num: '5,000', facts: [['اسکردو', 'ماخذ'], ['ہر بیچ', 'لیب ٹیسٹڈ'], ['UV شیشہ', 'روشنی سے محفوظ']],
+    aria: 'کے ٹو سے متاثر چوٹی کا کنٹور ڈرائنگ، جس میں باٹل نیک اور 5,000 میٹر سے اوپر چناؤ کا علاقہ دکھایا گیا ہے',
+    zone: 'چناؤ کا علاقہ · +5,000 میٹر', bneck: '≈ 8,200 میٹر', peak: 'K2 · 8,611 میٹر', cap: 'کے ٹو اور اس کے باٹل نیک سے متاثر خاکہ', locale: 'en-US',
+  },
 };
 
 const W = 600;

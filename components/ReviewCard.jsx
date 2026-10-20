@@ -2,13 +2,15 @@
 import { Stars } from './Icons';
 import { useLang } from './LangProvider';
 
+const SAMPLE = { en: 'Sample', da: 'Eksempel', de: 'Beispiel', fr: 'Exemple', es: 'Ejemplo', ar: 'مثال', ur: 'نمونہ' };
+
 export default function ReviewCard({ r }) {
   const lang = useLang();
   return (
     <figure className="review">
       <div className="review-top">
         <Stars rating={r.rating} />
-        {r.sample && <span className="sample-tag">{lang === 'da' ? 'Eksempel' : 'Sample'}</span>}
+        {r.sample && <span className="sample-tag">{SAMPLE[lang] || SAMPLE.en}</span>}
       </div>
       <blockquote>{r.text}</blockquote>
       <figcaption>

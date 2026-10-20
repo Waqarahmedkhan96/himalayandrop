@@ -12,6 +12,11 @@ import { getReviews } from '@/lib/reviews';
 const T = {
   en: { eyebrow: 'Reviews', a: 'In their', b: 'own words.', note: 'Sample reviews shown for layout. Real customer reviews appear here after launch.', play: 'Play reviews', pause: 'Pause reviews', all: 'Read all reviews' },
   da: { eyebrow: 'Anmeldelser', a: 'Med deres', b: 'egne ord.', note: 'Eksempler på anmeldelser vist til layout. Rigtige kundeanmeldelser vises her efter lanceringen.', play: 'Afspil anmeldelser', pause: 'Sæt anmeldelser på pause', all: 'Læs alle anmeldelser' },
+  de: { eyebrow: 'Bewertungen', a: 'In ihren', b: 'eigenen Worten.', note: 'Beispielbewertungen zur Darstellung. Echte Kundenbewertungen erscheinen hier nach dem Start.', play: 'Bewertungen abspielen', pause: 'Bewertungen pausieren', all: 'Alle Bewertungen lesen' },
+  fr: { eyebrow: 'Avis', a: 'Avec leurs', b: 'propres mots.', note: 'Avis d’exemple pour la mise en page. Les vrais avis clients apparaîtront ici après le lancement.', play: 'Lancer les avis', pause: 'Mettre les avis en pause', all: 'Lire tous les avis' },
+  es: { eyebrow: 'Opiniones', a: 'En sus', b: 'propias palabras.', note: 'Opiniones de ejemplo para el diseño. Las opiniones reales aparecerán aquí tras el lanzamiento.', play: 'Reproducir opiniones', pause: 'Pausar opiniones', all: 'Leer todas las opiniones' },
+  ar: { eyebrow: 'آراء العملاء', a: 'بكلماتهم', b: 'الخاصة.', note: 'آراء تجريبية لعرض التصميم. ستظهر آراء العملاء الحقيقية هنا بعد الإطلاق.', play: 'تشغيل الآراء', pause: 'إيقاف الآراء', all: 'اقرأ جميع الآراء' },
+  ur: { eyebrow: 'ریویوز', a: 'ان کے', b: 'اپنے الفاظ میں۔', note: 'ڈیزائن کے لیے نمونہ ریویوز۔ اصل گاہکوں کے ریویوز لانچ کے بعد یہاں آئیں گے۔', play: 'ریویوز چلائیں', pause: 'ریویوز روکیں', all: 'تمام ریویوز پڑھیں' },
 };
 
 export default function Reviews() {
