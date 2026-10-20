@@ -11,6 +11,7 @@ import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { useCart } from '@/lib/cart';
 import { formatMoney } from '@/lib/shopify';
 import Accordion from './Accordion';
+import PurchaseBox from './PurchaseBox';
 import { Arrow } from './Arrow';
 
 export default function ProductView({ product }) {
@@ -99,14 +100,18 @@ export default function ProductView({ product }) {
               ))}
             </dl>
           )}
-          <div className="pdp-actions">
-            <button className="btn gold block" onClick={() => buyNow(product.variantId)} disabled={busy}>
-              {t.buy} <Arrow />
-            </button>
-            <button className="btn outline block" onClick={() => addItem(product.variantId)} disabled={busy}>
-              {t.add}
-            </button>
-          </div>
+          {product.amount != null ? (
+            <PurchaseBox product={product} />
+          ) : (
+            <div className="pdp-actions">
+              <button className="btn gold block" onClick={() => buyNow(product.variantId)} disabled={busy}>
+                {t.buy} <Arrow />
+              </button>
+              <button className="btn outline block" onClick={() => addItem(product.variantId)} disabled={busy}>
+                {t.add}
+              </button>
+            </div>
+          )}
           <div className="pdp-trust">
             {t.trust.map((x) => <span key={x}>{x}</span>)}
           </div>
