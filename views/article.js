@@ -5,6 +5,7 @@ import { getArticle, getArticles } from '@/lib/shopify';
 import { counterpartSlug } from '@/lib/posts';
 import { buildMeta, breadcrumbLd, abs, BRAND } from '@/lib/seo';
 import { localizeHref, SITE_URL } from '@/lib/i18n';
+import { refs } from '@/lib/sources';
 
 export async function params(lang) {
   const posts = await getArticles(lang);
@@ -36,7 +37,9 @@ export default async function ArticlePageView({ lang, slug }) {
     description: post.excerpt,
     image: post.cover?.startsWith('http') ? post.cover : abs(post.cover),
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated || post.date,
+    articleSection: post.category,
+    ...(post.sources?.length ? { citation: refs(...post.sources).map((r) => r.url) } : {}),
     inLanguage: lang,
     mainEntityOfPage: abs(path),
     author: { '@type': 'Organization', name: BRAND, url: SITE_URL },
@@ -47,9 +50,17 @@ export default async function ArticlePageView({ lang, slug }) {
     ['Journal', localizeHref('/blog/', lang)],
     [post.title, path],
   ]);
+  const faqBlock = post.body?.find((b) => b.t === 'faq');
+  const faqLd = faqBlock && {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: lang,
+    mainEntity: faqBlock.items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })),
+  };
   return (
     <>
       <JsonLd data={articleLd} />
+      {faqLd && <JsonLd data={faqLd} />}
       <JsonLd data={crumbs} />
       <ArticleView post={post} related={related} />
     </>

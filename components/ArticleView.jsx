@@ -6,18 +6,70 @@ import Link from './LLink';
 import { useLang } from './LangProvider';
 
 const T = {
-  en: { journal: 'Journal', min: 'min read', explore: 'Explore the collection', keep: 'Keep reading' },
-  da: { journal: 'Journal', min: 'min. læsning', explore: 'Se kollektionen', keep: 'Læs videre' },
+  en: { journal: 'Journal', min: 'min read', explore: 'Explore the collection', keep: 'Keep reading', toc: 'In this article', sources: 'Sources', updated: 'Updated', faq: 'Frequently asked questions', view: 'View product' },
+  da: { journal: 'Journal', min: 'min. læsning', explore: 'Se kollektionen', keep: 'Læs videre', toc: 'I denne artikel', sources: 'Kilder', updated: 'Opdateret', faq: 'Ofte stillede spørgsmål', view: 'Se produktet' },
 };
+
+export const slugify = (s) => s.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/æ/g, 'ae').replace(/ø/g, 'oe').replace(/å/g, 'aa').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+// In-article product card ("flyer"), in the brand's maroon and gold.
+function ProductFlyer({ b, lang, t }) {
+  const p = localizeProduct(demoProducts.find((x) => x.handle === b.handle), lang);
+  if (!p) return null;
+  return (
+    <aside className="article-flyer">
+      <Link href={`/products/${p.handle}/`} className="af-media" tabIndex={-1} aria-hidden="true">
+        <img src={p.image} alt="" loading="lazy" />
+      </Link>
+      <div className="af-copy">
+        {b.eyebrow && <span className="eyebrow">{b.eyebrow}</span>}
+        <strong>{b.title || p.title}</strong>
+        <p>{b.text || p.subtitle}</p>
+        <Link href={`/products/${p.handle}/`} className="btn gold small">{b.cta || t.view} <Arrow size={14} /></Link>
+      </div>
+    </aside>
+  );
+}
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { formatDate } from '@/lib/shopify';
 import JournalCard from './JournalCard';
+import Sources from './Sources';
+import { demoProducts, localizeProduct } from '@/lib/products';
+import { refs } from '@/lib/sources';
 import { Arrow } from './Arrow';
 
-function Block({ b }) {
+function Block({ b, lang, t }) {
   switch (b.t) {
     case 'h2':
-      return <h2>{b.text}</h2>;
+      return <h2 id={slugify(b.text)}>{b.text}</h2>;
+    case 'h3':
+      return <h3>{b.text}</h3>;
+    case 'table':
+      return (
+        <div className="article-table" role="region" aria-label={b.caption || 'Table'} tabIndex={0}>
+          <table>
+            {b.caption && <caption>{b.caption}</caption>}
+            <thead><tr>{b.head.map((h) => <th key={h} scope="col">{h}</th>)}</tr></thead>
+            <tbody>{b.rows.map((r, i) => <tr key={i}>{r.map((c, j) => (j === 0 ? <th key={j} scope="row">{c}</th> : <td key={j}>{c}</td>))}</tr>)}</tbody>
+          </table>
+        </div>
+      );
+    case 'faq':
+      return (
+        <section className="article-faq">
+          <h2 id={slugify(b.title || t.faq)}>{b.title || t.faq}</h2>
+          {b.items.map((i) => (
+            <details key={i.q}>
+              <summary>{i.q}</summary>
+              <p>{i.a}</p>
+            </details>
+          ))}
+        </section>
+      );
+    case 'product':
+      return <ProductFlyer b={b} lang={lang} t={t} />;
+    case 'note':
+      return <p className="article-note">{b.text}</p>;
     case 'quote':
       return <blockquote className="pull">{b.text}</blockquote>;
     case 'list':
@@ -87,7 +139,7 @@ export default function ArticleView({ post, related }) {
       <header className="article-head">
         <p className="crumb"><Link href="/blog/">{t.journal}</Link> · {post.category}</p>
         <h1><span className="line"><span>{post.title}</span></span></h1>
-        <p className="journal-meta"><time dateTime={post.date}>{formatDate(post.date, lang)}</time> · {post.readMin} {t.min} · Himalayan Drop</p>
+        <p className="journal-meta"><time dateTime={post.date}>{formatDate(post.date, lang)}</time>{post.updated && <> · {t.updated} <time dateTime={post.updated}>{formatDate(post.updated, lang)}</time></>} · {post.readMin} {t.min} · Himalayan Drop</p>
         {post.excerpt && <p className="lede">{post.excerpt}</p>}
       </header>
 
@@ -99,7 +151,19 @@ export default function ArticleView({ post, related }) {
         <div className="article-body" dangerouslySetInnerHTML={{ __html: post.html }} />
       ) : (
         <div className="article-body">
-          {post.body.map((b, i) => <Block key={i} b={b} />)}
+          {post.toc && (
+            <nav className="article-toc" aria-label={t.toc}>
+              <strong>{t.toc}</strong>
+              <ol>
+                {post.body.filter((b) => b.t === 'h2' || b.t === 'faq').map((b) => {
+                  const text = b.t === 'faq' ? b.title || t.faq : b.text;
+                  return <li key={text}><a href={`#${slugify(text)}`}>{text}</a></li>;
+                })}
+              </ol>
+            </nav>
+          )}
+          {post.body.map((b, i) => <Block key={i} b={b} lang={lang} t={t} />)}
+          {post.sources?.length > 0 && <Sources items={refs(...post.sources)} title={t.sources} id="article-sources" />}
         </div>
       )}
 
