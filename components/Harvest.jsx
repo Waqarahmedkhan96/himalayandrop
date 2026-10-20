@@ -1,17 +1,36 @@
 'use client';
-// "Harvested above 5,000 m": a contour-line mountain in gold. The lines draw in
-// from the front, a marker pulses at the summit and the altitude counts up.
+// "Harvested above 5,000 m": a contour-line mountain in gold, drawn after the
+// silhouette of K2 with its Bottleneck couloir and Shoulder. The lines draw in
+// from the front, the summit marker pulses and the altitude counts up.
 import { useMemo, useRef } from 'react';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 
 const W = 600;
 const H = 380;
 
-// Mountain profile: a main summit and a shoulder, with gentle ripples.
+// K2 profile: steep pyramid summit, the narrow Bottleneck just below it on
+// the right, then the broad Shoulder before the ridge falls away.
+const K2 = [
+  [0.0, 0.03], [0.08, 0.08], [0.14, 0.17], [0.19, 0.22], [0.24, 0.34], [0.28, 0.4],
+  [0.33, 0.56], [0.37, 0.66], [0.41, 0.82], [0.44, 0.93], [0.465, 1.0],
+  [0.49, 0.95], [0.505, 0.905], [0.52, 0.895], [0.54, 0.86], [0.575, 0.8],
+  [0.62, 0.785], [0.67, 0.77], [0.71, 0.7], [0.75, 0.56], [0.8, 0.42],
+  [0.85, 0.3], [0.9, 0.17], [0.95, 0.08], [1.0, 0.03],
+];
+
 function profile(x, k) {
-  const g = (c, w, h) => h * Math.exp(-((x - c) ** 2) / (2 * w * w));
-  return g(0.46, 0.12, 1) + g(0.62, 0.09, 0.62) + g(0.3, 0.1, 0.35) + 0.025 * Math.sin(x * 40 + k * 0.7);
+  let i = 1;
+  while (i < K2.length - 1 && K2[i][0] < x) i++;
+  const [x0, y0] = K2[i - 1];
+  const [x1, y1] = K2[i];
+  const h = y0 + ((y1 - y0) * (x - x0)) / (x1 - x0 || 1);
+  return h + 0.012 * Math.sin(x * 55 + k * 0.9) * (1 - h * 0.6);
 }
+
+// Altitude scale used for the labels (base of the drawing ≈ 3,500 m).
+const BASE_M = 3500;
+const TOP_M = 8611;
+const yAt = (m) => 300 - ((m - BASE_M) / (TOP_M - BASE_M)) * 250;
 
 function contourLines(count = 34) {
   const lines = [];
@@ -20,8 +39,8 @@ function contourLines(count = 34) {
     const base = 300 + t * 60;
     const height = 250 * (1 - t * 0.85);
     let d = '';
-    for (let i = 0; i <= 120; i++) {
-      const x = i / 120;
+    for (let i = 0; i <= 200; i++) {
+      const x = i / 200;
       const y = base - profile(x, k) * height;
       d += `${i ? 'L' : 'M'}${(x * W).toFixed(1)} ${y.toFixed(1)}`;
     }
@@ -33,7 +52,9 @@ function contourLines(count = 34) {
 export default function Harvest() {
   const root = useRef(null);
   const lines = useMemo(() => contourLines(), []);
-  const peakY = 300 - profile(0.46, 0) * 250;
+  const peakY = 300 - 250;
+  const harvestY = yAt(5000);
+  const bottleY = yAt(8250);
 
   useGSAP(
     () => {
@@ -50,6 +71,8 @@ export default function Harvest() {
         .to(paths.slice().reverse(), { strokeDashoffset: 0, duration: 1.6, stagger: 0.03, ease: 'power2.out' }, 0.1)
         .from('.harvest-copy > *', { y: 24, opacity: 0, stagger: 0.08, duration: 1, ease: 'expo.out' }, 0.3)
         .from('.summit', { scale: 0, transformOrigin: 'center', duration: 0.8, ease: 'back.out(3)' }, 1.4)
+        .from('.k2-label', { opacity: 0, x: 12, stagger: 0.2, duration: 0.9, ease: 'expo.out' }, 1.6)
+        .from('.harvest-zone', { scaleX: 0, transformOrigin: 'left center', duration: 1.4, ease: 'expo.inOut' }, 1.2)
         .to(counter, { v: 5000, duration: 2, ease: 'power3.out', onUpdate: () => (num.textContent = Math.round(counter.v).toLocaleString('en-US')) }, 0.6);
       gsap.to('.contour', { yPercent: -6, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: 1 } });
     },
@@ -82,7 +105,7 @@ export default function Harvest() {
         </div>
 
         <div className="harvest-art">
-          <svg viewBox={`0 -80 ${W} ${H + 80}`} role="img" aria-label="Contour line drawing of a Himalayan summit with the harvest point above 5,000 metres">
+          <svg viewBox={`0 -80 ${W} ${H + 80}`} role="img" aria-label="Contour line drawing of a peak inspired by K2, with the Bottleneck marked and the harvest zone above 5,000 metres">
             <defs>
               <linearGradient id="contour-gold" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0" stopColor="#a8803f" />
@@ -100,13 +123,25 @@ export default function Harvest() {
               ))}
               <line x1="0" y1="360" x2={W} y2="360" stroke="#cca25e" strokeWidth="1.5" />
             </g>
-            <g className="summit" transform={`translate(${0.46 * W} ${peakY - 6})`}>
+            <g className="harvest-zone">
+              <line x1="0" y1={harvestY} x2={W} y2={harvestY} stroke="#e2c487" strokeWidth="1" strokeDasharray="6 6" opacity="0.7" />
+              <rect x="0" y={harvestY - 28} width="190" height="22" rx="11" fill="rgba(42,1,7,0.75)" />
+              <text x="12" y={harvestY - 13} fill="#eed9a6" fontSize="11.5" fontWeight="700" letterSpacing="1.8" fontFamily="Manrope Variable, Manrope, sans-serif">HARVEST ZONE · 5,000 M+</text>
+            </g>
+            <g className="k2-label">
+              <path d={`M ${0.515 * W + 6} ${bottleY} L ${0.515 * W + 70} ${bottleY - 22} L ${0.515 * W + 120} ${bottleY - 22}`} fill="none" stroke="#e2c487" strokeWidth="1" />
+              <circle cx={0.515 * W} cy={bottleY + 2} r="4" fill="#eed9a6" />
+              <text x={0.515 * W + 126} y={bottleY - 18} fill="#eed9a6" fontSize="13" fontStyle="italic" fontFamily="Playfair Display Variable, Playfair Display, serif">The Bottleneck</text>
+              <text x={0.515 * W + 126} y={bottleY - 3} fill="rgba(247,241,232,0.6)" fontSize="10" letterSpacing="1.5" fontFamily="Manrope Variable, Manrope, sans-serif">≈ 8,200 M</text>
+            </g>
+            <g className="summit" transform={`translate(${0.465 * W} ${peakY - 4})`}>
               <circle r="26" fill="url(#summit-glow)" className="summit-pulse" />
-              <circle r="6" fill="#fff6e2" />
-              <line x1="0" y1="-10" x2="0" y2="-46" stroke="#e2c487" strokeWidth="1" strokeDasharray="3 3" />
-              <text y="-54" textAnchor="middle" fill="#eed9a6" fontSize="13" fontWeight="700" letterSpacing="2" fontFamily="Manrope Variable, Manrope, sans-serif">5,000 M+</text>
+              <circle r="5.5" fill="#fff6e2" />
+              <line x1="0" y1="-10" x2="0" y2="-44" stroke="#e2c487" strokeWidth="1" strokeDasharray="3 3" />
+              <text y="-52" textAnchor="middle" fill="#eed9a6" fontSize="13" fontWeight="700" letterSpacing="2" fontFamily="Manrope Variable, Manrope, sans-serif">K2 · 8,611 M</text>
             </g>
           </svg>
+          <p className="art-caption">Illustration inspired by K2 and its Bottleneck</p>
         </div>
       </div>
     </section>
