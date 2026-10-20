@@ -1536,3 +1536,21 @@ em { font-style: italic; }
 .bundle-card { transition: box-shadow 0.5s var(--ease); }
 .bundle-card:hover { transform: none; }
 .bundle-stage img { position: absolute; inset: 9% 6% 10%; width: 88%; height: 81%; }
+
+/* ═════════ Audit fixes: skip link, 404, empty cart, form errors ═════════ */
+.skip-link { position: fixed; z-index: 200; top: 10px; left: 10px; padding: 12px 18px; border-radius: var(--pill); background: var(--gold-grad); color: var(--maroon-ink); font-weight: 700; transform: translateY(-160%); transition: transform 0.3s var(--ease); }
+.skip-link:focus { transform: none; outline: 2px solid var(--maroon); outline-offset: 2px; }
+main:focus { outline: none; }
+.nf .nf-card { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.nf .nf-da { margin-top: 4px; opacity: 0.75; font-style: italic; }
+.nf .hero-ctas { margin-top: 26px; justify-content: center; }
+.nf-links { margin-top: 18px; font-size: 14px; color: rgba(247, 241, 232, 0.75); }
+.nf-links a { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 3px; }
+.drawer-empty { display: grid; justify-items: center; gap: 8px; padding: 36px 12px; text-align: center; color: var(--muted); }
+.drawer-empty svg { color: var(--gold); }
+.drawer-empty strong { font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--ink); }
+.drawer-empty p { margin: 0 0 8px; font-size: 14px; }
+.contact-form [aria-invalid='true'], .nl-form [aria-invalid='true'], .offer-form [aria-invalid='true'] { box-shadow: inset 0 0 0 2px #c0392b !important; }
+.form-error { margin: 4px 0 0; }
+.nl-error { color: #ffb4b4; text-align: center; margin-top: 10px; }
+.offer .offer-error { color: #ffb4b4; text-align: center; font-size: 13px; }
