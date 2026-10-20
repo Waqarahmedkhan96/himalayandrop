@@ -10,6 +10,7 @@ export const dynamic = 'force-static';
 const STATIC = [
   ['/', 1.0, 'weekly'],
   ['/shop/', 0.9, 'weekly'],
+  ['/bundles/', 0.8, 'weekly'],
   ['/our-shilajit/', 0.8, 'monthly'],
   ['/lab-results/', 0.8, 'monthly'],
   ['/how-to-use/', 0.7, 'monthly'],
