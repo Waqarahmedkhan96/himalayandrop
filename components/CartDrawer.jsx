@@ -55,6 +55,7 @@ export default function CartDrawer() {
               <div>
                 <strong>{l.merchandise.product.title}</strong>
                 <div style={{ fontSize: 13, color: 'var(--muted)' }}>{t.qty} {l.quantity}</div>
+                {l.sellingPlanAllocation && <div className="drawer-sub">↻ {l.sellingPlanAllocation.sellingPlan.name}</div>}
               </div>
               <button className="icon-btn" onClick={() => removeLine(l.id)} disabled={busy} aria-label={t.remove}>✕</button>
             </div>
