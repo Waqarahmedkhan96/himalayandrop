@@ -9,10 +9,11 @@ import { useCart } from '@/lib/cart';
 import { site } from '@/lib/site';
 import { useLang, useT } from './LangProvider';
 import { Arrow } from './Arrow';
+import { Icon } from './Icons';
 
 const T = {
-  en: { mobile: 'Mobile', main: 'Main', login: 'Login', create: 'Create account', discover: 'Discover', account: 'Account', cart: (n) => `Open cart, ${n} items`, menu: 'Menu' },
-  da: { mobile: 'Mobil', main: 'Hovedmenu', login: 'Log ind', create: 'Opret konto', discover: 'Se mere', account: 'Konto', cart: (n) => `Åbn kurv, ${n} varer`, menu: 'Menu' },
+  en: { mobile: 'Mobile', main: 'Main', login: 'Login', create: 'Create account', discover: 'Discover', account: 'Account', cart: (n) => `Open cart, ${n} items`, menu: 'Menu', viewAll: 'View all products', trust: ['Lab-tested every batch', '60-day money-back guarantee'] },
+  da: { mobile: 'Mobil', main: 'Hovedmenu', login: 'Log ind', create: 'Opret konto', discover: 'Se mere', account: 'Konto', cart: (n) => `Åbn kurv, ${n} varer`, menu: 'Menu', viewAll: 'Se alle produkter', trust: ['Hver batch laboratorietestet', '60 dages penge-tilbage-garanti'] },
 };
 
 function Chevron() {
@@ -53,23 +54,71 @@ export default function Header() {
   return (
     <>
       <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`} aria-label={t.mobile} aria-hidden={!menuOpen} data-lenis-prevent>
-        {menu.map((g) =>
-          g.items ? (
-            <div className="m-group" key={g.label}>
-              <p className="m-title">{g.label}</p>
-              {g.items.map((it) => (
-                <Link key={it.href + it.label} href={it.href} onClick={close} tabIndex={menuOpen ? 0 : -1}>{it.label}</Link>
-              ))}
+        {(() => {
+          const tab = menuOpen ? 0 : -1;
+          const shop = menu[0];
+          const products = shop.items.filter((it) => it.img);
+          return (
+            <div className="mn">
+              <section className="mn-shop" aria-label={shop.label}>
+                <div className="mn-head">
+                  <p className="m-title">{shop.label}</p>
+                  <Link href="/shop/" onClick={close} tabIndex={tab} className="mn-see">{t.viewAll} <Arrow size={12} /></Link>
+                </div>
+                <ul className="mn-trust">
+                  <li><Icon name="shield" size={14} /> {t.trust[0]}</li>
+                  <li><Icon name="star" size={14} /> {t.trust[1]}</li>
+                </ul>
+                <div className="mn-grid">
+                  {products.map((it, i) => (
+                    <Link key={it.href} href={it.href} onClick={close} tabIndex={tab} className="mn-card" style={{ '--i': i }}>
+                      <span className="mn-img"><img src={it.img} alt="" loading="lazy" /></span>
+                      <span className="mn-txt">
+                        <strong>{it.label}</strong>
+                        <em>{it.blurb}</em>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+                <Link href="/shop/" onClick={close} tabIndex={tab} className="btn gold block mn-cta">{t.viewAll} <Arrow /></Link>
+              </section>
+
+              {menu.slice(1).map((g, gi) =>
+                g.items ? (
+                  <details className="mn-acc" key={g.label} style={{ '--i': products.length + gi }}>
+                    <summary tabIndex={tab}>
+                      <span>{g.label}</span>
+                      <Chevron />
+                    </summary>
+                    <div className="mn-sub">
+                      {g.items.map((it) => (
+                        <Link key={it.href + it.label} href={it.href} onClick={close} tabIndex={tab}>
+                          <strong>{it.label}</strong>
+                          <span>{it.text}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </details>
+                ) : (
+                  <Link key={g.label} className="mn-row" href={g.href} onClick={close} tabIndex={tab} style={{ '--i': products.length + gi }}>
+                    <span>{g.label}</span>
+                    <Arrow size={14} />
+                  </Link>
+                )
+              )}
+
+              <div className="m-account">
+                <Link href="/account/login/" onClick={close} tabIndex={tab}>{t.login}</Link>
+                <Link href="/account/register/" onClick={close} tabIndex={tab}>{t.create}</Link>
+              </div>
+              <LangSwitch className="m-lang" onNavigate={close} />
+              <svg className="mn-ridge" viewBox="0 0 400 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+                <path d="M0 120 L54 70 L80 86 L140 28 L184 74 L212 58 L272 104 L310 82 L400 116" fill="none" stroke="#cca25e" strokeWidth="1.2" />
+                <path d="M0 120 L40 98 L110 110 L176 84 L240 106 L306 92 L400 118" fill="none" stroke="#cca25e" strokeOpacity="0.4" strokeWidth="1" />
+              </svg>
             </div>
-          ) : (
-            <Link key={g.label} className="m-single" href={g.href} onClick={close} tabIndex={menuOpen ? 0 : -1}>{g.label}</Link>
-          )
-        )}
-        <div className="m-account">
-          <Link href="/account/login/" onClick={close} tabIndex={menuOpen ? 0 : -1}>{t.login}</Link>
-          <Link href="/account/register/" onClick={close} tabIndex={menuOpen ? 0 : -1}>{t.create}</Link>
-        </div>
-        <LangSwitch className="m-lang" onNavigate={close} />
+          );
+        })()}
       </nav>
 
       <header className={`header ${hidden && !menuOpen ? 'hidden' : ''}`}>
@@ -126,9 +175,7 @@ export default function Header() {
               {count > 0 && <span className="cart-count">{count}</span>}
             </button>
             <button className="icon-btn menu-btn" onClick={() => setMenuOpen((m) => !m)} aria-label={t.menu} aria-expanded={menuOpen}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                {menuOpen ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 9h16M8 15h12" />}
-              </svg>
+              <span className={`burger ${menuOpen ? 'is-open' : ''}`} aria-hidden="true"><i /><i /><i /></span>
             </button>
           </div>
         </div>
