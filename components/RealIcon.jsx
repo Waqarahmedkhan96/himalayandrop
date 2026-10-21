@@ -218,6 +218,19 @@ const SHAPES = {
       <path d="M14 13 A11 11 0 0 1 22 6.5" stroke="#fff" strokeWidth="1.6" fill="none" strokeLinecap="round" opacity=".45" />
     </>
   ),
+  people: (u) => (
+    <>
+      <ellipse cx="24" cy="44" rx="18" ry="2.2" fill="#000" opacity=".14" />
+      <circle cx="32" cy="12" r="6" fill="#e9c9a8" />
+      <path d="M26 11 C26 5 38 5 38 11 C36 9 30 8 26 11 Z" fill="#3a2418" />
+      <path d="M21 43 C21 30 24 22 32 22 C40 22 43 30 43 43 Z" fill={u('m')} />
+      <path d="M28 22.5 L32 28 L36 22.5" fill="none" stroke={GOLD[0]} strokeWidth="1.2" />
+      <circle cx="16" cy="14" r="6" fill="#f0d2b4" />
+      <path d="M9.5 15 C8 6 24 4 22.5 15 C23 20 25 23 26 25 C22 24 20 21 20 18 L12 18 C12 21 10 24 6 25 C7.5 22 9.6 19 9.5 15 Z" fill="#5a3522" />
+      <path d="M4 43 C4 31 8 24 16 24 C24 24 28 31 28 43 Z" fill={u('g')} />
+      <path d="M10 27 C12 25.5 14 25 16 25" stroke="#fff" strokeWidth="1.3" fill="none" opacity=".6" strokeLinecap="round" />
+    </>
+  ),
   shilajit: (u) => (
     <>
       <ellipse cx="24" cy="43.5" rx="12" ry="2.2" fill="#000" opacity=".2" />
