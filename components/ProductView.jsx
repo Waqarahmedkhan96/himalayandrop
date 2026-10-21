@@ -19,6 +19,8 @@ import Accordion from './Accordion';
 import PurchaseBox from './PurchaseBox';
 import { Arrow } from './Arrow';
 import { Icon } from './Icons';
+import RealIcon from './RealIcon';
+import { FORMULA_KEYS } from '@/lib/labdata';
 import { howToSteps } from './HowToTabs';
 import { kindOf } from '@/lib/benefits';
 import { useLang } from './LangProvider';
@@ -27,13 +29,14 @@ import { useLang } from './LangProvider';
 function factIcon(i, value, kind) {
   if (i === 0) return 'crystal';
   if (i === 1) return 'flask';
-  if (/ml/.test(value)) return 'drop';
+  if (/ml/.test(value)) return 'dropper';
   if (/\bg\b|\dg/.test(value)) return 'scale';
   return kind === 'capsules' ? 'capsule' : 'calendar';
 }
 
 // Small icon per formula row (same order as lib/products.js).
-const ROW_ICONS = { gummies: ['mountain', 'drop', 'leaf', 'shield', 'star', 'leaf', 'berry'], drops: ['mountain', 'drop', 'leaf', 'shield', 'star', 'berry', 'leaf'], capsules: ['mountain', 'drop', 'leaf', 'shield', 'star', 'berry', 'leaf'] };
+// How-to step icons: the measuring step shows the spoon.
+const STEP_ICON = { jar: 'spoon' };
 
 export default function ProductView({ product }) {
   const root = useRef(null);
@@ -120,7 +123,7 @@ export default function ProductView({ product }) {
             <dl className="pdp-stats">
               {product.facts.map(([v, l], i) => (
                 <div key={l}>
-                  <span className="ps-ico"><Icon name={factIcon(i, v, kind)} size={20} /></span>
+                  <span className="ps-ico"><RealIcon name={factIcon(i, v, kind)} size={30} /></span>
                   <span className="ps-txt"><dt><bdi>{v}</bdi></dt><dd>{l}</dd></span>
                 </div>
               ))}
@@ -144,13 +147,13 @@ export default function ProductView({ product }) {
           {f && (
             <div className={`pdp-band pdp-ing ${f.rows.length === 1 ? 'single' : ''}`}>
               <div className="band-head">
-                <span className="band-ico"><Icon name="leaf" size={18} /></span>
+                <span className="band-ico"><RealIcon name="leaf" size={26} /></span>
                 <h2>{f.title}</h2>
                 <span className="band-tag">{f.serving}</span>
               </div>
               {f.rows.length === 1 ? (
                 <div className="ing-single">
-                  <span className="ing-jar"><Icon name="jar" size={26} /></span>
+                  <span className="ing-jar"><RealIcon name="jar" size={40} /></span>
                   <div>
                     <strong>{f.rows[0][0]}</strong>
                     <span>{t.nothing}</span>
@@ -161,7 +164,7 @@ export default function ProductView({ product }) {
                 <ul className="ing-list" aria-label={`${t.ingredient} / ${t.amount}`}>
                   {f.rows.map(([n, a], i) => (
                     <li key={n}>
-                      <span className="ing-ico"><Icon name={(ROW_ICONS[kind] || [])[i] || 'leaf'} size={14} /></span>
+                      <span className="ing-ico"><RealIcon name={(FORMULA_KEYS[kind] || [])[i] || 'leaf'} size={26} /></span>
                       <span className="ing-name">{n}</span>
                       <span className="ing-dots" aria-hidden="true" />
                       <b><bdi>{a}</bdi></b>
@@ -175,13 +178,13 @@ export default function ProductView({ product }) {
           {steps && (
             <div className="pdp-band pdp-how">
               <div className="band-head">
-                <span className="band-ico"><Icon name="clock" size={18} /></span>
+                <span className="band-ico"><RealIcon name="clock" size={26} /></span>
                 <h2>{t.how}</h2>
               </div>
               <ol className="band-steps">
                 {steps.map(([icon, title, text], i) => (
                   <li key={title}>
-                    <span className="bs-ico"><Icon name={icon} size={20} /><i>{i + 1}</i></span>
+                    <span className="bs-ico"><RealIcon name={STEP_ICON[icon] || icon} size={32} /><i>{i + 1}</i></span>
                     <span className="bs-txt"><strong>{title}</strong><span>{text}</span></span>
                   </li>
                 ))}
