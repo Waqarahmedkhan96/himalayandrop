@@ -2105,3 +2105,14 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 .bs-ico { width: 52px; height: 52px; }
 .band-steps li { grid-template-columns: 52px 1fr; }
 .real-icon { display: block; overflow: visible; }
+
+/* Desktop Shop menu: product pictures, like the phone menu */
+.nav-links.with-img { grid-template-columns: repeat(2, minmax(220px, 1fr)); gap: 4px 6px; }
+.nav .nav-panel .nav-links a.has-img { display: flex; align-items: center; gap: 14px; padding: 8px 12px 8px 8px; }
+.nav-links .nav-thumb { margin: 0; flex: none; width: 58px; height: 58px; border-radius: 14px; display: grid; place-items: center; background: radial-gradient(circle at 35% 30%, #fffdf8, #efe2cf); box-shadow: inset 0 0 0 1px rgba(204, 162, 94, 0.35); overflow: hidden; transition: transform 0.5s var(--ease), box-shadow 0.4s; }
+.nav-thumb img { width: 84%; height: 84%; object-fit: contain; filter: drop-shadow(0 6px 8px rgba(64, 1, 10, 0.18)); transition: transform 0.6s var(--ease); }
+.nav-links a.has-img:hover .nav-thumb { box-shadow: inset 0 0 0 1px rgba(204, 162, 94, 0.8), 0 10px 18px -12px rgba(64, 1, 10, 0.5); }
+.nav-links a.has-img:hover .nav-thumb img { transform: scale(1.1) rotate(-3deg); }
+.nav-links .nav-txt { display: flex; flex-direction: column; min-width: 0; margin: 0; font-size: inherit; color: inherit; }
+.nav-links .nav-txt > span { margin-top: 2px; }
+.nav-panel-card:has(.with-img) { grid-template-columns: 560px 240px; }

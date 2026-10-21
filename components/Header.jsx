@@ -160,12 +160,15 @@ export default function Header() {
                   </Link>
                   <div className="nav-panel">
                     <div className="nav-panel-card">
-                      <ul className="nav-links">
-                        {g.items.map((it) => (
+                      <ul className={`nav-links ${g.items.some((it) => it.img) ? 'with-img' : ''}`}>
+                        {g.items.map((raw) => ({ ...raw, img: raw.img || (raw.href === '/shop/' && g.items.some((x) => x.img) ? '/images/thumbs/pack-gold.webp' : undefined) })).map((it) => (
                           <li key={it.href + it.label}>
-                            <Link href={it.href}>
-                              <strong>{it.label}</strong>
-                              <span>{it.text}</span>
+                            <Link href={it.href} className={it.img ? 'has-img' : undefined}>
+                              {it.img && <span className={`nav-thumb ${it.href === '/shop/' ? 'all' : ''}`}><img src={it.href === '/shop/' ? '/images/collection-lineup.webp' : it.img} alt="" loading="lazy" /></span>}
+                              <span className="nav-txt">
+                                <strong>{it.label}</strong>
+                                <span>{it.text}</span>
+                              </span>
                             </Link>
                           </li>
                         ))}
