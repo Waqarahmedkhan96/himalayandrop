@@ -130,7 +130,7 @@ export default function ProductView({ product }) {
                 <thead><tr><th scope="col">{t.ingredient}</th><th scope="col">{t.amount}</th></tr></thead>
                 <tbody>
                   {f.rows.map(([n, a]) => (
-                    <tr key={n}><th scope="row">{n}</th><td>{a}</td></tr>
+                    <tr key={n}><th scope="row">{n}</th><td><bdi>{a}</bdi></td></tr>
                   ))}
                 </tbody>
               </table>

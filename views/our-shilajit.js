@@ -25,7 +25,7 @@ const T = {
     inside: {
       eyebrow: 'What’s inside', title: 'What shilajit', accent: 'contains.',
       lead: 'Shilajit is a natural complex of humic substances, minerals and organic compounds. Here is what research describes, and what we measure in our own.',
-      stats: [['85+', 'Minerals & trace elements*'], ['70.1%', 'Fulvic acid, Gold Resin*'], ['5,000 m+', 'Harvest altitude'], ['60', 'Days of sun-drying, up to'], ['4', 'Lab checks per batch']],
+      stats: [['85+', 'Minerals & trace elements*'], ['83.1%', 'Fulvic acid, Gold Resin*'], ['5,000 m+', 'Harvest altitude'], ['60', 'Days of sun-drying, up to'], ['4', 'Lab checks per batch']],
       note: '*Specification of our shilajit raw material, confirmed on each batch report. Values vary naturally between batches.',
       parts: [
         { icon: 'flask', title: 'Humic substances', text: 'Fulvic and humic acids make up the largest share of shilajit. Fulvic acid is the most common quality marker, which is why we state it as a number.' },
@@ -68,7 +68,7 @@ const T = {
     inside: {
       eyebrow: 'Det er der i', title: 'Hvad shilajit', accent: 'indeholder.',
       lead: 'Shilajit er et naturligt kompleks af humusstoffer, mineraler og organiske forbindelser. Her er, hvad forskningen beskriver, og hvad vi selv måler.',
-      stats: [['85+', 'Mineraler og sporstoffer*'], ['70,1 %', 'Fulvinsyre, Gold Resin*'], ['5.000 m+', 'Høsthøjde'], ['60', 'Dages soltørring, op til'], ['4', 'Laboratorietjek pr. batch']],
+      stats: [['85+', 'Mineraler og sporstoffer*'], ['83,1 %', 'Fulvinsyre, Gold Resin*'], ['5.000 m+', 'Høsthøjde'], ['60', 'Dages soltørring, op til'], ['4', 'Laboratorietjek pr. batch']],
       note: '*Specifikation for vores råvare shilajit, bekræftet i rapporten for hver batch. Værdierne varierer naturligt fra batch til batch.',
       parts: [
         { icon: 'flask', title: 'Humusstoffer', text: 'Fulvinsyre og huminsyre udgør den største del af shilajit. Fulvinsyre er den mest brugte kvalitetsmarkør, og derfor angiver vi den som et tal.' },
@@ -111,7 +111,7 @@ const T = {
     inside: {
       eyebrow: 'Was drin ist', title: 'Was Shilajit', accent: 'enthält.',
       lead: 'Shilajit (Mumijo) ist ein natürlicher Komplex aus Huminstoffen, Mineralien und organischen Verbindungen. Das beschreibt die Forschung, und das messen wir in unserem.',
-      stats: [['85+', 'Mineralien & Spurenelemente*'], ['70,1 %', 'Fulvinsäure, Gold Resin*'], ['5.000 m+', 'Erntehöhe'], ['60', 'Tage Sonnentrocknung, bis zu'], ['4', 'Laborprüfungen je Charge']],
+      stats: [['85+', 'Mineralien & Spurenelemente*'], ['83,1 %', 'Fulvinsäure, Gold Resin*'], ['5.000 m+', 'Erntehöhe'], ['60', 'Tage Sonnentrocknung, bis zu'], ['4', 'Laborprüfungen je Charge']],
       note: '*Spezifikation unseres Shilajit-Rohstoffs, bestätigt im Bericht jeder Charge. Die Werte schwanken natürlich zwischen den Chargen.',
       parts: [
         { icon: 'flask', title: 'Huminstoffe', text: 'Fulvin- und Huminsäuren machen den größten Teil von Shilajit aus. Fulvinsäure ist das häufigste Qualitätsmerkmal, deshalb geben wir sie als Zahl an.' },
@@ -154,7 +154,7 @@ const T = {
     inside: {
       eyebrow: 'Composition', title: 'Ce que contient', accent: 'le shilajit.',
       lead: 'Le shilajit est un complexe naturel de substances humiques, de minéraux et de composés organiques. Voici ce que décrit la recherche, et ce que nous mesurons dans le nôtre.',
-      stats: [['85+', 'Minéraux et oligo-éléments*'], ['70,1 %', 'Acide fulvique, Gold Resin*'], ['5 000 m+', 'Altitude de récolte'], ['60', 'Jours de séchage, jusqu’à'], ['4', 'Contrôles de labo par lot']],
+      stats: [['85+', 'Minéraux et oligo-éléments*'], ['83,1 %', 'Acide fulvique, Gold Resin*'], ['5 000 m+', 'Altitude de récolte'], ['60', 'Jours de séchage, jusqu’à'], ['4', 'Contrôles de labo par lot']],
       note: '*Spécification de notre matière première shilajit, confirmée dans le rapport de chaque lot. Les valeurs varient naturellement d’un lot à l’autre.',
       parts: [
         { icon: 'flask', title: 'Substances humiques', text: 'Les acides fulviques et humiques constituent la plus grande part du shilajit. L’acide fulvique est le marqueur de qualité le plus courant, c’est pourquoi nous l’indiquons en chiffres.' },
@@ -197,7 +197,7 @@ const T = {
     inside: {
       eyebrow: 'Qué contiene', title: 'Lo que contiene', accent: 'el shilajit.',
       lead: 'El shilajit es un complejo natural de sustancias húmicas, minerales y compuestos orgánicos. Esto es lo que describe la investigación, y lo que medimos en el nuestro.',
-      stats: [['85+', 'Minerales y oligoelementos*'], ['70,1 %', 'Ácido fúlvico, Gold Resin*'], ['5.000 m+', 'Altitud de recolección'], ['60', 'Días de secado al sol, hasta'], ['4', 'Controles de laboratorio por lote']],
+      stats: [['85+', 'Minerales y oligoelementos*'], ['83,1 %', 'Ácido fúlvico, Gold Resin*'], ['5.000 m+', 'Altitud de recolección'], ['60', 'Días de secado al sol, hasta'], ['4', 'Controles de laboratorio por lote']],
       note: '*Especificación de nuestra materia prima de shilajit, confirmada en el informe de cada lote. Los valores varían de forma natural entre lotes.',
       parts: [
         { icon: 'flask', title: 'Sustancias húmicas', text: 'Los ácidos fúlvicos y húmicos forman la mayor parte del shilajit. El ácido fúlvico es el indicador de calidad más habitual, por eso lo damos como cifra.' },
@@ -240,7 +240,7 @@ const T = {
     inside: {
       eyebrow: 'المكونات', title: 'مما يتكوّن', accent: 'الشيلاجيت.',
       lead: 'الشيلاجيت مركّب طبيعي من المواد الدبالية والمعادن والمركبات العضوية. هذا ما تصفه الأبحاث، وما نقيسه في منتجنا.',
-      stats: [['+85', 'معدناً وعنصراً نادراً*'], ['70.1%', 'حمض الفولفيك، الراتنج الذهبي*'], ['+5,000 م', 'ارتفاع الجمع'], ['60', 'يوماً من التجفيف بالشمس، حتى'], ['4', 'فحوص مخبرية لكل دفعة']],
+      stats: [['+85', 'معدناً وعنصراً نادراً*'], ['83.1%', 'حمض الفولفيك، الراتنج الذهبي*'], ['+5,000 م', 'ارتفاع الجمع'], ['60', 'يوماً من التجفيف بالشمس، حتى'], ['4', 'فحوص مخبرية لكل دفعة']],
       note: '*مواصفات مادة الشيلاجيت الخام لدينا، مؤكدة في تقرير كل دفعة. تختلف القيم طبيعياً بين الدفعات.',
       parts: [
         { icon: 'flask', title: 'المواد الدبالية', text: 'يشكّل حمضا الفولفيك والهيوميك الجزء الأكبر من الشيلاجيت. حمض الفولفيك هو مؤشر الجودة الأكثر شيوعاً، ولذلك نذكره رقماً.' },
@@ -283,7 +283,7 @@ const T = {
     inside: {
       eyebrow: 'اس میں کیا ہے', title: 'سلاجیت میں', accent: 'کیا ہوتا ہے۔',
       lead: 'سلاجیت ہیومک مادوں، معدنیات اور نامیاتی مرکبات کا قدرتی مجموعہ ہے۔ تحقیق یہ بتاتی ہے، اور ہم اپنے سلاجیت میں یہی ناپتے ہیں۔',
-      stats: [['85+', 'معدنیات اور ٹریس عناصر*'], ['70.1%', 'فلوک ایسڈ، گولڈ ریزن*'], ['5,000 م+', 'چناؤ کی بلندی'], ['60', 'دن تک دھوپ میں خشک'], ['4', 'ہر بیچ کے لیب ٹیسٹ']],
+      stats: [['85+', 'معدنیات اور ٹریس عناصر*'], ['83.1%', 'فلوک ایسڈ، گولڈ ریزن*'], ['5,000 م+', 'چناؤ کی بلندی'], ['60', 'دن تک دھوپ میں خشک'], ['4', 'ہر بیچ کے لیب ٹیسٹ']],
       note: '*ہمارے خام سلاجیت کی تفصیلات، ہر بیچ کی رپورٹ میں تصدیق شدہ۔ مقداریں بیچ کے حساب سے قدرتی طور پر مختلف ہوتی ہیں۔',
       parts: [
         { icon: 'flask', title: 'ہیومک مادے', text: 'فلوک اور ہیومک ایسڈ سلاجیت کا سب سے بڑا حصہ ہیں۔ فلوک ایسڈ معیار کی سب سے عام نشانی ہے، اسی لیے ہم اسے عدد میں بتاتے ہیں۔' },
