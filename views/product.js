@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import ProductView from '@/components/ProductView';
-import BenefitsExplorer from '@/components/BenefitsExplorer';
+import BenefitDeck from '@/components/BenefitDeck';
 import Comparison from '@/components/Comparison';
 import JsonLd from '@/components/JsonLd';
 import { ProofStrip, LabSpotlight, LabelPanel, InsideGrid, ProductReviews, MythFacts, Guarantee, ProductFaq, StickyBuy, RefreshOnLoad } from '@/components/ProductSections';
@@ -86,7 +86,7 @@ export default async function ProductPageView({ lang, handle }) {
       <LabSpotlight product={product} />
       <LabelPanel product={product} kind={kind} />
       <InsideGrid product={product} kind={kind} />
-      <BenefitsExplorer initial={kind} />
+      <BenefitDeck product={product} kind={kind} />
       <ProductReviews product={product} kind={kind} />
       <MythFacts kind={kind} />
       <Comparison initial={kind} />
