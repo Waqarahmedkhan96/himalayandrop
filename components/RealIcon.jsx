@@ -231,6 +231,84 @@ const SHAPES = {
       <path d="M10 27 C12 25.5 14 25 16 25" stroke="#fff" strokeWidth="1.3" fill="none" opacity=".6" strokeLinecap="round" />
     </>
   ),
+  molecule: (u) => (
+    <>
+      <ellipse cx="24" cy="44" rx="15" ry="2" fill="#000" opacity=".12" />
+      <g stroke={GOLD[2]} strokeWidth="2.2" strokeLinecap="round">
+        <path d="M14 14 L24 9 L34 14 L34 25 L24 30 L14 25 Z" fill="none" />
+        <path d="M24 30 L24 39 M34 25 L42 30 M14 25 L6 30" />
+      </g>
+      {[[14, 14, 'g'], [24, 9, 'm'], [34, 14, 'g'], [34, 25, 'm'], [24, 30, 'g'], [14, 25, 'm'], [24, 39, 'm'], [42, 30, 'g'], [6, 30, 'g']].map(([x, y, c]) => (
+        <g key={`${x}${y}`}>
+          <circle cx={x} cy={y} r={c === 'm' ? 4.2 : 3.6} fill={u(c)} />
+          <circle cx={x - 1.2} cy={y - 1.3} r="1.2" fill="#fff" opacity=".6" />
+        </g>
+      ))}
+    </>
+  ),
+  soil: (u) => (
+    <>
+      <path d="M5 18 C14 14 22 20 30 16 C36 13 40 15 43 17 V42 C43 43 42 44 41 44 H7 C6 44 5 43 5 42 Z" fill="#3a2418" />
+      <path d="M5 26 C15 23 25 29 34 25 C38 23 41 24 43 25 V33 C35 31 26 36 16 32 C11 30 8 31 5 32 Z" fill={u('resin')} />
+      <path d="M5 36 C15 34 27 39 43 35 V42 C43 43 42 44 41 44 H7 C6 44 5 43 5 42 Z" fill="#7a5233" />
+      <g fill="#d9b98b" opacity=".85"><circle cx="12" cy="21" r="1.3" /><circle cx="31" cy="20" r="1" /><circle cx="22" cy="40" r="1.4" /><circle cx="37" cy="39" r="1" /></g>
+      <path d="M24 17 C24 11 20 7 15 6 C16 10 19 13 24 14 M24 14 C25 9 29 6 34 6 C33 10 29 13 24 15" fill={u('leaf')} />
+      <path d="M24 18 V12" stroke="#4f6b33" strokeWidth="1.4" />
+      <path d="M8 21 C14 19 20 21 26 20" stroke="#fff" strokeWidth="1" opacity=".25" fill="none" />
+    </>
+  ),
+  chain: (u) => (
+    <>
+      <path d="M6 34 C12 20 18 36 24 22 C30 8 36 26 42 14" stroke={GOLD[1]} strokeWidth="2" fill="none" strokeLinecap="round" />
+      {[[6, 34, 'm'], [13, 27, 'g'], [19, 30, 'm'], [24, 22, 'g'], [30, 14, 'm'], [36, 21, 'g'], [42, 14, 'm']].map(([x, y, c]) => (
+        <g key={`${x}${y}`}>
+          <circle cx={x} cy={y} r="4.3" fill={u(c)} />
+          <circle cx={x - 1.3} cy={y - 1.4} r="1.3" fill="#fff" opacity=".55" />
+        </g>
+      ))}
+      <ellipse cx="24" cy="44" rx="15" ry="2" fill="#000" opacity=".12" />
+    </>
+  ),
+  brain: (u) => (
+    <>
+      <ellipse cx="24" cy="44.5" rx="13" ry="2" fill="#000" opacity=".12" />
+      <path d="M23 8 C17 5 10 9 10 15 C5 17 4 24 8 28 C6 33 10 38 15 37 C17 41 22 41 23 38 Z" fill="#e9a3a8" />
+      <path d="M25 8 C31 5 38 9 38 15 C43 17 44 24 40 28 C42 33 38 38 33 37 C31 41 26 41 25 38 Z" fill="#dc8c93" />
+      <path d="M24 8 V38" stroke="#b5636c" strokeWidth="1.4" />
+      <path d="M12 16 C15 17 17 15 19 17 M10 25 C13 23 16 26 19 24 M14 32 C16 30 19 32 20 30 M36 16 C33 17 31 15 29 17 M38 25 C35 23 32 26 29 24 M34 32 C32 30 29 32 28 30" stroke="#b5636c" strokeWidth="1.3" fill="none" strokeLinecap="round" />
+      <path d="M13 12 C15 9 18 8 20 9" stroke="#fff" strokeWidth="1.5" fill="none" opacity=".6" strokeLinecap="round" />
+      <path d="M21 39 L21 44 M27 39 L27 44" stroke={GOLD[2]} strokeWidth="2.4" strokeLinecap="round" />
+    </>
+  ),
+  cell: (u) => (
+    <>
+      <circle cx="24" cy="24" r="17" fill="#f6dcc8" stroke="#e2a98a" strokeWidth="1.5" />
+      <circle cx="21" cy="22" r="6.5" fill={u('m')} />
+      <circle cx="19" cy="20" r="2" fill="#fff" opacity=".45" />
+      <g fill="#e0a07a"><ellipse cx="31" cy="15" rx="2.6" ry="1.5" transform="rotate(30 31 15)" /><ellipse cx="32" cy="30" rx="2.8" ry="1.6" transform="rotate(-20 32 30)" /><ellipse cx="14" cy="32" rx="2.4" ry="1.4" /></g>
+      <path d="M33 36 L42 32 V38 C42 42 39 45 35.5 46.5 C32 45 29 42 29 38 V32 Z" fill={u('g')} transform="translate(-1 -6)" />
+      <path d="M32 33.5 L34.3 35.8 L38.5 31.5" stroke={WINE[2]} strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  ),
+  butterfly: (u) => (
+    <>
+      <path d="M24 16 C18 6 6 6 5 14 C4 22 12 25 22 24 C14 27 9 34 13 39 C17 43 22 37 24 30 Z" fill={u('g')} />
+      <path d="M24 16 C30 6 42 6 43 14 C44 22 36 25 26 24 C34 27 39 34 35 39 C31 43 26 37 24 30 Z" fill={u('m')} />
+      <path d="M24 13 V36" stroke={WINE[2]} strokeWidth="2.6" strokeLinecap="round" />
+      <path d="M24 13 C22 9 20 7 18 6 M24 13 C26 9 28 7 30 6" stroke={WINE[2]} strokeWidth="1.2" fill="none" strokeLinecap="round" />
+      <circle cx="12" cy="15" r="2.4" fill="#fff" opacity=".55" /><circle cx="36" cy="15" r="2.4" fill="#fff" opacity=".3" />
+    </>
+  ),
+  hair: (u) => (
+    <>
+      <path d="M14 6 C26 4 38 12 37 26 C36 36 32 42 26 45 C31 37 31 28 26 22 C22 30 16 36 9 40 C14 31 14 20 14 6 Z" fill="#7a3f1d" />
+      <path d="M16 10 C26 9 33 15 33 25" stroke="#c98a55" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+      <path d="M18 16 C24 16 28 20 29 27" stroke="#c98a55" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity=".8" />
+      <rect x="31" y="30" width="15" height="6" rx="2" fill={u('g')} transform="rotate(-35 38 33)" />
+      <g stroke={GOLD[2]} strokeWidth="1.3" strokeLinecap="round" transform="rotate(-35 38 33)"><path d="M33 36 V40 M36 36 V40 M39 36 V40 M42 36 V40 M45 36 V40" /></g>
+      <path d="M8 9 L9 12 L12 13 L9 14 L8 17 L7 14 L4 13 L7 12 Z" fill={GOLD[1]} />
+    </>
+  ),
   shilajit: (u) => (
     <>
       <ellipse cx="24" cy="43.5" rx="12" ry="2.2" fill="#000" opacity=".2" />
