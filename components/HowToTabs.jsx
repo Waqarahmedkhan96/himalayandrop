@@ -117,6 +117,12 @@ const guidesBy = {
     [['دو لیں', 'بالغ افراد: روزانہ 2 کیپسول۔ دو کیپسول ایک خوراک ہیں۔'], ['پانی کے ساتھ', 'ایک گلاس پانی کے ساتھ نگل لیں۔ نہ ذائقہ، نہ ناپ تول۔'], ['روزانہ ایک ہی وقت', 'بوتل کو اپنے صبح کے معمول کے پاس رکھیں۔'], ['ٹھنڈا اور خشک', 'اچھی طرح بند کریں اور براہِ راست دھوپ سے دور رکھیں۔']],
   ]),
 };
+// Four steps for one product family, e.g. howToSteps('de', 'drops').
+export function howToSteps(lang, kind) {
+  const i = ['resin', 'gummies', 'drops', 'capsules'].indexOf(kind);
+  return Object.values(guidesBy[lang] || guidesEn)[Math.max(0, i)].steps;
+}
+
 const CHOOSE = { en: 'Choose a product', da: 'Vælg et produkt', de: 'Produkt wählen', fr: 'Choisir un produit', es: 'Elige un producto', ar: 'اختر منتجاً', ur: 'پروڈکٹ منتخب کریں' };
 
 export default function HowToTabs() {
