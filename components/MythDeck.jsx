@@ -1,12 +1,12 @@
 'use client';
-// "Benefit deck": the product's benefits as a fanned hand of premium cards.
+// Myth deck: common shilajit myths as a fanned hand of premium cards.
 // Tap a card, use the arrows or keys, or drag up/down (swipe sideways on
-// phones) to bring the next card to the front. The text on the left follows.
+// phones) to bring the next card to the front. The front card turns over to
+// show the fact; the text on the left explains it. Text: lib/pdp.js (myths).
 import { useCallback, useRef, useState } from 'react';
-import { Icon } from './Icons';
 import { useLang } from './LangProvider';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
-import { getBenefits } from '@/lib/benefits';
+import { pdpText } from '@/lib/pdp';
 
 const T = {
   en: { eyebrow: 'Why you’ll love it', h: 'Five reasons,', hg: 'in your hand.', hint: 'Drag, swipe or tap a card', prev: 'Previous card', next: 'Next card', of: 'of' },
@@ -31,11 +31,13 @@ function Emblem() {
   );
 }
 
-export default function BenefitDeck({ product, kind }) {
+export default function MythDeck({ kind }) {
   const lang = useLang();
   const t = T[lang] || T.en;
-  const group = getBenefits(lang)[kind] || getBenefits(lang).resin;
-  const items = group.items;
+  const m = pdpText(lang).myths;
+  const items = [m.shared[0], m[kind] || m.resin, m.shared[1], m.powder || m.shared[2], m.shared[2]]
+    .filter((x, i, a) => x && a.indexOf(x) === i)
+    .map(([myth, fact]) => ({ myth, fact }));
   const n = items.length;
   const [active, setActive] = useState(0);
   const root = useRef(null);
@@ -50,7 +52,7 @@ export default function BenefitDeck({ product, kind }) {
       const st = { trigger: root.current, start: 'top 70%', once: true };
       gsap.timeline({ scrollTrigger: st })
         .from('.bd-copy > *', { y: 28, opacity: 0, stagger: 0.08, duration: 1, ease: 'expo.out' })
-        .from('.bd-card-in', { y: 300, opacity: 0, stagger: 0.08, duration: 1.4, ease: 'expo.out', clearProps: 'transform,opacity' }, 0.1);
+        .from('.md-lift', { y: 300, opacity: 0, stagger: 0.08, duration: 1.4, ease: 'expo.out', clearProps: 'transform,opacity' }, 0.1);
     },
     { scope: root }
   );
@@ -93,12 +95,14 @@ export default function BenefitDeck({ product, kind }) {
     <section className="bd-section" ref={root} aria-roledescription="carousel">
       <div className="container bd-grid">
         <div className="bd-copy">
-          <p className="eyebrow">{t.eyebrow}</p>
-          <h2>{t.h} <em className="gold-text">{t.hg}</em></h2>
+          <p className="eyebrow">{m.eyebrow}</p>
+          <h2>{m.h} <em className="gold-text">{m.hg}</em></h2>
           <div className="bd-detail" aria-live="polite" key={active}>
             <span className="bd-count"><b>{String(active + 1).padStart(2, '0')}</b> {t.of} {String(n).padStart(2, '0')}</span>
-            <h3>{cur.title}</h3>
-            <p>{cur.text}</p>
+            <span className="md-tag is-myth"><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" /></svg>{m.myth}</span>
+            <h3>“{cur.myth}”</h3>
+            <span className="md-tag is-fact"><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" /></svg>{m.fact}</span>
+            <p>{cur.fact}</p>
           </div>
           <div className="bd-nav">
             <button type="button" onClick={() => go(active - 1)} aria-label={t.prev}>
@@ -106,7 +110,7 @@ export default function BenefitDeck({ product, kind }) {
             </button>
             <div className="bd-dots">
               {items.map((it, i) => (
-                <button key={it.title} type="button" className={i === active ? 'on' : ''} onClick={() => go(i)} aria-label={`${i + 1}: ${it.title}`} aria-current={i === active ? 'true' : undefined} />
+                <button key={it.myth} type="button" className={i === active ? 'on' : ''} onClick={() => go(i)} aria-label={`${i + 1}: ${it.myth}`} aria-current={i === active ? 'true' : undefined} />
               ))}
             </div>
             <button type="button" onClick={() => go(active + 1)} aria-label={t.next}>
@@ -124,7 +128,7 @@ export default function BenefitDeck({ product, kind }) {
           ref={stage}
           tabIndex={0}
           role="group"
-          aria-label={`${group.title}: ${t.hint}`}
+          aria-label={`${m.eyebrow}: ${t.hint}`}
           onPointerDown={onDown}
           onPointerMove={onMove}
           onPointerUp={onUp}
@@ -138,26 +142,43 @@ export default function BenefitDeck({ product, kind }) {
             if (d < -n / 2) d += n;
             return (
               <article
-                key={it.title}
+                key={it.myth}
                 data-i={i}
-                className={`bd-card f-${FINISH[i % FINISH.length]} ${d === 0 ? 'is-front' : ''}`}
+                className={`bd-card md-card f-${FINISH[i % FINISH.length]} ${d === 0 ? 'is-front' : ''}`}
                 style={{ '--d': d, '--ad': Math.abs(d), zIndex: 10 - Math.abs(d) }}
                 aria-hidden={d !== 0}
               >
-                <div className="bd-card-in">
-                  <div className="bd-top">
-                    <Emblem />
-                    <span className="bd-no">{String(i + 1).padStart(2, '0')}</span>
+                <div className="md-lift">
+                  <div className="md-flip">
+                    <div className="bd-card-in md-face md-front">
+                      <div className="bd-top">
+                        <Emblem />
+                        <span className="bd-no">{String(i + 1).padStart(2, '0')}</span>
+                      </div>
+                      <span className="md-tag is-myth"><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" /></svg>{m.myth}</span>
+                      <h4>“{it.myth}”</h4>
+                      <span className="md-q" aria-hidden="true">?</span>
+                      <div className="bd-foot">
+                        <span>Himalayan Drop<sup>®</sup></span>
+                        <span>{m.eyebrow}</span>
+                      </div>
+                      <svg className="bd-ridge" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
+                        <path d="M0 60 L0 42 L40 22 L70 36 L110 8 L150 34 L190 18 L230 40 L270 24 L300 34 L300 60 Z" />
+                      </svg>
+                    </div>
+                    <div className="bd-card-in md-face md-back">
+                      <div className="bd-top">
+                        <Emblem />
+                        <span className="bd-no">{String(i + 1).padStart(2, '0')}</span>
+                      </div>
+                      <span className="md-tag is-fact"><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" /></svg>{m.fact}</span>
+                      <p className="md-fact">{it.fact}</p>
+                      <div className="bd-foot">
+                        <span>Himalayan Drop<sup>®</sup></span>
+                        <span>{m.eyebrow}</span>
+                      </div>
+                    </div>
                   </div>
-                  <span className="bd-icon"><Icon name={it.icon} size={34} /></span>
-                  <h4>{it.title}</h4>
-                  <div className="bd-foot">
-                    <span>Himalayan Drop<sup>®</sup></span>
-                    <span>{group.title}</span>
-                  </div>
-                  <svg className="bd-ridge" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
-                    <path d="M0 60 L0 42 L40 22 L70 36 L110 8 L150 34 L190 18 L230 40 L270 24 L300 34 L300 60 Z" />
-                  </svg>
                 </div>
               </article>
             );
