@@ -2140,3 +2140,6 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 @media (min-width: 900px) { .bd-detail { min-height: 300px; } }
 @media (min-width: 900px) { .md-card h4 { font-size: 28px; } .md-fact { font-size: 15.5px; } }
 @media (prefers-reduced-motion: reduce) { .md-flip { transition: none; } }
+[dir='rtl'] .bd-nav > button svg { transform: scaleX(-1); }
+.bd-hint svg { animation-name: bdHintX; }
+@keyframes bdHintX { 50% { transform: translateX(3px); } }
