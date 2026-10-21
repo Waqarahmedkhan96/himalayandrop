@@ -327,8 +327,61 @@ export function InsideGrid({ product, kind }) {
 // ───────── 5. Reviews: rating summary, video reviews, text reviews ─────────
 // SAMPLE content. Replace with real reviews (e.g. Judge.me) before launch.
 const DIST = [86, 10, 3, 1, 0]; // PLACEHOLDER distribution for the layout
-const DUR = ['0:42', '1:05', '0:38', '0:51'];
+const DUR = ['0:42', '1:05', '0:38', '0:51', '0:47', '0:56'];
 const SAMPLE = { en: 'Sample', da: 'Eksempel', de: 'Beispiel', fr: 'Exemple', es: 'Ejemplo', ar: 'مثال', ur: 'نمونہ' };
+
+// Video reviews: an overlapping, tilted stack of 9:16 cards. Hovering (or
+// tapping on touch screens) a card brings it forward and plays its clip.
+// SAMPLE clips made from product photos: replace with real customer videos.
+function VideoCard({ src, poster, cap, dur, sample, play, i }) {
+  const vid = useRef(null);
+  const [on, setOn] = useState(false);
+  const start = () => {
+    setOn(true);
+    const v = vid.current;
+    if (!v || prefersReducedMotion()) return;
+    v.currentTime = 0;
+    v.play().catch(() => {});
+  };
+  const stop = () => { setOn(false); vid.current?.pause(); };
+  return (
+    <li
+      className={`vs-card ${on ? 'is-playing' : ''}`}
+      style={{ '--i': i }}
+      onMouseEnter={start}
+      onMouseLeave={stop}
+      onFocus={start}
+      onBlur={stop}
+    >
+      <button type="button" className="vs-hit" aria-label={`${play}: ${cap}`} aria-pressed={on} onClick={() => (on ? stop() : start())} />
+      <img src={poster} alt="" loading="lazy" width="540" height="960" />
+      <video ref={vid} poster={poster} muted loop playsInline preload="none" aria-hidden="true">
+        <source src={src.replace(/\.mp4$/, '.webm')} type="video/webm" />
+        <source src={src} type="video/mp4" />
+      </video>
+      <span className="rv-play" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
+      </span>
+      <span className="rv-dur">{dur}</span>
+      <span className="rv-cap">
+        <span className="sample-tag">{sample}</span>
+        <strong>{cap}</strong>
+        <Stars rating={5} />
+      </span>
+      <span className="vs-progress" aria-hidden="true"><i /></span>
+    </li>
+  );
+}
+
+function VideoStack({ dir, caps, title, sample, play }) {
+  return (
+    <ul className="vs-stack" data-lenis-prevent="">
+      {caps.map((cap, i) => (
+        <VideoCard key={cap} i={i} cap={cap} dur={DUR[i]} sample={sample} play={play} src={`${dir}/video-${i + 1}.mp4`} poster={`${dir}/video-${i + 1}.webp`} />
+      ))}
+    </ul>
+  );
+}
 
 export function ProductReviews({ product, kind }) {
   const lang = useLang();
@@ -344,7 +397,7 @@ export function ProductReviews({ product, kind }) {
       gsap.timeline({ scrollTrigger: st })
         .from('.rv-summary > *', { y: 24, opacity: 0, stagger: 0.07, duration: 1, ease: 'expo.out' })
         .from('.rv-dist-fill', { scaleX: 0, stagger: 0.08, duration: 1.2, ease: 'expo.out' }, 0.3);
-      gsap.from('.rv-video', { y: 80, opacity: 0, rotate: (i) => (i % 2 ? 3 : -3), stagger: 0.1, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: '.rv-videos', start: 'top 85%', once: true } });
+      gsap.from('.vs-card', { y: 120, opacity: 0, stagger: 0.08, duration: 1.4, ease: 'expo.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: '.vs-stack', start: 'top 85%', once: true } });
       gsap.from('.rv-texts .review', { y: 40, opacity: 0, stagger: 0.1, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: '.rv-texts', start: 'top 88%', once: true } });
     },
     { scope: root }
@@ -373,22 +426,7 @@ export function ProductReviews({ product, kind }) {
         </div>
 
         <h3 className="rv-sub">{t.videosH}</h3>
-        <ul className="rv-videos" data-lenis-prevent="">
-          {t.caps.map((cap, i) => (
-            <li className="rv-video" key={cap}>
-              <img src={`${dir}/video-${i + 1}.webp`} alt={`${cap}: ${product.title}`} loading="lazy" width="540" height="960" />
-              <span className="rv-play" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
-              </span>
-              <span className="rv-dur">{DUR[i]}</span>
-              <span className="rv-cap">
-                <span className="sample-tag">{SAMPLE[lang] || SAMPLE.en}</span>
-                <strong>{cap}</strong>
-                <Stars rating={5} />
-              </span>
-            </li>
-          ))}
-        </ul>
+        <VideoStack dir={dir} caps={t.caps} title={product.title} sample={SAMPLE[lang] || SAMPLE.en} play={t.play} />
 
         <div className="rv-texts">
           {reviews.map((r, i) => <ReviewCard key={i} r={r} />)}
