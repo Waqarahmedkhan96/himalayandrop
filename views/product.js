@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 import ProductView from '@/components/ProductView';
-import BenefitDeck from '@/components/BenefitDeck';
+import MythDeck from '@/components/MythDeck';
 import Comparison from '@/components/Comparison';
 import JsonLd from '@/components/JsonLd';
-import { ProofStrip, LabSpotlight, LabelPanel, InsideGrid, ProductReviews, MythFacts, Guarantee, ProductFaq, StickyBuy, RefreshOnLoad } from '@/components/ProductSections';
+import { ProofStrip, LabSpotlight, LabelPanel, InsideGrid, ProductReviews, Guarantee, ProductFaq, StickyBuy, RefreshOnLoad } from '@/components/ProductSections';
 import { faqItems } from '@/lib/pdp';
 import { getProduct, getProducts, isShopifyConnected } from '@/lib/shopify';
 import { productSeo } from '@/lib/products';
@@ -86,9 +86,8 @@ export default async function ProductPageView({ lang, handle }) {
       <LabSpotlight product={product} />
       <LabelPanel product={product} kind={kind} />
       <InsideGrid product={product} kind={kind} />
-      <BenefitDeck product={product} kind={kind} />
+      <MythDeck kind={kind} />
       <ProductReviews product={product} kind={kind} />
-      <MythFacts kind={kind} />
       <Comparison initial={kind} />
       <Guarantee product={product} kind={kind} />
       <ProductFaq product={product} kind={kind} />
