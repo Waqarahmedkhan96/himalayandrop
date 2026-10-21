@@ -3,6 +3,8 @@ import ProductView from '@/components/ProductView';
 import BenefitsExplorer from '@/components/BenefitsExplorer';
 import Comparison from '@/components/Comparison';
 import JsonLd from '@/components/JsonLd';
+import { ProofStrip, LabSpotlight, LabelPanel, InsideGrid, ProductReviews, MythFacts, Guarantee, ProductFaq, StickyBuy, RefreshOnLoad } from '@/components/ProductSections';
+import { faqItems } from '@/lib/pdp';
 import { getProduct, getProducts, isShopifyConnected } from '@/lib/shopify';
 import { productSeo } from '@/lib/products';
 import { kindOf } from '@/lib/benefits';
@@ -68,13 +70,30 @@ export default async function ProductPageView({ lang, handle }) {
     [product.title, localizeHref(`/products/${handle}/`, lang)],
   ]);
 
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems(product, kind, lang).map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  };
+
   return (
     <>
       <JsonLd data={productLd} />
       <JsonLd data={crumbs} />
+      <JsonLd data={faqLd} />
       <ProductView product={product} />
+      <ProofStrip />
+      <LabSpotlight product={product} />
+      <LabelPanel product={product} kind={kind} />
+      <InsideGrid product={product} kind={kind} />
       <BenefitsExplorer initial={kind} />
+      <ProductReviews product={product} kind={kind} />
+      <MythFacts kind={kind} />
       <Comparison initial={kind} />
+      <Guarantee product={product} kind={kind} />
+      <ProductFaq product={product} kind={kind} />
+      <StickyBuy product={product} />
+      <RefreshOnLoad />
     </>
   );
 }
