@@ -2040,7 +2040,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 .social a:hover, .social a:focus-visible { color: var(--maroon-ink); transform: translateY(-3px); box-shadow: 0 10px 20px -10px rgba(204, 162, 94, 0.8); }
 .social a:hover::before, .social a:focus-visible::before { transform: scale(1); }
 
-/* ═══════════ Benefit deck (components/BenefitDeck.jsx) ═══════════ */
+/* ═══════════ Myth deck (components/MythDeck.jsx) ═══════════ */
 .bd-section { padding: 72px 0; overflow: hidden; background: radial-gradient(70% 60% at 75% 50%, rgba(204, 162, 94, 0.16), transparent 70%), var(--cream); }
 .bd-grid { display: grid; gap: 36px; align-items: center; }
 .bd-copy .eyebrow { color: var(--gold); }
@@ -2116,3 +2116,30 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 .nav-links .nav-txt { display: flex; flex-direction: column; min-width: 0; margin: 0; font-size: inherit; color: inherit; }
 .nav-links .nav-txt > span { margin-top: 2px; }
 .nav-panel-card:has(.with-img) { grid-template-columns: 560px 240px; }
+
+/* Myth cards: front = myth, back = fact; the front card turns over */
+.md-lift { height: 100%; }
+.md-flip { position: relative; height: 100%; transform-style: preserve-3d; transition: transform 0.9s var(--ease); }
+.md-card.is-front .md-flip { transform: rotateY(180deg); transition-delay: 0.45s; }
+[dir='rtl'] .md-card.is-front .md-flip { transform: rotateY(-180deg); }
+.md-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.md-card .bd-card-in.md-back { transform: rotateY(180deg); background: linear-gradient(165deg, #fffdf8, #f3e8d6); color: var(--maroon); box-shadow: 0 30px 50px -28px rgba(42, 1, 7, 0.6), inset 0 0 0 1px rgba(204, 162, 94, 0.6); }
+.md-card .bd-card-in.md-back::before { content: ''; position: absolute; inset: 0 0 auto; height: 5px; background: var(--gold-grad); }
+.md-tag { display: inline-flex; align-self: flex-start; align-items: center; gap: 6px; padding: 5px 11px; border-radius: var(--pill); font-size: 10.5px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; }
+.md-front .md-tag { margin-top: 26px; background: rgba(255, 255, 255, 0.14); box-shadow: inset 0 0 0 1px currentColor; }
+.f-gold .md-front .md-tag, .f-paper .md-front .md-tag { background: rgba(88, 15, 27, 0.08); }
+.md-back .md-tag, .bd-detail .md-tag.is-fact { margin-top: 26px; background: rgba(204, 162, 94, 0.2); color: var(--maroon); }
+.md-card h4 { margin-top: 16px; font-size: 24px; line-height: 1.18; position: relative; z-index: 1; }
+.md-q { position: absolute; inset-inline-end: 10px; bottom: 26px; font-family: var(--display); font-size: 170px; line-height: 1; opacity: 0.1; pointer-events: none; }
+.md-fact { margin-top: 14px; font-size: 14.5px; line-height: 1.55; color: var(--ink); }
+.bd-detail .md-tag { display: flex; width: fit-content; margin-top: 12px; }
+.bd-detail .md-tag.is-myth { background: var(--maroon); color: var(--cream); }
+.bd-detail .md-tag.is-fact { margin-top: 18px; }
+.bd-detail h3 { margin-top: 10px; }
+.bd-detail { min-height: 0; }
+@media (min-width: 900px) { .bd-detail { min-height: 300px; } }
+@media (min-width: 900px) { .md-card h4 { font-size: 28px; } .md-fact { font-size: 15.5px; } }
+@media (prefers-reduced-motion: reduce) { .md-flip { transition: none; } }
+[dir='rtl'] .bd-nav > button svg { transform: scaleX(-1); }
+.bd-hint svg { animation-name: bdHintX; }
+@keyframes bdHintX { 50% { transform: translateX(3px); } }
