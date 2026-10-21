@@ -15,6 +15,7 @@ import Link from './LLink';
 
 export const OFFER_CODE = 'WELCOME10';
 const KEY = 'hd_offer_v1';
+const AGAIN_AFTER = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 const T = {
   en: {
@@ -105,7 +106,10 @@ export default function OfferPopup() {
     if (blocked) return;
     let seen = null;
     try { seen = localStorage.getItem(KEY); } catch {}
-    if (seen) return;
+    // Claimed: never again. Closed or "No thanks": ask again after a week.
+    if (seen === 'claimed') return;
+    const at = Number(String(seen || '').split(':')[1]);
+    if (seen && at && Date.now() - at < AGAIN_AFTER) return;
     let shown = false;
     const show = () => {
       if (shown) return;
@@ -140,7 +144,7 @@ export default function OfferPopup() {
     return () => { cancelAnimationFrame(id); window.removeEventListener('keydown', onKey); window.__lenis?.start(); };
   }, [open, step]);
 
-  const remember = (v) => { try { localStorage.setItem(KEY, v); } catch {} };
+  const remember = (v) => { try { localStorage.setItem(KEY, v === 'claimed' ? v : `${v}:${Date.now()}`); } catch {} };
   function close(reason) {
     remember(reason || 'dismissed');
     setOpen(false);
