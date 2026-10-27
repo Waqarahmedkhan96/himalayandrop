@@ -40,64 +40,17 @@ const T = {
     detail: ['گولڈ ایڈیشن · 30 گرام', 'سلور ایڈیشن · 30 گرام', 'اسٹرابیری · 60 گمیز', 'ایلڈربیری · 30 ملی لیٹر', 'روزانہ فارمولا · 60 کیپسول'] },
 };
 
-// Each pack's cutout, how wide it stands in its alcove and the alcove finish.
+// Each product's display plate: its alcove, shelf and real pack, rendered
+// once to an image. x/y place the gold alcove number on the back wall.
 const SCENE = {
-  'shilajit-gold-resin': { img: '/images/pack-gold.webp', w: 64, recess: 'wine', plinth: true },
-  'shilajit-silver-resin': { img: '/images/pack-silver.webp', w: 56 },
-  'shilajit-gummies': { img: '/images/pack-gummies.webp', w: 37 },
-  'shilajit-drops': { img: '/images/pack-drops.webp', w: 44 },
-  'shilajit-capsules': { img: '/images/pack-capsules.webp', w: 47 },
+  'shilajit-gold-resin': { img: '/images/collection/gold.webp', x: 29.9, y: 16.2, wine: true },
+  'shilajit-silver-resin': { img: '/images/collection/silver.webp', x: 21.1, y: 16.2 },
+  'shilajit-gummies': { img: '/images/collection/gummies.webp', x: 16.4, y: 16.2 },
+  'shilajit-drops': { img: '/images/collection/drops.webp', x: 14.6, y: 16.2 },
+  'shilajit-capsules': { img: '/images/collection/capsules.webp', x: 14.6, y: 16.2 },
 };
 
 const pad = (n) => String(n).padStart(2, '0');
-
-// The carved mountain range on the back wall of each alcove: faceted peaks,
-// lit from the upper left, drawn back row first.
-const PEAKS = [
-  [20, 120, 380, 0, 1], [160, 70, 400, 0, 2], [292, 46, 420, 0, 3], [430, 96, 380, 0, 4],
-  [80, 150, 330, 1, 5], [214, 104, 380, 1, 6], [356, 136, 350, 1, 7],
-];
-// A slope from a to b with small seeded steps, so the ridges read as rock.
-const slope = (x0, y0, x1, y1, seed) => {
-  let d = '';
-  for (let i = 1; i <= 6; i++) {
-    const f = i / 6;
-    const j = i < 6 ? Math.sin(seed * 9.1 + i * 2.3) * 5 : 0;
-    d += ` L${(x0 + (x1 - x0) * f + j * 0.6).toFixed(1)} ${(y0 + (y1 - y0) * f + j).toFixed(1)}`;
-  }
-  return d;
-};
-const RELIEF = PEAKS.map(([x, y, w, row, seed]) => {
-  const b = 300;
-  const l = x - w / 2;
-  const r = x + w / 2;
-  const k = x + w * 0.06;
-  const left = `M${l} ${b}${slope(l, b, x, y, seed)}`;
-  const right = slope(x, y, r, b, seed + 3);
-  const ridge = `M${x} ${y}${slope(x, y, k, b, seed + 7)}`;
-  const crease = [0.22, 0.42, 0.62].map((f, i) => {
-    const sx = x + (r - x) * f * 0.55;
-    const sy = y + (b - y) * f * 0.55;
-    return `M${sx.toFixed(1)} ${sy.toFixed(1)} L${(sx - 8 - i * 3).toFixed(1)} ${(sy + 26 + i * 6).toFixed(1)}`;
-  }).join(' ');
-  return { row, lit: `${left}${slope(x, y, k, b, seed + 7)} Z`, shade: `M${x} ${y}${right} L${k} ${b} Z`, edge: `${left}${right}`, ridge, crease };
-});
-
-function Relief() {
-  return (
-    <svg className="cg-relief" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      {RELIEF.map((m, i) => (
-        <g key={i} className={m.row ? 'cg-rf' : 'cg-rb'}>
-          <path className="cg-lit" d={m.lit} />
-          <path className="cg-shade" d={m.shade} />
-          <path className="cg-edge-lo" d={m.edge} transform="translate(.9 .9)" />
-          <path className="cg-edge-hi" d={m.edge} />
-          <path className="cg-crease" d={`${m.ridge} ${m.crease}`} />
-        </g>
-      ))}
-    </svg>
-  );
-}
 
 // Soft leaf shadows falling across the wall from an unseen branch.
 const LEAVES = (() => {
@@ -123,7 +76,7 @@ const LEAVES = (() => {
 function Leaves({ className }) {
   return (
     <svg className={className} viewBox="0 0 420 420" aria-hidden="true">
-      <defs><filter id={`${className}-b`} x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9" /></filter></defs>
+      <defs><filter id={`${className}-b`} x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="16" /></filter></defs>
       <g fill="currentColor" filter={`url(#${className}-b)`} dangerouslySetInnerHTML={{ __html: LEAVES }} />
     </svg>
   );
@@ -164,11 +117,20 @@ export default function CollectionGallery({ products }) {
     };
   }, [measure]);
 
+  // Step one card from where the track is heading, so fast clicks never
+  // leave it between two cards.
+  const aim = useRef(null);
   const go = (dir) => {
     const el = track.current;
     const w = el.firstElementChild.getBoundingClientRect().width;
+    const per = Math.max(1, Math.round(el.clientWidth / w));
+    const from = aim.current ?? Math.round(Math.abs(el.scrollLeft) / w);
+    const to = Math.min(n - per, Math.max(0, from + dir));
+    aim.current = to;
+    clearTimeout(aim.t);
+    aim.t = setTimeout(() => { aim.current = null; }, 700);
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    el.scrollBy({ left: dir * w * (rtl ? -1 : 1), behavior: reduce ? 'auto' : 'smooth' });
+    el.scrollTo({ left: to * w * (rtl ? -1 : 1), behavior: reduce ? 'auto' : 'smooth' });
   };
 
   // Mouse drag (touch already scrolls natively).
@@ -228,8 +190,9 @@ export default function CollectionGallery({ products }) {
             </button>
           </div>
         </header>
+      </div>
 
-        <div
+      <div
           className="cg-track"
           ref={track}
           onPointerDown={onDown}
@@ -244,16 +207,9 @@ export default function CollectionGallery({ products }) {
             const price = p.amount != null ? formatMoney(p.amount, p.currency) : p.price;
             return (
               <article className="cg-card" key={p.handle} aria-labelledby={`cg-${p.handle}`}>
-                <Link href={href} className={`cg-scene${s.recess === 'wine' ? ' is-wine' : ''}`} tabIndex={-1} aria-hidden="true">
-                  <span className="cg-arch">
-                    <Relief />
-                    <span className="cg-num">{pad(p.i + 1)}</span>
-                  </span>
-                  <span className="cg-shelf" style={{ '--i': p.i }} />
-                  {s.plinth && <span className="cg-plinth" />}
-                  <span className={`cg-pack${s.plinth ? ' on-plinth' : ''}`} style={{ '--w': `${s.w || 50}%` }}>
-                    <img src={s.img || p.image} alt="" loading="lazy" draggable="false" />
-                  </span>
+                <Link href={href} className={`cg-scene${s.wine ? ' is-wine' : ''}`} tabIndex={-1} aria-hidden="true" style={{ '--nx': `${s.x}%`, '--ny': `${s.y}%` }}>
+                  <img src={s.img} alt="" width="1024" height="1088" loading={p.i < 3 ? 'eager' : 'lazy'} draggable="false" />
+                  <span className="cg-num">{pad(p.i + 1)}</span>
                 </Link>
                 <div className="cg-info">
                   <h3 id={`cg-${p.handle}`}>{t.names[p.i]}</h3>
@@ -269,6 +225,7 @@ export default function CollectionGallery({ products }) {
           })}
         </div>
 
+      <div className="container">
         <div className="cg-progress" aria-hidden="true">
           <span style={{ '--w': `${(view.per / n) * 100}%`, '--x': `${(view.first / view.per) * 100}%` }} />
         </div>
