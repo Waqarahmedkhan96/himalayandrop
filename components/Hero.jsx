@@ -44,7 +44,7 @@ export default function Hero() {
         .to(paths, { strokeDashoffset: 0, duration: 2.6, stagger: 0.25, ease: 'power2.inOut' }, 0.1)
         .from('.hero .eyebrow', { y: 14, opacity: 0, duration: 1 }, 0.3)
         .from('.hero h1 .line > span', { yPercent: 115, stagger: 0.12 }, 0.4)
-        .from('.hero-lead, .hero-ctas > *', { y: 20, opacity: 0, stagger: 0.08, duration: 1.1 }, 0.75)
+        .fromTo('.hero-lead, .hero-ctas > *, .hero-lab', { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 1.1, clearProps: 'transform,opacity' }, 0.75)
         .from('.hero-product img', { y: 120, scale: 0.86, opacity: 0, duration: 1.8 }, 0.55)
         .from('.hero-shadow', { scaleX: 0.3, opacity: 0, duration: 1.6 }, 0.75);
 
