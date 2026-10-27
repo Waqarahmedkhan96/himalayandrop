@@ -66,17 +66,25 @@ export default function ProofThread() {
   const track = useRef(null);
   const [slide, setSlide] = useState(0);
 
-  // Phones: one fact at a time, swipe sideways; moves on by itself until touched.
-  const goTo = (i) => {
+  // Phones: one fact at a time. Always moves forward: after the last fact it
+  // slides on to a copy of the first one, then silently jumps back to the start.
+  const pos = (el) => Math.round(Math.abs(el.scrollLeft) / el.clientWidth);
+  const goTo = (i, smooth = true) => {
     const el = track.current;
     if (!el) return;
-    const w = el.clientWidth;
-    el.scrollTo({ left: (getComputedStyle(el).direction === 'rtl' ? -1 : 1) * i * w, behavior: 'smooth' });
+    const dir = getComputedStyle(el).direction === 'rtl' ? -1 : 1;
+    el.scrollTo({ left: dir * i * el.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
   };
+  const next = () => { const el = track.current; if (el) goTo(pos(el) + 1); };
   useEffect(() => {
     const el = track.current;
     if (!el) return undefined;
-    const onScroll = () => setSlide(Math.round(Math.abs(el.scrollLeft) / el.clientWidth));
+    let settle;
+    const onScroll = () => {
+      setSlide(pos(el) % 3);
+      clearTimeout(settle);
+      settle = setTimeout(() => { if (pos(el) >= 3) goTo(0, false); }, 140);
+    };
     el.addEventListener('scroll', onScroll, { passive: true });
     let touched = false;
     const stop = () => { touched = true; };
@@ -84,10 +92,9 @@ export default function ProofThread() {
     el.addEventListener('touchstart', stop, { passive: true });
     const id = prefersReducedMotion() ? null : setInterval(() => {
       if (touched || el.offsetParent === null) return;
-      const next = (Math.round(Math.abs(el.scrollLeft) / el.clientWidth) + 1) % 3;
-      goTo(next);
+      goTo(pos(el) + 1);
     }, 4200);
-    return () => { el.removeEventListener('scroll', onScroll); el.removeEventListener('pointerdown', stop); el.removeEventListener('touchstart', stop); if (id) clearInterval(id); };
+    return () => { clearTimeout(settle); el.removeEventListener('scroll', onScroll); el.removeEventListener('pointerdown', stop); el.removeEventListener('touchstart', stop); if (id) clearInterval(id); };
   }, []);
 
   useGSAP(
@@ -162,16 +169,20 @@ export default function ProofThread() {
               ))}
             </span>
           </Link>
+          <Link href="/our-shilajit/" className="pt-slide" aria-hidden="true" tabIndex={-1}>
+            <Peak id="ptm2" className="pt-mini" viewBox="30 30 190 104" />
+            <span><strong>{t.place}</strong><small>{t.alt}</small></span>
+          </Link>
         </div>
         <div className="pt-nav">
           <div className="pt-dots" role="tablist">
             {[t.place, t.lab, t.std].map((x, i) => (
-              <button key={x} type="button" role="tab" aria-selected={slide === i} aria-label={x} className={slide === i ? 'on' : ''} onClick={() => goTo(i)} />
+              <button key={x} type="button" role="tab" aria-selected={slide === i} aria-label={x} className={slide === i ? 'on' : ''} onClick={() => goTo(i === 0 && slide === 2 ? 3 : i)} />
             ))}
           </div>
           <span className="pt-count" aria-hidden="true">{slide + 1} / 3</span>
         </div>
-        <button type="button" className="pt-next" aria-label="Next" onClick={() => goTo((slide + 1) % 3)}>
+        <button type="button" className="pt-next" aria-label="Next" onClick={next}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
         </button>
       </div>
