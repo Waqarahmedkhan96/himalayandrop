@@ -2397,17 +2397,26 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
   .pt-row { height: auto; padding-top: 10px; }
   .pt-peak { height: 120px; }
 }
+.pt-swipe, .pt-dots { display: none; }
 @media (max-width: 767px) {
-  .hero:has(+ .pt) .hero-card { padding-bottom: 110px; }
-  .pt { margin-top: -86px; padding: 0 calc(var(--frame) + 10px); }
-  .pt-row { grid-template-columns: 1fr; row-gap: 14px; padding: 18px 20px 22px; justify-items: center; text-align: center; }
-  .pt-peak { width: 150px; height: 84px; margin-bottom: -10px; }
-  .pt-arrow { transform: rotate(90deg); display: block !important; }
-  .pt-row > .pt-arrow:last-child { display: none !important; }
-  .pt-item { flex-direction: column; gap: 8px; }
-  .pt-item strong { white-space: normal; }
-  .pt-std { padding-bottom: 0; }
-  .pt-plaque { padding: 9px 12px; font-size: 15px; }
-  .pt-link { width: 10px; }
-  .pt-thread, .pt-waves { display: none; }
+  .hero:has(+ .pt) .hero-card { padding-bottom: 76px; }
+  .pt { margin-top: -50px; padding: 0 calc(var(--frame) + 10px); }
+  .pt-row, .pt-thread { display: none; }
+  .pt-band { border-radius: 20px; }
+  .pt-waves { width: 70px; opacity: .7; }
+  .pt-swipe { display: flex; height: 100px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .pt-swipe::-webkit-scrollbar { display: none; }
+  .pt-slide { flex: 0 0 100%; scroll-snap-align: center; display: flex; align-items: center; justify-content: center; gap: 16px; padding: 0 22px; color: inherit; }
+  .pt-slide strong { display: block; font: italic 400 23px/1.1 var(--display); color: var(--maroon); }
+  .pt-slide small { display: block; margin-top: 4px; font-size: 13.5px; color: var(--muted); }
+  .pt-mini { width: 74px; height: 42px; flex: none; overflow: visible; }
+  .pt-slide .pt-doc { width: 40px; height: 48px; }
+  .pt-slide-std { flex-direction: column; gap: 9px; }
+  .pt-slide-std .pt-std-h { font-size: 10.5px; letter-spacing: .26em; gap: 10px; }
+  .pt-slide-std .pt-std-h::before, .pt-slide-std .pt-std-h::after { width: 30px; }
+  .pt-slide .pt-plaque { padding: 7px 11px; font-size: 14px; border-radius: 8px; }
+  .pt-slide .pt-link { width: 10px; }
+  .pt-dots { display: flex; justify-content: center; gap: 7px; margin-top: 12px; }
+  .pt-dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 9px; background: rgba(88, 15, 27, 0.22); transition: width 0.4s var(--ease), background 0.3s; }
+  .pt-dots button.on { width: 22px; background: var(--gold); }
 }

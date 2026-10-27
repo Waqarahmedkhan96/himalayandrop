@@ -2,7 +2,7 @@
 // Proof strip that overlaps the bottom of the home hero: origin, batch lab
 // reports and quality standards, joined by one gold thread that draws itself.
 // PLACEHOLDER: show only certifications the producer actually holds.
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from './LLink';
 import { useLang } from './LangProvider';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
@@ -24,35 +24,35 @@ const Arrow = () => (
   </svg>
 );
 
-function Peak() {
+function Peak({ id = 'pt', className = 'pt-peak', viewBox = '0 0 240 176' }) {
   return (
-    <svg className="pt-peak" viewBox="0 0 240 176" aria-hidden="true">
+    <svg className={className} viewBox={viewBox} aria-hidden="true">
       <defs>
-        <linearGradient id="pt-mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f6e7bf" /><stop offset=".45" stopColor="#cca25e" /><stop offset="1" stopColor="#8e6a33" /></linearGradient>
-        <linearGradient id="pt-ms" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fffaf0" /><stop offset="1" stopColor="#e9dcc6" /></linearGradient>
-        <filter id="pt-emb"><feDropShadow dx="0" dy="2" stdDeviation="1.6" floodColor="#5a3a17" floodOpacity=".28" /></filter>
+        <linearGradient id={`${id}-mg`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f6e7bf" /><stop offset=".45" stopColor="#cca25e" /><stop offset="1" stopColor="#8e6a33" /></linearGradient>
+        <linearGradient id={`${id}-ms`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fffaf0" /><stop offset="1" stopColor="#e9dcc6" /></linearGradient>
+        <filter id={`${id}-emb`}><feDropShadow dx="0" dy="2" stdDeviation="1.6" floodColor="#5a3a17" floodOpacity=".28" /></filter>
       </defs>
-      <g filter="url(#pt-emb)">
-        <path d="M40 128 L92 78 L110 92 L150 40 L206 128 Z" fill="url(#pt-ms)" />
+      <g filter={`url(#${id}-emb)`}>
+        <path d="M40 128 L92 78 L110 92 L150 40 L206 128 Z" fill={`url(#${id}-ms)`} />
         <path d="M150 40 L206 128 L168 128 L156 96 L162 76 Z" fill="#d8c6a8" opacity=".55" />
         <path d="M92 78 L110 92 L102 128 L80 128 L96 104 Z" fill="#d8c6a8" opacity=".45" />
-        <path d="M40 128 L92 78 L110 92 L150 40 L206 128" fill="none" stroke="url(#pt-mg)" strokeWidth="2" strokeLinejoin="round" />
-        <path d="M150 40 L158 70 L150 88 L160 108 M92 78 L98 96 L92 110" fill="none" stroke="url(#pt-mg)" strokeWidth="1.4" strokeLinecap="round" />
-        <path d="M138 58 L150 40 L144 62 L134 70 Z" fill="url(#pt-mg)" opacity=".9" />
+        <path d="M40 128 L92 78 L110 92 L150 40 L206 128" fill="none" stroke={`url(#${id}-mg)`} strokeWidth="2" strokeLinejoin="round" />
+        <path d="M150 40 L158 70 L150 88 L160 108 M92 78 L98 96 L92 110" fill="none" stroke={`url(#${id}-mg)`} strokeWidth="1.4" strokeLinecap="round" />
+        <path d="M138 58 L150 40 L144 62 L134 70 Z" fill={`url(#${id}-mg)`} opacity=".9" />
       </g>
     </svg>
   );
 }
 
-function Doc() {
+function Doc({ id = 'pt-dg' }) {
   return (
     <svg className="pt-doc" viewBox="0 0 66 76" aria-hidden="true">
-      <defs><linearGradient id="pt-dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#8e2236" /><stop offset="1" stopColor="#40010a" /></linearGradient></defs>
-      <path d="M8 4 H44 L60 20 V70 C60 72 58 74 56 74 H8 C6 74 4 72 4 70 V8 C4 6 6 4 8 4 Z" fill="#fffaf2" stroke="url(#pt-dg)" strokeWidth="2.2" />
-      <path d="M44 4 V20 H60" fill="#f1e2c8" stroke="url(#pt-dg)" strokeWidth="2.2" strokeLinejoin="round" />
-      <path d="M26 20 H38 M29 20 V32 L20 50 C19 53 21 55 24 55 H43 C46 55 48 53 47 50 L37 32 V20" fill="none" stroke="url(#pt-dg)" strokeWidth="2" strokeLinejoin="round" />
+      <defs><linearGradient id={id} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#8e2236" /><stop offset="1" stopColor="#40010a" /></linearGradient></defs>
+      <path d="M8 4 H44 L60 20 V70 C60 72 58 74 56 74 H8 C6 74 4 72 4 70 V8 C4 6 6 4 8 4 Z" fill="#fffaf2" stroke={`url(#${id})`} strokeWidth="2.2" />
+      <path d="M44 4 V20 H60" fill="#f1e2c8" stroke={`url(#${id})`} strokeWidth="2.2" strokeLinejoin="round" />
+      <path d="M26 20 H38 M29 20 V32 L20 50 C19 53 21 55 24 55 H43 C46 55 48 53 47 50 L37 32 V20" fill="none" stroke={`url(#${id})`} strokeWidth="2" strokeLinejoin="round" />
       <path d="M22.5 46 H44.5 L46 50 C47 53 45 55 43 55 H24 C21 55 19.5 53 20.5 50 Z" fill="#cca25e" />
-      <path d="M16 63 H50 M16 68 H40" stroke="url(#pt-dg)" strokeWidth="2" strokeLinecap="round" />
+      <path d="M16 63 H50 M16 68 H40" stroke={`url(#${id})`} strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -63,6 +63,32 @@ export default function ProofThread() {
   const lang = useLang();
   const t = T[lang] || T.en;
   const root = useRef(null);
+  const track = useRef(null);
+  const [slide, setSlide] = useState(0);
+
+  // Phones: one fact at a time, swipe sideways; moves on by itself until touched.
+  const goTo = (i) => {
+    const el = track.current;
+    if (!el) return;
+    const w = el.clientWidth;
+    el.scrollTo({ left: (getComputedStyle(el).direction === 'rtl' ? -1 : 1) * i * w, behavior: 'smooth' });
+  };
+  useEffect(() => {
+    const el = track.current;
+    if (!el) return undefined;
+    const onScroll = () => setSlide(Math.round(Math.abs(el.scrollLeft) / el.clientWidth));
+    el.addEventListener('scroll', onScroll, { passive: true });
+    let touched = false;
+    const stop = () => { touched = true; };
+    el.addEventListener('pointerdown', stop);
+    el.addEventListener('touchstart', stop, { passive: true });
+    const id = prefersReducedMotion() ? null : setInterval(() => {
+      if (touched || el.offsetParent === null) return;
+      const next = (Math.round(Math.abs(el.scrollLeft) / el.clientWidth) + 1) % 3;
+      goTo(next);
+    }, 4200);
+    return () => { el.removeEventListener('scroll', onScroll); el.removeEventListener('pointerdown', stop); el.removeEventListener('touchstart', stop); if (id) clearInterval(id); };
+  }, []);
 
   useGSAP(
     () => {
@@ -115,6 +141,33 @@ export default function ProofThread() {
           </Link>
           <Arrow />
         </div>
+
+        <div className="pt-swipe" ref={track}>
+          <Link href="/our-shilajit/" className="pt-slide">
+            <Peak id="ptm" className="pt-mini" viewBox="30 30 190 104" />
+            <span><strong>{t.place}</strong><small>{t.alt}</small></span>
+          </Link>
+          <Link href="/lab-results/" className="pt-slide">
+            <Doc id="ptm-dg" />
+            <span><strong>{t.lab}</strong><small>{t.labSub}</small></span>
+          </Link>
+          <Link href="/certificates/" className="pt-slide pt-slide-std">
+            <span className="pt-std-h">{t.std}</span>
+            <span className="pt-plaques">
+              {CERTS.map((c, i) => (
+                <span key={c} className="pt-pq">
+                  {i > 0 && <i className="pt-link" aria-hidden="true" />}
+                  <span className="pt-plaque">{c}</span>
+                </span>
+              ))}
+            </span>
+          </Link>
+        </div>
+      </div>
+      <div className="pt-dots" role="tablist">
+        {[t.place, t.lab, t.std].map((x, i) => (
+          <button key={x} type="button" role="tab" aria-selected={slide === i} aria-label={x} className={slide === i ? 'on' : ''} onClick={() => goTo(i)} />
+        ))}
       </div>
     </section>
   );
