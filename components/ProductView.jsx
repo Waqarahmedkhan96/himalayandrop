@@ -17,6 +17,7 @@ import { useCart } from '@/lib/cart';
 import { formatMoney } from '@/lib/shopify';
 import Accordion from './Accordion';
 import PurchaseBox from './PurchaseBox';
+import { SUBSCRIBE_PCT } from '@/lib/subscription';
 import { Arrow } from './Arrow';
 import { Icon } from './Icons';
 import RealIcon from './RealIcon';
@@ -34,6 +35,22 @@ function factIcon(i, value, kind) {
   return kind === 'capsules' ? 'capsule' : 'calendar';
 }
 
+// Product pages that open on an alcove display (same set as the home
+// collection). Only Gold Resin for now; add a handle here to give another
+// product the same stage.
+const STAGE = {
+  'shilajit-gold-resin': '/images/pdp/gold-resin/stage.webp',
+};
+const ALC = {
+  en: { eyebrow: 'The Skardu Collection', withSub: '{p} with Subscribe & Save' },
+  da: { eyebrow: 'Skardu-kollektionen', withSub: '{p} med Abonnér & Spar' },
+  de: { eyebrow: 'Die Skardu-Kollektion', withSub: '{p} mit Abo & Sparen' },
+  fr: { eyebrow: 'La collection Skardu', withSub: '{p} avec l’abonnement' },
+  es: { eyebrow: 'La colección Skardu', withSub: '{p} con suscripción' },
+  ar: { eyebrow: 'مجموعة سكردو', withSub: '{p} مع الاشتراك والتوفير' },
+  ur: { eyebrow: 'سکردو کلیکشن', withSub: 'سبسکرائب اینڈ سیو کے ساتھ {p}' },
+};
+
 // Small icon per formula row (same order as lib/products.js).
 // How-to step icons: the measuring step shows the spoon.
 const STEP_ICON = { jar: 'spoon' };
@@ -47,8 +64,10 @@ export default function ProductView({ product }) {
   const steps = howToSteps(lang, kind);
 
   // First slide is the clean packshot, then the packaging photos.
+  const stage = STAGE[product.handle];
+  const a = useT(ALC);
   const slides = [
-    { src: product.image, alt: product.imageAlt, cutout: product.cutout },
+    stage ? { src: stage, alt: product.imageAlt, cutout: false } : { src: product.image, alt: product.imageAlt, cutout: product.cutout },
     ...(product.gallery || []).map((g) => ({ ...g, cutout: false })),
   ];
   const [index, setIndex] = useState(0);
@@ -84,12 +103,20 @@ export default function ProductView({ product }) {
 
   const f = product.formula;
 
+  // On the alcove layout the edition sits on its own line in gold italics,
+  // e.g. "Shilajit Resin" / "Gold Edition" (the edition is the first part of the subtitle).
+  const edition = (product.subtitle || '').split(' · ')[0];
+  const titleParts = stage && edition && product.title.endsWith(edition) && product.title.length > edition.length
+    ? [product.title.slice(0, -edition.length).trim(), edition]
+    : null;
+
   return (
-    <section className="pdp" ref={root}>
+    <section className={`pdp${stage ? ' pdp--alcove' : ''}`} ref={root}>
       <div className="container pdp-grid">
         <div className="pdp-gallery">
-          <div className={`pdp-media ${slide.cutout ? 'cutout' : 'photo'}`}>
+          <div className={`pdp-media ${slide.cutout ? 'cutout' : 'photo'}${stage && index === 0 ? ' is-stage' : ''}`}>
             <img key={slide.src} src={slide.src} alt={slide.alt} />
+            {stage && <span className="pdp-tag">{t.trust[2]}</span>}
           </div>
           {slides.length > 1 && (
             <div className="pdp-thumbs" role="tablist" aria-label={t.images}>
@@ -113,11 +140,15 @@ export default function ProductView({ product }) {
           <p className="crumb">
             <Link href="/shop/">{t.shop}</Link> / {product.title}
           </p>
+          {stage && <span className="pdp-eyebrow">{a.eyebrow}</span>}
           <h1>
-            <span className="line"><span>{product.title}</span></span>
+            <span className="line"><span>{titleParts ? <>{titleParts[0]} <em>{titleParts[1]}</em></> : product.title}</span></span>
           </h1>
           <p className="sub">{product.subtitle}</p>
-          <p className="price">{product.amount != null ? formatMoney(product.amount, product.currency) : product.price || t.soon} <span className="vat">{t.vat}</span></p>
+          <p className="price">
+            {product.amount != null ? formatMoney(product.amount, product.currency) : product.price || t.soon} <span className="vat">{t.vat}</span>
+            {stage && product.amount != null && <span className="pdp-subtag">{a.withSub.replace('{p}', formatMoney(Math.round(product.amount * (1 - SUBSCRIBE_PCT / 100) * 100) / 100, product.currency))}</span>}
+          </p>
           <p className="desc">{product.description}</p>
           {product.facts && (
             <dl className="pdp-stats">

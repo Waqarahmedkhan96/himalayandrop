@@ -2544,3 +2544,33 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
   .cg-progress { position: absolute; left: 50%; top: calc(980 * var(--u)); width: calc(397 * var(--u)); height: calc(3 * var(--u)); margin: 0; transform: translateX(-50%); }
 }
 @media (prefers-reduced-motion: reduce) { .cg-shop, .cg-shop svg, .cg-progress span { transition: none; } }
+
+/* ───────── Product page on the alcove stage (Gold Resin) ───────── */
+.pdp--alcove { background: radial-gradient(60% 40% at 10% 0%, #e9dccb, transparent 70%), radial-gradient(60% 50% at 90% 10%, #faf4ec, transparent 70%), #efe5d8; }
+.pdp--alcove .pdp-media.is-stage { aspect-ratio: 1216 / 1200; border-radius: 30px; background: #efe4d5; }
+.pdp--alcove .pdp-media.is-stage img { object-fit: cover; }
+.pdp--alcove .pdp-media.photo { border-radius: 30px; }
+.pdp-tag { position: absolute; inset-inline-start: 22px; top: 20px; padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 700; color: #520a14; background: rgba(250, 245, 238, .92); box-shadow: inset 0 0 0 1px rgba(184, 143, 77, .38); }
+.pdp--alcove .pdp-thumbs button { border-radius: 14px; }
+.pdp--alcove .pdp-thumbs button.on { box-shadow: inset 0 0 0 2px #520a14; }
+.pdp-eyebrow { display: flex; align-items: center; gap: 12px; margin-top: 18px; font-size: 12.5px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: #a8803f; }
+.pdp-eyebrow::after { content: ''; width: 48px; height: 1px; background: #b88f4d; }
+[dir='rtl'] .pdp-eyebrow { letter-spacing: 0; }
+.pdp--alcove .pdp-info h1 { margin-top: 12px; font-weight: 600; font-size: clamp(44px, 5.4vw, 78px); line-height: .95; letter-spacing: -.045em; color: #520a14; }
+.pdp--alcove .pdp-info h1 em { display: block; font-style: italic; font-weight: 500; color: #a8803f; letter-spacing: -.03em; }
+[dir='rtl'] .pdp--alcove .pdp-info h1 { letter-spacing: 0; line-height: 1.2; }
+.pdp--alcove .pdp-info .sub { margin-top: 14px; font-size: 17px; }
+.pdp--alcove .pdp-info .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-top: 20px; font-family: var(--display); font-weight: 600; font-size: clamp(36px, 3.4vw, 46px); color: #520a14; font-variant-numeric: lining-nums; }
+.pdp--alcove .pdp-info .price .vat { font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--muted); }
+.pdp-subtag { margin-inline-start: auto; align-self: center; padding: 7px 12px; border-radius: 999px; font-family: var(--sans); font-size: 13.5px; font-weight: 600; color: #520a14; background: rgba(106, 14, 27, .07); }
+.pdp--alcove .pdp-info .desc { color: #4d403a; line-height: 1.65; }
+.pdp--alcove .pdp-stats { border-radius: 20px; background: radial-gradient(120% 140% at 0% 0%, #7c1626, #520a14 60%, #3e0610); }
+.pdp--alcove .bb-types { gap: 12px; }
+.pdp--alcove .bb-type { border-radius: 18px; }
+.pdp--alcove .bb-type[aria-checked='true'] { box-shadow: inset 0 0 0 2px #520a14; }
+.pdp--alcove .bb-type-price { font-family: var(--display); font-variant-numeric: lining-nums; color: #520a14; }
+.pdp--alcove .pdp-actions .btn.gold { background: #6a0e1b; color: #f7efe4; box-shadow: none; font-family: var(--display); font-weight: 500; font-size: 18px; }
+.pdp--alcove .pdp-actions .btn.gold:hover { background: #4a0612; }
+.pdp--alcove .pdp-actions .btn.outline { color: #520a14; box-shadow: inset 0 0 0 1.5px #b88f4d; font-family: var(--display); font-weight: 500; font-size: 18px; }
+.pdp--alcove .pdp-trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding-top: 16px; border-top: 1px solid rgba(184, 143, 77, .38); }
+.pdp--alcove .pdp-trust span { display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px 8px; background: rgba(250, 245, 238, .7); box-shadow: inset 0 0 0 1px rgba(184, 143, 77, .3); color: #4d403a; font-size: 12.5px; line-height: 1.3; }
