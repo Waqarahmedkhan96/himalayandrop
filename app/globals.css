@@ -2453,3 +2453,9 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
   .hero-lab { position: relative; margin-top: 16px; }
 }
 @media (max-width: 767px) { .hero-ctas, .hero-lab { position: relative; z-index: 2; isolation: isolate; } }
+/* Phones: slide markers shaped as drops */
+@media (max-width: 767px) {
+  .pt-dots { gap: 12px; align-items: center; }
+  .pt-dots button, .pt-dots button.on { width: 9px; height: 9px; border-radius: 50% 0 50% 50%; transform: rotate(-45deg); background: transparent; box-shadow: inset 0 0 0 1.3px var(--maroon); transition: transform 0.45s var(--ease), background 0.3s, box-shadow 0.3s; }
+  .pt-dots button.on { transform: rotate(-45deg) scale(1.45); background: linear-gradient(135deg, #eed9a6, #cca25e 50%, #8e6a33); box-shadow: 0 2px 4px rgba(64, 1, 10, 0.3); }
+}
