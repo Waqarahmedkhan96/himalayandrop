@@ -1,5 +1,5 @@
 'use client';
-// Hero: a rounded maroon stage with gold mountain line-art. The headline reveals
+// Hero: the collection on a stone pedestal in a maroon studio, with gold mountain line-art. The headline reveals
 // line by line, the packaging rises into the centre and floats, and on scroll
 // the product lifts while the mountains drift (parallax).
 import { useMemo, useRef } from 'react';
@@ -16,13 +16,13 @@ const ridges = [
 ];
 
 const T = {
-  en: { eyebrow: 'Gold Edition · Shilajit Resin', l1: 'A grounded', l2: 'daily ritual.', lead: 'Pure Himalayan shilajit, sealed in amber glass and finished in gold.', shop: 'Shop the collection', story: 'Our story', alt: 'Himalayan Drop Shilajit Resin Gold Edition: maroon gift box and amber jar with gold lid', chips: ['Himalayan sourced', 'Lab report per batch', 'Danish brand'] },
-  da: { eyebrow: 'Gold Edition · Shilajit Resin', l1: 'Et jordnært', l2: 'dagligt ritual.', lead: 'Ren Himalaya shilajit, forseglet i ravfarvet glas og afsluttet i guld.', shop: 'Se kollektionen', story: 'Vores historie', alt: 'Himalayan Drop Shilajit Resin Gold Edition: bordeaux gaveæske og ravfarvet krukke med guldlåg', chips: ['Fra Himalaya', 'Rapport for hver batch', 'Dansk brand'] },
-  de: { eyebrow: 'Gold Edition · Shilajit Harz', l1: 'Ein erdendes', l2: 'tägliches Ritual.', lead: 'Reines Himalaya Shilajit, versiegelt in Braunglas und veredelt in Gold.', shop: 'Zur Kollektion', story: 'Unsere Geschichte', alt: 'Himalayan Drop Shilajit Resin Gold Edition: bordeauxrote Geschenkbox und Braunglas mit goldenem Deckel', chips: ['Aus dem Himalaya', 'Laborbericht je Charge', 'Dänische Marke'] },
-  fr: { eyebrow: 'Gold Edition · Résine de shilajit', l1: 'Un rituel quotidien', l2: 'qui ancre.', lead: 'Shilajit pur de l’Himalaya, scellé dans du verre ambré et sublimé d’or.', shop: 'Découvrir la collection', story: 'Notre histoire', alt: 'Himalayan Drop Shilajit Resin Gold Edition : coffret bordeaux et pot ambré au couvercle doré', chips: ['Origine Himalaya', 'Rapport de labo par lot', 'Marque danoise'] },
-  es: { eyebrow: 'Gold Edition · Resina de shilajit', l1: 'Un ritual diario', l2: 'con raíces.', lead: 'Shilajit puro del Himalaya, sellado en vidrio ámbar y con acabado en oro.', shop: 'Ver la colección', story: 'Nuestra historia', alt: 'Himalayan Drop Shilajit Resin Gold Edition: caja regalo granate y tarro ámbar con tapa dorada', chips: ['Origen Himalaya', 'Informe de laboratorio por lote', 'Marca danesa'] },
-  ar: { eyebrow: 'الإصدار الذهبي · راتنج الشيلاجيت', l1: 'طقس يومي', l2: 'متجذّر في الأصالة.', lead: 'شيلاجيت هيمالايا نقي، محفوظ في زجاج كهرماني بلمسة ذهبية.', shop: 'تسوّق المجموعة', story: 'قصتنا', alt: 'راتنج شيلاجيت Himalayan Drop الإصدار الذهبي: علبة هدايا عنابية وبرطمان كهرماني بغطاء ذهبي', chips: ['من جبال الهيمالايا', 'تقرير مخبري لكل دفعة', 'علامة دنماركية'] },
-  ur: { eyebrow: 'گولڈ ایڈیشن · سلاجیت ریزن', l1: 'ایک پُرسکون', l2: 'روزمرہ معمول۔', lead: 'خالص ہمالیائی سلاجیت، امبر شیشے میں محفوظ اور سنہری انداز میں۔', shop: 'کلیکشن دیکھیں', story: 'ہماری کہانی', alt: 'Himalayan Drop سلاجیت ریزن گولڈ ایڈیشن: میرون گفٹ باکس اور سنہری ڈھکن والا امبر جار', chips: ['ہمالیہ سے حاصل', 'ہر بیچ کی لیب رپورٹ', 'ڈنمارک کا برانڈ'] },
+  en: { eyebrow: 'The Skardu Collection', l1: 'A rarer kind', l2: 'of ritual.', lead: 'Explore our shilajit collection.', shop: 'Explore the collection', lab: '3rd-party lab tested', alt: 'Himalayan Drop shilajit collection: capsules, gummies, drops and two resin jars on a stone pedestal' },
+  da: { eyebrow: 'Skardu-kollektionen', l1: 'En sjældnere', l2: 'slags ritual.', lead: 'Udforsk vores shilajit-kollektion.', shop: 'Udforsk kollektionen', lab: 'Testet af uafhængigt laboratorium', alt: 'Himalayan Drop shilajit kollektion: kapsler, vingummi, dråber og to krukker resin på en stensokkel' },
+  de: { eyebrow: 'Die Skardu-Kollektion', l1: 'Eine seltenere', l2: 'Art von Ritual.', lead: 'Entdecke unsere Shilajit-Kollektion.', shop: 'Kollektion entdecken', lab: 'Von unabhängigem Labor geprüft', alt: 'Himalayan Drop Shilajit-Kollektion: Kapseln, Gummies, Tropfen und zwei Harzgläser auf einem Steinsockel' },
+  fr: { eyebrow: 'La collection Skardu', l1: 'Un rituel', l2: 'd’exception.', lead: 'Découvrez notre collection de shilajit.', shop: 'Découvrir la collection', lab: 'Testé par un laboratoire indépendant', alt: 'Collection de shilajit Himalayan Drop : gélules, gommes, gouttes et deux pots de résine sur un socle en pierre' },
+  es: { eyebrow: 'La colección Skardu', l1: 'Un ritual', l2: 'fuera de lo común.', lead: 'Descubre nuestra colección de shilajit.', shop: 'Explorar la colección', lab: 'Analizado por un laboratorio independiente', alt: 'Colección de shilajit Himalayan Drop: cápsulas, gominolas, gotas y dos tarros de resina sobre un pedestal de piedra' },
+  ar: { eyebrow: 'مجموعة سكاردو', l1: 'نوع أندر', l2: 'من الطقوس.', lead: 'اكتشف مجموعة الشيلاجيت لدينا.', shop: 'استكشف المجموعة', lab: 'مفحوص في مختبر مستقل', alt: 'مجموعة شيلاجيت Himalayan Drop: كبسولات وعلكات وقطرات وبرطمانا راتنج على قاعدة حجرية' },
+  ur: { eyebrow: 'اسکردو کلیکشن', l1: 'ایک نایاب', l2: 'انداز کا معمول۔', lead: 'ہماری شلاجیت کلیکشن دیکھیں۔', shop: 'کلیکشن دیکھیں', lab: 'آزاد لیب سے ٹیسٹ شدہ', alt: 'Himalayan Drop شلاجیت کلیکشن: کیپسول، گمیز، ڈراپس اور ریزن کے دو جار پتھر کے اسٹینڈ پر' },
 };
 
 export default function Hero() {
@@ -46,8 +46,7 @@ export default function Hero() {
         .from('.hero h1 .line > span', { yPercent: 115, stagger: 0.12 }, 0.4)
         .from('.hero-lead, .hero-ctas > *', { y: 20, opacity: 0, stagger: 0.08, duration: 1.1 }, 0.75)
         .from('.hero-product img', { y: 120, scale: 0.86, opacity: 0, duration: 1.8 }, 0.55)
-        .from('.hero-shadow', { scaleX: 0.3, opacity: 0, duration: 1.6 }, 0.75)
-        .from('.hero-chips li', { y: 16, opacity: 0, stagger: 0.07, duration: 1 }, 1.1);
+        .from('.hero-shadow', { scaleX: 0.3, opacity: 0, duration: 1.6 }, 0.75);
 
       // Gentle float after it lands.
       gsap.to('.hero-product img', { y: -12, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2.4 });
@@ -89,31 +88,31 @@ export default function Hero() {
           <span className="eyebrow">{t.eyebrow}</span>
           <h1>
             <span className="line"><span>{t.l1}</span></span>
-            <span className="line"><span><em className="gold-text">{t.l2}</em></span></span>
+            <span className="line"><span><em>{t.l2}</em></span></span>
           </h1>
           <p className="hero-lead">{t.lead}</p>
           <div className="hero-ctas">
-            <Link href="/#collection" className="btn gold">
-              {t.shop} <Arrow />
+            <Link href="/#collection" className="btn hero-btn">
+              {t.shop} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
             </Link>
-            <Link href="/#story" className="btn ghost">{t.story}</Link>
           </div>
+          <p className="hero-lab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6Z" /><path d="m8.5 12 2.5 2.5 4.5-5" /></svg>
+            {t.lab}
+          </p>
         </div>
 
         <div className="hero-product">
           <span className="hero-shadow" aria-hidden="true" />
           <img
-            src="/images/cut-maroon-set.webp"
+            src="/images/hero/collection.webp"
             alt={t.alt}
-            width="1400"
-            height="888"
+            width="1332"
+            height="998"
             fetchPriority="high"
           />
         </div>
 
-        <ul className="hero-chips">
-          {t.chips.map((c) => <li key={c}>{c}</li>)}
-        </ul>
       </div>
     </section>
   );
