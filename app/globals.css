@@ -2392,7 +2392,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 [dir='rtl'] .pt-std-h { letter-spacing: 0; }
 @media (max-width: 1199px) {
   .pt-row { grid-template-columns: 150px auto auto auto 1fr; column-gap: 18px; padding-inline-end: 24px; }
-  .pt-row > .pt-arrow:nth-of-type(2), .pt-row > .pt-arrow:last-child { display: none; }
+  .pt-row > .pt-arrow:nth-of-type(3), .pt-row > .pt-arrow:last-child { display: none; }
   .pt-std { grid-column: 1 / -1; padding-bottom: 18px; }
   .pt-row { height: auto; padding-top: 10px; }
   .pt-peak { height: 120px; }
