@@ -40,47 +40,18 @@ const T = {
     detail: ['گولڈ ایڈیشن · 30 گرام', 'سلور ایڈیشن · 30 گرام', 'اسٹرابیری · 60 گمیز', 'ایلڈربیری · 30 ملی لیٹر', 'روزانہ فارمولا · 60 کیپسول'] },
 };
 
-// Each product's display plate: its alcove, shelf and real pack, rendered
-// once to an image. x/y place the gold alcove number on the back wall.
+// Each product's display plate: one third of the reference artwork (alcove,
+// shelf and props) at 1:1, with the real pack standing on the same footprint.
+// x/y place the alcove number on the back wall, as a share of the plate.
 const SCENE = {
-  'shilajit-gold-resin': { img: '/images/collection/gold.webp', x: 29.9, y: 16.2, wine: true },
-  'shilajit-silver-resin': { img: '/images/collection/silver.webp', x: 21.1, y: 16.2 },
-  'shilajit-gummies': { img: '/images/collection/gummies.webp', x: 16.4, y: 16.2 },
-  'shilajit-drops': { img: '/images/collection/drops.webp', x: 14.6, y: 16.2 },
-  'shilajit-capsules': { img: '/images/collection/capsules.webp', x: 14.6, y: 16.2 },
+  'shilajit-gold-resin': { img: '/images/collection/gold.webp', x: 30.3, y: 24.6, dx: 18, wine: true },
+  'shilajit-silver-resin': { img: '/images/collection/silver.webp', x: 21.3, y: 24.6, dx: 1 },
+  'shilajit-gummies': { img: '/images/collection/gummies.webp', x: 14.9, y: 24.6, dx: -10 },
+  'shilajit-drops': { img: '/images/collection/drops.webp', x: 13.4, y: 24.6, dx: -10 },
+  'shilajit-capsules': { img: '/images/collection/capsules.webp', x: 12.6, y: 24.6, dx: -10 },
 };
 
 const pad = (n) => String(n).padStart(2, '0');
-
-// Soft leaf shadows falling across the wall from an unseen branch.
-const LEAVES = (() => {
-  const out = [];
-  const branch = (x, y, a, len, n, s) => {
-    for (let i = 0; i < n; i++) {
-      const t = i / n;
-      const px = x + Math.cos(a) * len * t;
-      const py = y + Math.sin(a) * len * t;
-      const side = i % 2 ? 1 : -1;
-      const la = a + side * 0.9 + Math.sin(i * 1.7) * 0.2;
-      const r = (s * (1 - t * 0.45)).toFixed(1);
-      out.push(`<ellipse cx="${(px + Math.cos(la) * r).toFixed(1)}" cy="${(py + Math.sin(la) * r).toFixed(1)}" rx="${r}" ry="${(r * 0.38).toFixed(1)}" transform="rotate(${((la * 180) / Math.PI).toFixed(0)} ${(px + Math.cos(la) * r).toFixed(1)} ${(py + Math.sin(la) * r).toFixed(1)})"/>`);
-    }
-    out.push(`<path d="M${x} ${y} L${(x + Math.cos(a) * len).toFixed(1)} ${(y + Math.sin(a) * len).toFixed(1)}" stroke="currentColor" stroke-width="3" fill="none"/>`);
-  };
-  branch(-20, 40, 0.55, 330, 12, 34);
-  branch(40, -10, 1.15, 260, 9, 30);
-  branch(10, 260, -0.2, 220, 8, 26);
-  return out.join('');
-})();
-
-function Leaves({ className }) {
-  return (
-    <svg className={className} viewBox="0 0 420 420" aria-hidden="true">
-      <defs><filter id={`${className}-b`} x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="16" /></filter></defs>
-      <g fill="currentColor" filter={`url(#${className}-b)`} dangerouslySetInnerHTML={{ __html: LEAVES }} />
-    </svg>
-  );
-}
 
 export default function CollectionGallery({ products }) {
   const lang = useLang();
@@ -130,7 +101,7 @@ export default function CollectionGallery({ products }) {
     clearTimeout(aim.t);
     aim.t = setTimeout(() => { aim.current = null; }, 700);
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    el.scrollTo({ left: to * w * (rtl ? -1 : 1), behavior: reduce ? 'auto' : 'smooth' });
+    el.scrollTo({ left: to * w, behavior: reduce ? 'auto' : 'smooth' });
   };
 
   // Mouse drag (touch already scrolls natively).
@@ -169,16 +140,14 @@ export default function CollectionGallery({ products }) {
 
   return (
     <section id="collection" className="cg" aria-labelledby="cg-title">
-      <Leaves className="cg-leaves cg-leaves-l" />
-      <Leaves className="cg-leaves cg-leaves-r" />
-      <div className="container">
+      <div className="cg-in">
         <header className="cg-head">
-          <div>
+          <div className="cg-titles">
             <span className="cg-eyebrow">{t.eyebrow}</span>
             <h2 id="cg-title">{t.title}</h2>
             <p>{t.sub}</p>
           </div>
-          <div className="cg-controls">
+          <div className="cg-controls" dir="ltr">
             <span className="cg-count" aria-hidden="true">
               <span dir="ltr">{view.per > 1 ? `${pad(view.first + 1)} — ${pad(last)}` : pad(view.first + 1)} / {pad(n)}</span>
             </span>
@@ -190,10 +159,10 @@ export default function CollectionGallery({ products }) {
             </button>
           </div>
         </header>
-      </div>
 
-      <div
+        <div
           className="cg-track"
+          dir="ltr"
           ref={track}
           onPointerDown={onDown}
           onPointerMove={onMove}
@@ -208,10 +177,10 @@ export default function CollectionGallery({ products }) {
             return (
               <article className="cg-card" key={p.handle} aria-labelledby={`cg-${p.handle}`}>
                 <Link href={href} className={`cg-scene${s.wine ? ' is-wine' : ''}`} tabIndex={-1} aria-hidden="true" style={{ '--nx': `${s.x}%`, '--ny': `${s.y}%` }}>
-                  <img src={s.img} alt="" width="1024" height="1088" loading={p.i < 3 ? 'eager' : 'lazy'} draggable="false" />
+                  <img src={s.img} alt="" width="1024" height="1200" loading={p.i < 3 ? 'eager' : 'lazy'} draggable="false" />
                   <span className="cg-num">{pad(p.i + 1)}</span>
                 </Link>
-                <div className="cg-info">
+                <div className="cg-info" dir={rtl ? 'rtl' : undefined} style={{ '--dx': s.dx || 0 }}>
                   <h3 id={`cg-${p.handle}`}>{t.names[p.i]}</h3>
                   <p>{t.detail[p.i]}</p>
                   <b className="cg-price">{price}</b>
@@ -225,9 +194,8 @@ export default function CollectionGallery({ products }) {
           })}
         </div>
 
-      <div className="container">
-        <div className="cg-progress" aria-hidden="true">
-          <span style={{ '--w': `${(view.per / n) * 100}%`, '--x': `${(view.first / view.per) * 100}%` }} />
+        <div className="cg-progress" dir="ltr" aria-hidden="true">
+          <span style={{ '--w': `${100 / Math.max(1, n - view.per + 1)}%`, '--x': `${view.first * 100}%` }} />
         </div>
         <p className="sr-only" aria-live="polite">{status}</p>
       </div>
