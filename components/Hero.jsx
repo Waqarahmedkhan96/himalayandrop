@@ -1,5 +1,5 @@
 'use client';
-// Hero: a rounded maroon stage with gold mountain line-art. The headline reveals
+// Hero: the collection on a stone pedestal in a maroon studio, with gold mountain line-art. The headline reveals
 // line by line, the packaging rises into the centre and floats, and on scroll
 // the product lifts while the mountains drift (parallax).
 import { useMemo, useRef } from 'react';
@@ -16,13 +16,13 @@ const ridges = [
 ];
 
 const T = {
-  en: { eyebrow: 'Gold Edition · Shilajit Resin', l1: 'A grounded', l2: 'daily ritual.', lead: 'Pure Himalayan shilajit, sealed in amber glass and finished in gold.', shop: 'Shop the collection', story: 'Our story', alt: 'Himalayan Drop Shilajit Resin Gold Edition: maroon gift box and amber jar with gold lid', chips: ['Himalayan sourced', 'Lab report per batch', 'Danish brand'] },
-  da: { eyebrow: 'Gold Edition · Shilajit Resin', l1: 'Et jordnært', l2: 'dagligt ritual.', lead: 'Ren Himalaya shilajit, forseglet i ravfarvet glas og afsluttet i guld.', shop: 'Se kollektionen', story: 'Vores historie', alt: 'Himalayan Drop Shilajit Resin Gold Edition: bordeaux gaveæske og ravfarvet krukke med guldlåg', chips: ['Fra Himalaya', 'Rapport for hver batch', 'Dansk brand'] },
-  de: { eyebrow: 'Gold Edition · Shilajit Harz', l1: 'Ein erdendes', l2: 'tägliches Ritual.', lead: 'Reines Himalaya Shilajit, versiegelt in Braunglas und veredelt in Gold.', shop: 'Zur Kollektion', story: 'Unsere Geschichte', alt: 'Himalayan Drop Shilajit Resin Gold Edition: bordeauxrote Geschenkbox und Braunglas mit goldenem Deckel', chips: ['Aus dem Himalaya', 'Laborbericht je Charge', 'Dänische Marke'] },
-  fr: { eyebrow: 'Gold Edition · Résine de shilajit', l1: 'Un rituel quotidien', l2: 'qui ancre.', lead: 'Shilajit pur de l’Himalaya, scellé dans du verre ambré et sublimé d’or.', shop: 'Découvrir la collection', story: 'Notre histoire', alt: 'Himalayan Drop Shilajit Resin Gold Edition : coffret bordeaux et pot ambré au couvercle doré', chips: ['Origine Himalaya', 'Rapport de labo par lot', 'Marque danoise'] },
-  es: { eyebrow: 'Gold Edition · Resina de shilajit', l1: 'Un ritual diario', l2: 'con raíces.', lead: 'Shilajit puro del Himalaya, sellado en vidrio ámbar y con acabado en oro.', shop: 'Ver la colección', story: 'Nuestra historia', alt: 'Himalayan Drop Shilajit Resin Gold Edition: caja regalo granate y tarro ámbar con tapa dorada', chips: ['Origen Himalaya', 'Informe de laboratorio por lote', 'Marca danesa'] },
-  ar: { eyebrow: 'الإصدار الذهبي · راتنج الشيلاجيت', l1: 'طقس يومي', l2: 'متجذّر في الأصالة.', lead: 'شيلاجيت هيمالايا نقي، محفوظ في زجاج كهرماني بلمسة ذهبية.', shop: 'تسوّق المجموعة', story: 'قصتنا', alt: 'راتنج شيلاجيت Himalayan Drop الإصدار الذهبي: علبة هدايا عنابية وبرطمان كهرماني بغطاء ذهبي', chips: ['من جبال الهيمالايا', 'تقرير مخبري لكل دفعة', 'علامة دنماركية'] },
-  ur: { eyebrow: 'گولڈ ایڈیشن · سلاجیت ریزن', l1: 'ایک پُرسکون', l2: 'روزمرہ معمول۔', lead: 'خالص ہمالیائی سلاجیت، امبر شیشے میں محفوظ اور سنہری انداز میں۔', shop: 'کلیکشن دیکھیں', story: 'ہماری کہانی', alt: 'Himalayan Drop سلاجیت ریزن گولڈ ایڈیشن: میرون گفٹ باکس اور سنہری ڈھکن والا امبر جار', chips: ['ہمالیہ سے حاصل', 'ہر بیچ کی لیب رپورٹ', 'ڈنمارک کا برانڈ'] },
+  en: { eyebrow: 'The Skardu Collection', l1: 'Born above', l2: 'the clouds.', lead: 'Pure Himalayan shilajit, hand-collected above 5,000 metres in Skardu. As resin, gummies, drops or capsules.', shop: 'Shop the collection', alt: 'Himalayan Drop shilajit collection: capsules, gummies, drops and two resin jars on a stone pedestal' },
+  da: { eyebrow: 'Skardu-kollektionen', l1: 'Født over', l2: 'skyerne.', lead: 'Ren Himalaya shilajit, håndindsamlet over 5.000 meter i Skardu. Som resin, vingummi, dråber eller kapsler.', shop: 'Se kollektionen', alt: 'Himalayan Drop shilajit kollektion: kapsler, vingummi, dråber og to krukker resin på en stensokkel' },
+  de: { eyebrow: 'Die Skardu-Kollektion', l1: 'Geboren über', l2: 'den Wolken.', lead: 'Reines Himalaya-Shilajit, von Hand gesammelt über 5.000 Metern in Skardu. Als Harz, Gummies, Tropfen oder Kapseln.', shop: 'Zur Kollektion', alt: 'Himalayan Drop Shilajit-Kollektion: Kapseln, Gummies, Tropfen und zwei Harzgläser auf einem Steinsockel' },
+  fr: { eyebrow: 'La collection Skardu', l1: 'Né au-dessus', l2: 'des nuages.', lead: 'Shilajit pur de l’Himalaya, récolté à la main au-dessus de 5 000 mètres à Skardu. En résine, gommes, gouttes ou gélules.', shop: 'Découvrir la collection', alt: 'Collection de shilajit Himalayan Drop : gélules, gommes, gouttes et deux pots de résine sur un socle en pierre' },
+  es: { eyebrow: 'La colección Skardu', l1: 'Nacido sobre', l2: 'las nubes.', lead: 'Shilajit puro del Himalaya, recolectado a mano a más de 5.000 metros en Skardu. En resina, gominolas, gotas o cápsulas.', shop: 'Ver la colección', alt: 'Colección de shilajit Himalayan Drop: cápsulas, gominolas, gotas y dos tarros de resina sobre un pedestal de piedra' },
+  ar: { eyebrow: 'مجموعة سكاردو', l1: 'وُلد فوق', l2: 'الغيوم.', lead: 'شيلاجيت هيمالايا نقي، يُجمع يدوياً فوق 5000 متر في سكاردو. راتنج أو علكات أو قطرات أو كبسولات.', shop: 'تسوّق المجموعة', alt: 'مجموعة شيلاجيت Himalayan Drop: كبسولات وعلكات وقطرات وبرطمانا راتنج على قاعدة حجرية' },
+  ur: { eyebrow: 'اسکردو کلیکشن', l1: 'بادلوں سے', l2: 'اوپر جنم۔', lead: 'خالص ہمالیائی شلاجیت، اسکردو میں 5,000 میٹر سے اوپر ہاتھ سے جمع کیا گیا۔ ریزن، گمیز، ڈراپس یا کیپسول میں۔', shop: 'کلیکشن دیکھیں', alt: 'Himalayan Drop شلاجیت کلیکشن: کیپسول، گمیز، ڈراپس اور ریزن کے دو جار پتھر کے اسٹینڈ پر' },
 };
 
 export default function Hero() {
@@ -46,8 +46,7 @@ export default function Hero() {
         .from('.hero h1 .line > span', { yPercent: 115, stagger: 0.12 }, 0.4)
         .from('.hero-lead, .hero-ctas > *', { y: 20, opacity: 0, stagger: 0.08, duration: 1.1 }, 0.75)
         .from('.hero-product img', { y: 120, scale: 0.86, opacity: 0, duration: 1.8 }, 0.55)
-        .from('.hero-shadow', { scaleX: 0.3, opacity: 0, duration: 1.6 }, 0.75)
-        .from('.hero-chips li', { y: 16, opacity: 0, stagger: 0.07, duration: 1 }, 1.1);
+        .from('.hero-shadow', { scaleX: 0.3, opacity: 0, duration: 1.6 }, 0.75);
 
       // Gentle float after it lands.
       gsap.to('.hero-product img', { y: -12, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2.4 });
@@ -96,24 +95,20 @@ export default function Hero() {
             <Link href="/#collection" className="btn gold">
               {t.shop} <Arrow />
             </Link>
-            <Link href="/#story" className="btn ghost">{t.story}</Link>
           </div>
         </div>
 
         <div className="hero-product">
           <span className="hero-shadow" aria-hidden="true" />
           <img
-            src="/images/cut-maroon-set.webp"
+            src="/images/hero/collection.webp"
             alt={t.alt}
-            width="1400"
-            height="888"
+            width="1332"
+            height="998"
             fetchPriority="high"
           />
         </div>
 
-        <ul className="hero-chips">
-          {t.chips.map((c) => <li key={c}>{c}</li>)}
-        </ul>
       </div>
     </section>
   );
