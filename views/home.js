@@ -2,6 +2,7 @@
 // products) and passes them to the animated sections.
 import Hero from '@/components/Hero';
 import QuickLinks from '@/components/QuickLinks';
+import ProofThread from '@/components/ProofThread';
 import Collection from '@/components/Collection';
 import Spotlight from '@/components/Spotlight';
 import Story from '@/components/Story';
@@ -28,6 +29,7 @@ export default async function HomeView({ lang }) {
   return (
     <>
       <Hero />
+      <ProofThread />
       <QuickLinks />
       <Collection products={products} />
       <BenefitsExplorer />
