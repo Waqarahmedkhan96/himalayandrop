@@ -83,7 +83,7 @@ export default function ProofThread() {
     const onScroll = () => {
       setSlide(pos(el) % 3);
       clearTimeout(settle);
-      settle = setTimeout(() => { if (pos(el) >= 3) goTo(0, false); }, 140);
+      settle = setTimeout(() => { const n = pos(el); if (n >= 3) goTo(n - 3, false); }, 140);
     };
     el.addEventListener('scroll', onScroll, { passive: true });
     let touched = false;
@@ -172,6 +172,21 @@ export default function ProofThread() {
           <Link href="/our-shilajit/" className="pt-slide" aria-hidden="true" tabIndex={-1}>
             <Peak id="ptm2" className="pt-mini" viewBox="30 30 190 104" />
             <span><strong>{t.place}</strong><small>{t.alt}</small></span>
+          </Link>
+          <Link href="/lab-results/" className="pt-slide" aria-hidden="true" tabIndex={-1}>
+            <Doc id="ptm2-dg" />
+            <span><strong>{t.lab}</strong><small>{t.labSub}</small></span>
+          </Link>
+          <Link href="/certificates/" className="pt-slide pt-slide-std" aria-hidden="true" tabIndex={-1}>
+            <span className="pt-std-h">{t.std}</span>
+            <span className="pt-plaques">
+              {CERTS.map((c, i) => (
+                <span key={c} className="pt-pq">
+                  {i > 0 && <i className="pt-link" aria-hidden="true" />}
+                  <span className="pt-plaque">{c}</span>
+                </span>
+              ))}
+            </span>
           </Link>
         </div>
         <div className="pt-nav">
