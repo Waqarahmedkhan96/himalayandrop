@@ -177,10 +177,9 @@ export default function ProofThread() {
         <div className="pt-nav">
           <div className="pt-dots" role="tablist">
             {[t.place, t.lab, t.std].map((x, i) => (
-              <button key={x} type="button" role="tab" aria-selected={slide === i} aria-label={x} className={slide === i ? 'on' : ''} onClick={() => goTo(i === 0 && slide === 2 ? 3 : i)} />
+              <button key={x} type="button" role="tab" aria-selected={slide === i} aria-label={x} className={slide === i ? 'on' : ''} onClick={() => { const el = track.current; if (el) goTo(pos(el) + ((i - slide + 3) % 3)); }} />
             ))}
           </div>
-          <span className="pt-count" aria-hidden="true">{slide + 1} / 3</span>
         </div>
         <button type="button" className="pt-next" aria-label="Next" onClick={next}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
