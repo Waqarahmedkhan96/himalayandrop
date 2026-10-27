@@ -2452,3 +2452,4 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
   .hero-ctas .hero-btn { width: min(86%, 330px); }
   .hero-lab { position: relative; margin-top: 16px; }
 }
+@media (max-width: 767px) { .hero-ctas, .hero-lab { position: relative; z-index: 2; isolation: isolate; } }
