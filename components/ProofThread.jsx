@@ -8,13 +8,13 @@ import { useLang } from './LangProvider';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 
 const T = {
-  en: { place: 'Skardu, Pakistan', alt: 'Sourced above 5,200 m', lab: 'Batch lab reports', labSub: 'Heavy-metal testing', std: 'Quality standards' },
-  da: { place: 'Skardu, Pakistan', alt: 'Hentet over 5.200 m', lab: 'Laboratorierapport for hver batch', labSub: 'Test for tungmetaller', std: 'Kvalitetsstandarder' },
-  de: { place: 'Skardu, Pakistan', alt: 'Gewonnen über 5.200 m', lab: 'Laborberichte je Charge', labSub: 'Schwermetall-Prüfung', std: 'Qualitätsstandards' },
-  fr: { place: 'Skardu, Pakistan', alt: 'Récolté au-dessus de 5 200 m', lab: 'Rapports de labo par lot', labSub: 'Analyse des métaux lourds', std: 'Normes de qualité' },
-  es: { place: 'Skardu, Pakistán', alt: 'Recolectado a más de 5.200 m', lab: 'Informes de laboratorio por lote', labSub: 'Análisis de metales pesados', std: 'Estándares de calidad' },
-  ar: { place: 'سكاردو، باكستان', alt: 'يُجمع فوق 5200 متر', lab: 'تقارير مخبرية لكل دفعة', labSub: 'فحص المعادن الثقيلة', std: 'معايير الجودة' },
-  ur: { place: 'اسکردو، پاکستان', alt: '5,200 میٹر سے اوپر سے حاصل', lab: 'ہر بیچ کی لیب رپورٹ', labSub: 'بھاری دھاتوں کا ٹیسٹ', std: 'معیار کے سرٹیفکیٹ' },
+  en: { place: 'Skardu, Pakistan', alt: 'Sourced above 5,000 m', lab: 'Batch lab reports', labSub: 'Heavy-metal testing', std: 'Quality standards' },
+  da: { place: 'Skardu, Pakistan', alt: 'Hentet over 5.000 m', lab: 'Laboratorierapport for hver batch', labSub: 'Test for tungmetaller', std: 'Kvalitetsstandarder' },
+  de: { place: 'Skardu, Pakistan', alt: 'Gewonnen über 5.000 m', lab: 'Laborberichte je Charge', labSub: 'Schwermetall-Prüfung', std: 'Qualitätsstandards' },
+  fr: { place: 'Skardu, Pakistan', alt: 'Récolté au-dessus de 5 000 m', lab: 'Rapports de labo par lot', labSub: 'Analyse des métaux lourds', std: 'Normes de qualité' },
+  es: { place: 'Skardu, Pakistán', alt: 'Recolectado a más de 5.000 m', lab: 'Informes de laboratorio por lote', labSub: 'Análisis de metales pesados', std: 'Estándares de calidad' },
+  ar: { place: 'سكاردو، باكستان', alt: 'يُجمع فوق 5000 متر', lab: 'تقارير مخبرية لكل دفعة', labSub: 'فحص المعادن الثقيلة', std: 'معايير الجودة' },
+  ur: { place: 'اسکردو، پاکستان', alt: '5,000 میٹر سے اوپر سے حاصل', lab: 'ہر بیچ کی لیب رپورٹ', labSub: 'بھاری دھاتوں کا ٹیسٹ', std: 'معیار کے سرٹیفکیٹ' },
 };
 const CERTS = ['GMP', 'ISO 22000', 'ISO 9001'];
 

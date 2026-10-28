@@ -19,7 +19,7 @@ const T = {
 
 export const batches = [
   { id: 'HD-G-2611', product: 'Shilajit Resin Gold Edition', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
-  { id: 'HD-S-2611', product: 'Shilajit Resin Silver Edition', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
+  { id: 'HD-S-2611', product: 'Shilajit Resin Himalayan Edition', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
   { id: 'HD-GU-2611', product: 'Shilajit Gummies', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
   { id: 'HD-D-2611', product: 'Shilajit Drops', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
   { id: 'HD-C-2611', product: 'Shilajit Capsules', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
