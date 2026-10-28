@@ -873,7 +873,7 @@ em { font-style: italic; }
 }
 .pdp-actions { display: grid; gap: 8px; margin-top: 26px; } .pdp-actions .btn { margin-top: 0; }
 .shop-media { position: relative; }
-.shop-media img { position: absolute; left: 12%; top: 9%; width: 76%; height: 80%; object-fit: contain; }
+.shop-media img { position: absolute; left: 12%; top: 9%; width: 76%; height: 80%; object-fit: contain; object-position: 50% 100%; }
 
 /* Seals: centred 3 + 2 grid on phones, one row on desktop */
 .seals { flex-wrap: wrap; justify-content: center; overflow: visible; gap: 14px 10px; padding: 6px var(--gutter); scroll-snap-type: none; }
@@ -1535,7 +1535,7 @@ em { font-style: italic; }
 .mobile-nav .mn-img .mn-badge { position: absolute; z-index: 2; left: 4px; bottom: 4px; padding: 3px 6px; border-radius: 8px; background: var(--maroon); color: var(--gold-soft); font: 800 9px var(--sans); letter-spacing: 0.04em; line-height: 1.1; text-transform: uppercase; }
 .bundle-card { transition: box-shadow 0.5s var(--ease); }
 .bundle-card:hover { transform: none; }
-.bundle-stage img { position: absolute; inset: 9% 6% 10%; width: 88%; height: 81%; }
+.bundle-stage img { position: absolute; inset: 9% 6% 10%; width: 88%; height: 81%; object-position: 50% 100%; }
 
 /* ═════════ Audit fixes: skip link, 404, empty cart, form errors ═════════ */
 .skip-link { position: fixed; z-index: 200; top: 10px; left: 10px; padding: 12px 18px; border-radius: var(--pill); background: var(--gold-grad); color: var(--maroon-ink); font-weight: 700; transform: translateY(-160%); transition: transform 0.3s var(--ease); }
@@ -2547,11 +2547,11 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 
 /* ───────── Product page on the alcove stage (Gold Resin) ───────── */
 .pdp--alcove { background: radial-gradient(60% 40% at 10% 0%, #e9dccb, transparent 70%), radial-gradient(60% 50% at 90% 10%, #faf4ec, transparent 70%), #efe5d8; }
-.pdp--alcove .pdp-media.is-stage { aspect-ratio: 1216 / 1200; border-radius: 30px; background: #efe4d5; }
-.pdp--alcove .pdp-media.is-stage img { object-fit: cover; }
-.pdp--alcove .pdp-media.photo { border-radius: 30px; }
-.pdp-tag { position: absolute; inset-inline-start: 22px; top: 20px; padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 700; color: #520a14; background: rgba(250, 245, 238, .92); box-shadow: inset 0 0 0 1px rgba(184, 143, 77, .38); }
-.pdp--alcove .pdp-thumbs button { border-radius: 14px; }
+/* One arched frame for every slide, echoing the alcove: same shape, same ratio, all products */
+.pdp--alcove .pdp-media { aspect-ratio: 1216 / 1200; border-radius: 50% 50% 28px 28px / 30% 30% 28px 28px; background: #efe4d5; box-shadow: inset 0 0 0 1px rgba(184, 143, 77, .28); }
+.pdp--alcove .pdp-media img { object-fit: cover; }
+.pdp-tag { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); white-space: nowrap; padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 700; color: #520a14; background: rgba(250, 245, 238, .92); box-shadow: inset 0 0 0 1px rgba(184, 143, 77, .38); }
+.pdp--alcove .pdp-thumbs button { border-radius: 50% 50% 12px 12px / 34% 34% 12px 12px; }
 .pdp--alcove .pdp-thumbs button.on { box-shadow: inset 0 0 0 2px #520a14; }
 .pdp-eyebrow { display: flex; align-items: center; gap: 12px; margin-top: 18px; font-size: 12.5px; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: #a8803f; }
 .pdp-eyebrow::after { content: ''; width: 48px; height: 1px; background: #b88f4d; }

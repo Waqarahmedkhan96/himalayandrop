@@ -135,7 +135,7 @@ export default function ProductView({ product }) {
   const f = product.formula;
 
   // On the alcove layout the edition sits on its own line in gold italics,
-  // e.g. "Shilajit Resin" / "Gold Edition" (the edition is the first part of the subtitle).
+  // e.g. "Shilajit Resin" / "Himalayan Gold Edition" (the edition is the first part of the subtitle).
   const edition = (product.subtitle || '').split(' · ')[0];
   const titleParts = stage && edition && product.title.endsWith(edition) && product.title.length > edition.length
     ? [product.title.slice(0, -edition.length).trim(), edition]
