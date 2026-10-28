@@ -2510,6 +2510,20 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 [dir='rtl'] .cg-eyebrow, [dir='rtl'] .cg-count { letter-spacing: 0; }
 [dir='rtl'] .cg-head h2 { letter-spacing: 0; line-height: 1.25; }
 
+/* Phones: a card snaps to the left edge (the last one to the right edge) and is
+   86% wide, so its text and button would sit off the screen centre. Shift them
+   by the 7% gap so the button is centred on screen. The images do not move. */
+@media (max-width: 767px) {
+  .cg-info { transform: translateX(calc(100% * 7 / 86)); }
+  .cg-card:last-child .cg-info { transform: translateX(calc(100% * -7 / 86)); }
+  /* keep the shifted button inside its own card so it never overlaps a neighbour */
+  .cg-card { overflow: hidden; }
+  /* only the card on screen shows its button; neighbours' buttons don't peek in */
+  .cg-info { transition: opacity .35s var(--ease); }
+  .cg-card:not(.is-on) .cg-info { opacity: 0; }
+  .cg-shop { max-width: calc((100% + 24px) * 72 / 86); }
+}
+
 @media (min-width: 768px) {
   .cg-card { flex-basis: 50%; }
   .cg-head { flex-direction: row; justify-content: space-between; align-items: flex-start; padding-inline: 48px; }
