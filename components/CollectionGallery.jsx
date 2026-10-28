@@ -43,12 +43,21 @@ const T = {
 // Each product's display plate: one third of the reference artwork (alcove,
 // shelf and props) at 1:1, with the real pack standing on the same footprint.
 // x/y place the alcove number on the back wall, as a share of the plate.
+// Phones and tablets show each product in its own centred alcove (the same
+// plate as the product page), so every card is balanced on its own; mx is the
+// number's x position on that plate.
 const SCENE = {
-  'shilajit-gold-resin': { img: '/images/collection/gold.webp', x: 30.3, y: 24.6, dx: 18, wine: true },
-  'shilajit-silver-resin': { img: '/images/collection/silver.webp', x: 21.3, y: 24.6, dx: 1 },
-  'shilajit-gummies': { img: '/images/collection/gummies.webp', x: 14.9, y: 24.6, dx: -10 },
-  'shilajit-drops': { img: '/images/collection/drops.webp', x: 13.4, y: 24.6, dx: -10 },
-  'shilajit-capsules': { img: '/images/collection/capsules.webp', x: 12.6, y: 24.6, dx: -10 },
+  'shilajit-gold-resin': { img: '/images/collection/gold.webp', stage: '/images/pdp/gold-resin/stage.webp', x: 30.3, mx: 23.2, y: 24.6, dx: 18, wine: true },
+  'shilajit-silver-resin': { img: '/images/collection/silver.webp', stage: '/images/pdp/silver-resin/stage.webp', x: 21.3, mx: 20.1, y: 24.6, dx: 1 },
+  'shilajit-gummies': { img: '/images/collection/gummies.webp', stage: '/images/pdp/gummies/stage.webp', x: 14.9, mx: 20.2, y: 24.6, dx: -10 },
+  'shilajit-drops': { img: '/images/collection/drops.webp', stage: '/images/pdp/drops/stage.webp', x: 13.4, mx: 20.2, y: 24.6, dx: -10 },
+  'shilajit-capsules': { img: '/images/collection/capsules.webp', stage: '/images/pdp/capsules/stage.webp', x: 12.6, mx: 20.2, y: 24.6, dx: -10 },
+};
+
+// Distance from one card to the next (card width plus the gap on phones).
+const stepOf = (el) => {
+  const [a, b] = el.children;
+  return b ? Math.abs(b.offsetLeft - a.offsetLeft) : a.getBoundingClientRect().width;
 };
 
 const pad = (n) => String(n).padStart(2, '0');
@@ -70,8 +79,8 @@ export default function CollectionGallery({ products }) {
   const measure = useCallback(() => {
     const el = track.current;
     if (!el || !el.firstElementChild) return;
-    const w = el.firstElementChild.getBoundingClientRect().width;
-    const per = Math.max(1, Math.round(el.clientWidth / w));
+    const w = stepOf(el);
+    const per = Math.max(1, Math.floor((el.clientWidth + 2) / w));
     const first = Math.min(n - per, Math.max(0, Math.round(Math.abs(el.scrollLeft) / w)));
     setView((v) => (v.first === first && v.per === per ? v : { first, per }));
   }, [n]);
@@ -93,8 +102,8 @@ export default function CollectionGallery({ products }) {
   const aim = useRef(null);
   const go = (dir) => {
     const el = track.current;
-    const w = el.firstElementChild.getBoundingClientRect().width;
-    const per = Math.max(1, Math.round(el.clientWidth / w));
+    const w = stepOf(el);
+    const per = Math.max(1, Math.floor((el.clientWidth + 2) / w));
     const from = aim.current ?? Math.round(Math.abs(el.scrollLeft) / w);
     const to = Math.min(n - per, Math.max(0, from + dir));
     aim.current = to;
@@ -124,7 +133,7 @@ export default function CollectionGallery({ products }) {
     drag.current = null;
     if (!d || !d.moved) return;
     const el = track.current;
-    const w = el.firstElementChild.getBoundingClientRect().width;
+    const w = stepOf(el);
     const sign = el.scrollLeft < 0 ? -1 : 1;
     const target = Math.round(Math.abs(el.scrollLeft) / w) * w * sign;
     el.classList.remove('is-drag');
@@ -175,9 +184,12 @@ export default function CollectionGallery({ products }) {
             const href = `/products/${p.handle}/`;
             const price = p.amount != null ? formatMoney(p.amount, p.currency) : p.price;
             return (
-              <article className="cg-card" key={p.handle} aria-labelledby={`cg-${p.handle}`}>
-                <Link href={href} className={`cg-scene${s.wine ? ' is-wine' : ''}`} tabIndex={-1} aria-hidden="true" style={{ '--nx': `${s.x}%`, '--ny': `${s.y}%` }}>
-                  <img src={s.img} alt="" width="1024" height="1200" loading={p.i < 3 ? 'eager' : 'lazy'} draggable="false" />
+              <article className={`cg-card${p.i >= view.first && p.i < view.first + view.per ? ' is-on' : ''}`} key={p.handle} aria-labelledby={`cg-${p.handle}`}>
+                <Link href={href} className={`cg-scene${s.wine ? ' is-wine' : ''}`} tabIndex={-1} aria-hidden="true" style={{ '--nx': `${s.x}%`, '--mx': `${s.mx}%`, '--ny': `${s.y}%` }}>
+                  <picture>
+                    <source media="(max-width: 1000px)" srcSet={s.stage} width="1216" height="1200" />
+                    <img src={s.img} alt="" width="1024" height="1200" loading={p.i < 3 ? 'eager' : 'lazy'} draggable="false" />
+                  </picture>
                   <span className="cg-num">{pad(p.i + 1)}</span>
                 </Link>
                 <div className="cg-info" dir={rtl ? 'rtl' : undefined} style={{ '--dx': s.dx || 0 }}>
