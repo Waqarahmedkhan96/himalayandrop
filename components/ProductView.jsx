@@ -41,14 +41,42 @@ function factIcon(i, value, kind) {
 const STAGE = {
   'shilajit-gold-resin': '/images/pdp/gold-resin/stage.webp',
 };
+// Position in the collection, shown on the Skardu strip ("N° 01 / 05").
+const COLLECTION = ['shilajit-gold-resin', 'shilajit-silver-resin', 'shilajit-gummies', 'shilajit-drops', 'shilajit-capsules'];
+
+// Gold engraved ridge that runs along the bottom of the Skardu strip.
+function Ridge() {
+  return (
+    <svg className="sk-ridge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="skg" x1="0" x2="1">
+          <stop offset="0" stopColor="#cca25e" stopOpacity="0" />
+          <stop offset=".18" stopColor="#cca25e" />
+          <stop offset=".5" stopColor="#eed9a6" />
+          <stop offset=".82" stopColor="#cca25e" />
+          <stop offset="1" stopColor="#cca25e" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path d="M0 74 L120 62 L190 68 L300 44 L360 54 L470 30 L540 46 L620 38 L700 14 L760 30 L830 22 L920 44 L1000 36 L1090 54 L1170 42 L1260 60 L1340 56 L1440 70" fill="none" stroke="url(#skg)" strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
+      <path d="M0 80 L160 72 L260 76 L380 62 L470 68 L580 56 L690 64 L800 52 L910 62 L1020 58 L1130 68 L1250 66 L1440 78" fill="none" stroke="url(#skg)" strokeWidth=".8" strokeOpacity=".5" vectorEffect="non-scaling-stroke" />
+    </svg>
+  );
+}
+// Wrap the place name in the title so it can sit in gold italics.
+const markSkardu = (txt) => {
+  const m = txt.match(/(Skardu|سکردو|سكردو)/);
+  if (!m) return txt;
+  const i = m.index;
+  return <>{txt.slice(0, i)}<em>{m[0]}</em>{txt.slice(i + m[0].length)}</>;
+};
 const ALC = {
-  en: { eyebrow: 'The Skardu Collection', withSub: '{p} with Subscribe & Save' },
-  da: { eyebrow: 'Skardu-kollektionen', withSub: '{p} med Abonnér & Spar' },
-  de: { eyebrow: 'Die Skardu-Kollektion', withSub: '{p} mit Abo & Sparen' },
-  fr: { eyebrow: 'La collection Skardu', withSub: '{p} avec l’abonnement' },
-  es: { eyebrow: 'La colección Skardu', withSub: '{p} con suscripción' },
-  ar: { eyebrow: 'مجموعة سكردو', withSub: '{p} مع الاشتراك والتوفير' },
-  ur: { eyebrow: 'سکردو کلیکشن', withSub: 'سبسکرائب اینڈ سیو کے ساتھ {p}' },
+  en: { eyebrow: 'The Skardu Collection', withSub: '{p} with Subscribe & Save', guarantee: '60-day money-back guarantee', place: 'Skardu, Pakistan · above 5,000 m', view: 'View the collection' },
+  da: { eyebrow: 'Skardu-kollektionen', withSub: '{p} med Abonnér & Spar', guarantee: '60 dages penge-tilbage-garanti', place: 'Skardu, Pakistan · over 5.000 m', view: 'Se kollektionen' },
+  de: { eyebrow: 'Die Skardu-Kollektion', withSub: '{p} mit Abo & Sparen', guarantee: '60 Tage Geld-zurück-Garantie', place: 'Skardu, Pakistan · über 5.000 m', view: 'Zur Kollektion' },
+  fr: { eyebrow: 'La collection Skardu', withSub: '{p} avec l’abonnement', guarantee: 'Garantie satisfait ou remboursé 60 jours', place: 'Skardu, Pakistan · au-delà de 5 000 m', view: 'Voir la collection' },
+  es: { eyebrow: 'La colección Skardu', withSub: '{p} con suscripción', guarantee: 'Garantía de devolución de 60 días', place: 'Skardu, Pakistán · más de 5.000 m', view: 'Ver la colección' },
+  ar: { eyebrow: 'مجموعة سكردو', withSub: '{p} مع الاشتراك والتوفير', guarantee: 'ضمان استرداد المال لمدة 60 يوماً', place: 'سكردو، باكستان · فوق 5000 م', view: 'عرض المجموعة' },
+  ur: { eyebrow: 'سکردو کلیکشن', withSub: 'سبسکرائب اینڈ سیو کے ساتھ {p}', guarantee: '60 دن کی منی بیک گارنٹی', place: 'سکردو، پاکستان · 5,000 میٹر سے بلند', view: 'کلیکشن دیکھیں' },
 };
 
 // Small icon per formula row (same order as lib/products.js).
@@ -112,11 +140,27 @@ export default function ProductView({ product }) {
 
   return (
     <section className={`pdp${stage ? ' pdp--alcove' : ''}`} ref={root}>
+      {stage && (
+        <div className="sk-strip">
+          <span className="sk-no" dir="ltr">N° {String(COLLECTION.indexOf(product.handle) + 1).padStart(2, '0')}<i> / {String(COLLECTION.length).padStart(2, '0')}</i></span>
+          <div className="sk-mid">
+            <span className="sk-place">{a.place}</span>
+            <p className="sk-title">{markSkardu(a.eyebrow)}</p>
+          </div>
+          <Link href="/#collection" className="sk-view">{a.view} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" /></svg></Link>
+          <Ridge />
+        </div>
+      )}
       <div className="container pdp-grid">
         <div className="pdp-gallery">
           <div className={`pdp-media ${slide.cutout ? 'cutout' : 'photo'}${stage && index === 0 ? ' is-stage' : ''}`}>
             <img key={slide.src} src={slide.src} alt={slide.alt} />
-            {stage && <span className="pdp-tag">{t.trust[2]}</span>}
+            {stage && (
+              <span className="pdp-tag">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 16 5v4.6c0 3.8-2.6 6.6-6 7.9-3.4-1.3-6-4.1-6-7.9V5z" /><path d="m7.2 10 2 2 3.8-4" /></svg>
+                {a.guarantee}
+              </span>
+            )}
           </div>
           {slides.length > 1 && (
             <div className="pdp-thumbs" role="tablist" aria-label={t.images}>
@@ -140,7 +184,6 @@ export default function ProductView({ product }) {
           <p className="crumb">
             <Link href="/shop/">{t.shop}</Link> / {product.title}
           </p>
-          {stage && <span className="pdp-eyebrow">{a.eyebrow}</span>}
           <h1>
             <span className="line"><span>{titleParts ? <>{titleParts[0]} <em>{titleParts[1]}</em></> : product.title}</span></span>
           </h1>
