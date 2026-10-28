@@ -428,7 +428,7 @@ em { font-style: italic; }
   .nl-form:focus-within { box-shadow: inset 0 0 0 2px var(--gold); }
   .footer-ridge { height: 130px; }
   .footer-top { grid-template-columns: 1.2fr 2fr; }
-  .pdp-grid { grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: start; }
+  .pdp-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 56px; align-items: start; }
   .pdp-media { margin: 0; }
   .pdp-gallery { position: sticky; top: 90px; }
 }
@@ -2557,7 +2557,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 .pdp-eyebrow::after { content: ''; width: 48px; height: 1px; background: #b88f4d; }
 [dir='rtl'] .pdp-eyebrow { letter-spacing: 0; }
 .pdp--alcove .pdp-info h1 { margin-top: 12px; font-weight: 600; font-size: clamp(44px, 5.4vw, 78px); line-height: .95; letter-spacing: -.045em; color: #520a14; }
-.pdp--alcove .pdp-info h1 em { display: block; font-style: italic; font-weight: 500; color: #a8803f; letter-spacing: -.03em; }
+.pdp--alcove .pdp-info h1 em { display: block; font-size: .86em; font-style: italic; font-weight: 500; color: #a8803f; letter-spacing: -.03em; }
 [dir='rtl'] .pdp--alcove .pdp-info h1 { letter-spacing: 0; line-height: 1.2; }
 .pdp--alcove .pdp-info .sub { margin-top: 14px; font-size: 17px; }
 .pdp--alcove .pdp-info .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-top: 20px; font-family: var(--display); font-weight: 600; font-size: clamp(36px, 3.4vw, 46px); color: #520a14; font-variant-numeric: lining-nums; }
@@ -2607,3 +2607,27 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
   .sk-place { font-size: 10.5px; letter-spacing: .16em; gap: 8px; }
   .sk-place::before, .sk-place::after { width: 18px; }
 }
+
+/* Mobile-first overflow guards: grid tracks never grow past the screen */
+.pdp-grid { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 768px) { .pdp-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); } }
+.pdp-info, .pdp-gallery { min-width: 0; }
+.pdp-info h1 { overflow-wrap: break-word; }
+@media (min-width: 900px) {
+  .lab-metals { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); }
+  .lab-metals ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.lab-metals li { min-width: 0; }
+.metal-top strong { min-width: 0; overflow-wrap: anywhere; }
+.metal-foot { flex-wrap: wrap; }
+.facts-label { min-width: 0; max-width: 100%; }
+.facts-label table { table-layout: fixed; }
+.facts-label th, .facts-label td { overflow-wrap: anywhere; hyphens: auto; }
+/* Animated cards start rotated or offset before they reveal; never let that widen the page on phones. */
+html, body { overflow-x: clip; }
+/* Tablet: the info column is narrow, keep the facts stacked (icon above text) so all three fit. */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .pdp-stats > div { flex-direction: column; justify-content: flex-start; text-align: center; gap: 8px; padding: 14px 6px 13px; }
+  .pdp-stats > div, .pdp-stats .ps-txt { min-width: 0; }
+}
+.pdp-stats > div { min-width: 0; }
