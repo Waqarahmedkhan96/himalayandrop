@@ -36,10 +36,13 @@ function factIcon(i, value, kind) {
 }
 
 // Product pages that open on an alcove display (same set as the home
-// collection). Only Gold Resin for now; add a handle here to give another
-// product the same stage.
+// collection): each product's own arch, centred, on the travertine shelf.
 const STAGE = {
   'shilajit-gold-resin': '/images/pdp/gold-resin/stage.webp',
+  'shilajit-silver-resin': '/images/pdp/silver-resin/stage.webp',
+  'shilajit-gummies': '/images/pdp/gummies/stage.webp',
+  'shilajit-drops': '/images/pdp/drops/stage.webp',
+  'shilajit-capsules': '/images/pdp/capsules/stage.webp',
 };
 // Position in the collection, shown on the Skardu strip ("N° 01 / 05").
 const COLLECTION = ['shilajit-gold-resin', 'shilajit-silver-resin', 'shilajit-gummies', 'shilajit-drops', 'shilajit-capsules'];
@@ -147,7 +150,7 @@ export default function ProductView({ product }) {
             <span className="sk-place">{a.place}</span>
             <p className="sk-title">{markSkardu(a.eyebrow)}</p>
           </div>
-          <Link href="/#collection" className="sk-view">{a.view} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" /></svg></Link>
+          <span aria-hidden="true" />
           <Ridge />
         </div>
       )}
