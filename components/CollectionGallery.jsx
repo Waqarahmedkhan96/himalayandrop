@@ -175,7 +175,7 @@ export default function CollectionGallery({ products }) {
             const href = `/products/${p.handle}/`;
             const price = p.amount != null ? formatMoney(p.amount, p.currency) : p.price;
             return (
-              <article className="cg-card" key={p.handle} aria-labelledby={`cg-${p.handle}`}>
+              <article className={`cg-card${p.i >= view.first && p.i < view.first + view.per ? ' is-on' : ''}`} key={p.handle} aria-labelledby={`cg-${p.handle}`}>
                 <Link href={href} className={`cg-scene${s.wine ? ' is-wine' : ''}`} tabIndex={-1} aria-hidden="true" style={{ '--nx': `${s.x}%`, '--ny': `${s.y}%` }}>
                   <img src={s.img} alt="" width="1024" height="1200" loading={p.i < 3 ? 'eager' : 'lazy'} draggable="false" />
                   <span className="cg-num">{pad(p.i + 1)}</span>
