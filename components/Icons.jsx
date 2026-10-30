@@ -23,6 +23,9 @@ const paths = {
   scale: 'M5 20h14l-2-11H7ZM9 9a3 3 0 0 1 6 0M12 13v3',
   calendar: 'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4M8 14h2M14 14h2M8 17h2',
   user: 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6',
+  bolt: 'M13 3 5 14h6l-1 7 8-11h-6Z',
+  bone: 'M7 7a2.5 2.5 0 1 1 2.5 2.5l5 5A2.5 2.5 0 1 1 17 17a2.5 2.5 0 1 1-2.5-2.5l-5-5A2.5 2.5 0 0 1 7 7Z',
+  brain: 'M9 5a3 3 0 0 0-3 3v1a3 3 0 0 0-1 5 3 3 0 0 0 4 3h1V5ZM15 5a3 3 0 0 1 3 3v1a3 3 0 0 1 1 5 3 3 0 0 1-4 3h-1V5Z',
 };
 
 export function Icon({ name, size = 16 }) {
