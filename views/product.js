@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import ProductView from '@/components/ProductView';
 import MythDeck from '@/components/MythDeck';
 import ShilajitAnatomy from '@/components/ShilajitAnatomy';
-import BenefitsExplorer from '@/components/BenefitsExplorer';
+import StoneComposition from '@/components/StoneComposition';
 import FormulaBenefits from '@/components/FormulaBenefits';
 import Comparison from '@/components/Comparison';
 import JsonLd from '@/components/JsonLd';
@@ -89,7 +89,7 @@ export default async function ProductPageView({ lang, handle }) {
       <LabSpotlight product={product} />
       <LabelPanel product={product} kind={kind} />
       <ShilajitAnatomy product={product} kind={kind} />
-      <BenefitsExplorer initial={kind} id="product-benefits" />
+      <StoneComposition />
       {kind === 'capsules' && <FormulaBenefits product={product} />}
       <MythDeck kind={kind} />
       <ProductReviews product={product} kind={kind} />
