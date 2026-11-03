@@ -6,6 +6,7 @@
 // left to right, and lights each seal as it passes. Seals stay lit while the
 // band is on screen. They are not links.
 import { useEffect, useRef, useState } from 'react';
+import Link from './LLink';
 import { useLang } from './LangProvider';
 
 const SEALS = [
@@ -20,6 +21,18 @@ const LABEL = {
   en: 'Certifications and lab testing', da: 'Certificeringer og laboratorietest', de: 'Zertifizierungen und Labortests',
   fr: 'Certifications et analyses en laboratoire', es: 'Certificaciones y análisis de laboratorio', ar: 'الشهادات والفحوصات المخبرية', ur: 'سرٹیفکیٹس اور لیب ٹیسٹ',
 };
+
+// Proof facts that sit in the top of the same dark band as the seals (one strip, not two).
+const FACTS = {
+  en: [['Origin', 'Skardu, Pakistan', 'Sourced above 5,000 m'], ['Lab reports', 'Every batch tested', 'Heavy-metal testing'], ['Purity', 'Nothing added', 'Pure resin, no fillers']],
+  da: [['Oprindelse', 'Skardu, Pakistan', 'Hentet over 5.000 m'], ['Laboratorierapporter', 'Hver batch testet', 'Test for tungmetaller'], ['Renhed', 'Intet tilsat', 'Ren resin, ingen fyldstoffer']],
+  de: [['Herkunft', 'Skardu, Pakistan', 'Gewonnen über 5.000 m'], ['Laborberichte', 'Jede Charge geprüft', 'Schwermetall-Prüfung'], ['Reinheit', 'Nichts hinzugefügt', 'Reines Harz, keine Füllstoffe']],
+  fr: [['Origine', 'Skardu, Pakistan', 'Récolté au-dessus de 5 000 m'], ['Rapports de labo', 'Chaque lot testé', 'Analyse des métaux lourds'], ['Pureté', 'Rien d’ajouté', 'Résine pure, sans additifs']],
+  es: [['Origen', 'Skardu, Pakistán', 'Recolectado a más de 5.000 m'], ['Informes de laboratorio', 'Cada lote analizado', 'Análisis de metales pesados'], ['Pureza', 'Nada añadido', 'Resina pura, sin aditivos']],
+  ar: [['المنشأ', 'سكاردو، باكستان', 'يُجمع فوق 5000 متر'], ['تقارير المختبر', 'كل دفعة مفحوصة', 'فحص المعادن الثقيلة'], ['النقاء', 'دون أي إضافات', 'راتنج نقي، دون حشوات']],
+  ur: [['ماخذ', 'اسکردو، پاکستان', '5,000 میٹر سے اوپر سے حاصل'], ['لیب رپورٹس', 'ہر بیچ ٹیسٹ شدہ', 'بھاری دھات کی جانچ'], ['خالص پن', 'کچھ شامل نہیں', 'خالص ریزن، بغیر فلرز']],
+};
+const FACT_HREF = ['/our-shilajit/', '/lab-results/', '/certificates/'];
 const N = SEALS.length;
 
 export default function CertRidge() {
@@ -216,6 +229,17 @@ export default function CertRidge() {
 
   return (
     <section className="cr" aria-label={LABEL[lang] || LABEL.en}>
+      <ul className="cr-facts">
+        {(FACTS[lang] || FACTS.en).map(([k, h, sub], i) => (
+          <li key={k}>
+            <Link href={FACT_HREF[i]} className="cr-fact">
+              <span className="cr-fact-k">{k}</span>
+              <strong>{h}</strong>
+              <small>{sub}</small>
+            </Link>
+          </li>
+        ))}
+      </ul>
       <div className={`cr-band${flip ? ' is-flip' : ''}`} ref={root}>
         <div className="cr-sky" aria-hidden="true" />
         <svg className="cr-svg" preserveAspectRatio="none" aria-hidden="true">
