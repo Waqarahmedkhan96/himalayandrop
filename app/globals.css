@@ -2910,3 +2910,12 @@ html, body { overflow-x: clip; }
 .hero-btn:active { transform: translateY(1px); }
 
 @media (prefers-reduced-motion: reduce) { .btn:active { transform: none; } }
+
+/* Hero SEO copy: two-line lead under the headline */
+.hero-lead span { display: block; }
+.hero-lead span:first-child { font-weight: 500; letter-spacing: 0.06em; }
+.hero-lead span + span { margin-top: 4px; letter-spacing: 0.04em; opacity: 0.88; }
+@media (min-width: 1000px) {
+  .hero h1 { font-size: clamp(48px, 4.5vw, 84px); }
+  .hero h1 .line { white-space: nowrap; }
+}
