@@ -1033,13 +1033,17 @@ em { font-style: italic; }
 .route-copy p { margin-top: 12px; color: rgba(247, 241, 232, 0.75); max-width: 44ch; }
 .route svg { width: 100%; height: auto; display: block; overflow: visible; }
 
-.cert-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-.cert-item { display: grid; justify-items: center; text-align: center; gap: 10px; border-radius: var(--r-xl); background: var(--maroon-deep); color: var(--cream); padding: 30px 22px; }
-.cert-seal { width: 150px; }
-.cert-seal .seal-svg { filter: drop-shadow(0 18px 24px rgba(10, 2, 4, 0.5)); }
-.cert-item h3 { font-size: 26px; margin-top: 6px; }
-.cert-item p { color: rgba(247, 241, 232, 0.75); max-width: 36ch; font-size: 15px; }
-.cert-item .btn.outline { color: var(--gold-soft); box-shadow: inset 0 0 0 1.5px rgba(226, 196, 135, 0.5); margin-top: 6px; }
+.cert-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.cert-item { position: relative; flex: 1 1 100%; display: grid; justify-items: center; text-align: center; gap: 8px; border-radius: var(--r-xl); padding: 28px 22px 26px; color: var(--maroon);
+  background: radial-gradient(90% 70% at 50% 0%, #fffaf0, transparent 70%), linear-gradient(180deg, #f8f0e1, #eadcc2);
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(176, 132, 63, 0.45), 0 26px 40px -28px rgba(64, 1, 10, 0.55); transition: transform 0.5s var(--ease), box-shadow 0.5s; }
+.cert-item:hover { transform: translateY(-4px); box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(176, 132, 63, 0.7), 0 34px 48px -26px rgba(64, 1, 10, 0.6); }
+.cert-seal { width: 172px; height: 172px; display: grid; place-items: center; border-radius: 50%; margin-bottom: 8px;
+  background: radial-gradient(circle at 50% 35%, #5b1022, #2a0610 75%); box-shadow: inset 0 0 0 3px rgba(204, 162, 94, 0.55), inset 0 6px 16px rgba(0, 0, 0, 0.6), 0 10px 22px -10px rgba(42, 1, 7, 0.7); }
+.cert-seal img, .cert-seal .seal-svg { width: 132px; height: 132px; object-fit: contain; filter: drop-shadow(0 0 14px rgba(255, 179, 71, 0.4)) drop-shadow(0 6px 5px rgba(0, 0, 0, 0.55)); }
+.cert-item h3 { font: italic 400 26px/1.1 var(--display); color: var(--maroon); margin: 4px 0 0; }
+.cert-item p { color: var(--muted); max-width: 34ch; font-size: 15px; margin: 0; }
+.cert-item .btn.outline { margin-top: 10px; }
 
 .tiers { display: grid; gap: 12px; }
 .tier { position: relative; overflow: hidden; border-radius: var(--r-xl); background: #fff; box-shadow: 0 0 0 1px var(--line); padding: 28px 24px; color: var(--maroon); }
@@ -1095,7 +1099,8 @@ em { font-style: italic; }
   .howto-steps { grid-template-columns: repeat(2, 1fr); }
   .notes-card { padding: 44px 40px; }
   .route-card { grid-template-columns: 1fr 1.2fr; align-items: center; padding: 44px; }
-  .cert-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .cert-grid { gap: 16px; }
+  .cert-item { flex-basis: calc(50% - 8px); }
   .how-steps { grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .tiers { grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .auth-card { grid-template-columns: 1fr 1.1fr; }
@@ -1107,7 +1112,7 @@ em { font-style: italic; }
 }
 @media (min-width: 1100px) {
   .feature-grid { grid-template-columns: repeat(3, 1fr); }
-  .cert-grid { grid-template-columns: repeat(3, 1fr); }
+  .cert-item { flex: 0 1 calc(33.333% - 12px); }
 }
 .nav .nav-panel a { border-radius: 14px; padding: 10px 14px; color: inherit; }
 .nav .nav-panel a:hover { color: inherit; }

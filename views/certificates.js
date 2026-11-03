@@ -124,6 +124,8 @@ const T = {
   },
 };
 
+const IMG = { gmp: 'gmp', iso22000: 'iso22000', iso9001: 'iso9001', metals: 'lab-tested' };
+
 export default function CertificatesView({ lang }) {
   const t = tr(T, lang);
   const seals = getSeals(lang);
@@ -137,7 +139,9 @@ export default function CertificatesView({ lang }) {
               const d = t.details[s.id];
               return (
                 <article className="cert-item" key={s.id}>
-                  <div className="cert-seal"><Seal s={s} prefix="cp" /></div>
+                  <div className="cert-seal">
+                    {IMG[s.id] ? <img src={`/images/certs/${IMG[s.id]}.webp`} alt="" width="150" height="150" loading="lazy" decoding="async" /> : <Seal s={s} prefix="cp" />}
+                  </div>
                   <h3>{d.title}</h3>
                   <p>{d.text}</p>
                   {d.file ? (
