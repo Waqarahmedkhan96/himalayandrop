@@ -1,7 +1,7 @@
 'use client';
 // Certification ridge: a narrow band under the proof strip. The ridge and the
-// seals travel left to right without end; a resin drop runs the other way,
-// right to left, and lights each seal as it passes. Seals stay lit while the
+// seals travel right to left without end; a resin drop runs the other way,
+// left to right, and lights each seal as it passes. Seals stay lit while the
 // band is on screen and link to the certificate and lab pages.
 import { useEffect, useRef } from 'react';
 import Link from './LLink';
@@ -32,16 +32,16 @@ export default function CertRidge() {
     const drop = q('.cr-drop'), lit = q('.cr-lit');
     const gates = [...el.querySelectorAll('.cr-gate')]; // two copies of the four seals
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // px per second: ridge and seals go left to right, the drop right to left (slower on phones)
+    // px per second: ridge and seals go right to left, the drop left to right (slower on phones)
     const speeds = () => (W <= 767 ? { VB: 24, VD: 70 } : { VB: 44, VD: 150 });
     const TAU = Math.PI * 2;
     let W = 0, xs = [], ys = [], cum = [], total = 0, gx = [];
     let off = 0, farOff = 0, xd = 0, prev = new Array(N * 2).fill(0), visible = true, raf = 0, last = 0;
 
-    const sx = (i) => gx[i % N] + Math.floor(i / N) * W + off - W; // screen x of a seal
+    const sx = (i) => gx[i % N] + Math.floor(i / N) * W - off; // screen x of a seal
 
     const rearm = () => {
-      xd = W + 50;
+      xd = -50;
       prev = gates.map((_, i) => xd - sx(i));
     };
 
@@ -100,17 +100,17 @@ export default function CertRidge() {
       return arr[i] + (arr[i + 1] - arr[i]) * (f - i);
     };
     const place = () => {
-      nearG.setAttribute('transform', `translate(${(off - W).toFixed(2)} 0)`);
-      farG.setAttribute('transform', `translate(${(farOff - W).toFixed(2)} 0)`);
-      world.style.transform = `translate3d(${(off - W).toFixed(2)}px,0,0)`;
+      nearG.setAttribute('transform', `translate(${(-off).toFixed(2)} 0)`);
+      farG.setAttribute('transform', `translate(${(-farOff).toFixed(2)} 0)`);
+      world.style.transform = `translate3d(${(-off).toFixed(2)}px,0,0)`;
     };
     const setDrop = () => {
-      const wx = xd - off + W, y = interp(ys, wx), L = interp(cum, wx);
+      const wx = xd + off, y = interp(ys, wx), L = interp(cum, wx);
       const o = Math.max(0, Math.min(1, (xd + 20) / 70, (W + 70 - xd) / 70));
       drop.setAttribute('transform', `translate(${xd.toFixed(1)} ${(y - 9).toFixed(1)})`);
       drop.setAttribute('opacity', o.toFixed(2));
       lit.setAttribute('stroke-dasharray', `110 ${total * 3}`);
-      lit.setAttribute('stroke-dashoffset', (-L).toFixed(1));
+      lit.setAttribute('stroke-dashoffset', (110 - L).toFixed(1));
       lit.setAttribute('opacity', o.toFixed(2));
     };
 
@@ -127,20 +127,20 @@ export default function CertRidge() {
       const { VB, VD } = speeds();
       off += VB * dt;
       farOff = (farOff + VB * 0.45 * dt) % W;
-      if (off >= W) { // the first copy has become the second: carry its state across
+      if (off >= W) { // the second copy has become the first: carry its state across
         off -= W;
         for (let k = 0; k < N; k++) {
-          gates[k + N].classList.toggle('on', gates[k].classList.contains('on'));
-          gates[k].classList.remove('on');
-          prev[k + N] = prev[k];
-          prev[k] = xd - sx(k);
+          gates[k].classList.toggle('on', gates[k + N].classList.contains('on'));
+          gates[k + N].classList.remove('on');
+          prev[k] = prev[k + N];
+          prev[k + N] = xd - sx(k + N);
         }
       }
-      xd -= VD * dt;
-      if (xd < -50) rearm();
+      xd += VD * dt;
+      if (xd > W + 50) rearm();
       gates.forEach((g, i) => {
         const dd = xd - sx(i);
-        if (prev[i] > 0 && dd <= 0) g.classList.add('on');
+        if (prev[i] < 0 && dd >= 0) g.classList.add('on');
         prev[i] = dd;
       });
       place();
