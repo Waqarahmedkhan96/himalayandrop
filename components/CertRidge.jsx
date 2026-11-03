@@ -1,9 +1,11 @@
 'use client';
-// Certification ridge: a narrow band under the proof strip. The ridge and the
+// Certification ridge: a narrow band under the proof strip. A small button flips it
+// between two views: mountains below the seals, or hanging above them.
+// The ridge and the
 // seals travel right to left without end; a resin drop runs the other way,
 // left to right, and lights each seal as it passes. Seals stay lit while the
 // band is on screen and link to the certificate and lab pages.
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from './LLink';
 import { useLang } from './LangProvider';
 
@@ -14,6 +16,7 @@ const SEALS = [
   { key: 'lab-tested', alt: 'Lab tested for heavy metals', href: '/lab-results/', peak: 96 },
   { key: 'natural', alt: '100% natural', href: '/our-shilajit/', peak: 98 },
 ];
+const FLIP = { en: 'Flip the view', da: 'Vend visningen', de: 'Ansicht umdrehen', fr: 'Inverser la vue', es: 'Invertir la vista', ar: 'اقلب العرض', ur: 'منظر الٹیں' };
 const LABEL = {
   en: 'Certifications and lab testing', da: 'Certificeringer og laboratorietest', de: 'Zertifizierungen und Labortests',
   fr: 'Certifications et analyses en laboratoire', es: 'Certificaciones y análisis de laboratorio', ar: 'الشهادات والفحوصات المخبرية', ur: 'سرٹیفکیٹس اور لیب ٹیسٹ',
@@ -23,6 +26,11 @@ const N = SEALS.length;
 export default function CertRidge() {
   const lang = useLang();
   const root = useRef(null);
+  const [flip, setFlip] = useState(false);
+
+  // remember the viewer's choice
+  useEffect(() => { try { if (localStorage.getItem('cr-flip') === '1') setFlip(true); } catch (e) {} }, []);
+  const toggle = () => setFlip((f) => { try { localStorage.setItem('cr-flip', f ? '0' : '1'); } catch (e) {} return !f; });
 
   useEffect(() => {
     const el = root.current;
@@ -78,7 +86,7 @@ export default function CertRidge() {
           return [qq[0], (qq[1] * 2 + (t / 5) * 3) / 5];
         });
       }
-      pts = pts.map((p) => [p[0], H - p[1]]); // turn the ridge upside down: it hangs from the top
+      if (flip) pts = pts.map((p) => [p[0], H - p[1]]); // turn the ridge upside down: it hangs from the top
       xs = pts.map((p) => p[0]); ys = pts.map((p) => p[1]);
       cum = [0];
       for (let i = 1; i < xs.length; i++) cum.push(cum[i - 1] + Math.hypot(xs[i] - xs[i - 1], ys[i] - ys[i - 1]));
@@ -86,10 +94,13 @@ export default function CertRidge() {
       const d = 'M' + pts.map((p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('L');
       q('.cr-edge').setAttribute('d', d);
       lit.setAttribute('d', d);
-      q('.cr-near').setAttribute('d', `${d}L${2 * P} 0L0 0Z`);
+      q('.cr-near').setAttribute('d', flip ? `${d}L${2 * P} 0L0 0Z` : `${d}L${2 * P} ${H}L0 ${H}Z`);
       const far = [];
-      for (let x = 0; x <= 2 * P; x += 6) far.push(`${x} ${(H - 94 - dy - 16 * Math.sin((TAU * 2 * x) / P + 1) - 9 * Math.sin((TAU * 5 * x) / P) - 4 * Math.sin((TAU * 11 * x) / P)).toFixed(1)}`);
-      q('.cr-far').setAttribute('d', `M${far.join('L')}L${2 * P} 0L0 0Z`);
+      for (let x = 0; x <= 2 * P; x += 6) {
+        const fy = 94 + dy + 16 * Math.sin((TAU * 2 * x) / P + 1) + 9 * Math.sin((TAU * 5 * x) / P) + 4 * Math.sin((TAU * 11 * x) / P);
+        far.push(`${x} ${(flip ? H - fy : fy).toFixed(1)}`);
+      }
+      q('.cr-far').setAttribute('d', `M${far.join('L')}L${2 * P} ${flip ? 0 : H}L0 ${flip ? 0 : H}Z`);
       world.style.width = 2 * P + 'px';
       gates.forEach((g, i) => {
         const wx = gx[i % N] + Math.floor(i / N) * P;
@@ -98,8 +109,13 @@ export default function CertRidge() {
         g.querySelector('.cr-pin').style.top = y - 4 + 'px';
         g.querySelector('.cr-ring').style.top = y - 4 + 'px';
         const stem = g.querySelector('.cr-stem');
-        stem.style.top = y + 6 + 'px';
-        stem.style.height = Math.max(10, H - 12 - sz - 10 - (y + 6)) + 'px';
+        if (flip) {
+          stem.style.top = y + 6 + 'px';
+          stem.style.height = Math.max(10, H - 12 - sz - 10 - (y + 6)) + 'px';
+        } else {
+          stem.style.top = sz + 14 + 'px';
+          stem.style.height = Math.max(10, y - sz - 20) + 'px';
+        }
       });
       rearm();
     };
@@ -116,7 +132,7 @@ export default function CertRidge() {
     const setDrop = () => {
       const wx = xd + off, y = interp(ys, wx), L = interp(cum, wx);
       const o = Math.max(0, Math.min(1, (xd + 20) / 70, (W + 70 - xd) / 70));
-      drop.setAttribute('transform', `translate(${xd.toFixed(1)} ${(y + 9).toFixed(1)})`);
+      drop.setAttribute('transform', `translate(${xd.toFixed(1)} ${(y + (flip ? 9 : -9)).toFixed(1)})`);
       drop.setAttribute('opacity', o.toFixed(2));
       lit.setAttribute('stroke-dasharray', `110 ${total * 3}`);
       lit.setAttribute('stroke-dashoffset', (110 - L).toFixed(1));
@@ -161,7 +177,7 @@ export default function CertRidge() {
     sky.innerHTML = '';
     for (let i = 0; i < 24; i++) {
       const s = document.createElement('i');
-      s.style.cssText = `left:${(i * 37 + 11) % 100}%;top:${34 + ((i * 53) % 60)}%;animation-delay:${(i % 7) * 0.6}s;animation-duration:${3 + (i % 4)}s`;
+      s.style.cssText = `left:${(i * 37 + 11) % 100}%;top:${flip ? 34 + ((i * 53) % 60) : (i * 53) % 42}%;animation-delay:${(i % 7) * 0.6}s;animation-duration:${3 + (i % 4)}s`;
       sky.appendChild(s);
     }
 
@@ -186,20 +202,27 @@ export default function CertRidge() {
     // pointing at (or tabbing to) a seal holds everything still so it can be read
     const hold = () => { hover = true; }, free = () => { hover = false; };
     const canHover = window.matchMedia('(hover: hover)').matches;
-    world.addEventListener('mouseover', (e) => { if (canHover && e.target.closest('.cr-lab')) hold(); });
-    world.addEventListener('mouseout', (e) => { if (e.target.closest('.cr-lab')) free(); });
+    const over = (e) => { if (canHover && e.target.closest('.cr-lab')) hold(); };
+    const out = (e) => { if (e.target.closest('.cr-lab')) free(); };
+    world.addEventListener('mouseover', over);
+    world.addEventListener('mouseout', out);
     world.addEventListener('focusin', hold);
     world.addEventListener('focusout', free);
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); };
-  }, []);
+    return () => {
+      cancelAnimationFrame(raf); ro.disconnect(); io.disconnect();
+      world.removeEventListener('mouseover', over); world.removeEventListener('mouseout', out);
+      world.removeEventListener('focusin', hold); world.removeEventListener('focusout', free);
+    };
+  }, [flip]);
 
   return (
     <section className="cr" aria-label={LABEL[lang] || LABEL.en}>
-      <div className="cr-band" ref={root}>
+      <div className={`cr-band${flip ? ' is-flip' : ''}`} ref={root}>
         <div className="cr-sky" aria-hidden="true" />
         <svg className="cr-svg" preserveAspectRatio="none" aria-hidden="true">
           <defs>
-            <linearGradient id="cr-nf" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#4b0b1a" /><stop offset="1" stopColor="#1c0207" /></linearGradient>
+            <linearGradient id="cr-nf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#4b0b1a" /><stop offset="1" stopColor="#1c0207" /></linearGradient>
+            <linearGradient id="cr-nf2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#4b0b1a" /><stop offset="1" stopColor="#1c0207" /></linearGradient>
             <radialGradient id="cr-dg" cx=".38" cy=".32" r=".8"><stop offset="0" stopColor="#FFF8DC" /><stop offset=".4" stopColor="#FFC25C" /><stop offset="1" stopColor="#B9620F" /></radialGradient>
             <filter id="cr-bl" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="6" /></filter>
           </defs>
@@ -211,6 +234,9 @@ export default function CertRidge() {
             <ellipse cx="-2" cy="1" rx="1.4" ry="2.2" fill="#fff" opacity=".7" />
           </g>
         </svg>
+        <button type="button" className="cr-flip" onClick={toggle} aria-pressed={flip} aria-label={FLIP[lang] || FLIP.en} title={FLIP[lang] || FLIP.en}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 13V3M2.5 5.5 5 3l2.5 2.5M11 3v10M8.5 10.5 11 13l2.5-2.5" /></svg>
+        </button>
         <div className="cr-world">
           {[0, 1].flatMap((c) =>
             SEALS.map((s) => (

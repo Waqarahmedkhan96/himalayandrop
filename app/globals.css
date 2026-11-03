@@ -2704,7 +2704,7 @@ html, body { overflow-x: clip; }
 .cr-world { position: absolute; left: 0; top: 0; height: 100%; will-change: transform; }
 .cr-drop { filter: drop-shadow(0 0 7px #ffb347); }
 .cr-gate { position: absolute; top: 0; width: 0; height: 100%; }
-.cr-lab { position: absolute; left: 0; bottom: 12px; transform: translateX(-50%); width: var(--s); height: var(--s); display: block; border-radius: 50%; }
+.cr-lab { position: absolute; left: 0; top: 12px; transform: translateX(-50%); width: var(--s); height: var(--s); display: block; border-radius: 50%; }
 .cr-lab:focus-visible { outline: 2px solid #f6e3ae; outline-offset: 3px; }
 .cr-seal { display: block; width: 100%; height: 100%; object-fit: contain; filter: grayscale(1) brightness(0.55) contrast(0.9); opacity: 0.38; transform: scale(0.86);
   transition: filter 0.6s, opacity 0.6s, transform 0.6s cubic-bezier(0.2, 0.9, 0.2, 1); }
@@ -2714,7 +2714,7 @@ html, body { overflow-x: clip; }
 @keyframes cr-shine { to { background-position: 150% 0; } }
 .cr-gate.on .cr-seal { filter: drop-shadow(0 0 12px rgba(255, 179, 71, 0.55)) drop-shadow(0 6px 5px rgba(0, 0, 0, 0.6)); opacity: 1; transform: scale(1); animation: cr-pop 0.7s cubic-bezier(0.2, 0.9, 0.2, 1); }
 @keyframes cr-pop { 0% { transform: scale(0.7); } 55% { transform: scale(1.14); } 100% { transform: scale(1); } }
-.cr-stem { position: absolute; left: 0; width: 1px; background: linear-gradient(0deg, rgba(204, 162, 94, 0.6), rgba(204, 162, 94, 0));
+.cr-stem { position: absolute; left: 0; width: 1px; background: linear-gradient(180deg, rgba(204, 162, 94, 0.6), rgba(204, 162, 94, 0));
   transform-origin: top; transform: scaleY(0); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); pointer-events: none; }
 .cr-pin { position: absolute; left: -4px; width: 8px; height: 8px; transform: rotate(45deg); background: #220208; border: 1px solid #8a6429; transition: 0.4s; pointer-events: none; }
 .cr-ring { position: absolute; left: -14px; width: 28px; height: 28px; margin-top: -10px; border-radius: 50%; border: 1px solid #f6e3ae; opacity: 0; pointer-events: none; }
@@ -2779,3 +2779,11 @@ html, body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) { .ht-stage { animation: none; } .ht-im img, .ht-nm::after { transition: none; } }
 .how-more { padding: 6px 16px 18px; }
 .faq-how { margin: 28px 0 0; text-align: center; }
+
+/* Flipped view: the ridge hangs from the top and the seals sit along the bottom */
+.cr-band.is-flip .cr-near { fill: url(#cr-nf2); }
+.cr-band.is-flip .cr-lab { top: auto; bottom: 12px; }
+.cr-band.is-flip .cr-stem { background: linear-gradient(0deg, rgba(204, 162, 94, 0.6), rgba(204, 162, 94, 0)); }
+.cr-flip { position: absolute; z-index: 5; top: 10px; right: 10px; width: 34px; height: 34px; display: grid; place-items: center; padding: 0; cursor: pointer; border-radius: 50%; color: #f6e3ae; background: rgba(34, 2, 8, 0.72); border: 1px solid rgba(204, 162, 94, 0.55); backdrop-filter: blur(4px); transition: background 0.3s, color 0.3s; }
+.cr-flip:hover { background: #f6e3ae; color: #33060f; }
+.cr-flip:focus-visible { outline: 2px solid #f6e3ae; outline-offset: 3px; }
