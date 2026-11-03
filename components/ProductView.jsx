@@ -85,6 +85,7 @@ const ALC = {
 // Small icon per formula row (same order as lib/products.js).
 // How-to step icons: the measuring step shows the spoon.
 const STEP_ICON = { jar: 'spoon' };
+const GUIDE = { en: 'See the full guide', da: 'Se hele vejledningen', de: 'Zur ganzen Anleitung', fr: 'Voir le guide complet', es: 'Ver la guía completa', ar: 'عرض الدليل الكامل', ur: 'مکمل رہنمائی دیکھیں' };
 
 export default function ProductView({ product }) {
   const root = useRef(null);
@@ -267,6 +268,7 @@ export default function ProductView({ product }) {
                 ))}
               </ol>
               {product.directions && <p className="band-note how-dir"><Icon name="shield" size={14} /> {product.directions}</p>}
+              <div className="how-more"><Link href={`/how-to-use/#${kind}`} className="btn outline">{GUIDE[lang] || GUIDE.en} <Arrow /></Link></div>
             </div>
           )}
           <div className="faq-list">

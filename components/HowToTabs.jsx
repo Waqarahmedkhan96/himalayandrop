@@ -1,7 +1,6 @@
 'use client';
 // How-to-use tabs: Resin / Gummies / Drops / Capsules, each with four illustrated steps.
-import { useState } from 'react';
-import { Icon } from './Icons';
+import { useEffect, useState } from 'react';
 import { useLang } from './LangProvider';
 
 const guidesEn = {
@@ -125,40 +124,81 @@ export function howToSteps(lang, kind) {
 
 const CHOOSE = { en: 'Choose a product', da: 'Vælg et produkt', de: 'Produkt wählen', fr: 'Choisir un produit', es: 'Elige un producto', ar: 'اختر منتجاً', ur: 'پروڈکٹ منتخب کریں' };
 
+// Quick facts above the steps: labels per language, then values for resin, gummies, drops, capsules.
+const SPEC_LABELS = {
+  en: ['Daily', 'Take with', 'When'],
+  da: ['Dagligt', 'Tages med', 'Hvornår'],
+  de: ['Täglich', 'Einnahme mit', 'Wann'],
+  fr: ['Par jour', 'À prendre avec', 'Quand'],
+  es: ['Al día', 'Tomar con', 'Cuándo'],
+  ar: ['يومياً', 'يؤخذ مع', 'متى'],
+  ur: ['روزانہ', 'کے ساتھ لیں', 'کب'],
+};
+const SPECS = {
+  en: [['A pea-sized amount', 'Warm water or tea', 'Same time each day'], ['2 gummies', 'Nothing needed', 'Same time each day'], ['3 drops', 'Directly, in water or tea', '30 min before food'], ['2 capsules', 'A glass of water', 'Same time each day']],
+  da: [['En ærtestor mængde', 'Varmt vand eller te', 'Samme tid hver dag'], ['2 vingummi', 'Intet nødvendigt', 'Samme tid hver dag'], ['3 dråber', 'Direkte, i vand eller te', '30 min før måltid'], ['2 kapsler', 'Et glas vand', 'Samme tid hver dag']],
+  de: [['Erbsengroße Menge', 'Warmes Wasser oder Tee', 'Täglich zur gleichen Zeit'], ['2 Gummies', 'Nichts nötig', 'Täglich zur gleichen Zeit'], ['3 Tropfen', 'Direkt, in Wasser oder Tee', '30 Min. vor dem Essen'], ['2 Kapseln', 'Ein Glas Wasser', 'Täglich zur gleichen Zeit']],
+  fr: [['Une noisette, taille d’un petit pois', 'Eau chaude ou thé', 'Chaque jour à la même heure'], ['2 gommes', 'Rien de nécessaire', 'Chaque jour à la même heure'], ['3 gouttes', 'Pures, dans l’eau ou le thé', '30 min avant le repas'], ['2 gélules', 'Un verre d’eau', 'Chaque jour à la même heure']],
+  es: [['Del tamaño de un guisante', 'Agua caliente o té', 'A la misma hora cada día'], ['2 gominolas', 'Nada necesario', 'A la misma hora cada día'], ['3 gotas', 'Directas, en agua o té', '30 min antes de comer'], ['2 cápsulas', 'Un vaso de agua', 'A la misma hora cada día']],
+  ar: [['بحجم حبة البازلاء', 'ماء دافئ أو شاي', 'الوقت نفسه يومياً'], ['علكتان', 'لا شيء مطلوب', 'الوقت نفسه يومياً'], ['3 قطرات', 'مباشرة أو في الماء أو الشاي', 'قبل الأكل بـ 30 دقيقة'], ['كبسولتان', 'كوب من الماء', 'الوقت نفسه يومياً']],
+  ur: [['مٹر کے دانے جتنی', 'نیم گرم پانی یا چائے', 'روزانہ ایک ہی وقت'], ['2 گمیز', 'کچھ ضروری نہیں', 'روزانہ ایک ہی وقت'], ['3 قطرے', 'براہِ راست، پانی یا چائے میں', 'کھانے سے 30 منٹ پہلے'], ['2 کیپسول', 'ایک گلاس پانی', 'روزانہ ایک ہی وقت']],
+};
+const KEYS = ['resin', 'gummies', 'drops', 'capsules'];
+
 export default function HowToTabs() {
   const lang = useLang();
   const guides = guidesBy[lang] || guidesEn;
   const names = Object.keys(guides);
-  const [tab, setTab] = useState(names[0]);
-  const g = guides[tab];
+  const [tab, setTab] = useState(0);
+  const labels = SPEC_LABELS[lang] || SPEC_LABELS.en;
+  const specs = (SPECS[lang] || SPECS.en)[tab];
+  const g = guides[names[tab]];
+
+  // A link like /how-to-use/#gummies opens that product.
+  useEffect(() => {
+    const pick = () => {
+      const i = KEYS.indexOf(window.location.hash.replace('#', ''));
+      if (i >= 0) setTab(i);
+    };
+    pick();
+    window.addEventListener('hashchange', pick);
+    return () => window.removeEventListener('hashchange', pick);
+  }, []);
 
   return (
-    <div className="howto">
-      <div className="filter-row tabs" role="tablist" aria-label={CHOOSE[lang] || CHOOSE.en}>
-        {names.map((n) => (
-          <button key={n} type="button" role="tab" aria-selected={tab === n} className={tab === n ? 'on' : ''} onClick={() => setTab(n)}>
-            {n}
-          </button>
-        ))}
+    <div className="ht">
+      <div className="ht-shelf">
+        <div className="ht-picks" role="tablist" aria-label={CHOOSE[lang] || CHOOSE.en}>
+          {names.map((n, i) => (
+            <button key={n} type="button" role="tab" aria-selected={tab === i} className="ht-pick" onClick={() => setTab(i)}>
+              <span className="ht-im"><img src={guides[n].img} alt="" loading="lazy" /></span>
+              <span className="ht-nm">{n}</span>
+            </button>
+          ))}
+        </div>
       </div>
-      {names.map((n) => (
-        <div key={n} className="howto-panel" role="tabpanel" hidden={tab !== n} data-tab={n}>
-          <div className="howto-stage">
-            <span className="stage-glow" />
-            <img src={guides[n].img} alt={`Himalayan Drop ${n}`} loading="lazy" />
+
+      <div className="ht-stage" key={tab}>
+        <div className="ht-alcove">
+          <div className="ht-arch"><span className="ht-ledge" /><img src={g.img} alt={`Himalayan Drop ${names[tab]}`} /></div>
+          <p className="ht-cap">Himalayan Drop · {names[tab]}</p>
+        </div>
+        <div className="ht-col">
+          <div className="ht-specs">
+            {labels.map((l, i) => (
+              <div key={l}><small>{l}</small><b>{specs[i]}</b></div>
+            ))}
           </div>
-          <ol className="howto-steps">
-            {guides[n].steps.map(([icon, title, text], i) => (
+          <ol className="ht-steps">
+            {g.steps.map(([, title, text], i) => (
               <li key={title}>
-                <span className="howto-num">{i + 1}</span>
-                <span className="howto-icon"><Icon name={icon} size={22} /></span>
-                <strong>{title}</strong>
-                <p>{text}</p>
+                <span className="ht-n">0{i + 1}</span>
+                <div><h3>{title}</h3><p>{text}</p></div>
               </li>
             ))}
           </ol>
         </div>
-      ))}
+      </div>
     </div>
   );
 }
