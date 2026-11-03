@@ -240,7 +240,7 @@ export default function CertRidge() {
             <Link href={FACT_HREF[i]} className="cr-fact">
               <span className="cr-fact-ic">
                 <svg viewBox="-34 -30 68 60" aria-hidden="true">
-                  <defs><linearGradient id="cr-fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#F8E6B4" /><stop offset=".55" stopColor="#D9B26A" /><stop offset="1" stopColor="#B58A42" /></linearGradient></defs>
+                  <defs><linearGradient id="cr-fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#8e2236" /><stop offset=".55" stopColor="#6a1424" /><stop offset="1" stopColor="#3f0912" /></linearGradient></defs>
                   <g fill="none" stroke="url(#cr-fg)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">{FACT_ICONS[i]}</g>
                 </svg>
               </span>
