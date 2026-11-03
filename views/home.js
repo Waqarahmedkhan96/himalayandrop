@@ -12,7 +12,7 @@ import Faq from '@/components/Faq';
 import Reviews from '@/components/Reviews';
 import Harvest from '@/components/Harvest';
 import Process from '@/components/Process';
-import Certifications from '@/components/Certifications';
+import CertVault from '@/components/CertVault';
 import Newsletter from '@/components/Newsletter';
 import JournalSection from '@/components/JournalSection';
 import BenefitsExplorer from '@/components/BenefitsExplorer';
@@ -39,7 +39,7 @@ export default async function HomeView({ lang }) {
       <Harvest />
       <Process />
       <Spotlight />
-      <Certifications />
+      <CertVault />
       <Story />
       <Steps />
       <JournalSection posts={posts} />
