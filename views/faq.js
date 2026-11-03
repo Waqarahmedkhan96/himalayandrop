@@ -393,6 +393,8 @@ const T = {
   },
 };
 
+const HOW = { en: 'How to use your product', da: 'Sådan bruger du dit produkt', de: 'So wendest du dein Produkt an', fr: 'Comment utiliser votre produit', es: 'Cómo usar tu producto', ar: 'كيفية استخدام منتجك', ur: 'اپنا پروڈکٹ استعمال کرنے کا طریقہ' };
+
 export default function FaqView({ lang }) {
   const t = tr(T, lang);
   const faqLd = {
@@ -412,6 +414,7 @@ export default function FaqView({ lang }) {
       <Reveal as="section" className="section tight-top">
         <div className="container narrow" data-reveal>
           <FaqBrowser groups={t.groups} />
+          <div className="faq-how"><Link href="/how-to-use/" className="btn outline">{HOW[lang] || HOW.en} <Arrow /></Link></div>
           <p className="faq-research"><Link href={t.researchHref}>{t.research} <Arrow size={14} /></Link></p>
           <Sources items={refs('kamgar2025', 'stohs2014', 'wilson2011', 'pandit2016', 'saper2008', 'reg2023915')} title={t.sources} id="faq-sources" />
           <div className="faq-help">
