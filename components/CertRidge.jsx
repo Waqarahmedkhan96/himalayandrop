@@ -4,17 +4,16 @@
 // The ridge and the
 // seals travel right to left without end; a resin drop runs the other way,
 // left to right, and lights each seal as it passes. Seals stay lit while the
-// band is on screen and link to the certificate and lab pages.
+// band is on screen. They are not links.
 import { useEffect, useRef, useState } from 'react';
-import Link from './LLink';
 import { useLang } from './LangProvider';
 
 const SEALS = [
-  { key: 'gmp', alt: 'GMP certified', href: '/certificates/', peak: 100 },
-  { key: 'iso22000', alt: 'ISO 22000 certified', href: '/certificates/', peak: 94 },
-  { key: 'iso9001', alt: 'ISO 9001 certified', href: '/certificates/', peak: 104 },
-  { key: 'lab-tested', alt: 'Lab tested for heavy metals', href: '/lab-results/', peak: 96 },
-  { key: 'natural', alt: '100% natural', href: '/our-shilajit/', peak: 98 },
+  { key: 'gmp', alt: 'GMP certified', peak: 100 },
+  { key: 'iso22000', alt: 'ISO 22000 certified', peak: 94 },
+  { key: 'iso9001', alt: 'ISO 9001 certified', peak: 104 },
+  { key: 'lab-tested', alt: 'Lab tested for heavy metals', peak: 96 },
+  { key: 'natural', alt: '100% natural', peak: 98 },
 ];
 const FLIP = { en: 'Flip the view', da: 'Vend visningen', de: 'Ansicht umdrehen', fr: 'Inverser la vue', es: 'Invertir la vista', ar: 'اقلب العرض', ur: 'منظر الٹیں' };
 const LABEL = {
@@ -241,9 +240,9 @@ export default function CertRidge() {
           {[0, 1].flatMap((c) =>
             SEALS.map((s) => (
               <div className="cr-gate" key={`${c}-${s.key}`} aria-hidden={c ? 'true' : undefined}>
-                <Link href={s.href} className="cr-lab" tabIndex={c ? -1 : undefined}>
+                <div className="cr-lab">
                   <img className="cr-seal" src={`/images/certs/${s.key}.webp`} alt={c ? '' : s.alt} width="96" height="96" loading="lazy" decoding="async" />
-                </Link>
+                </div>
                 <span className="cr-stem" /><span className="cr-ring" /><span className="cr-pin" />
               </div>
             ))
