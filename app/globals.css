@@ -2690,7 +2690,7 @@ html, body { overflow-x: clip; }
 
 /* Certification ridge: narrow band under the home proof strip */
 .cr { position: relative; z-index: 3; padding: 14px var(--frame) 0; direction: ltr; }
-.cr-band { --s: 64px; position: relative; height: 150px; margin: 0 auto; border-radius: var(--r-xl); overflow: hidden; isolation: isolate;
+.cr-band { --s: 96px; position: relative; height: 200px; margin: 0 auto; border-radius: var(--r-xl); overflow: hidden; isolation: isolate;
   background: radial-gradient(70% 90% at 50% 100%, rgba(170, 50, 62, 0.5), transparent 70%), linear-gradient(180deg, #220208, #33060f 55%, #45091a);
   box-shadow: inset 0 1px 0 rgba(246, 227, 174, 0.3), inset 0 0 0 1px rgba(204, 162, 94, 0.28), 0 24px 40px -28px rgba(42, 1, 7, 0.7); }
 .cr-sky { position: absolute; inset: 0; pointer-events: none; }
@@ -2704,7 +2704,7 @@ html, body { overflow-x: clip; }
 .cr-world { position: absolute; left: 0; top: 0; height: 100%; will-change: transform; }
 .cr-drop { filter: drop-shadow(0 0 7px #ffb347); }
 .cr-gate { position: absolute; top: 0; width: 0; height: 100%; }
-.cr-lab { position: absolute; left: 0; top: 10px; transform: translateX(-50%); width: var(--s); height: var(--s); display: block; border-radius: 50%; }
+.cr-lab { position: absolute; left: 0; top: 12px; transform: translateX(-50%); width: var(--s); height: var(--s); display: block; border-radius: 50%; }
 .cr-lab:focus-visible { outline: 2px solid #f6e3ae; outline-offset: 3px; }
 .cr-seal { display: block; width: 100%; height: 100%; object-fit: contain; filter: grayscale(1) brightness(0.55) contrast(0.9); opacity: 0.38; transform: scale(0.86);
   transition: filter 0.6s, opacity 0.6s, transform 0.6s cubic-bezier(0.2, 0.9, 0.2, 1); }
@@ -2724,7 +2724,7 @@ html, body { overflow-x: clip; }
 @keyframes cr-rip { 0% { transform: scale(0.3); opacity: 1; } 100% { transform: scale(2.4); opacity: 0; } }
 @media (max-width: 767px) {
   .cr { padding: 12px var(--frame) 0; }
-  .cr-band { --s: 52px; }
+  .cr-band { --s: 76px; height: 178px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .cr-sky i, .cr-gate.on .cr-seal, .cr-gate.on .cr-lab::after, .cr-gate.on .cr-ring { animation: none; }

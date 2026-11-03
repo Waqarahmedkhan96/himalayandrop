@@ -12,12 +12,12 @@ const SEALS = [
   { key: 'iso22000', alt: 'ISO 22000 certified', href: '/certificates/', peak: 94 },
   { key: 'iso9001', alt: 'ISO 9001 certified', href: '/certificates/', peak: 104 },
   { key: 'lab-tested', alt: 'Lab tested for heavy metals', href: '/lab-results/', peak: 96 },
+  { key: 'natural', alt: '100% natural', href: '/our-shilajit/', peak: 98 },
 ];
 const LABEL = {
   en: 'Certifications and lab testing', da: 'Certificeringer og laboratorietest', de: 'Zertifizierungen und Labortests',
   fr: 'Certifications et analyses en laboratoire', es: 'Certificaciones y análisis de laboratorio', ar: 'الشهادات والفحوصات المخبرية', ur: 'سرٹیفکیٹس اور لیب ٹیسٹ',
 };
-const H = 150;
 const N = SEALS.length;
 
 export default function CertRidge() {
@@ -35,10 +35,10 @@ export default function CertRidge() {
     // px per second: ridge and seals go right to left, the drop left to right (slower on phones)
     const speeds = () => (W <= 767 ? { VB: 24, VD: 70 } : { VB: 44, VD: 150 });
     const TAU = Math.PI * 2;
-    let W = 0, xs = [], ys = [], cum = [], total = 0, gx = [];
-    let off = 0, farOff = 0, xd = 0, prev = new Array(N * 2).fill(0), visible = true, raf = 0, last = 0;
+    let W = 0, P = 0, H = 150, xs = [], ys = [], cum = [], total = 0, gx = [];
+    let hover = false, off = 0, farOff = 0, xd = 0, prev = new Array(N * 2).fill(0), visible = true, raf = 0, last = 0;
 
-    const sx = (i) => gx[i % N] + Math.floor(i / N) * W - off; // screen x of a seal
+    const sx = (i) => gx[i % N] + Math.floor(i / N) * P - off; // screen x of a seal
 
     const rearm = () => {
       xd = -50;
@@ -48,19 +48,26 @@ export default function CertRidge() {
     const build = () => {
       W = el.clientWidth;
       if (!W) return;
+      const phone = W <= 767, sz = phone ? 76 : 96;
+      H = phone ? 178 : 200;
+      const dy = H - 150; // the ridge sits lower so the larger seals fit above it
+      el.style.height = H + 'px';
+      el.style.setProperty('--s', sz + 'px');
+      // One period holds all the seals; on a phone it is wider than the screen so the seals keep their space.
+      P = Math.max(W, N * (sz + 34));
       svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-      gx = SEALS.map((_, k) => W * (0.125 + 0.25 * k));
+      gx = SEALS.map((_, k) => P * ((k + 0.5) / N));
       // One period of ridge is exactly W wide, so it repeats without a seam.
       const keys = [];
-      for (let c = -1; c <= 2; c++) SEALS.forEach((s, k) => { keys.push([W * 0.25 * k + c * W, 128 - (k % 2) * 4], [gx[k] + c * W, s.peak]); });
-      const h1 = Math.max(1, Math.round((0.31 * W) / TAU)), h2 = Math.max(1, Math.round((0.83 * W) / TAU));
+      for (let c = -1; c <= 2; c++) SEALS.forEach((s, k) => { keys.push([(P * k) / N + c * P, 128 + dy - (k % 2) * 4], [gx[k] + c * P, s.peak + dy]); });
+      const h1 = Math.max(1, Math.round((0.31 * P) / TAU)), h2 = Math.max(1, Math.round((0.83 * P) / TAU));
       let pts = [];
-      for (let x = 0; x <= 2 * W; x += 3) {
+      for (let x = 0; x <= 2 * P; x += 3) {
         let j = 1;
         while (j < keys.length - 1 && keys[j][0] < x) j++;
         const a = keys[j - 1], b = keys[j];
         const f = Math.min(1, Math.max(0, (x - a[0]) / Math.max(1, b[0] - a[0])));
-        pts.push([x, a[1] + (b[1] - a[1]) * f + 2.2 * Math.sin((TAU * h1 * x) / W) + 1.4 * Math.sin((TAU * h2 * x) / W)]);
+        pts.push([x, a[1] + (b[1] - a[1]) * f + 2.2 * Math.sin((TAU * h1 * x) / P) + 1.4 * Math.sin((TAU * h2 * x) / P)]);
       }
       for (let p = 0; p < 3; p++) {
         const src = pts;
@@ -78,19 +85,18 @@ export default function CertRidge() {
       const d = 'M' + pts.map((p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('L');
       q('.cr-edge').setAttribute('d', d);
       lit.setAttribute('d', d);
-      q('.cr-near').setAttribute('d', `${d}L${2 * W} ${H}L0 ${H}Z`);
+      q('.cr-near').setAttribute('d', `${d}L${2 * P} ${H}L0 ${H}Z`);
       const far = [];
-      for (let x = 0; x <= 2 * W; x += 6) far.push(`${x} ${(94 + 16 * Math.sin((TAU * 2 * x) / W + 1) + 9 * Math.sin((TAU * 5 * x) / W) + 4 * Math.sin((TAU * 11 * x) / W)).toFixed(1)}`);
-      q('.cr-far').setAttribute('d', `M${far.join('L')}L${2 * W} ${H}L0 ${H}Z`);
-      world.style.width = 2 * W + 'px';
-      const sz = W <= 767 ? 52 : 64;
+      for (let x = 0; x <= 2 * P; x += 6) far.push(`${x} ${(94 + dy + 16 * Math.sin((TAU * 2 * x) / P + 1) + 9 * Math.sin((TAU * 5 * x) / P) + 4 * Math.sin((TAU * 11 * x) / P)).toFixed(1)}`);
+      q('.cr-far').setAttribute('d', `M${far.join('L')}L${2 * P} ${H}L0 ${H}Z`);
+      world.style.width = 2 * P + 'px';
       gates.forEach((g, i) => {
-        const wx = gx[i % N] + Math.floor(i / N) * W;
+        const wx = gx[i % N] + Math.floor(i / N) * P;
         const y = ys[Math.round(wx / 3)];
         g.style.left = wx + 'px';
         g.querySelector('.cr-pin').style.top = y - 4 + 'px';
         g.querySelector('.cr-ring').style.top = y - 4 + 'px';
-        g.querySelector('.cr-stem').style.height = Math.max(10, y - sz - 24) + 'px';
+        g.querySelector('.cr-stem').style.height = Math.max(10, y - sz - 20) + 'px';
       });
       rearm();
     };
@@ -123,12 +129,12 @@ export default function CertRidge() {
       raf = requestAnimationFrame(frame);
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
-      if (!visible || document.hidden || !total) return;
+      if (!visible || hover || document.hidden || !total) return;
       const { VB, VD } = speeds();
       off += VB * dt;
-      farOff = (farOff + VB * 0.45 * dt) % W;
-      if (off >= W) { // the second copy has become the first: carry its state across
-        off -= W;
+      farOff = (farOff + VB * 0.45 * dt) % P;
+      if (off >= P) { // the second copy has become the first: carry its state across
+        off -= P;
         for (let k = 0; k < N; k++) {
           gates[k].classList.toggle('on', gates[k + N].classList.contains('on'));
           gates[k + N].classList.remove('on');
@@ -174,6 +180,13 @@ export default function CertRidge() {
       if (was && !visible && !reduce) reset();
     }, { threshold: 0.2 });
     io.observe(el);
+    // pointing at (or tabbing to) a seal holds everything still so it can be read
+    const hold = () => { hover = true; }, free = () => { hover = false; };
+    const canHover = window.matchMedia('(hover: hover)').matches;
+    world.addEventListener('mouseover', (e) => { if (canHover && e.target.closest('.cr-lab')) hold(); });
+    world.addEventListener('mouseout', (e) => { if (e.target.closest('.cr-lab')) free(); });
+    world.addEventListener('focusin', hold);
+    world.addEventListener('focusout', free);
     return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); };
   }, []);
 
@@ -200,7 +213,7 @@ export default function CertRidge() {
             SEALS.map((s) => (
               <div className="cr-gate" key={`${c}-${s.key}`} aria-hidden={c ? 'true' : undefined}>
                 <Link href={s.href} className="cr-lab" tabIndex={c ? -1 : undefined}>
-                  <img className="cr-seal" src={`/images/certs/${s.key}.webp`} alt={c ? '' : s.alt} width="64" height="64" loading="lazy" decoding="async" />
+                  <img className="cr-seal" src={`/images/certs/${s.key}.webp`} alt={c ? '' : s.alt} width="96" height="96" loading="lazy" decoding="async" />
                 </Link>
                 <span className="cr-stem" /><span className="cr-ring" /><span className="cr-pin" />
               </div>
