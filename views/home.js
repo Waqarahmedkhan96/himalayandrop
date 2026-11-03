@@ -3,6 +3,7 @@
 import Hero from '@/components/Hero';
 import QuickLinks from '@/components/QuickLinks';
 import ProofThread from '@/components/ProofThread';
+import CertRidge from '@/components/CertRidge';
 import CollectionGallery from '@/components/CollectionGallery';
 import Spotlight from '@/components/Spotlight';
 import Story from '@/components/Story';
@@ -30,6 +31,7 @@ export default async function HomeView({ lang }) {
     <>
       <Hero />
       <ProofThread />
+      <CertRidge />
       <QuickLinks />
       <CollectionGallery products={products} />
       <BenefitsExplorer />

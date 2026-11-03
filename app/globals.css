@@ -2362,8 +2362,8 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 
 /* ═══════════ Proof strip over the hero edge (components/ProofThread.jsx) ═══════════ */
 .hero:has(+ .pt) .hero-card { padding-bottom: 150px; }
-.pt { position: relative; z-index: 4; margin-top: -118px; padding: 0 calc(var(--frame) + 22px); }
-.pt-band { position: relative; max-width: 1404px; margin: 0 auto; border-radius: 26px; overflow: hidden; isolation: isolate;
+.pt { position: relative; z-index: 4; margin-top: -118px; padding: 0 var(--frame); }
+.pt-band { position: relative; margin: 0 auto; border-radius: var(--r-xl); overflow: hidden; isolation: isolate;
   background: radial-gradient(80% 140% at 50% 0%, #fffdf8, #f1e6d4 70%), #f3e9d8;
   box-shadow: inset 0 3px 0 #6a1422, inset 0 -3px 0 #cca25e, inset 0 0 0 1px rgba(204, 162, 94, 0.4), 0 34px 60px -30px rgba(42, 1, 7, 0.7); }
 .pt-band::before { content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0.35; mix-blend-mode: multiply; pointer-events: none;
@@ -2400,7 +2400,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 .pt-swipe, .pt-dots { display: none; }
 @media (max-width: 767px) {
   .hero:has(+ .pt) .hero-card { padding-bottom: 76px; }
-  .pt { margin-top: -50px; padding: 0 calc(var(--frame) + 10px); }
+  .pt { margin-top: -50px; padding: 0 var(--frame); }
   .pt-row, .pt-thread { display: none; }
   .pt-band { border-radius: 20px; }
   .pt-waves { width: 70px; opacity: .7; }
@@ -2688,6 +2688,48 @@ html, body { overflow-x: clip; }
 @media (max-width: 640px) { .sc-wrap { padding-inline: 16px; } .sc-grid { gap: 6px 8px; } .sc-tile { height: 128px; } .sc-cell:nth-child(even) { margin-top: 20px; } .sc-cloth { padding: 30px 14px 40px; } .sc-cloth p { font-size: 12px; } .sc-cloth h3 { font-size: 16px; } .sc-hang { margin: 0 4% 34px; } }
 @media (prefers-reduced-motion: reduce) { .sc-drop, .sc-cloth, .sc-tw, .sc-mark, .sc-hang { transition-duration: 0.01s; transition-delay: 0s; animation: none; } }
 
+/* Certification ridge: narrow band under the home proof strip */
+.cr { position: relative; z-index: 3; padding: 14px var(--frame) 0; direction: ltr; }
+.cr-band { --s: 96px; position: relative; height: 200px; margin: 0 auto; border-radius: var(--r-xl); overflow: hidden; isolation: isolate;
+  background: radial-gradient(70% 90% at 50% 100%, rgba(170, 50, 62, 0.5), transparent 70%), linear-gradient(180deg, #220208, #33060f 55%, #45091a);
+  box-shadow: inset 0 1px 0 rgba(246, 227, 174, 0.3), inset 0 0 0 1px rgba(204, 162, 94, 0.28), 0 24px 40px -28px rgba(42, 1, 7, 0.7); }
+.cr-sky { position: absolute; inset: 0; pointer-events: none; }
+.cr-sky i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #f6e3ae; opacity: 0; animation: cr-tw 4s ease-in-out infinite; }
+@keyframes cr-tw { 0%, 100% { opacity: 0; } 50% { opacity: 0.7; } }
+.cr-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cr-far { fill: rgba(120, 30, 45, 0.28); }
+.cr-near { fill: url(#cr-nf); }
+.cr-edge { fill: none; stroke: rgba(204, 162, 94, 0.35); stroke-width: 1; }
+.cr-lit { fill: none; stroke: #ffc766; stroke-width: 2; stroke-linecap: round; }
+.cr-world { position: absolute; left: 0; top: 0; height: 100%; will-change: transform; }
+.cr-drop { filter: drop-shadow(0 0 7px #ffb347); }
+.cr-gate { position: absolute; top: 0; width: 0; height: 100%; }
+.cr-lab { position: absolute; left: 0; top: 12px; transform: translateX(-50%); width: var(--s); height: var(--s); display: block; border-radius: 50%; }
+.cr-lab:focus-visible { outline: 2px solid #f6e3ae; outline-offset: 3px; }
+.cr-seal { display: block; width: 100%; height: 100%; object-fit: contain; filter: grayscale(1) brightness(0.55) contrast(0.9); opacity: 0.38; transform: scale(0.86);
+  transition: filter 0.6s, opacity 0.6s, transform 0.6s cubic-bezier(0.2, 0.9, 0.2, 1); }
+.cr-lab::after { content: ''; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 248, 214, 0.85) 50%, transparent 65%) -150% 0 / 250% 100% no-repeat; }
+.cr-gate.on .cr-lab::after { animation: cr-shine 0.9s 0.05s ease-out; }
+@keyframes cr-shine { to { background-position: 150% 0; } }
+.cr-gate.on .cr-seal { filter: drop-shadow(0 0 12px rgba(255, 179, 71, 0.55)) drop-shadow(0 6px 5px rgba(0, 0, 0, 0.6)); opacity: 1; transform: scale(1); animation: cr-pop 0.7s cubic-bezier(0.2, 0.9, 0.2, 1); }
+@keyframes cr-pop { 0% { transform: scale(0.7); } 55% { transform: scale(1.14); } 100% { transform: scale(1); } }
+.cr-stem { position: absolute; left: 0; width: 1px; background: linear-gradient(180deg, rgba(204, 162, 94, 0.6), rgba(204, 162, 94, 0));
+  transform-origin: top; transform: scaleY(0); transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); pointer-events: none; }
+.cr-pin { position: absolute; left: -4px; width: 8px; height: 8px; transform: rotate(45deg); background: #220208; border: 1px solid #8a6429; transition: 0.4s; pointer-events: none; }
+.cr-ring { position: absolute; left: -14px; width: 28px; height: 28px; margin-top: -10px; border-radius: 50%; border: 1px solid #f6e3ae; opacity: 0; pointer-events: none; }
+.cr-gate.on .cr-stem { transform: scaleY(1); }
+.cr-gate.on .cr-pin { background: #ffb347; border-color: #f6e3ae; box-shadow: 0 0 14px #ffb347, 0 0 3px #fff; }
+.cr-gate.on .cr-ring { animation: cr-rip 1s ease-out; }
+@keyframes cr-rip { 0% { transform: scale(0.3); opacity: 1; } 100% { transform: scale(2.4); opacity: 0; } }
+@media (max-width: 767px) {
+  .cr { padding: 12px var(--frame) 0; }
+  .cr-band { --s: 76px; height: 178px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cr-sky i, .cr-gate.on .cr-seal, .cr-gate.on .cr-lab::after, .cr-gate.on .cr-ring { animation: none; }
+  .cr-seal, .cr-stem, .cr-pin { transition: none; }
+}
 /* How to use: products on a stone shelf, arch alcove, quick facts and four steps */
 .ht-shelf { position: relative; padding-bottom: 22px; margin-bottom: 8px; }
 .ht-shelf::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 22px; border-radius: 2px; background: linear-gradient(#e9ddc8, #d9c9ac); box-shadow: 0 18px 30px -18px rgba(64, 1, 10, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.7); }
@@ -2737,3 +2779,11 @@ html, body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) { .ht-stage { animation: none; } .ht-im img, .ht-nm::after { transition: none; } }
 .how-more { padding: 6px 16px 18px; }
 .faq-how { margin: 28px 0 0; text-align: center; }
+
+/* Flipped view: the ridge hangs from the top and the seals sit along the bottom */
+.cr-band.is-flip .cr-near { fill: url(#cr-nf2); }
+.cr-band.is-flip .cr-lab { top: auto; bottom: 12px; }
+.cr-band.is-flip .cr-stem { background: linear-gradient(0deg, rgba(204, 162, 94, 0.6), rgba(204, 162, 94, 0)); }
+.cr-flip { position: absolute; z-index: 5; top: 10px; right: 10px; width: 34px; height: 34px; display: grid; place-items: center; padding: 0; cursor: pointer; border-radius: 50%; color: #f6e3ae; background: rgba(34, 2, 8, 0.72); border: 1px solid rgba(204, 162, 94, 0.55); backdrop-filter: blur(4px); transition: background 0.3s, color 0.3s; }
+.cr-flip:hover { background: #f6e3ae; color: #33060f; }
+.cr-flip:focus-visible { outline: 2px solid #f6e3ae; outline-offset: 3px; }
