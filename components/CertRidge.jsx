@@ -29,8 +29,8 @@ export default function CertRidge() {
     const svg = q('.cr-svg');
     const gates = [...el.querySelectorAll('.cr-gate')];
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let W = 0, xs = [], ys = [], cum = [], total = 0, gl = [], steps = [], si = 0, t = 0, entered = -1;
-    let paused = false, visible = true, raf = 0, last = 0;
+    let W = 0, xs = [], ys = [], cum = [], total = 0, gl = [], L = 0, looped = false;
+    let visible = true, raf = 0, last = 0;
 
     const build = () => {
       W = el.clientWidth;
@@ -80,13 +80,6 @@ export default function CertRidge() {
         g.querySelector('.cr-ring').style.top = y - 4 + 'px';
         g.querySelector('.cr-stem').style.height = Math.max(10, y - sz - 24) + 'px';
       });
-      steps = [];
-      let prev = 0;
-      gl.forEach((L, k) => {
-        steps.push({ t: 'mv', a: prev, b: L, d: k ? 0.8 : 1.0 }, { t: 'hold', k, d: 0.8 });
-        prev = L;
-      });
-      steps.push({ t: 'mv', a: prev, b: total, d: 0.8 }, { t: 'end', d: 1.0 });
       if (reduce) put(total, 0, true);
     };
 
@@ -103,27 +96,26 @@ export default function CertRidge() {
       drop.setAttribute('opacity', o);
       lit.style.strokeDasharray = full ? `${total} 1` : `${L} ${total * 2}`;
     };
-    const ease = (u) => (u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
-
+    // The drop never stops: it glides along the ridge at a steady pace, and each
+    // seal lights up the moment the drop passes it and stays lit while on screen.
+    const PASS = 7.5; // seconds for one pass
+    const reset = () => {
+      L = 0; looped = false;
+      gates.forEach((g) => g.classList.remove('on'));
+      put(0, 0); lit.style.strokeDasharray = `0 ${total * 2}`;
+    };
     const frame = (now) => {
       raf = requestAnimationFrame(frame);
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
-      if (paused || !visible || document.hidden || !steps.length) return;
-      t += dt;
-      const s = steps[si], u = Math.min(1, t / s.d);
-      if (s.t === 'mv') put(s.a + (s.b - s.a) * ease(u), si === 0 ? Math.min(1, t / 0.4) : 1);
-      else if (s.t === 'hold') {
-        if (entered !== si) { entered = si; gates[s.k].classList.add('on'); }
-        put(gl[s.k], 1);
-      } else {
-        if (entered !== si) { entered = si; lit.style.opacity = 0; gates.forEach((g) => g.classList.remove('on')); }
-        put(total, Math.max(0, 1 - u * 2));
-      }
-      if (u >= 1) {
-        t = 0; si = (si + 1) % steps.length; entered = -1;
-        if (si === 0) { lit.style.opacity = 1; put(0, 0); }
-      }
+      if (!visible || document.hidden || !total) return;
+      const tail = total * 0.07, cycle = total + tail;
+      L += (total / PASS) * dt;
+      if (L >= cycle) { L -= cycle; looped = true; }
+      const p = Math.min(L, total);
+      const o = Math.min(1, L / 40) * (L > total ? 1 - (L - total) / tail : 1);
+      put(p, Math.max(0, o), looped);
+      gl.forEach((g, k) => { if (L >= g - 6) gates[k].classList.add('on'); });
     };
 
     // a few twinkling stars
@@ -138,14 +130,11 @@ export default function CertRidge() {
     build();
     if (reduce) gates.forEach((g) => g.classList.add('on'));
     else { put(0, 0); raf = requestAnimationFrame((n) => { last = n; frame(n); }); }
-    const ro = new ResizeObserver(() => { const keep = si; build(); si = Math.min(keep, steps.length - 1); });
+    const ro = new ResizeObserver(() => { build(); });
     ro.observe(el);
-    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0.2 });
+    const io = new IntersectionObserver(([e]) => { const was = visible; visible = e.isIntersecting; if (was && !visible && !reduce) reset(); }, { threshold: 0.2 });
     io.observe(el);
-    const on = () => { paused = true; }, off = () => { paused = false; };
-    el.addEventListener('mouseenter', on); el.addEventListener('mouseleave', off);
-    el.addEventListener('focusin', on); el.addEventListener('focusout', off);
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); el.removeEventListener('mouseenter', on); el.removeEventListener('mouseleave', off); el.removeEventListener('focusin', on); el.removeEventListener('focusout', off); };
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); };
   }, []);
 
   return (
