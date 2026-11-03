@@ -1112,7 +1112,7 @@ em { font-style: italic; }
 }
 @media (min-width: 1100px) {
   .feature-grid { grid-template-columns: repeat(3, 1fr); }
-  .cert-item { flex: 0 1 calc(33.333% - 10px); }
+  .cert-item { flex: 0 1 calc(33.333% - 12px); }
 }
 .nav .nav-panel a { border-radius: 14px; padding: 10px 14px; color: inherit; }
 .nav .nav-panel a:hover { color: inherit; }
