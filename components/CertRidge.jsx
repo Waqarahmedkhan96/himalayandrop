@@ -32,6 +32,10 @@ const FACTS = {
   ar: [['المنشأ', 'سكاردو، باكستان'], ['مفحوص مخبريًا', 'كل دفعة'], ['معايير الجودة', 'GMP · ISO 22000 · ISO 9001']],
   ur: [['ماخذ', 'اسکردو، پاکستان'], ['لیب ٹیسٹ شدہ', 'ہر بیچ'], ['معیار کے اسٹینڈرڈز', 'GMP · ISO 22000 · ISO 9001']],
 };
+const HEAD = {
+  en: ['The hallmarks', 'Every batch, accounted for.'], da: ['Kvalitetsmærkerne', 'Hver batch, dokumenteret.'], de: ['Die Gütesiegel', 'Jede Charge, belegt.'],
+  fr: ['Les gages de qualité', 'Chaque lot, documenté.'], es: ['Los sellos de calidad', 'Cada lote, documentado.'], ar: ['ختوم الجودة', 'كل دفعة، موثّقة.'], ur: ['معیار کی مہریں', 'ہر بیچ، دستاویزی۔'],
+};
 const FACT_HREF = ['/our-shilajit/', '/lab-results/', '/certificates/'];
 const FACT_ICONS = [
   <g key="m"><path d="M-30 14-10-14 0-2 10-18 30 14z" /><path d="M-14-8-6-2-2-8M6-6l4 3 4-4" /></g>,
@@ -234,22 +238,23 @@ export default function CertRidge() {
 
   return (
     <section className="cr" aria-label={LABEL[lang] || LABEL.en}>
-      <ul className="cr-facts">
-        {(FACTS[lang] || FACTS.en).map(([h, sub], i) => (
-          <li key={i}>
-            <Link href={FACT_HREF[i]} className="cr-fact">
-              <span className="cr-fact-ic">
-                <svg viewBox="-34 -30 68 60" aria-hidden="true">
-                  <defs><linearGradient id="cr-fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#8e2236" /><stop offset=".55" stopColor="#6a1424" /><stop offset="1" stopColor="#3f0912" /></linearGradient></defs>
-                  <g fill="none" stroke="url(#cr-fg)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">{FACT_ICONS[i]}</g>
-                </svg>
-              </span>
-              <strong>{h}</strong>
-              <small>{sub}</small>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div className="cr-plate">
+        <div className="cr-intro">
+          <p className="cr-eyebrow">{(HEAD[lang] || HEAD.en)[0]}</p>
+          <h2 className="cr-title">{(HEAD[lang] || HEAD.en)[1]}</h2>
+          <ul className="cr-facts">
+            {(FACTS[lang] || FACTS.en).map(([h, sub], i) => (
+              <li key={i}>
+                <Link href={FACT_HREF[i]} className="cr-fact">
+                  <svg className="cr-fact-ic" viewBox="-34 -30 68 60" aria-hidden="true">
+                    <g fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">{FACT_ICONS[i]}</g>
+                  </svg>
+                  <span><strong>{h}</strong><small>{sub}</small></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       <div className={`cr-band${flip ? ' is-flip' : ''}`} ref={root}>
         <div className="cr-sky" aria-hidden="true" />
         <svg className="cr-svg" preserveAspectRatio="none" aria-hidden="true">
@@ -282,6 +287,7 @@ export default function CertRidge() {
             ))
           )}
         </div>
+      </div>
       </div>
     </section>
   );
