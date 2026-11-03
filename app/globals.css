@@ -2910,3 +2910,27 @@ html, body { overflow-x: clip; }
 .hero-btn:active { transform: translateY(1px); }
 
 @media (prefers-reduced-motion: reduce) { .btn:active { transform: none; } }
+
+/* Cream hero button: readable gold hover */
+.hero-btn::before { background: linear-gradient(180deg, #f7e7bd 0%, #e2c487 100%); }
+.hero-btn:hover { background: linear-gradient(180deg, #fffaf1 0%, #f7f1e8 100%); color: var(--maroon-ink); }
+
+/* Hero, new typography (scoped so the previous design stays intact behind the switch) */
+.hero.is-new .hero-lead { max-width: none; }
+.hero.is-new .hero-lead span { display: block; }
+.hero.is-new h1 { line-height: 0.96; letter-spacing: -0.03em; }
+.hero.is-new h1 em { background: linear-gradient(100deg, #f3e2b4 0%, #d9b66f 45%, #f0d9a0 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; padding-right: 0.08em; }
+@media (min-width: 1000px) { .hero.is-new h1 { font-size: clamp(56px, 5.4vw, 100px); margin-top: 22px; } .hero.is-new h1 .line { white-space: nowrap; } }
+@media (max-width: 639px) { .hero.is-new h1 { font-size: clamp(34px, 9.4vw, 46px); } .hero.is-new h1 .line { white-space: nowrap; } }
+.hero.is-new .hero-lead::before { content: ''; display: block; width: 72px; height: 1px; margin: 0 0 24px; background: var(--gold-grad); }
+.hero.is-new .hero-lead span:first-child { font-family: var(--sans); font-weight: 600; font-size: clamp(12px, 0.95vw, 14px); letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-soft); }
+.hero.is-new .hero-lead span + span { font-size: clamp(16px, 1.3vw, 20px); letter-spacing: 0.02em; margin-top: 12px; opacity: 0.92; }
+@media (min-width: 640px) { .hero.is-new .hero-lead span + span { white-space: nowrap; } }
+@media (max-width: 999px) { .hero.is-new .hero-lead::before { margin-inline: auto; margin-bottom: 14px; width: 56px; } }
+
+/* Switch between the new and the previous hero */
+.hero-switch { position: absolute; z-index: 5; inset-inline-end: 22px; bottom: 150px; display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 16px; border-radius: var(--pill); border: 1px solid rgba(226, 196, 135, 0.45); background: rgba(42, 1, 7, 0.45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--cream); font: 600 11px var(--sans); letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.3s, border-color 0.3s; }
+.hero-switch:hover { background: rgba(42, 1, 7, 0.7); border-color: var(--gold-soft); }
+.hero-switch:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
+.hero-switch svg { width: 14px; height: 14px; }
+@media (max-width: 767px) { .hero-switch { inset-inline-end: 12px; bottom: auto; top: 76px; min-height: 34px; padding: 0 12px; font-size: 10px; } }

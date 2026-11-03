@@ -1,7 +1,6 @@
 // Homepage. Runs on the server: fetches products from Shopify (or the demo
 // products) and passes them to the animated sections.
 import Hero from '@/components/Hero';
-import QuickLinks from '@/components/QuickLinks';
 import ProofThread from '@/components/ProofThread';
 import CertRidge from '@/components/CertRidge';
 import CollectionGallery from '@/components/CollectionGallery';
@@ -32,7 +31,6 @@ export default async function HomeView({ lang }) {
       <Hero />
       <ProofThread />
       <CertRidge />
-      <QuickLinks />
       <CollectionGallery products={products} />
       <BenefitsExplorer />
       <Reviews />
