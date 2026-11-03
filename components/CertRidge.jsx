@@ -6,6 +6,7 @@
 // left to right, and lights each seal as it passes. Seals stay lit while the
 // band is on screen. They are not links.
 import { useEffect, useRef, useState } from 'react';
+import Link from './LLink';
 import { useLang } from './LangProvider';
 
 const SEALS = [
@@ -20,6 +21,23 @@ const LABEL = {
   en: 'Certifications and lab testing', da: 'Certificeringer og laboratorietest', de: 'Zertifizierungen und Labortests',
   fr: 'Certifications et analyses en laboratoire', es: 'Certificaciones y análisis de laboratorio', ar: 'الشهادات والفحوصات المخبرية', ur: 'سرٹیفکیٹس اور لیب ٹیسٹ',
 };
+
+// Three short proof points in a slim bar on top of the seals band (one strip, minimal text).
+const FACTS = {
+  en: ['Skardu, Pakistan', 'Lab tested', 'Quality standards'],
+  da: ['Skardu, Pakistan', 'Labtestet', 'Kvalitetsstandarder'],
+  de: ['Skardu, Pakistan', 'Laborgeprüft', 'Qualitätsstandards'],
+  fr: ['Skardu, Pakistan', 'Testé en labo', 'Normes de qualité'],
+  es: ['Skardu, Pakistán', 'Analizado en laboratorio', 'Estándares de calidad'],
+  ar: ['سكاردو، باكستان', 'مفحوص مخبريًا', 'معايير الجودة'],
+  ur: ['اسکردو، پاکستان', 'لیب ٹیسٹ شدہ', 'معیاری اسٹینڈرڈز'],
+};
+const FACT_HREF = ['/our-shilajit/', '/lab-results/', '/certificates/'];
+const FACT_ICONS = [
+  <g key="m"><path d="M-30 14-10-14 0-2 10-18 30 14z" /><path d="M-14-8-6-2-2-8M6-6l4 3 4-4" /></g>,
+  <g key="f"><path d="M-7-18h14M-5-18V-4L-22 16a4 4 0 0 0 3.500 6h37a4 4 0 0 0 3.500-6L5-4V-18" /><path d="M-16 8h32" /><circle cx="-4" cy="14" r="2" /></g>,
+  <g key="q"><circle cx="0" cy="-6" r="14" /><path d="M0-14l2.500 5 5.500.8-4 3.900.9 5.500L0-1.500l-4.900 2.700.9-5.500-4-3.900 5.500-.8z" /><path d="M-8 6-12 22l12-6 12 6L8 6" /></g>,
+];
 const N = SEALS.length;
 
 export default function CertRidge() {
@@ -216,6 +234,18 @@ export default function CertRidge() {
 
   return (
     <section className="cr" aria-label={LABEL[lang] || LABEL.en}>
+      <ul className="cr-facts">
+        {(FACTS[lang] || FACTS.en).map((h, i) => (
+          <li key={i}>
+            <Link href={FACT_HREF[i]} className="cr-fact">
+              <svg viewBox="-34 -30 68 60" aria-hidden="true">
+                <g fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">{FACT_ICONS[i]}</g>
+              </svg>
+              <span>{h}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
       <div className={`cr-band${flip ? ' is-flip' : ''}`} ref={root}>
         <div className="cr-sky" aria-hidden="true" />
         <svg className="cr-svg" preserveAspectRatio="none" aria-hidden="true">

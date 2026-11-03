@@ -2935,7 +2935,25 @@ html, body { overflow-x: clip; }
 .hero-switch svg { width: 14px; height: 14px; }
 @media (max-width: 767px) { .hero-switch { inset-inline-end: 12px; bottom: auto; top: 76px; min-height: 34px; padding: 0 12px; font-size: 10px; } }
 
-/* ───────── Single slim strip: the moving seals, tucked under the hero ───────── */
+/* ───────── One slim strip: three proof points on top, moving seals below, tucked under the hero ───────── */
 .cr { margin-top: -48px; padding-top: 0; z-index: 4; }
-.cr-band { height: 188px; box-shadow: inset 0 1px 0 rgba(246, 227, 174, 0.3), inset 0 0 0 1px rgba(204, 162, 94, 0.28), 0 26px 40px -26px rgba(42, 1, 7, 0.75); }
-@media (max-width: 767px) { .cr { margin-top: -14px; } .cr-band { height: 170px; } }
+.cr-facts { list-style: none; margin: 0 auto; padding: 0; display: flex; justify-content: center; align-items: stretch; position: relative; z-index: 1;
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  background: linear-gradient(180deg, #3a0813, #2b050d);
+  box-shadow: inset 0 1px 0 rgba(246, 227, 174, 0.34), inset 1px 0 0 rgba(204, 162, 94, 0.28), inset -1px 0 0 rgba(204, 162, 94, 0.28); }
+.cr-facts li + li { border-inline-start: 1px solid rgba(204, 162, 94, 0.22); margin-block: 14px; }
+.cr-fact { display: flex; align-items: center; gap: 12px; padding: 14px clamp(20px, 3.4vw, 56px); color: #f1e3c4; font: 600 12px var(--sans); letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap; transition: color 0.3s; }
+.cr-facts li + li .cr-fact { padding-block: 0; }
+.cr-facts li:first-child .cr-fact { padding-block: 14px; }
+.cr-facts li { display: flex; align-items: center; }
+.cr-fact svg { width: 26px; height: 22px; color: #e2c487; flex: none; }
+.cr-fact:hover { color: #fff; }
+.cr-band { height: 188px; border-radius: 0 0 var(--r-xl) var(--r-xl); box-shadow: inset 0 -1px 0 rgba(204, 162, 94, 0.28), inset 1px 0 0 rgba(204, 162, 94, 0.28), inset -1px 0 0 rgba(204, 162, 94, 0.28), 0 26px 40px -26px rgba(42, 1, 7, 0.75); }
+@media (max-width: 767px) {
+  .cr { margin-top: -14px; }
+  .cr-band { height: 170px; }
+  .cr-facts li { flex: 1 1 0; justify-content: center; }
+  .cr-fact { flex-direction: column; gap: 5px; padding: 12px 4px; font-size: 9.5px; letter-spacing: 0.1em; white-space: normal; text-align: center; }
+  .cr-facts li + li { margin-block: 12px; }
+  .cr-facts li + li .cr-fact, .cr-facts li:first-child .cr-fact { padding-block: 0; }
+}
