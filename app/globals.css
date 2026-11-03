@@ -2937,3 +2937,5 @@ html, body { overflow-x: clip; }
 .hero .hero-lead span:first-child { font-family: var(--sans); font-weight: 600; font-size: clamp(12px, 0.95vw, 14px); letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-soft); }
 .hero .hero-lead span + span { font-size: clamp(16px, 1.3vw, 20px); letter-spacing: 0.02em; margin-top: 12px; opacity: 0.92; }
 @media (max-width: 999px) { .hero .hero-lead::before { margin-inline: auto; margin-bottom: 14px; width: 56px; } }
+.hero h1 .line:last-child em { font-size: 0.74em; letter-spacing: -0.015em; }
+.hero h1 .line:last-child { margin-top: 0.08em; }
