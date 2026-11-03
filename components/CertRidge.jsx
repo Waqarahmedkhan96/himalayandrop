@@ -78,6 +78,7 @@ export default function CertRidge() {
           return [qq[0], (qq[1] * 2 + (t / 5) * 3) / 5];
         });
       }
+      pts = pts.map((p) => [p[0], H - p[1]]); // turn the ridge upside down: it hangs from the top
       xs = pts.map((p) => p[0]); ys = pts.map((p) => p[1]);
       cum = [0];
       for (let i = 1; i < xs.length; i++) cum.push(cum[i - 1] + Math.hypot(xs[i] - xs[i - 1], ys[i] - ys[i - 1]));
@@ -85,10 +86,10 @@ export default function CertRidge() {
       const d = 'M' + pts.map((p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('L');
       q('.cr-edge').setAttribute('d', d);
       lit.setAttribute('d', d);
-      q('.cr-near').setAttribute('d', `${d}L${2 * P} ${H}L0 ${H}Z`);
+      q('.cr-near').setAttribute('d', `${d}L${2 * P} 0L0 0Z`);
       const far = [];
-      for (let x = 0; x <= 2 * P; x += 6) far.push(`${x} ${(94 + dy + 16 * Math.sin((TAU * 2 * x) / P + 1) + 9 * Math.sin((TAU * 5 * x) / P) + 4 * Math.sin((TAU * 11 * x) / P)).toFixed(1)}`);
-      q('.cr-far').setAttribute('d', `M${far.join('L')}L${2 * P} ${H}L0 ${H}Z`);
+      for (let x = 0; x <= 2 * P; x += 6) far.push(`${x} ${(H - 94 - dy - 16 * Math.sin((TAU * 2 * x) / P + 1) - 9 * Math.sin((TAU * 5 * x) / P) - 4 * Math.sin((TAU * 11 * x) / P)).toFixed(1)}`);
+      q('.cr-far').setAttribute('d', `M${far.join('L')}L${2 * P} 0L0 0Z`);
       world.style.width = 2 * P + 'px';
       gates.forEach((g, i) => {
         const wx = gx[i % N] + Math.floor(i / N) * P;
@@ -96,7 +97,9 @@ export default function CertRidge() {
         g.style.left = wx + 'px';
         g.querySelector('.cr-pin').style.top = y - 4 + 'px';
         g.querySelector('.cr-ring').style.top = y - 4 + 'px';
-        g.querySelector('.cr-stem').style.height = Math.max(10, y - sz - 20) + 'px';
+        const stem = g.querySelector('.cr-stem');
+        stem.style.top = y + 6 + 'px';
+        stem.style.height = Math.max(10, H - 12 - sz - 10 - (y + 6)) + 'px';
       });
       rearm();
     };
@@ -113,7 +116,7 @@ export default function CertRidge() {
     const setDrop = () => {
       const wx = xd + off, y = interp(ys, wx), L = interp(cum, wx);
       const o = Math.max(0, Math.min(1, (xd + 20) / 70, (W + 70 - xd) / 70));
-      drop.setAttribute('transform', `translate(${xd.toFixed(1)} ${(y - 9).toFixed(1)})`);
+      drop.setAttribute('transform', `translate(${xd.toFixed(1)} ${(y + 9).toFixed(1)})`);
       drop.setAttribute('opacity', o.toFixed(2));
       lit.setAttribute('stroke-dasharray', `110 ${total * 3}`);
       lit.setAttribute('stroke-dashoffset', (110 - L).toFixed(1));
@@ -158,7 +161,7 @@ export default function CertRidge() {
     sky.innerHTML = '';
     for (let i = 0; i < 24; i++) {
       const s = document.createElement('i');
-      s.style.cssText = `left:${(i * 37 + 11) % 100}%;top:${(i * 53) % 42}%;animation-delay:${(i % 7) * 0.6}s;animation-duration:${3 + (i % 4)}s`;
+      s.style.cssText = `left:${(i * 37 + 11) % 100}%;top:${34 + ((i * 53) % 60)}%;animation-delay:${(i % 7) * 0.6}s;animation-duration:${3 + (i % 4)}s`;
       sky.appendChild(s);
     }
 
@@ -196,7 +199,7 @@ export default function CertRidge() {
         <div className="cr-sky" aria-hidden="true" />
         <svg className="cr-svg" preserveAspectRatio="none" aria-hidden="true">
           <defs>
-            <linearGradient id="cr-nf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#4b0b1a" /><stop offset="1" stopColor="#1c0207" /></linearGradient>
+            <linearGradient id="cr-nf" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#4b0b1a" /><stop offset="1" stopColor="#1c0207" /></linearGradient>
             <radialGradient id="cr-dg" cx=".38" cy=".32" r=".8"><stop offset="0" stopColor="#FFF8DC" /><stop offset=".4" stopColor="#FFC25C" /><stop offset="1" stopColor="#B9620F" /></radialGradient>
             <filter id="cr-bl" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="6" /></filter>
           </defs>
