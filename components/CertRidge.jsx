@@ -24,21 +24,19 @@ const LABEL = {
 
 // Icon-led proof facts that sit in the top of the same dark band as the seals (one strip, not two).
 const FACTS = {
-  en: [['Skardu origin', 'Above 5,000 m'], ['Lab tested', 'Every batch'], ['Fulvic acid', 'Measured'], ['Pure resin', 'Nothing added'], ['Sun-dried', 'Hand-purified']],
-  da: [['Skardu-oprindelse', 'Over 5.000 m'], ['Labtestet', 'Hver batch'], ['Fulvinsyre', 'Målt'], ['Ren resin', 'Intet tilsat'], ['Soltørret', 'Håndrenset']],
-  de: [['Herkunft Skardu', 'Über 5.000 m'], ['Laborgeprüft', 'Jede Charge'], ['Fulvinsäure', 'Gemessen'], ['Reines Harz', 'Nichts zugesetzt'], ['Sonnengetrocknet', 'Handgereinigt']],
-  fr: [['Origine Skardu', 'Au-dessus de 5 000 m'], ['Testé en labo', 'Chaque lot'], ['Acide fulvique', 'Mesuré'], ['Résine pure', 'Rien d’ajouté'], ['Séché au soleil', 'Purifié à la main']],
-  es: [['Origen Skardu', 'A más de 5.000 m'], ['Analizado', 'Cada lote'], ['Ácido fúlvico', 'Medido'], ['Resina pura', 'Nada añadido'], ['Secado al sol', 'Purificado a mano']],
-  ar: [['منشأ سكاردو', 'فوق 5000 م'], ['مفحوص مخبريًا', 'كل دفعة'], ['حمض الفولفيك', 'مُقاس'], ['راتنج نقي', 'دون إضافات'], ['مجفف بالشمس', 'منقّى يدويًا']],
-  ur: [['اسکردو کا ماخذ', '5,000 میٹر سے اوپر'], ['لیب ٹیسٹ شدہ', 'ہر بیچ'], ['فلووک ایسڈ', 'ناپا گیا'], ['خالص ریزن', 'کچھ شامل نہیں'], ['دھوپ میں خشک', 'ہاتھ سے صاف']],
+  en: [['Origin', 'Skardu, Pakistan'], ['Lab tested', 'Every batch'], ['Quality standards', 'GMP · ISO 22000 · ISO 9001']],
+  da: [['Oprindelse', 'Skardu, Pakistan'], ['Labtestet', 'Hver batch'], ['Kvalitetsstandarder', 'GMP · ISO 22000 · ISO 9001']],
+  de: [['Herkunft', 'Skardu, Pakistan'], ['Laborgeprüft', 'Jede Charge'], ['Qualitätsstandards', 'GMP · ISO 22000 · ISO 9001']],
+  fr: [['Origine', 'Skardu, Pakistan'], ['Testé en labo', 'Chaque lot'], ['Normes de qualité', 'GMP · ISO 22000 · ISO 9001']],
+  es: [['Origen', 'Skardu, Pakistán'], ['Analizado', 'Cada lote'], ['Estándares de calidad', 'GMP · ISO 22000 · ISO 9001']],
+  ar: [['المنشأ', 'سكاردو، باكستان'], ['مفحوص مخبريًا', 'كل دفعة'], ['معايير الجودة', 'GMP · ISO 22000 · ISO 9001']],
+  ur: [['ماخذ', 'اسکردو، پاکستان'], ['لیب ٹیسٹ شدہ', 'ہر بیچ'], ['معیار کے اسٹینڈرڈز', 'GMP · ISO 22000 · ISO 9001']],
 };
-const FACT_HREF = ['/our-shilajit/', '/lab-results/', '/lab-results/', '/our-shilajit/', '/our-shilajit/'];
+const FACT_HREF = ['/our-shilajit/', '/lab-results/', '/certificates/'];
 const FACT_ICONS = [
   <g key="m"><path d="M-30 14-10-14 0-2 10-18 30 14z" /><path d="M-14-8-6-2-2-8M6-6l4 3 4-4" /></g>,
   <g key="f"><path d="M-7-18h14M-5-18V-4L-22 16a4 4 0 0 0 3.500 6h37a4 4 0 0 0 3.500-6L5-4V-18" /><path d="M-16 8h32" /><circle cx="-4" cy="14" r="2" /></g>,
-  <g key="o"><path d="M0-20 17-10V10L0 20-17 10V-10z" /><path d="M0-20V-6M17 10 6 4M-17 10-6 4" /><circle cx="0" cy="0" r="6" /></g>,
-  <g key="d"><path d="M0-22C9-9 18-2 18 8a18 18 0 0 1-36 0C-18-2-9-9 0-22z" /><path d="M-8 10a9 9 0 0 0 9 9" /></g>,
-  <g key="s"><circle cx="0" cy="0" r="11" /><path d="M0-24V-17M0 17V24M-24 0H-17M17 0H24M-17-17l5 5M12 12l5 5M-17 17l5-5M12-12l5-5" /></g>,
+  <g key="q"><circle cx="0" cy="-6" r="14" /><path d="M0-14l2.500 5 5.500.8-4 3.900.9 5.500L0-1.500l-4.900 2.700.9-5.500-4-3.900 5.500-.8z" /><path d="M-8 6-12 22l12-6 12 6L8 6" /></g>,
 ];
 const N = SEALS.length;
 
