@@ -2700,7 +2700,8 @@ html, body { overflow-x: clip; }
 .cr-far { fill: rgba(120, 30, 45, 0.28); }
 .cr-near { fill: url(#cr-nf); }
 .cr-edge { fill: none; stroke: rgba(204, 162, 94, 0.35); stroke-width: 1; }
-.cr-lit { fill: none; stroke: url(#cr-tg); stroke-width: 1.6; stroke-linecap: round; transition: opacity 0.6s; }
+.cr-lit { fill: none; stroke: #ffc766; stroke-width: 2; stroke-linecap: round; }
+.cr-world { position: absolute; left: 0; top: 0; height: 100%; will-change: transform; }
 .cr-drop { filter: drop-shadow(0 0 7px #ffb347); }
 .cr-gate { position: absolute; top: 0; width: 0; height: 100%; }
 .cr-lab { position: absolute; left: 0; top: 10px; transform: translateX(-50%); width: var(--s); height: var(--s); display: block; border-radius: 50%; }
