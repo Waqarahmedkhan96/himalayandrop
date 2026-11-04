@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useT } from './LangProvider';
 import CertVault from './CertVault';
+import CertTabs from './CertTabs';
 
 const T = {
   en: { dark: 'Burgundy', cream: 'Cream', label: 'Style' },
@@ -21,7 +22,7 @@ export default function CertVaultSwitch() {
   const pick = (v) => { setCream(v); try { localStorage.setItem('cv-tone', v ? 'cream' : 'dark'); } catch (e) {} };
   return (
     <>
-      <CertVault cream={cream} />
+      {cream ? <CertVault cream /> : <CertTabs />}
       <div className="why-switch" role="group" aria-label={t.label} style={{ marginTop: 14, paddingBottom: 0 }}>
         <span>{t.label}</span>
         <button type="button" aria-pressed={!cream} onClick={() => pick(false)}>{t.dark}</button>
