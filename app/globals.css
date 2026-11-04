@@ -3426,3 +3426,14 @@ html, body { overflow-x: clip; }
 .ct .ct-wm,.ct .ct-idx{display:none}
 .ct:not(.ct-cream) .ct-badge{box-shadow:0 18px 30px -14px rgba(0,0,0,.8),0 0 0 1px #cca25e,0 0 0 4px rgba(246,227,174,.12),0 0 0 5px rgba(204,162,94,.55),inset 0 1px 0 rgba(255,255,255,.2);background:linear-gradient(135deg,#6a1422,#3a0813)}
 @media(max-width:860px){.ct .ct-top{grid-template-columns:1fr}.ct .ct-top .ct-tabs{justify-self:stretch}.ct .ct-body{--h:min(46vh,400px)}.ct .ct-tab{flex:none}}
+/* Badge button on burgundy: gold plate so it stands out; states */
+.ct:not(.ct-cream) .ct-badge{background:linear-gradient(135deg,#f6e3ae 0%,#d9b36a 55%,#b98b3e 100%);color:#3a0813;box-shadow:0 18px 30px -14px rgba(0,0,0,.75),0 0 0 1px #f6e3ae,0 0 0 4px rgba(246,227,174,.14),0 0 0 5px rgba(246,227,174,.5),inset 0 1px 0 rgba(255,255,255,.7)}
+.ct:not(.ct-cream) .ct-badge small{color:#7a1626}
+.ct:not(.ct-cream) .ct-badge b{color:#2e050d}
+.ct:not(.ct-cream) .ct-badge:hover{background:linear-gradient(135deg,#fff3d2 0%,#f6e3ae 55%,#d9b36a 100%);transform:translateY(-2px)}
+.ct:not(.ct-cream) .ct-badge:active{background:linear-gradient(135deg,#d9b36a,#b98b3e);transform:translateY(1px);box-shadow:0 8px 14px -10px rgba(0,0,0,.8),0 0 0 1px #f6e3ae,0 0 0 4px rgba(246,227,174,.14),inset 0 2px 6px rgba(70,40,5,.35)}
+.ct-cream .ct-badge:hover{background:linear-gradient(135deg,#8a1a2d,#4e0b1a)}
+.ct-cream .ct-badge:active{background:linear-gradient(135deg,#4a0b1a,#2e050d);transform:translateY(1px);box-shadow:0 8px 14px -10px rgba(74,11,26,.8),0 0 0 1px #cca25e,0 0 0 4px #f3e8d2,inset 0 2px 6px rgba(0,0,0,.45)}
+.ct-badge{transition:transform .2s,background .2s,box-shadow .2s}
+/* Mobile: text first, certificate below */
+@media(max-width:860px){.ct-show{order:0}.ct-body{gap:34px}}
