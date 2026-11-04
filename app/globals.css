@@ -1038,9 +1038,9 @@ em { font-style: italic; }
   background: radial-gradient(90% 70% at 50% 0%, #fffaf0, transparent 70%), linear-gradient(180deg, #f8f0e1, #eadcc2);
   box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(176, 132, 63, 0.45), 0 26px 40px -28px rgba(64, 1, 10, 0.55); transition: transform 0.5s var(--ease), box-shadow 0.5s; }
 .cert-item:hover { transform: translateY(-4px); box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgba(176, 132, 63, 0.7), 0 34px 48px -26px rgba(64, 1, 10, 0.6); }
-.cert-seal { width: 172px; height: 172px; display: grid; place-items: center; border-radius: 50%; margin-bottom: 8px;
-  background: radial-gradient(circle at 50% 35%, #5b1022, #2a0610 75%); box-shadow: inset 0 0 0 3px rgba(204, 162, 94, 0.55), inset 0 6px 16px rgba(0, 0, 0, 0.6), 0 10px 22px -10px rgba(42, 1, 7, 0.7); }
-.cert-seal img, .cert-seal .seal-svg { width: 132px; height: 132px; object-fit: contain; filter: drop-shadow(0 0 14px rgba(255, 179, 71, 0.4)) drop-shadow(0 6px 5px rgba(0, 0, 0, 0.55)); }
+.cert-seal { width: 184px; height: 184px; display: grid; place-items: center; margin-bottom: 4px; }
+.cert-seal img, .cert-seal .seal-svg { width: 184px; height: 184px; object-fit: contain; filter: drop-shadow(0 14px 12px rgba(42, 1, 7, 0.38)); transition: transform 0.5s var(--ease); }
+.cert-item:hover .cert-seal img { transform: translateY(-4px) scale(1.03); }
 .cert-item h3 { font: italic 400 26px/1.1 var(--display); color: var(--maroon); margin: 4px 0 0; }
 .cert-item p { color: var(--muted); max-width: 34ch; font-size: 15px; margin: 0; }
 .cert-item .btn.outline { margin-top: 10px; }
@@ -3065,3 +3065,8 @@ html, body { overflow-x: clip; }
 .hb-explore { width: 100%; justify-content: center; margin-top: 10px; }
 .hb-sep { align-items: center; }
 .hb-sep em { font: 800 11px var(--sans); font-style: normal; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 999px; background: linear-gradient(180deg, #f6e6b8, #c9a15c); color: #2a0107; }
+
+/* Home strip: the three standards as the new seals */
+.pt-std .pt-plaque.pt-badge { all: unset; display: block; box-sizing: border-box; width: 66px; height: 66px; object-fit: contain; filter: drop-shadow(0 8px 8px rgba(42, 1, 7, 0.35)); transition: transform 0.4s var(--ease); }
+.pt-std:hover .pt-plaque.pt-badge { transform: translateY(-3px) scale(1.04); }
+.pt-slide .pt-plaque.pt-badge { width: 50px; height: 50px; }

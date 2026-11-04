@@ -16,7 +16,7 @@ const T = {
   ar: { place: 'سكاردو، باكستان', alt: 'يُجمع فوق 5000 متر', lab: 'تقارير مخبرية لكل دفعة', labSub: 'فحص المعادن الثقيلة', std: 'معايير الجودة' },
   ur: { place: 'اسکردو، پاکستان', alt: '5,000 میٹر سے اوپر سے حاصل', lab: 'ہر بیچ کی لیب رپورٹ', labSub: 'بھاری دھاتوں کا ٹیسٹ', std: 'معیار کے سرٹیفکیٹ' },
 };
-const CERTS = ['GMP', 'ISO 22000', 'ISO 9001'];
+const CERTS = [['GMP', 'gmp'], ['ISO 22000', 'iso22000'], ['ISO 9001', 'iso9001']];
 
 const Arrow = () => (
   <svg className="pt-arrow" width="28" height="20" viewBox="0 0 28 20" aria-hidden="true">
@@ -138,10 +138,10 @@ export default function ProofThread() {
           <Link href="/certificates/" className="pt-std">
             <span className="pt-std-h">{t.std}</span>
             <span className="pt-plaques">
-              {CERTS.map((c, i) => (
+              {CERTS.map(([c, f], i) => (
                 <span key={c} className="pt-pq">
                   {i > 0 && <i className="pt-link" aria-hidden="true" />}
-                  <span className="pt-plaque">{c}</span>
+                  <img className="pt-plaque pt-badge" src={`/images/certs/${f}.webp`} alt={`${c} certified`} width="64" height="64" loading="lazy" decoding="async" />
                 </span>
               ))}
             </span>
@@ -161,10 +161,10 @@ export default function ProofThread() {
           <Link href="/certificates/" className="pt-slide pt-slide-std">
             <span className="pt-std-h">{t.std}</span>
             <span className="pt-plaques">
-              {CERTS.map((c, i) => (
+              {CERTS.map(([c, f], i) => (
                 <span key={c} className="pt-pq">
                   {i > 0 && <i className="pt-link" aria-hidden="true" />}
-                  <span className="pt-plaque">{c}</span>
+                  <img className="pt-plaque pt-badge" src={`/images/certs/${f}.webp`} alt={`${c} certified`} width="64" height="64" loading="lazy" decoding="async" />
                 </span>
               ))}
             </span>
@@ -180,10 +180,10 @@ export default function ProofThread() {
           <Link href="/certificates/" className="pt-slide pt-slide-std" aria-hidden="true" tabIndex={-1}>
             <span className="pt-std-h">{t.std}</span>
             <span className="pt-plaques">
-              {CERTS.map((c, i) => (
+              {CERTS.map(([c, f], i) => (
                 <span key={c} className="pt-pq">
                   {i > 0 && <i className="pt-link" aria-hidden="true" />}
-                  <span className="pt-plaque">{c}</span>
+                  <img className="pt-plaque pt-badge" src={`/images/certs/${f}.webp`} alt={`${c} certified`} width="64" height="64" loading="lazy" decoding="async" />
                 </span>
               ))}
             </span>
