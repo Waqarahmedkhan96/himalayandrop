@@ -1,8 +1,7 @@
 'use client';
-// Home "Why Himalayan Drop": three layouts, one switch. The choice is remembered on this device.
+// Home "Why Himalayan Drop": two layouts, one switch. The choice is remembered on this device.
 import { useEffect, useState } from 'react';
 import { useT } from './LangProvider';
-import WhyAscent from './WhyAscent';
 import WhyStrata from './WhyStrata';
 import WhyCore from './WhyCore';
 
@@ -15,7 +14,7 @@ const T = {
   ar: { layout: 'التصميم' },
   ur: { layout: 'ڈیزائن' },
 };
-const VERS = [['core', 'Core Sample', WhyCore], ['strata', 'Strata', WhyStrata], ['ascent', 'Ascent', WhyAscent]];
+const VERS = [['core', 'Core Sample', WhyCore], ['strata', 'Strata', WhyStrata]];
 
 export default function WhyReasonsSwitch() {
   const t = useT(T);

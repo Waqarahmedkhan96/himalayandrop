@@ -4,9 +4,8 @@ import Hero from '@/components/Hero';
 import ProofThread from '@/components/ProofThread';
 import CertRidge from '@/components/CertRidge';
 import CollectionGallery from '@/components/CollectionGallery';
-import Faq from '@/components/Faq';
 import Reviews from '@/components/Reviews';
-import CertVault from '@/components/CertVault';
+import CertVaultSwitch from '@/components/CertVaultSwitch';
 import Newsletter from '@/components/Newsletter';
 import BenefitsExplorer from '@/components/BenefitsExplorer';
 import HomeBundlesSwitch from '@/components/HomeBundlesSwitch';
@@ -48,8 +47,7 @@ export default async function HomeView({ lang }) {
       <WhyReasonsSwitch />
       <Reviews />
       <HomeBundlesSwitch bundles={top3} />
-      <CertVault />
-      <Faq />
+      <CertVaultSwitch />
       <Newsletter />
     </>
   );
