@@ -3291,3 +3291,31 @@ html, body { overflow-x: clip; }
 .cv-cap{position:absolute;left:0;right:0;bottom:0;margin:0;text-align:center;font:600 10.5px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:rgba(245,236,220,.6)}
 .cv.cv-cream .cv-cap{color:#8a7a70}
 .cv-display{padding-bottom:26px}
+
+/* Certificate vault, compact: no motion, fits one screen (burgundy) */
+.cv .cv-pl[aria-selected=true] .cv-bar,.cv-medal,.cv-paper .cv-sheen{animation:none!important}
+.cv-swap *,.cv-swap{animation:none!important}
+.cv:not(.cv-cream){padding-block:clamp(36px,5vh,64px)}
+.cv:not(.cv-cream) .cv-stage{gap:clamp(24px,4vw,64px)}
+.cv:not(.cv-cream) h2{font-size:clamp(34px,4.2vw,58px);margin-top:10px}
+.cv:not(.cv-cream) .cv-lead{margin-top:12px;font-size:15.5px;max-width:42ch}
+.cv:not(.cv-cream) .cv-left .cv-list{margin-top:clamp(16px,2.6vh,26px)}
+.cv:not(.cv-cream) .cv-list{gap:6px}
+.cv:not(.cv-cream) .cv-pl{border-radius:14px}
+.cv:not(.cv-cream) .cv-pl-h{grid-template-columns:38px 1fr auto;gap:12px;padding:8px 14px 8px 10px}
+.cv:not(.cv-cream) .cv-pl-h img{width:38px;height:38px}
+.cv:not(.cv-cream) .cv-pl[aria-selected=true] .cv-pl-h img{transform:none}
+.cv:not(.cv-cream) .cv-pl-n{font-size:clamp(17px,1.6vw,21px)}
+.cv:not(.cv-cream) .cv-pl-s{margin-top:2px;font-size:9px;letter-spacing:.2em}
+.cv:not(.cv-cream) .cv-pl-a{width:22px;height:22px}
+.cv:not(.cv-cream) .cv-pl-b{transition:none}
+.cv:not(.cv-cream) .cv-pl-b p{padding:0 16px 4px 60px;font-size:14px;line-height:1.5}
+.cv:not(.cv-cream) .cv-pl-b .cv-more{margin:6px 16px 12px 60px;font-size:10px}
+.cv:not(.cv-cream) .cv-display{min-height:0}
+.cv:not(.cv-cream) .cv-frame{width:min(100%,330px);padding:11px}
+.cv:not(.cv-cream) .cv-mat{padding:14px}
+.cv:not(.cv-cream) .cv-medal{width:clamp(96px,10vw,128px);height:clamp(96px,10vw,128px);right:-30px;top:-28px}
+.cv:not(.cv-cream) .cv-scan{max-height:min(62vh,520px);width:auto;max-width:100%;margin:0 auto}
+.cv:not(.cv-cream) .cv-paper{aspect-ratio:3/4;max-height:min(62vh,440px)}
+.cv:not(.cv-cream) .cv-display{padding-bottom:22px}
+@media(max-width:860px){.cv:not(.cv-cream) .cv-stage{grid-template-columns:1fr}.cv:not(.cv-cream) .cv-display{order:-1}.cv:not(.cv-cream) .cv-frame{width:min(100%,260px)}.cv:not(.cv-cream) .cv-scan{max-height:46vh}}

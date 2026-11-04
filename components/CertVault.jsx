@@ -2,7 +2,7 @@
 // Certificate vault: engraved plaques on the left, the certificate in a brass frame on the right.
 // Only show a certificate you actually hold. Add `img` (a scan of the certificate) to an item below to
 // replace the drawn placeholder paper in the frame.
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Link from './LLink';
 import { useLang } from './LangProvider';
 import { getSeals } from './Seal';
@@ -14,7 +14,6 @@ const ITEMS = [
   { id: 'iso9001', seal: '/images/certs/iso9001.webp', href: '/certificates/', img: null },
   { id: 'metals', seal: '/images/certs/lab-tested.webp', href: '/lab-results/', img: '/images/certs/lab-report-sample.webp', caption: true },
 ];
-const ROTATE_MS = 7000;
 const SAMPLE = {
   en: 'Sample test report · PCSIR Karachi · Nov 2023', da: 'Eksempel på testrapport · PCSIR Karachi · nov. 2023', de: 'Beispiel-Prüfbericht · PCSIR Karachi · Nov. 2023',
   fr: 'Exemple de rapport d’essai · PCSIR Karachi · nov. 2023', es: 'Informe de ensayo de muestra · PCSIR Karachi · nov. 2023',
@@ -26,40 +25,13 @@ export default function CertVault({ cream = false }) {
   const t = CERT_TEXT[lang] || CERT_TEXT.en;
   const seals = getSeals(lang).slice(0, 4);
   const [i, setI] = useState(0);
-  const [swap, setSwap] = useState(false);
-  const [hold, setHold] = useState(false);
-  const [seen, setSeen] = useState(true);
-  const root = useRef(null);
-  const first = useRef(true);
-
-  const pick = (k) => { setI((k + ITEMS.length) % ITEMS.length); };
-
-  useEffect(() => {
-    if (first.current) { first.current = false; return; }
-    setSwap(false);
-    const id = requestAnimationFrame(() => setSwap(true));
-    return () => cancelAnimationFrame(id);
-  }, [i]);
-
-  useEffect(() => {
-    const el = root.current;
-    if (!el) return;
-    const io = new IntersectionObserver(([e]) => setSeen(e.isIntersecting), { threshold: 0.3 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (hold || !seen || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const id = setTimeout(() => pick(i + 1), ROTATE_MS);
-    return () => clearTimeout(id);
-  }, [i, hold, seen]);
+  const pick = (k) => setI((k + ITEMS.length) % ITEMS.length);
 
   const cur = ITEMS[i];
   const code = (k) => seals[k].main.join(' ');
 
   return (
-    <section id="certifications" className={`cv${cream ? ' cv-cream' : ''}`} ref={root} onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)} aria-label={`${t.title} ${t.accent}`}>
+    <section id="certifications" className={`cv${cream ? ' cv-cream' : ''}`} aria-label={`${t.title} ${t.accent}`}>
       <svg className="cv-ridge" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 400V300l90-50 90-30 90-80 70 50 80-110 90 150 70-60 90 105 100 75 80-30 90-55 90 60 80-75 90-130 70 110 90-40 100 80 70 55 80-40 90 40V400Z" fill="rgba(120,30,45,.35)" />
         <path d="M0 300l90-50 90-30 90-80 70 50 80-110 90 150 70-60 90 105 100 75 80-30 90-55 90 60 80-75 90-130 70 110 90-40 100 80 70 55 80-40 90 40" fill="none" stroke="rgba(204,162,94,.4)" strokeWidth="1.2" />
@@ -79,12 +51,12 @@ export default function CertVault({ cream = false }) {
                     <span className="cv-pl-a"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><path d="M6 2v8M2 6h8" /></svg></span>
                   </span>
                   <span className="cv-pl-b"><span><p>{t.items[k][1]}</p><Link className="cv-more" href={it.href} tabIndex={i === k ? 0 : -1}>{t.view}</Link></span></span>
-                  <span className="cv-bar" />
+                  
                 </div>
               ))}
             </div>
           </div>
-          <div className={`cv-display${swap ? ' cv-swap' : ''}${hold ? ' cv-paused' : ''}`}>
+          <div className="cv-display">
             <div className="cv-spot" />
             <div className="cv-mark"><img src={cur.seal} alt="" /></div>
             <div className="cv-frame">
