@@ -1,6 +1,6 @@
 import PageHero from '@/components/PageHero';
 import Reveal from '@/components/Reveal';
-import Process from '@/components/Process';
+import ProcessSwitch from '@/components/ProcessSwitch';
 import { CtaCards } from '@/components/Blocks';
 import { pageMeta } from '@/lib/seo';
 import { tr } from '@/lib/i18n';
@@ -71,7 +71,7 @@ export default function ProcessView({ lang }) {
   return (
     <>
       <PageHero {...t.hero} />
-      <Process />
+      <ProcessSwitch />
       <Reveal as="section" className="section tight-top">
         <div className="container">
           <CtaCards items={t.ctas} />

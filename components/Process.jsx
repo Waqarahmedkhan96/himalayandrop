@@ -111,6 +111,8 @@ const T = {
   ur: { steps: stepsUr, alt: '+5,000 میٹر', day: 'دن', checks: ['بھاری دھاتیں', 'معیار', 'فلوک ایسڈ %'], eyebrow: 'ہمارا طریقہ', h: 'پہاڑ سے', hg: 'برتن تک۔', lead: 'چھ صبر آزما مراحل اور 60 دن تک دھوپ۔ سفر دیکھنے کے لیے اسکرول کریں۔', within: 'The Mountain', withinG: 'within.' },
 };
 
+export { T as PROCESS_T };
+
 function Scene({ k, day, t }) {
   switch (k) {
     case 'harvest':
