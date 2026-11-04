@@ -5,6 +5,16 @@ import { useEffect, useRef, useState } from 'react';
 import { useLang } from './LangProvider';
 import { PROCESS_T } from './Process';
 
+// One real photo per step. Files live in public/images/process/. The last one is our own product shot.
+const PHOTO = {
+  harvest: '/images/process/harvest.webp',
+  break: '/images/process/break.webp',
+  filter: '/images/process/filter.webp',
+  sun: '/images/process/sun.webp',
+  lab: '/images/process/lab.webp',
+  pack: '/images/pdp/gold-resin/stage.webp',
+};
+
 export default function ProcessDescent() {
   const t = PROCESS_T[useLang()];
   const steps = t.steps;
@@ -41,7 +51,10 @@ export default function ProcessDescent() {
         </div>
         {steps.map((s, i) => (
           <article key={s.key} className={`pd-step ${i % 2 ? 'r' : 'l'}`}>
-            <span className="pd-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <figure className="pd-photo">
+              <span className="pd-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <img src={PHOTO[s.key]} alt="" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+            </figure>
             <span className="pd-dot" aria-hidden="true" />
             <div className="pd-card">
               <span className="eyebrow">{s.eyebrow}</span>

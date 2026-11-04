@@ -3321,33 +3321,35 @@ html, body { overflow-x: clip; }
 [class^="why-"] .giant, [class^="why-"] .big, [class^="why-"] h2, [class^="why-"] .lab b, [class^="why-"] h3 { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
 [class^="why-"] a.more .bolt { flex: none; }
 
-/* Process page: "The Descent" layout */
-.pd { position: relative; margin-top: 28px; padding: clamp(56px, 8vw, 110px) 0 0; color: #f7f1e8; background: radial-gradient(60% 40% at 80% 0%, rgba(176, 52, 66, 0.4), transparent 70%), linear-gradient(180deg, #3f0914, #240309 55%, #170709); border-radius: var(--r-xl) var(--r-xl) 0 0; overflow: hidden; }
+/* Process page: "The Descent" layout. Cream page, burgundy stays in the hero only. */
+.pd { position: relative; padding: clamp(56px, 8vw, 110px) 0 0; color: var(--ink, #2a0a12); }
 .pd-top { text-align: center; padding: 0 var(--frame); }
-.pd-top .eyebrow { color: var(--gold-soft); }
-.pd-top h2 { font-size: clamp(44px, 8vw, 104px); margin-top: 12px; color: #f7f1e8; }
+.pd-top .eyebrow { color: var(--gold); }
+.pd-top h2 { font-size: clamp(40px, 7vw, 92px); margin-top: 12px; }
 .pd-wrap { position: relative; max-width: 1180px; margin: clamp(40px, 6vw, 80px) auto 0; padding: 0 var(--frame) 40px; }
-.pd-line { position: absolute; top: 0; bottom: 0; left: calc(var(--frame) + 9px); width: 2px; background: rgba(226, 196, 135, 0.22); }
-.pd-fill { position: absolute; left: 0; top: 0; width: 100%; background: linear-gradient(180deg, #f7e7bd, #c9a15c); box-shadow: 0 0 16px rgba(226, 196, 135, 0.6); }
-.pd-jar { position: absolute; left: 50%; width: 46px; height: auto; transform: translate(-50%, -50%); filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.6)); z-index: 3; }
-.pd-step { position: relative; display: grid; gap: 4px; padding: 0 0 clamp(54px, 8vw, 110px) 64px; opacity: 0; transform: translateY(34px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.pd-line { position: absolute; top: 0; bottom: 0; left: calc(var(--frame) + 9px); width: 2px; background: rgba(169, 124, 58, 0.25); }
+.pd-fill { position: absolute; left: 0; top: 0; width: 100%; background: linear-gradient(180deg, #d9b66f, #a97c3a); }
+.pd-jar { position: absolute; left: 50%; width: 46px; height: auto; transform: translate(-50%, -50%); filter: drop-shadow(0 10px 8px rgba(42, 10, 18, 0.35)); z-index: 3; }
+.pd-step { position: relative; display: grid; gap: 22px; padding: 0 0 clamp(54px, 8vw, 110px) 56px; opacity: 0; transform: translateY(34px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
 .pd-step.in { opacity: 1; transform: none; }
-.pd-num { font: 400 clamp(92px, 20vw, 220px) / 0.8 var(--display); letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1.5px rgba(226, 196, 135, 0.55); font-variant-numeric: lining-nums; }
-.pd-dot { position: absolute; left: 0; top: 18px; width: 20px; height: 20px; border-radius: 50%; background: #240309; box-shadow: inset 0 0 0 2px #e2c487; transition: background 0.5s, box-shadow 0.5s; }
-.pd-step.in .pd-dot { background: radial-gradient(circle at 35% 30%, #fff1c9, #d9b66f 60%, #b88c45); box-shadow: 0 0 0 5px rgba(226, 196, 135, 0.2), 0 0 22px rgba(226, 196, 135, 0.6); }
-.pd-card .eyebrow { color: var(--gold-soft); }
-.pd-card h3 { margin: 8px 0 10px; font: 400 clamp(28px, 4vw, 48px) / 1.05 var(--display); letter-spacing: -0.02em; color: #f7f1e8; }
-.pd-card p { margin: 0; max-width: 46ch; font-size: 16px; line-height: 1.7; color: rgba(247, 241, 232, 0.78); }
-.pd-card .pfact { display: inline-block; margin-top: 16px; padding: 7px 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(226, 196, 135, 0.5); font: 700 10px var(--sans); letter-spacing: 0.2em; text-transform: uppercase; color: #f7e7bd; }
-.pd-end { text-align: center; padding: clamp(30px, 5vw, 70px) var(--frame) clamp(70px, 9vw, 120px); }
-.pd-end h2 { font-size: clamp(46px, 10vw, 120px); color: #f7f1e8; }
+.pd-photo { position: relative; margin: 0; aspect-ratio: 4 / 3; border-radius: var(--r-xl); overflow: hidden; background: linear-gradient(135deg, #efe3cc, #e2cfab); box-shadow: 0 30px 40px -28px rgba(58, 8, 19, 0.45), inset 0 0 0 1px rgba(169, 124, 58, 0.25); }
+.pd-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pd-num { position: absolute; z-index: 2; left: 18px; bottom: 6px; font: 400 clamp(64px, 11vw, 120px) / 1 var(--display); letter-spacing: -0.04em; color: #fff; text-shadow: 0 2px 22px rgba(42, 10, 18, 0.45); font-variant-numeric: lining-nums; pointer-events: none; }
+.pd-dot { position: absolute; left: 0; top: 18px; width: 20px; height: 20px; border-radius: 50%; background: #f8f1e6; box-shadow: inset 0 0 0 2px #a97c3a; transition: background 0.5s, box-shadow 0.5s; }
+.pd-step.in .pd-dot { background: radial-gradient(circle at 35% 30%, #fff1c9, #d9b66f 60%, #a97c3a); box-shadow: 0 0 0 5px rgba(169, 124, 58, 0.18); }
+.pd-card .eyebrow { color: var(--gold); }
+.pd-card h3 { margin: 8px 0 10px; font: 400 clamp(28px, 4vw, 48px) / 1.05 var(--display); letter-spacing: -0.02em; color: var(--ink, #2a0a12); }
+.pd-card p { margin: 0; max-width: 46ch; font-size: 16px; line-height: 1.7; color: var(--muted); }
+.pd-card .pfact { display: inline-block; margin-top: 16px; padding: 7px 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(169, 124, 58, 0.55); font: 700 10px var(--sans); letter-spacing: 0.2em; text-transform: uppercase; color: #8a6428; background: transparent; }
+.pd-end { text-align: center; padding: clamp(30px, 5vw, 70px) var(--frame) clamp(50px, 7vw, 90px); }
+.pd-end h2 { font-size: clamp(46px, 10vw, 120px); }
 @media (min-width: 900px) {
   .pd-line { left: 50%; margin-left: -1px; }
   .pd-step { grid-template-columns: 1fr 1fr; align-items: center; gap: 0 clamp(60px, 9vw, 130px); padding-left: 0; }
   .pd-dot { left: 50%; top: 50%; margin: -10px 0 0 -10px; }
-  .pd-step.l .pd-num { grid-column: 1; grid-row: 1; justify-self: end; }
+  .pd-step.l .pd-photo { grid-column: 1; grid-row: 1; }
   .pd-step.l .pd-card { grid-column: 2; grid-row: 1; }
-  .pd-step.r .pd-num { grid-column: 2; grid-row: 1; justify-self: start; }
+  .pd-step.r .pd-photo { grid-column: 2; grid-row: 1; }
   .pd-step.r .pd-card { grid-column: 1; grid-row: 1; justify-self: end; text-align: right; }
   .pd-step.r .pd-card p { margin-left: auto; }
 }
