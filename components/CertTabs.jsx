@@ -52,14 +52,10 @@ export default function CertTabs({ cream = false }) {
             <p className="ct-ring">{seals[i].ring.replace(/ · $/, '')}</p>
             <h3>{t.items[i][0]}</h3>
             <p className="ct-desc">{t.items[i][1]}</p>
-            {cream ? (
-              <Link className="ct-badge" href={cur.href}>
-                <img src={cur.seal} alt="" width="58" height="58" />
-                <span><small>{t.view}</small><b>{SHORT[i]}</b></span>
-              </Link>
-            ) : (
-              <Link className="ct-more" href={cur.href}>{t.view}</Link>
-            )}
+            <Link className="ct-badge" href={cur.href}>
+              <img src={cur.seal} alt="" width="58" height="58" />
+              <span><small>{t.view}</small><b>{SHORT[i]}</b></span>
+            </Link>
           </div>
           <div className="ct-show">
             <div className="ct-spot" />
