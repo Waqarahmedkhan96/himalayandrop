@@ -4,7 +4,6 @@ import Hero from '@/components/Hero';
 import ProofThread from '@/components/ProofThread';
 import CertRidge from '@/components/CertRidge';
 import CollectionGallery from '@/components/CollectionGallery';
-import Faq from '@/components/Faq';
 import Reviews from '@/components/Reviews';
 import CertVault from '@/components/CertVault';
 import Newsletter from '@/components/Newsletter';
@@ -49,7 +48,6 @@ export default async function HomeView({ lang }) {
       <Reviews />
       <HomeBundlesSwitch bundles={top3} />
       <CertVault />
-      <Faq />
       <Newsletter />
     </>
   );

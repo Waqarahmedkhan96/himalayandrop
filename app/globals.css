@@ -3071,74 +3071,6 @@ html, body { overflow-x: clip; }
 .pt-std:hover .pt-plaque.pt-badge { transform: translateY(-3px) scale(1.04); }
 .pt-slide .pt-plaque.pt-badge { width: 50px; height: 50px; }
 
-/* ===== Home "Why Himalayan Drop": ascent ===== */
-.why-ascent{
-  --cream:#f8f1e6; --ink:#2a0a12; --muted:#7a6a62;
-  --wine-900:#240309; --wine-700:#3f0914; --wine-500:#5a0f1c;
-  --gold-200:#f7e7bd; --gold-400:#e2c487; --gold-600:#b88c45; --text-on-wine:#f7f1e8;
-  
-  
-}
-.why-ascent *{box-sizing:border-box}
-.why-ascent{color:var(--ink);font-family:var(--sans);padding:clamp(28px,5vw,84px) var(--frame)}
-.why-ascent .wrap{max-width:1360px;margin:0 auto}
-.why-ascent .panel{position:relative;isolation:isolate;overflow:hidden;border-radius:32px;color:var(--text-on-wine);padding:clamp(28px,4.4vw,64px) clamp(18px,3.6vw,56px) clamp(28px,3.6vw,52px);
-  background:radial-gradient(60% 70% at 85% 0%,rgba(176,52,66,.42),transparent 70%),radial-gradient(50% 60% at 0% 100%,rgba(120,28,44,.5),transparent 70%),linear-gradient(180deg,var(--wine-700),var(--wine-900));
-  box-shadow:inset 0 1px 0 rgba(246,227,174,.3),inset 0 0 0 1px rgba(204,162,94,.28),0 40px 60px -40px rgba(58,8,19,.6)}
-.why-ascent .panel::before{content:"";position:absolute;inset:0;z-index:-1;background:url("/images/why/9c02d5b1.svg") right top/cover no-repeat;pointer-events:none}
-.why-ascent .head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px}
-.why-ascent .eyebrow{font:700 11px var(--sans);letter-spacing:.34em;text-transform:uppercase;color:var(--gold-400)}
-.why-ascent h2{margin:12px 0 0;font:400 clamp(44px,6vw,92px)/.95 var(--display);letter-spacing:-.035em;text-wrap:balance}
-.why-ascent h2 em{font-style:italic;background:linear-gradient(100deg,#f3e2b4,#d9b66f 50%,#f0d9a0);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
-.why-ascent .sub{margin:0;max-width:34ch;font-size:15px;line-height:1.6;color:rgba(247,241,232,.72)}
-.why-ascent .ends{display:none}
-.why-ascent .stage{position:relative;margin-top:clamp(18px,3vw,36px)}
-.why-ascent .ridge{display:none}
-.why-ascent .camps{list-style:none;margin:0;padding:0;position:relative}
-.why-ascent .camp{position:relative}
-.why-ascent .camp button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:14px;width:100%;padding:14px 0 14px 4px;color:var(--text-on-wine)}
-.why-ascent .camp button:focus-visible .dot{outline:2px solid var(--gold-200);outline-offset:4px}
-.why-ascent .dot{flex:none;width:18px;height:18px;border-radius:50%;background:var(--wine-900);box-shadow:inset 0 0 0 2px var(--gold-400);transition:background .3s,box-shadow .3s,transform .3s}
-.why-ascent .lab{display:grid;gap:2px}
-.why-ascent .lab b{font:400 clamp(20px,2.2vw,24px)/1.15 var(--display);color:var(--text-on-wine);transition:color .3s}
-.why-ascent .lab small{font:700 10px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold-400)}
-.why-ascent .camp[aria-selected="true"] .dot,.why-ascent .camp.on .dot{background:radial-gradient(circle at 35% 30%,#fff1c9,#d9b66f 60%,#b88c45);box-shadow:0 0 0 5px rgba(226,196,135,.22),0 0 24px rgba(226,196,135,.6);transform:scale(1.15)}
-.why-ascent .camp.on .lab b{color:var(--gold-200)}
-.why-ascent .camp button:hover .lab b{color:var(--gold-200)}
-.why-ascent .jar{display:none}
-.why-ascent .detail{margin-top:8px;display:grid;gap:14px;padding:18px 18px 20px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));box-shadow:inset 0 0 0 1px rgba(226,196,135,.32);animation:whyascent-rise .55s cubic-bezier(.2,.7,.2,1) both}
-.why-ascent .big{font:400 clamp(54px,9vw,112px)/.9 var(--display);letter-spacing:-.03em;background:linear-gradient(180deg,#f7e7bd,#c9a15c 80%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 rgba(0,0,0,.35));white-space:nowrap}
-.why-ascent .big small{display:block;margin-top:8px;font:700 11px var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gold-400);filter:none;-webkit-text-fill-color:var(--gold-400)}
-.why-ascent .txt h3{margin:0 0 8px;font:400 clamp(26px,3vw,38px)/1.08 var(--display);letter-spacing:-.02em}
-.why-ascent .txt p{margin:0;max-width:52ch;font-size:15.5px;line-height:1.65;color:rgba(247,241,232,.78)}
-.why-ascent .more{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-200);border-bottom:1px solid rgba(226,196,135,.5);padding-bottom:3px}
-@keyframes whyascent-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@media (max-width:859px){.why-ascent .camps{border-inline-start:1px solid rgba(226,196,135,.4);margin-inline-start:9px;display:grid;gap:2px}
-.why-ascent .camp button{padding-inline-start:0;margin-inline-start:-10px}
-.why-ascent .camp .detail{margin-inline-start:18px}
-.why-ascent .head{display:grid}}
-@media (min-width:860px){.why-ascent .stage{height:430px;margin-bottom:0;margin-top:clamp(0px,1vw,10px)}
-.why-ascent .ridge{display:block;position:absolute;inset:0;width:100%;height:100%}
-.why-ascent .ridge .back{fill:url(#fillB);opacity:.55}
-.why-ascent .ridge .front{fill:url(#fillA)}
-.why-ascent .ridge .line{fill:none;stroke:url(#strokeG);stroke-width:2.4;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0;animation:whyascent-draw 2.2s .15s cubic-bezier(.4,.1,.2,1) both}
-.why-ascent .ridge .grid line{stroke:rgba(226,196,135,.14);stroke-dasharray:3 6;vector-effect:non-scaling-stroke}
-@keyframes whyascent-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-.why-ascent .ends{display:flex;justify-content:space-between;position:absolute;inset-inline:0;bottom:-2px;font:700 10px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:rgba(226,196,135,.75);padding:0 4px}
-.why-ascent .camps{position:absolute;inset:0}
-.why-ascent .camp{position:absolute;left:calc(var(--x)*1%);top:calc(var(--y)*1%);width:0;height:0}
-.why-ascent .camp button{position:absolute;left:0;top:0;transform:translate(-9px,-9px);display:block;width:18px;height:18px;padding:0}
-.why-ascent .camp .dot{position:absolute;left:0;top:0}
-.why-ascent .lab{position:absolute;bottom:34px;left:9px;transform:translateX(-50%);width:176px;text-align:center;justify-items:center}
-.why-ascent .camp:first-child .lab{transform:translateX(-36%)}
-.why-ascent .jar{display:block;position:absolute;left:calc(var(--jx)*1%);top:calc(var(--jy)*1px);width:118px;transform:translateX(-50%);filter:drop-shadow(0 14px 12px rgba(0,0,0,.55));pointer-events:none}
-.why-ascent .detail{grid-template-columns:minmax(0,.9fr) minmax(0,1.6fr);align-items:center;gap:clamp(20px,4vw,64px);padding:clamp(22px,2.6vw,36px) clamp(24px,3.4vw,48px);margin-top:clamp(10px,2vw,24px)}
-.why-ascent .big{justify-self:start}}
-@media (prefers-reduced-motion:reduce){.why-ascent .detail{animation:none}
-.why-ascent .ridge .line{animation:none}
-.why-ascent .dot{transition:none}}
-.why-ascent .more{text-decoration:none}
-
 /* ===== Home "Why Himalayan Drop": strata ===== */
 .why-strata{
   --cream:#f8f1e6; --ink:#2a0a12; --muted:#7a6a62;
@@ -3320,3 +3252,35 @@ html, body { overflow-x: clip; }
 [class^="why-"] { font-variant-numeric: lining-nums; }
 [class^="why-"] .giant, [class^="why-"] .big, [class^="why-"] h2, [class^="why-"] .lab b, [class^="why-"] h3 { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
 [class^="why-"] a.more .bolt { flex: none; }
+
+/* Certificate vault, cream edition: same layout, premium cream and gold instead of burgundy */
+.cv{color:#2a0a12;background:radial-gradient(60% 70% at 80% 40%,rgba(255,255,255,.75),transparent 70%),radial-gradient(50% 60% at 6% 100%,rgba(201,161,92,.28),transparent 70%),linear-gradient(180deg,#f6eddc,#ecdcbd);box-shadow:inset 0 0 0 1px rgba(169,124,58,.28),0 40px 60px -44px rgba(58,8,19,.5)}
+.cv:before{opacity:.35;mix-blend-mode:multiply}
+.cv-ridge{opacity:.55}
+.cv-ridge path:first-child{fill:rgba(169,124,58,.12)}
+.cv-ridge path:last-child{stroke:rgba(169,124,58,.45)}
+.cv-eyebrow{color:#a97c3a}
+.cv h2{color:#2a0a12}
+.cv h2 em{color:#7a1626}
+.cv-lead{color:#6f5c55}
+.cv-pl{background:rgba(255,255,255,.55);box-shadow:inset 0 0 0 1px rgba(169,124,58,.25)}
+.cv-pl:hover{background:rgba(255,255,255,.85);box-shadow:inset 0 0 0 1px rgba(169,124,58,.6)}
+.cv-pl[aria-selected=true]{background:linear-gradient(135deg,#fffdf7,#f8efdc);box-shadow:inset 0 0 0 1px rgba(169,124,58,.7),inset 0 1px 0 #fff,0 26px 40px -24px rgba(90,40,20,.45)}
+.cv-pl:focus-visible{outline:2px solid #7a1626}
+.cv-pl-h img{filter:grayscale(1) brightness(1) contrast(.9);opacity:.5}
+.cv-pl[aria-selected=true] .cv-pl-h img{filter:drop-shadow(0 6px 8px rgba(58,8,19,.35));opacity:1}
+.cv-pl-n{color:#5a4a44}
+.cv-pl[aria-selected=true] .cv-pl-n{color:#2a0a12}
+.cv-pl-s{color:#a97c3a}
+.cv-pl-a{box-shadow:inset 0 0 0 1px rgba(169,124,58,.55);color:#7a1626}
+.cv-pl[aria-selected=true] .cv-pl-a{background:#7a1626;color:#f6e3ae}
+.cv-pl-b p{color:#6f5c55}
+.cv-pl-b .cv-more{color:#7a1626;border-bottom-color:rgba(122,22,38,.5)}
+.cv-bar{background:linear-gradient(90deg,#c9a15c,#7a1626)}
+.cv-spot{background:radial-gradient(48% 52% at 50% 46%,rgba(255,255,255,.9),rgba(255,248,230,.35) 55%,transparent 72%)}
+.cv-mark img{opacity:.09;filter:grayscale(1) brightness(.6)}
+.cv-frame{box-shadow:0 46px 70px -34px rgba(58,8,19,.55),0 0 0 1px rgba(90,60,20,.35),inset 0 1px 0 rgba(255,255,255,.7)}
+.cv-mat{background:linear-gradient(#f3e8d2,#e9dabb);box-shadow:inset 0 2px 8px rgba(90,60,20,.35)}
+.cv-paper{box-shadow:0 2px 0 rgba(255,255,255,.7) inset,0 10px 22px -10px rgba(58,8,19,.4)}
+.cv-medal{filter:drop-shadow(0 20px 16px rgba(58,8,19,.4))}
+.cv-note{color:#8a7a70}
