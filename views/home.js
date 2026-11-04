@@ -6,7 +6,6 @@ import CertRidge from '@/components/CertRidge';
 import CollectionGallery from '@/components/CollectionGallery';
 import Faq from '@/components/Faq';
 import Reviews from '@/components/Reviews';
-import Harvest from '@/components/Harvest';
 import Process from '@/components/Process';
 import CertVault from '@/components/CertVault';
 import Newsletter from '@/components/Newsletter';
@@ -49,7 +48,6 @@ export default async function HomeView({ lang }) {
       <BenefitsExplorer />
       <WhyReasonsSwitch />
       <Reviews />
-      <Harvest />
       <Process />
       <HomeBundlesSwitch bundles={top3} />
       <CertVault />
