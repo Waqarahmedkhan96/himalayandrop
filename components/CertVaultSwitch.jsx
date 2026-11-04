@@ -2,7 +2,6 @@
 // Home certificate section: the original burgundy design and a cream one, with a switch. The choice is remembered.
 import { useEffect, useState } from 'react';
 import { useT } from './LangProvider';
-import CertVault from './CertVault';
 import CertTabs from './CertTabs';
 
 const T = {
@@ -22,7 +21,7 @@ export default function CertVaultSwitch() {
   const pick = (v) => { setCream(v); try { localStorage.setItem('cv-tone', v ? 'cream' : 'dark'); } catch (e) {} };
   return (
     <>
-      {cream ? <CertVault cream /> : <CertTabs />}
+      <CertTabs cream={cream} />
       <div className="why-switch" role="group" aria-label={t.label} style={{ marginTop: 14, paddingBottom: 0 }}>
         <span>{t.label}</span>
         <button type="button" aria-pressed={!cream} onClick={() => pick(false)}>{t.dark}</button>

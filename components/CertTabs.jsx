@@ -17,7 +17,9 @@ const SAMPLE = {
   ar: 'نموذج تقرير اختبار · PCSIR كراتشي · نوفمبر 2023', ur: 'نمونہ ٹیسٹ رپورٹ · PCSIR کراچی · نومبر 2023',
 };
 
-export default function CertTabs() {
+const SHORT = ['GMP', 'ISO 22000', 'ISO 9001'];
+
+export default function CertTabs({ cream = false }) {
   const lang = useLang();
   const t = CERT_TEXT[lang] || CERT_TEXT.en;
   const seals = getSeals(lang).slice(0, 3);
@@ -28,7 +30,7 @@ export default function CertTabs() {
     if (e.key === 'ArrowLeft') { e.preventDefault(); setI((k + 2) % 3); }
   };
   return (
-    <section id="certifications" className="ct" aria-label={`${t.title} ${t.accent}`}>
+    <section id="certifications" className={`ct${cream ? ' ct-cream' : ''}`} aria-label={`${t.title} ${t.accent}`}>
       <div className="ct-in">
         <header className="ct-top">
           <div>
@@ -50,7 +52,14 @@ export default function CertTabs() {
             <p className="ct-ring">{seals[i].ring.replace(/ · $/, '')}</p>
             <h3>{t.items[i][0]}</h3>
             <p className="ct-desc">{t.items[i][1]}</p>
-            <Link className="ct-more" href={cur.href}>{t.view}</Link>
+            {cream ? (
+              <Link className="ct-badge" href={cur.href}>
+                <img src={cur.seal} alt="" width="58" height="58" />
+                <span><small>{t.view}</small><b>{SHORT[i]}</b></span>
+              </Link>
+            ) : (
+              <Link className="ct-more" href={cur.href}>{t.view}</Link>
+            )}
           </div>
           <div className="ct-show">
             <div className="ct-spot" />
