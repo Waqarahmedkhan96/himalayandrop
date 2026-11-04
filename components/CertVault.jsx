@@ -16,7 +16,7 @@ const ITEMS = [
 ];
 const ROTATE_MS = 7000;
 
-export default function CertVault() {
+export default function CertVault({ cream = false }) {
   const lang = useLang();
   const t = CERT_TEXT[lang] || CERT_TEXT.en;
   const seals = getSeals(lang).slice(0, 4);
@@ -54,7 +54,7 @@ export default function CertVault() {
   const code = (k) => seals[k].main.join(' ');
 
   return (
-    <section id="certifications" className="cv" ref={root} onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)} aria-label={`${t.title} ${t.accent}`}>
+    <section id="certifications" className={`cv${cream ? ' cv-cream' : ''}`} ref={root} onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)} aria-label={`${t.title} ${t.accent}`}>
       <svg className="cv-ridge" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 400V300l90-50 90-30 90-80 70 50 80-110 90 150 70-60 90 105 100 75 80-30 90-55 90 60 80-75 90-130 70 110 90-40 100 80 70 55 80-40 90 40V400Z" fill="rgba(120,30,45,.35)" />
         <path d="M0 300l90-50 90-30 90-80 70 50 80-110 90 150 70-60 90 105 100 75 80-30 90-55 90 60 80-75 90-130 70 110 90-40 100 80 70 55 80-40 90 40" fill="none" stroke="rgba(204,162,94,.4)" strokeWidth="1.2" />
