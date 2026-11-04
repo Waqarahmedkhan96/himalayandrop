@@ -3384,3 +3384,9 @@ html, body { overflow-x: clip; }
 .ct-mat a{display:grid;place-items:center;min-height:0;min-width:0;height:100%;width:100%}
 .ct-scan{height:auto;width:auto;max-height:100%;max-width:100%}
 .ct-scan{height:calc(var(--h) - 10px);width:auto;max-height:none;max-width:none}
+/* v3: certificate fills the frame, larger */
+.ct-body{--h:min(60vh,540px)}
+.ct-frame{width:calc(var(--h)*.612 + 46px)}
+.ct-mat{padding:12px}
+.ct-scan{height:calc(var(--h) - 2px);width:100%;object-fit:contain}
+@media(max-width:860px){.ct-body{--h:min(46vh,400px)}}
