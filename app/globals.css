@@ -3447,3 +3447,4 @@ html, body { overflow-x: clip; }
 .ct-show{order:4}
 .ct-badge{order:5;justify-self:center;margin-top:30px}
 }
+@media(max-width:860px){.ct-ring,.ct h3,.ct-desc{text-align:center}.ct-desc{margin-inline:auto}}
