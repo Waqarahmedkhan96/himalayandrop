@@ -124,7 +124,7 @@ const T = {
   },
 };
 
-const IMG = { gmp: 'gmp', iso22000: 'iso22000', iso9001: 'iso9001', metals: 'lab-tested' };
+const IMG = { gmp: 'gmp', iso22000: 'iso22000', iso9001: 'iso9001', metals: 'lab-tested', guarantee: 'guarantee' };
 
 export default function CertificatesView({ lang }) {
   const t = tr(T, lang);
