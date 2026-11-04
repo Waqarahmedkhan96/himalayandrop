@@ -12,9 +12,14 @@ const ITEMS = [
   { id: 'gmp', seal: '/images/certs/gmp.webp', href: '/certificates/', img: null },
   { id: 'iso22000', seal: '/images/certs/iso22000.webp', href: '/certificates/', img: null },
   { id: 'iso9001', seal: '/images/certs/iso9001.webp', href: '/certificates/', img: null },
-  { id: 'metals', seal: '/images/certs/lab-tested.webp', href: '/lab-results/', img: null },
+  { id: 'metals', seal: '/images/certs/lab-tested.webp', href: '/lab-results/', img: '/images/certs/lab-report-sample.webp', caption: true },
 ];
 const ROTATE_MS = 7000;
+const SAMPLE = {
+  en: 'Sample test report · PCSIR Karachi · Nov 2023', da: 'Eksempel på testrapport · PCSIR Karachi · nov. 2023', de: 'Beispiel-Prüfbericht · PCSIR Karachi · Nov. 2023',
+  fr: 'Exemple de rapport d’essai · PCSIR Karachi · nov. 2023', es: 'Informe de ensayo de muestra · PCSIR Karachi · nov. 2023',
+  ar: 'نموذج تقرير اختبار · PCSIR كراتشي · نوفمبر 2023', ur: 'نمونہ ٹیسٹ رپورٹ · PCSIR کراچی · نومبر 2023',
+};
 
 export default function CertVault({ cream = false }) {
   const lang = useLang();
@@ -85,7 +90,9 @@ export default function CertVault({ cream = false }) {
             <div className="cv-frame">
               <div className="cv-mat">
                 {cur.img ? (
-                  <img className="cv-scan" src={cur.img} alt={t.items[i][0]} />
+                  <a className="cv-scan-a" href={cur.img} target="_blank" rel="noopener" aria-label={`${t.items[i][0]}: ${SAMPLE[lang] || SAMPLE.en}`}>
+                    <img className="cv-scan" src={cur.img} alt={t.items[i][0]} />
+                  </a>
                 ) : (
                   <div className="cv-paper" aria-hidden="true">
                     <span className="cv-k">{t.eyebrow}</span>
@@ -98,6 +105,7 @@ export default function CertVault({ cream = false }) {
               </div>
               <div className="cv-medal"><img src={cur.seal} alt={t.items[i][0]} /></div>
             </div>
+            {cur.caption && <p className="cv-cap">{SAMPLE[lang] || SAMPLE.en}</p>}
           </div>
         </div>
       </div>
