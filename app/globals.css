@@ -3435,3 +3435,5 @@ html, body { overflow-x: clip; }
 .ct-cream .ct-badge:hover{background:linear-gradient(135deg,#8a1a2d,#4e0b1a)}
 .ct-cream .ct-badge:active{background:linear-gradient(135deg,#4a0b1a,#2e050d);transform:translateY(1px);box-shadow:0 8px 14px -10px rgba(74,11,26,.8),0 0 0 1px #cca25e,0 0 0 4px #f3e8d2,inset 0 2px 6px rgba(0,0,0,.45)}
 .ct-badge{transition:transform .2s,background .2s,box-shadow .2s}
+/* Mobile: text first, certificate below */
+@media(max-width:860px){.ct-show{order:0}.ct-body{gap:34px}}
