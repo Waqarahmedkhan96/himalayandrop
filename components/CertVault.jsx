@@ -12,7 +12,6 @@ const ITEMS = [
   { id: 'gmp', seal: '/images/certs/gmp.webp', href: '/certificates/', img: null },
   { id: 'iso22000', seal: '/images/certs/iso22000.webp', href: '/certificates/', img: null },
   { id: 'iso9001', seal: '/images/certs/iso9001.webp', href: '/certificates/', img: null },
-  { id: 'metals', seal: '/images/certs/lab-tested.webp', href: '/lab-results/', img: '/images/certs/lab-report-sample.webp', caption: true },
 ];
 const SAMPLE = {
   en: 'Sample test report · PCSIR Karachi · Nov 2023', da: 'Eksempel på testrapport · PCSIR Karachi · nov. 2023', de: 'Beispiel-Prüfbericht · PCSIR Karachi · Nov. 2023',
@@ -23,7 +22,7 @@ const SAMPLE = {
 export default function CertVault({ cream = false }) {
   const lang = useLang();
   const t = CERT_TEXT[lang] || CERT_TEXT.en;
-  const seals = getSeals(lang).slice(0, 4);
+  const seals = getSeals(lang).slice(0, 3);
   const [i, setI] = useState(0);
   const pick = (k) => setI((k + ITEMS.length) % ITEMS.length);
 

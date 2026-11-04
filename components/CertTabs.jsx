@@ -10,7 +10,6 @@ const ITEMS = [
   { id: 'gmp', seal: '/images/certs/gmp.webp', href: '/certificates/', img: null },
   { id: 'iso22000', seal: '/images/certs/iso22000.webp', href: '/certificates/', img: null },
   { id: 'iso9001', seal: '/images/certs/iso9001.webp', href: '/certificates/', img: null },
-  { id: 'metals', seal: '/images/certs/lab-tested.webp', href: '/lab-results/', img: '/images/certs/lab-report-sample.webp', caption: true },
 ];
 const SAMPLE = {
   en: 'Sample test report · PCSIR Karachi · Nov 2023', da: 'Eksempel på testrapport · PCSIR Karachi · nov. 2023', de: 'Beispiel-Prüfbericht · PCSIR Karachi · Nov. 2023',
@@ -21,12 +20,12 @@ const SAMPLE = {
 export default function CertTabs() {
   const lang = useLang();
   const t = CERT_TEXT[lang] || CERT_TEXT.en;
-  const seals = getSeals(lang).slice(0, 4);
+  const seals = getSeals(lang).slice(0, 3);
   const [i, setI] = useState(0);
   const cur = ITEMS[i];
   const key = (e, k) => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); setI((k + 1) % 4); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); setI((k + 3) % 4); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); setI((k + 1) % 3); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); setI((k + 2) % 3); }
   };
   return (
     <section id="certifications" className="ct" aria-label={`${t.title} ${t.accent}`}>
@@ -47,7 +46,7 @@ export default function CertTabs() {
         </header>
         <div className="ct-body" role="tabpanel">
           <div className="ct-copy">
-            <p className="ct-idx"><b>0{i + 1}</b><span>/ 04</span></p>
+            <p className="ct-idx"><b>0{i + 1}</b><span>/ 03</span></p>
             <p className="ct-ring">{seals[i].ring.replace(/ · $/, '')}</p>
             <h3>{t.items[i][0]}</h3>
             <p className="ct-desc">{t.items[i][1]}</p>
