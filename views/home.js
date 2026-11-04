@@ -4,19 +4,16 @@ import Hero from '@/components/Hero';
 import ProofThread from '@/components/ProofThread';
 import CertRidge from '@/components/CertRidge';
 import CollectionGallery from '@/components/CollectionGallery';
-import Story from '@/components/Story';
-import Steps from '@/components/Steps';
 import Faq from '@/components/Faq';
 import Reviews from '@/components/Reviews';
 import Harvest from '@/components/Harvest';
 import Process from '@/components/Process';
 import CertVault from '@/components/CertVault';
 import Newsletter from '@/components/Newsletter';
-import JournalSection from '@/components/JournalSection';
 import BenefitsExplorer from '@/components/BenefitsExplorer';
 import HomeBundlesSwitch from '@/components/HomeBundlesSwitch';
 import { getDemoBundles } from '@/lib/bundles';
-import { getProducts, getProduct, getArticles, isShopifyConnected } from '@/lib/shopify';
+import { getProducts, getProduct, isShopifyConnected } from '@/lib/shopify';
 import { pageMeta, pages, BRAND } from '@/lib/seo';
 
 export function meta(lang) {
@@ -41,7 +38,7 @@ async function getTop3(lang) {
 }
 
 export default async function HomeView({ lang }) {
-  const [products, posts, top3] = await Promise.all([getProducts(lang), getArticles(lang), getTop3(lang)]);
+  const [products, top3] = await Promise.all([getProducts(lang), getTop3(lang)]);
   return (
     <>
       <Hero />
@@ -54,9 +51,6 @@ export default async function HomeView({ lang }) {
       <Process />
       <HomeBundlesSwitch bundles={top3} />
       <CertVault />
-      <Story />
-      <Steps />
-      <JournalSection posts={posts} />
       <Faq />
       <Newsletter />
     </>
