@@ -3448,3 +3448,65 @@ html, body { overflow-x: clip; }
 .ct-badge{order:5;justify-self:center;margin-top:30px}
 }
 @media(max-width:860px){.ct-ring,.ct h3,.ct-desc{text-align:center}.ct-desc{margin-inline:auto}}
+
+/* ===== Home "Why Himalayan Drop": medals (compact) ===== */
+.why-medals{--ink:#2a0a12;--muted:#7a6a62;--lime:#f1e7d4;--travertine:#e0cdab;--rose:#8c2a3c;--wine:#4b0f1c;--basalt:#190a0e;--gold-200:#f7e7bd;--gold-400:#e2c487;--gold-600:#a97c3a;--on-dark:#f7f1e8;color:var(--ink);font-family:var(--sans);padding:clamp(28px,3.4vw,52px) var(--frame)}
+.why-medals *{box-sizing:border-box}
+.why-medals .wrap{max-width:1020px;margin:0 auto}
+.why-medals .head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 40px;margin-bottom:20px}
+.why-medals .eyebrow{font:700 10.5px var(--sans);letter-spacing:.34em;text-transform:uppercase;color:var(--gold-600)}
+.why-medals h2{margin:8px 0 0;font:400 clamp(34px,4vw,54px)/1 var(--display);letter-spacing:-.03em;color:var(--ink)}
+.why-medals h2 em{font-style:italic;color:#7a1626}
+.why-medals .sub{margin:0;max-width:34ch;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.why-medals .stack{position:relative;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;isolation:isolate;background:var(--basalt);box-shadow:0 30px 44px -34px rgba(58,8,19,.6),0 0 0 1px rgba(122,22,38,.18)}
+.why-medals .slab{position:relative;z-index:var(--z);margin-top:-12px;filter:drop-shadow(0 -5px 6px rgba(30,5,10,.28))}
+.why-medals .slab:first-child{margin-top:0;filter:none}
+.why-medals .rock{position:relative;clip-path:var(--clip,none);background:var(--bg);color:var(--fg);padding-top:var(--pt,0)}
+.why-medals .rock::before{content:"";position:absolute;inset:0;background:url("/images/why/f630198b.svg");opacity:.34;mix-blend-mode:multiply;background-size:100% 100%;pointer-events:none}
+.why-medals .rock.dk::before{background-image:url("/images/why/96bda09e.svg");opacity:.28;mix-blend-mode:soft-light}
+.why-medals .edge{position:absolute;left:0;top:0;width:100%;height:12px;pointer-events:none;overflow:visible}
+.why-medals .edge polyline{fill:none;stroke:rgba(247,231,189,.7);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.why-medals .light .edge polyline{stroke:rgba(255,255,255,.85)}
+.why-medals .l1{--bg:var(--lime);--fg:var(--ink)}
+.why-medals .l2{--bg:var(--travertine);--fg:var(--ink)}
+.why-medals .l3{--bg:var(--rose);--fg:var(--on-dark)}
+.why-medals .l4{--bg:var(--wine);--fg:var(--on-dark)}
+.why-medals .l5{--bg:var(--basalt);--fg:var(--on-dark)}
+.why-medals .l1,.why-medals .l2{--tag:var(--gold-600);--n1:#8a1d30;--n2:#c46a78;--sub:rgba(42,10,18,.76)}
+.why-medals .l3,.why-medals .l4,.why-medals .l5{--tag:var(--gold-400);--n1:#f7e7bd;--n2:#c9a15c;--sub:rgba(247,241,232,.82)}
+.why-medals .row{all:unset;box-sizing:border-box;position:relative;z-index:1;cursor:pointer;display:flex;align-items:center;gap:22px;width:100%;padding:11px 26px 11px 32px}
+.why-medals .row:focus-visible{outline:2px solid var(--gold-400);outline-offset:-6px}
+.why-medals .num{flex:none;width:150px;font:400 44px/1 var(--display);letter-spacing:-.03em;background:linear-gradient(180deg,var(--n2),var(--n1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.why-medals .lab{display:grid;gap:2px;flex:1;min-width:0}
+.why-medals .lab small{font:700 9px var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--tag)}
+.why-medals .lab b{font:400 clamp(19px,1.9vw,25px)/1.1 var(--display);letter-spacing:-.02em;color:var(--fg)}
+.why-medals .md{flex:none;width:58px;height:58px;filter:drop-shadow(0 6px 6px rgba(20,4,8,.4))}
+.why-medals .mds{display:flex;flex:none}
+.why-medals .mds .md{width:52px;height:52px;margin-left:-10px}
+.why-medals .mds .md:first-child{margin-left:0}
+.why-medals .plus{position:relative;flex:none;width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--tag);display:grid;place-items:center;color:var(--tag);transition:transform .4s cubic-bezier(.2,.7,.2,1),background .3s}
+.why-medals .plus::before{content:"";width:8px;height:1.3px;background:currentColor}
+.why-medals .plus::after{content:"";position:absolute;width:1.3px;height:8px;background:currentColor;transition:transform .4s,opacity .3s}
+.why-medals .slab.open .plus{transform:rotate(180deg)}
+.why-medals .slab.open .plus::after{opacity:0;transform:scaleY(0)}
+.why-medals .row:hover .plus{background:rgba(255,255,255,.12)}
+.why-medals .body{position:relative;z-index:1;display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1)}
+.why-medals .slab.open .body{grid-template-rows:1fr}
+.why-medals .inner{overflow:hidden;min-height:0}
+.why-medals .txt{padding:2px 26px 22px calc(32px + 150px + 22px)}
+.why-medals .txt p{margin:0;max-width:56ch;font-size:15px;line-height:1.7;color:var(--sub)}
+.why-medals .more{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font:700 11.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--fg);border-bottom:1px solid currentColor;padding-bottom:3px;text-decoration:none;opacity:.92}
+@media (max-width:760px){
+.why-medals .num{display:none}
+.why-medals .row{padding:11px 16px 11px 18px;gap:14px}
+.why-medals .md{order:-1;width:46px;height:46px;margin-right:38px}
+.why-medals .mds{order:-1;margin-right:0}
+.why-medals .row>.lab{order:0}
+.why-medals .row>.plus{order:1}
+.why-medals .mds .md{width:34px;height:34px;margin-left:-9px;margin-right:0}
+.why-medals .mds .md:first-child{margin-left:0}
+.why-medals .lab b{font-size:17px}
+.why-medals .sub{display:none}
+.why-medals .txt{padding:2px 18px 20px 18px}
+}
+@media (prefers-reduced-motion:reduce){.why-medals .body,.why-medals .plus{transition:none}}

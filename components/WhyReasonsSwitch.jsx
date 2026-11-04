@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useT } from './LangProvider';
 import WhyStrata from './WhyStrata';
 import WhyCore from './WhyCore';
+import WhyMedals from './WhyMedals';
 
 const T = {
   en: { layout: 'Layout' },
@@ -14,7 +15,7 @@ const T = {
   ar: { layout: 'التصميم' },
   ur: { layout: 'ڈیزائن' },
 };
-const VERS = [['core', 'Core Sample', WhyCore], ['strata', 'Strata', WhyStrata]];
+const VERS = [['core', 'Core Sample', WhyCore], ['strata', 'Strata', WhyStrata], ['medals', 'Medals', WhyMedals]];
 
 export default function WhyReasonsSwitch() {
   const t = useT(T);
