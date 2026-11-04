@@ -3437,3 +3437,14 @@ html, body { overflow-x: clip; }
 .ct-badge{transition:transform .2s,background .2s,box-shadow .2s}
 /* Mobile: text first, certificate below */
 @media(max-width:860px){.ct-show{order:0}.ct-body{gap:34px}}
+/* Mobile: text, then certificate, then the badge button centred below it */
+@media(max-width:860px){
+.ct-body{gap:0}
+.ct-copy{display:contents}
+.ct-ring{order:1;margin-top:26px}
+.ct h3{order:2}
+.ct-desc{order:3;margin-bottom:34px}
+.ct-show{order:4}
+.ct-badge{order:5;justify-self:center;margin-top:30px}
+}
+@media(max-width:860px){.ct-ring,.ct h3,.ct-desc{text-align:center}.ct-desc{margin-inline:auto}}
