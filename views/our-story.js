@@ -21,7 +21,7 @@ const T = {
     ],
     quote: '“Every jar carries a little of the mountain. We call it the Mountain within.”',
     ctas: [
-      { eyebrow: 'The process', title: 'From mountain to jar', text: 'Six patient steps, told in motion.', cta: 'Watch the story', href: '/#process', dark: true },
+      { eyebrow: 'The process', title: 'From mountain to jar', text: 'Six patient steps, told in motion.', cta: 'Watch the story', href: '/process/', dark: true },
       { eyebrow: 'Proof', title: 'Certificates', text: 'The standards behind every batch.', cta: 'See certificates', href: '/certificates/' },
       { eyebrow: 'Shop', title: 'Begin your ritual', text: 'Resin, gummies, drops or capsules.', cta: 'Shop now', href: '/shop/' },
     ],
@@ -39,7 +39,7 @@ const T = {
     ],
     quote: '“Hver krukke bærer lidt af bjerget i sig. Vi kalder det the Mountain within.”',
     ctas: [
-      { eyebrow: 'Processen', title: 'Fra bjerg til krukke', text: 'Seks tålmodige trin, fortalt i bevægelse.', cta: 'Se historien', href: '/#process', dark: true },
+      { eyebrow: 'Processen', title: 'Fra bjerg til krukke', text: 'Seks tålmodige trin, fortalt i bevægelse.', cta: 'Se historien', href: '/process/', dark: true },
       { eyebrow: 'Bevis', title: 'Certifikater', text: 'Standarderne bag hver batch.', cta: 'Se certifikaterne', href: '/certificates/' },
       { eyebrow: 'Shop', title: 'Begynd dit ritual', text: 'Resin, vingummi, dråber eller kapsler.', cta: 'Køb nu', href: '/shop/' },
     ],
@@ -57,7 +57,7 @@ const T = {
     ],
     quote: '„Jedes Glas trägt ein wenig vom Berg in sich. Wir nennen es the Mountain within.“',
     ctas: [
-      { eyebrow: 'Der Prozess', title: 'Vom Berg ins Glas', text: 'Sechs geduldige Schritte, in Bewegung erzählt.', cta: 'Die Geschichte ansehen', href: '/#process', dark: true },
+      { eyebrow: 'Der Prozess', title: 'Vom Berg ins Glas', text: 'Sechs geduldige Schritte, in Bewegung erzählt.', cta: 'Die Geschichte ansehen', href: '/process/', dark: true },
       { eyebrow: 'Beweis', title: 'Zertifikate', text: 'Die Standards hinter jeder Charge.', cta: 'Zertifikate ansehen', href: '/certificates/' },
       { eyebrow: 'Shop', title: 'Beginne dein Ritual', text: 'Harz, Gummies, Tropfen oder Kapseln.', cta: 'Jetzt shoppen', href: '/shop/' },
     ],
@@ -75,7 +75,7 @@ const T = {
     ],
     quote: '« Chaque pot porte un peu de la montagne. Nous l’appelons the Mountain within. »',
     ctas: [
-      { eyebrow: 'Le processus', title: 'De la montagne au pot', text: 'Six étapes patientes, racontées en mouvement.', cta: 'Voir l’histoire', href: '/#process', dark: true },
+      { eyebrow: 'Le processus', title: 'De la montagne au pot', text: 'Six étapes patientes, racontées en mouvement.', cta: 'Voir l’histoire', href: '/process/', dark: true },
       { eyebrow: 'Preuve', title: 'Certificats', text: 'Les normes derrière chaque lot.', cta: 'Voir les certificats', href: '/certificates/' },
       { eyebrow: 'Boutique', title: 'Commencez votre rituel', text: 'Résine, gommes, gouttes ou gélules.', cta: 'Acheter', href: '/shop/' },
     ],
@@ -93,7 +93,7 @@ const T = {
     ],
     quote: '«Cada tarro lleva un poco de la montaña. Lo llamamos the Mountain within.»',
     ctas: [
-      { eyebrow: 'El proceso', title: 'De la montaña al tarro', text: 'Seis pasos pacientes, contados en movimiento.', cta: 'Ver la historia', href: '/#process', dark: true },
+      { eyebrow: 'El proceso', title: 'De la montaña al tarro', text: 'Seis pasos pacientes, contados en movimiento.', cta: 'Ver la historia', href: '/process/', dark: true },
       { eyebrow: 'Pruebas', title: 'Certificados', text: 'Los estándares detrás de cada lote.', cta: 'Ver certificados', href: '/certificates/' },
       { eyebrow: 'Tienda', title: 'Empieza tu ritual', text: 'Resina, gominolas, gotas o cápsulas.', cta: 'Comprar ahora', href: '/shop/' },
     ],
@@ -111,7 +111,7 @@ const T = {
     ],
     quote: '«كل عبوة تحمل شيئاً من الجبل. نسميه the Mountain within.»',
     ctas: [
-      { eyebrow: 'مراحل الإنتاج', title: 'من الجبل إلى العبوة', text: 'ست خطوات متأنية، تُروى بالحركة.', cta: 'شاهد القصة', href: '/#process', dark: true },
+      { eyebrow: 'مراحل الإنتاج', title: 'من الجبل إلى العبوة', text: 'ست خطوات متأنية، تُروى بالحركة.', cta: 'شاهد القصة', href: '/process/', dark: true },
       { eyebrow: 'الإثبات', title: 'الشهادات', text: 'المعايير وراء كل دفعة.', cta: 'عرض الشهادات', href: '/certificates/' },
       { eyebrow: 'المتجر', title: 'ابدأ طقسك', text: 'راتنج أو علكات أو قطرات أو كبسولات.', cta: 'تسوّق الآن', href: '/shop/' },
     ],
@@ -129,7 +129,7 @@ const T = {
     ],
     quote: '«ہر برتن میں پہاڑ کا تھوڑا سا حصہ ہے۔ ہم اسے the Mountain within کہتے ہیں۔»',
     ctas: [
-      { eyebrow: 'تیاری کا طریقہ', title: 'پہاڑ سے برتن تک', text: 'چھ صبر آزما مراحل، حرکت میں۔', cta: 'کہانی دیکھیں', href: '/#process', dark: true },
+      { eyebrow: 'تیاری کا طریقہ', title: 'پہاڑ سے برتن تک', text: 'چھ صبر آزما مراحل، حرکت میں۔', cta: 'کہانی دیکھیں', href: '/process/', dark: true },
       { eyebrow: 'ثبوت', title: 'سرٹیفکیٹس', text: 'ہر بیچ کے پیچھے معیار۔', cta: 'سرٹیفکیٹس دیکھیں', href: '/certificates/' },
       { eyebrow: 'شاپ', title: 'اپنا معمول شروع کریں', text: 'ریزن، گمیز، ڈراپس یا کیپسول۔', cta: 'ابھی خریدیں', href: '/shop/' },
     ],
