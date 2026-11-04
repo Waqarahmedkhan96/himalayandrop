@@ -47,13 +47,15 @@ export default function CertTabs() {
         </header>
         <div className="ct-body" role="tabpanel">
           <div className="ct-copy">
-            <img className="ct-seal" src={cur.seal} alt="" width="92" height="92" />
+            <p className="ct-idx"><b>0{i + 1}</b><span>/ 04</span></p>
             <p className="ct-ring">{seals[i].ring.replace(/ · $/, '')}</p>
             <h3>{t.items[i][0]}</h3>
             <p className="ct-desc">{t.items[i][1]}</p>
             <Link className="ct-more" href={cur.href}>{t.view}</Link>
           </div>
           <div className="ct-show">
+            <div className="ct-spot" />
+            <div className="ct-wm"><img src={cur.seal} alt="" /></div>
             <div className="ct-frame">
               <div className="ct-mat">
                 {cur.img ? (
@@ -61,7 +63,7 @@ export default function CertTabs() {
                     <img className="ct-scan" src={cur.img} alt={t.items[i][0]} />
                   </a>
                 ) : (
-                  <div className="ct-paper" aria-hidden="true">
+                  <div className="ct-paper ct-fill" aria-hidden="true">
                     <span className="ct-k">{t.eyebrow}</span>
                     <b>{seals[i].main.join(' ')}</b>
                     <i /><i className="s" /><i /><i className="s" /><i />
@@ -69,6 +71,7 @@ export default function CertTabs() {
                   </div>
                 )}
               </div>
+              <div className="ct-medal"><img src={cur.seal} alt={t.items[i][0]} /></div>
             </div>
             {cur.caption && <p className="ct-cap">{SAMPLE[lang] || SAMPLE.en}</p>}
           </div>
