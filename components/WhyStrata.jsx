@@ -49,7 +49,7 @@ L.forEach(function(c,i){
  var s=document.createElement('section');s.className='slab';s.style.setProperty('--z',i+1);s.dataset.i=i;
  s.innerHTML='<div class="rock l'+(i+1)+(dk?' dk':' light')+(i===4?' core':'')+'" style="--clip:'+clip+'">'+edge+
   '<button class="row" type="button" id="h'+i+'" aria-expanded="false" aria-controls="p'+i+'"><span class="lab"><small>'+c.k+'</small><b>'+c.t+'</b></span><span class="reading">'+c.r+'</span><span class="plus" aria-hidden="true"></span></button>'+
-  '<div class="body" id="p'+i+'" role="region" aria-labelledby="h'+i+'"><div class="inner"><div class="cols"><div class="txt"><p>'+c.p+'</p><a class="more" href="'+H(c.href)+'">'+c.m+' &rarr;</a></div><div class="big">'+c.big+'<small>'+c.u+'</small></div>'+(i===4?'<img class="jar" src="'+JAR+'" alt="Himalayan Drop Shilajit Resin jar">':'')+'</div></div></div>'+
+  '<div class="body" id="p'+i+'" role="region" aria-labelledby="h'+i+'"><div class="inner"><div class="cols"><div class="txt"><p>'+c.p+'</p><a class="more" href="'+H(c.href)+'">'+c.m+'&nbsp;<svg class="bolt" width="12" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.9 1 5.9 13.9h5.3L8.1 23l10-12.6h-5.3Z"/></svg></a></div><div class="big">'+c.big+'<small>'+c.u+'</small></div>'+(i===4?'<img class="jar" src="'+JAR+'" alt="Himalayan Drop Shilajit Resin jar">':'')+'</div></div></div>'+
   (i===4?'<div class="seam">'+seam+'<span class="drip"></span></div>':'')+'</div>';
  s.querySelector('.row').addEventListener('click',function(){cur=cur===i?-1:i;sync()});
  stack.appendChild(s)});

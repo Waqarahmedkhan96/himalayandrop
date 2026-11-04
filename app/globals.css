@@ -3319,3 +3319,4 @@ html, body { overflow-x: clip; }
 .why-switch button:focus-visible { outline: 2px solid var(--maroon); outline-offset: 3px; }
 [class^="why-"] { font-variant-numeric: lining-nums; }
 [class^="why-"] .giant, [class^="why-"] .big, [class^="why-"] h2, [class^="why-"] .lab b, [class^="why-"] h3 { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+[class^="why-"] a.more .bolt { flex: none; }

@@ -49,7 +49,7 @@ CAMPS.forEach(function(c,i){
 function render(){
  var c=CAMPS[cur];
  [].forEach.call(ul.children,function(li,i){li.classList.toggle('on',i===cur);var b=li.firstChild;b.setAttribute('aria-selected',i===cur);b.tabIndex=i===cur?0:-1});
- det.innerHTML='<div class="big">'+c.big+'<small>'+c.unit+'</small></div><div class="txt"><h3>'+c.h+'</h3><p>'+c.p+'</p><a class="more" href="'+H(c.href)+'">'+c.more+' &rarr;</a></div>';
+ det.innerHTML='<div class="big">'+c.big+'<small>'+c.unit+'</small></div><div class="txt"><h3>'+c.h+'</h3><p>'+c.p+'</p><a class="more" href="'+H(c.href)+'">'+c.more+'&nbsp;<svg class="bolt" width="12" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.9 1 5.9 13.9h5.3L8.1 23l10-12.6h-5.3Z"/></svg></a></div>';
  det.setAttribute('aria-labelledby','c'+cur);
  det.style.animation='none';void det.offsetWidth;det.style.animation='';
  place();
