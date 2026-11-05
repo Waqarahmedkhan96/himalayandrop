@@ -1,11 +1,10 @@
 'use client';
-// Certification ridge: a narrow band under the proof strip. A small button flips it
-// between two views: mountains below the seals, or hanging above them.
+// Certification ridge: a narrow band under the proof strip. The seals stand on top of the mountains.
 // The ridge and the
 // seals travel right to left without end; a resin drop runs the other way,
 // left to right, and lights each seal as it passes. Seals stay lit while the
 // band is on screen. They are not links.
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLang } from './LangProvider';
 
 const SEALS = [
@@ -15,7 +14,6 @@ const SEALS = [
   { key: 'lab-tested', alt: 'Lab tested for heavy metals', peak: 96 },
   { key: 'natural', alt: '100% natural', peak: 98 },
 ];
-const FLIP = { en: 'Flip the view', da: 'Vend visningen', de: 'Ansicht umdrehen', fr: 'Inverser la vue', es: 'Invertir la vista', ar: 'اقلب العرض', ur: 'منظر الٹیں' };
 const LABEL = {
   en: 'Certifications and lab testing', da: 'Certificeringer og laboratorietest', de: 'Zertifizierungen und Labortests',
   fr: 'Certifications et analyses en laboratoire', es: 'Certificaciones y análisis de laboratorio', ar: 'الشهادات والفحوصات المخبرية', ur: 'سرٹیفکیٹس اور لیب ٹیسٹ',
@@ -25,11 +23,9 @@ const N = SEALS.length;
 export default function CertRidge() {
   const lang = useLang();
   const root = useRef(null);
-  const [flip, setFlip] = useState(false);
+  const flip = false; // the flip view was removed: badges always stand on top of the mountains
 
   // remember the viewer's choice
-  useEffect(() => { try { if (localStorage.getItem('cr-flip') === '1') setFlip(true); } catch (e) {} }, []);
-  const toggle = () => setFlip((f) => { try { localStorage.setItem('cr-flip', f ? '0' : '1'); } catch (e) {} return !f; });
 
   useEffect(() => {
     const el = root.current;
@@ -233,9 +229,6 @@ export default function CertRidge() {
             <ellipse cx="-2" cy="1" rx="1.4" ry="2.2" fill="#fff" opacity=".7" />
           </g>
         </svg>
-        <button type="button" className="cr-flip" onClick={toggle} aria-pressed={flip} aria-label={FLIP[lang] || FLIP.en} title={FLIP[lang] || FLIP.en}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 13V3M2.5 5.5 5 3l2.5 2.5M11 3v10M8.5 10.5 11 13l2.5-2.5" /></svg>
-        </button>
         <div className="cr-world">
           {[0, 1].flatMap((c) =>
             SEALS.map((s) => (

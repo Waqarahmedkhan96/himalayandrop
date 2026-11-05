@@ -2786,12 +2786,6 @@ html, body { overflow-x: clip; }
 .faq-how { margin: 28px 0 0; text-align: center; }
 
 /* Flipped view: the ridge hangs from the top and the seals sit along the bottom */
-.cr-band.is-flip .cr-near { fill: url(#cr-nf2); }
-.cr-band.is-flip .cr-lab { top: auto; bottom: 12px; }
-.cr-band.is-flip .cr-stem { background: linear-gradient(0deg, rgba(204, 162, 94, 0.6), rgba(204, 162, 94, 0)); }
-.cr-flip { position: absolute; z-index: 5; top: 10px; right: 10px; width: 34px; height: 34px; display: grid; place-items: center; padding: 0; cursor: pointer; border-radius: 50%; color: #f6e3ae; background: rgba(34, 2, 8, 0.72); border: 1px solid rgba(204, 162, 94, 0.55); backdrop-filter: blur(4px); transition: background 0.3s, color 0.3s; }
-.cr-flip:hover { background: #f6e3ae; color: #33060f; }
-.cr-flip:focus-visible { outline: 2px solid #f6e3ae; outline-offset: 3px; }
 
 /* Certificate vault (home page): plaques on the left, framed certificate on the right */
 
