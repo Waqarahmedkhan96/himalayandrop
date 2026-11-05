@@ -9,7 +9,7 @@ import CertVaultSwitch from '@/components/CertVaultSwitch';
 import Newsletter from '@/components/Newsletter';
 import BenefitsExplorer from '@/components/BenefitsExplorer';
 import HomeBundlesSwitch from '@/components/HomeBundlesSwitch';
-import WhyReasonsSwitch from '@/components/WhyReasonsSwitch';
+import WhyMedals from '@/components/WhyMedals';
 import { getDemoBundles } from '@/lib/bundles';
 import { getProducts, getProduct, isShopifyConnected } from '@/lib/shopify';
 import { pageMeta, pages, BRAND } from '@/lib/seo';
@@ -44,7 +44,7 @@ export default async function HomeView({ lang }) {
       <CertRidge />
       <CollectionGallery products={products} />
       <BenefitsExplorer />
-      <WhyReasonsSwitch />
+      <WhyMedals />
       <Reviews />
       <HomeBundlesSwitch bundles={top3} />
       <CertVaultSwitch />
