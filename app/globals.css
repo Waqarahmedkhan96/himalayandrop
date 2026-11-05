@@ -3349,5 +3349,6 @@ html, body { overflow-x: clip; }
 .hx .hero-card{background:none;border-radius:0;box-shadow:none}
 .hx .hero-card::after{display:none}
 .hx .pt{padding:0 clamp(14px,2vw,30px)}
-.hx .cr{padding:22px clamp(14px,2vw,30px) clamp(14px,2vw,30px)}
+.hx .cr{padding:18px 0 0}
+.hx .cr-band{background:none;box-shadow:none;border-radius:0}
 .top-switch{margin-top:10px;padding-top:6px}
