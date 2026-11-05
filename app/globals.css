@@ -2391,10 +2391,10 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 [dir='rtl'] .pt-tab-tx strong { letter-spacing: 0; }
 .pt-swipe, .pt-dots { display: none; }
 @media (max-width: 767px) {
-  :root { --pth: calc((100vw - 2 * var(--frame)) / 2.84); }
+  :root { --pth: calc(min(0.86 * (100vw - 2 * var(--frame)), 330px) / 2.84); }
   .pt { margin-top: calc(var(--pth) * -1 - 14px); padding: 0 var(--frame) 22px; }
   .pt-row { display: none; }
-  .pt-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .pt-swipe { display: flex; width: min(86%, 330px); margin-inline: auto; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
   .pt-swipe::-webkit-scrollbar { display: none; }
   .pt-slide { flex: 0 0 100%; scroll-snap-align: center; }
   .pt-tab-in { padding: 0 6% 0 9%; }
