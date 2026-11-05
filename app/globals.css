@@ -2933,13 +2933,6 @@ html, body { overflow-x: clip; }
 @media (min-width: 640px) { .hero.is-new .hero-lead span + span { white-space: nowrap; } }
 @media (max-width: 999px) { .hero.is-new .hero-lead::before { margin-inline: auto; margin-bottom: 14px; width: 56px; } }
 
-/* Switch between the new and the previous hero */
-.hero-switch { position: absolute; z-index: 5; inset-inline-end: 22px; bottom: 150px; display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 16px; border-radius: var(--pill); border: 1px solid rgba(226, 196, 135, 0.45); background: rgba(42, 1, 7, 0.45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--cream); font: 600 11px var(--sans); letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.3s, border-color 0.3s; }
-.hero-switch:hover { background: rgba(42, 1, 7, 0.7); border-color: var(--gold-soft); }
-.hero-switch:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
-.hero-switch svg { width: 14px; height: 14px; }
-@media (max-width: 767px) { .hero-switch { inset-inline-end: 12px; bottom: auto; top: 76px; min-height: 34px; padding: 0 12px; font-size: 10px; } }
-
 /* ───────── Home: bundles — "Choose your ritual" ───────── */
 .hb { padding: clamp(48px, 6vw, 96px) var(--frame) 0; }
 .hb-in { max-width: 1360px; margin: 0 auto; display: grid; gap: 28px; }
@@ -3350,5 +3343,5 @@ html, body { overflow-x: clip; }
 .hx .hero-card::after{display:none}
 .hx .pt{padding:0 clamp(14px,2vw,30px)}
 .hx .cr{padding:18px 0 0}
-.hx .cr-band{background:none;box-shadow:none;border-radius:0}
+.hx .cr-band{border-radius:0;box-shadow:none;background:radial-gradient(70% 90% at 50% 100%,rgba(170,50,62,.5),transparent 70%),linear-gradient(180deg,rgba(34,2,8,0),rgba(34,2,8,.94) 38%,#33060f 64%,#45091a)}
 .top-switch{margin-top:10px;padding-top:6px}

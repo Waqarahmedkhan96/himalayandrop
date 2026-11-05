@@ -2,7 +2,7 @@
 // Hero: the collection on a stone pedestal in a maroon studio, with gold mountain line-art. The headline reveals
 // line by line, the packaging rises into the centre and floats, and on scroll
 // the product lifts while the mountains drift (parallax).
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef } from 'react';
 import Link from './LLink';
 import { useT } from './LangProvider';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
@@ -16,34 +16,18 @@ const ridges = [
 ];
 
 const T_NEW = {
-  en: { eyebrow: 'The Skardu Collection', l1: 'Feel the energy', l2: 'Live the difference.', lead: 'Authentic Himalayan Shilajit', lead2: 'Hand-harvested at 5,000 m · 100% Natural', shop: 'Shop Premium Shilajit', lab: '3rd-Party Lab Tested', toOld: 'Previous design', toNew: 'New design', alt: 'Himalayan Drop shilajit collection: capsules, gummies, drops and two resin jars on a stone pedestal' },
-  da: { eyebrow: 'Skardu-kollektionen', l1: 'Mærk energien', l2: 'Lev forskellen.', lead: 'Autentisk Himalaya-shilajit', lead2: 'Håndhøstet i 5.000 m højde · 100% naturlig', shop: 'Shop premium shilajit', lab: 'Testet af uafhængigt laboratorium', toOld: 'Tidligere design', toNew: 'Nyt design', alt: 'Himalayan Drop shilajit kollektion: kapsler, vingummi, dråber og to krukker resin på en stensokkel' },
-  de: { eyebrow: 'Die Skardu-Kollektion', l1: 'Spüre die Energie', l2: 'Lebe den Unterschied.', lead: 'Authentisches Himalaya-Shilajit', lead2: 'Handgeerntet auf 5.000 m · 100 % natürlich', shop: 'Premium-Shilajit shoppen', lab: 'Von unabhängigem Labor geprüft', toOld: 'Früheres Design', toNew: 'Neues Design', alt: 'Himalayan Drop Shilajit-Kollektion: Kapseln, Gummies, Tropfen und zwei Harzgläser auf einem Steinsockel' },
-  fr: { eyebrow: 'La collection Skardu', l1: 'Ressentez l’énergie', l2: 'Vivez la différence.', lead: 'Shilajit authentique de l’Himalaya', lead2: 'Récolté à la main à 5 000 m · 100 % naturel', shop: 'Découvrir le shilajit premium', lab: 'Testé par un laboratoire indépendant', toOld: 'Ancien design', toNew: 'Nouveau design', alt: 'Collection de shilajit Himalayan Drop : gélules, gommes, gouttes et deux pots de résine sur un socle en pierre' },
-  es: { eyebrow: 'La colección Skardu', l1: 'Siente la energía', l2: 'Vive la diferencia.', lead: 'Shilajit auténtico del Himalaya', lead2: 'Recolectado a mano a 5.000 m · 100 % natural', shop: 'Comprar shilajit premium', lab: 'Analizado por un laboratorio independiente', toOld: 'Diseño anterior', toNew: 'Diseño nuevo', alt: 'Colección de shilajit Himalayan Drop: cápsulas, gominolas, gotas y dos tarros de resina sobre un pedestal de piedra' },
-  ar: { eyebrow: 'مجموعة سكاردو', l1: 'اشعر بالطاقة', l2: 'عِش الفرق.', lead: 'شيلاجيت هيمالايا أصيل', lead2: 'محصود يدويًا على ارتفاع 5000 م · طبيعي 100%', shop: 'تسوّق الشيلاجيت الفاخر', lab: 'مفحوص في مختبر مستقل', toOld: 'التصميم السابق', toNew: 'التصميم الجديد', alt: 'مجموعة شيلاجيت Himalayan Drop: كبسولات وعلكات وقطرات وبرطمانا راتنج على قاعدة حجرية' },
-  ur: { eyebrow: 'اسکردو کلیکشن', l1: 'توانائی محسوس کریں', l2: 'فرق کو جیئیں۔', lead: 'خالص ہمالیائی شلاجیت', lead2: '5,000 میٹر پر ہاتھ سے چُنی گئی · 100% قدرتی', shop: 'پریمیم شلاجیت خریدیں', lab: 'آزاد لیب سے ٹیسٹ شدہ', toOld: 'پچھلا ڈیزائن', toNew: 'نیا ڈیزائن', alt: 'Himalayan Drop شلاجیت کلیکشن: کیپسول، گمیز، ڈراپس اور ریزن کے دو جار پتھر کے اسٹینڈ پر' },
-};
-
-const T_OLD = {
-en: { eyebrow: 'The Skardu Collection', l1: 'A rarer kind', l2: 'of ritual.', lead: 'Explore our shilajit collection.', shop: 'Explore the collection', lab: '3rd-party lab tested', alt: 'Himalayan Drop shilajit collection: capsules, gummies, drops and two resin jars on a stone pedestal' },
-  da: { eyebrow: 'Skardu-kollektionen', l1: 'En sjældnere', l2: 'slags ritual.', lead: 'Udforsk vores shilajit-kollektion.', shop: 'Udforsk kollektionen', lab: 'Testet af uafhængigt laboratorium', alt: 'Himalayan Drop shilajit kollektion: kapsler, vingummi, dråber og to krukker resin på en stensokkel' },
-  de: { eyebrow: 'Die Skardu-Kollektion', l1: 'Eine seltenere', l2: 'Art von Ritual.', lead: 'Entdecke unsere Shilajit-Kollektion.', shop: 'Kollektion entdecken', lab: 'Von unabhängigem Labor geprüft', alt: 'Himalayan Drop Shilajit-Kollektion: Kapseln, Gummies, Tropfen und zwei Harzgläser auf einem Steinsockel' },
-  fr: { eyebrow: 'La collection Skardu', l1: 'Un rituel', l2: 'd’exception.', lead: 'Découvrez notre collection de shilajit.', shop: 'Découvrir la collection', lab: 'Testé par un laboratoire indépendant', alt: 'Collection de shilajit Himalayan Drop : gélules, gommes, gouttes et deux pots de résine sur un socle en pierre' },
-  es: { eyebrow: 'La colección Skardu', l1: 'Un ritual', l2: 'fuera de lo común.', lead: 'Descubre nuestra colección de shilajit.', shop: 'Explorar la colección', lab: 'Analizado por un laboratorio independiente', alt: 'Colección de shilajit Himalayan Drop: cápsulas, gominolas, gotas y dos tarros de resina sobre un pedestal de piedra' },
-  ar: { eyebrow: 'مجموعة سكاردو', l1: 'نوع أندر', l2: 'من الطقوس.', lead: 'اكتشف مجموعة الشيلاجيت لدينا.', shop: 'استكشف المجموعة', lab: 'مفحوص في مختبر مستقل', alt: 'مجموعة شيلاجيت Himalayan Drop: كبسولات وعلكات وقطرات وبرطمانا راتنج على قاعدة حجرية' },
-  ur: { eyebrow: 'اسکردو کلیکشن', l1: 'ایک نایاب', l2: 'انداز کا معمول۔', lead: 'ہماری شلاجیت کلیکشن دیکھیں۔', shop: 'کلیکشن دیکھیں', lab: 'آزاد لیب سے ٹیسٹ شدہ', alt: 'Himalayan Drop شلاجیت کلیکشن: کیپسول، گمیز، ڈراپس اور ریزن کے دو جار پتھر کے اسٹینڈ پر' },
+  en: { eyebrow: 'The Skardu Collection', l1: 'Feel the energy', l2: 'Live the difference.', lead: 'Authentic Himalayan Shilajit', lead2: 'Hand-harvested at 5,000 m · 100% Natural', shop: 'Shop Premium Shilajit', lab: '3rd-Party Lab Tested', alt: 'Himalayan Drop shilajit collection: capsules, gummies, drops and two resin jars on a stone pedestal' },
+  da: { eyebrow: 'Skardu-kollektionen', l1: 'Mærk energien', l2: 'Lev forskellen.', lead: 'Autentisk Himalaya-shilajit', lead2: 'Håndhøstet i 5.000 m højde · 100% naturlig', shop: 'Shop premium shilajit', lab: 'Testet af uafhængigt laboratorium', alt: 'Himalayan Drop shilajit kollektion: kapsler, vingummi, dråber og to krukker resin på en stensokkel' },
+  de: { eyebrow: 'Die Skardu-Kollektion', l1: 'Spüre die Energie', l2: 'Lebe den Unterschied.', lead: 'Authentisches Himalaya-Shilajit', lead2: 'Handgeerntet auf 5.000 m · 100 % natürlich', shop: 'Premium-Shilajit shoppen', lab: 'Von unabhängigem Labor geprüft', alt: 'Himalayan Drop Shilajit-Kollektion: Kapseln, Gummies, Tropfen und zwei Harzgläser auf einem Steinsockel' },
+  fr: { eyebrow: 'La collection Skardu', l1: 'Ressentez l’énergie', l2: 'Vivez la différence.', lead: 'Shilajit authentique de l’Himalaya', lead2: 'Récolté à la main à 5 000 m · 100 % naturel', shop: 'Découvrir le shilajit premium', lab: 'Testé par un laboratoire indépendant', alt: 'Collection de shilajit Himalayan Drop : gélules, gommes, gouttes et deux pots de résine sur un socle en pierre' },
+  es: { eyebrow: 'La colección Skardu', l1: 'Siente la energía', l2: 'Vive la diferencia.', lead: 'Shilajit auténtico del Himalaya', lead2: 'Recolectado a mano a 5.000 m · 100 % natural', shop: 'Comprar shilajit premium', lab: 'Analizado por un laboratorio independiente', alt: 'Colección de shilajit Himalayan Drop: cápsulas, gominolas, gotas y dos tarros de resina sobre un pedestal de piedra' },
+  ar: { eyebrow: 'مجموعة سكاردو', l1: 'اشعر بالطاقة', l2: 'عِش الفرق.', lead: 'شيلاجيت هيمالايا أصيل', lead2: 'محصود يدويًا على ارتفاع 5000 م · طبيعي 100%', shop: 'تسوّق الشيلاجيت الفاخر', lab: 'مفحوص في مختبر مستقل', alt: 'مجموعة شيلاجيت Himalayan Drop: كبسولات وعلكات وقطرات وبرطمانا راتنج على قاعدة حجرية' },
+  ur: { eyebrow: 'اسکردو کلیکشن', l1: 'توانائی محسوس کریں', l2: 'فرق کو جیئیں۔', lead: 'خالص ہمالیائی شلاجیت', lead2: '5,000 میٹر پر ہاتھ سے چُنی گئی · 100% قدرتی', shop: 'پریمیم شلاجیت خریدیں', lab: 'آزاد لیب سے ٹیسٹ شدہ', alt: 'Himalayan Drop شلاجیت کلیکشن: کیپسول، گمیز، ڈراپس اور ریزن کے دو جار پتھر کے اسٹینڈ پر' },
 };
 
 export default function Hero() {
   const root = useRef(null);
-  const tn = useT(T_NEW);
-  const to = useT(T_OLD);
-  const [ver, setVer] = useState('new');
-  useEffect(() => { try { if (localStorage.getItem('hero-ver') === 'old') setVer('old'); } catch (e) {} }, []);
-  const old = ver === 'old';
-  const t = old ? { ...to, toOld: tn.toOld, toNew: tn.toNew } : tn;
-  const flip = () => { const n = old ? 'new' : 'old'; setVer(n); try { localStorage.setItem('hero-ver', n); } catch (e) {} };
+  const t = useT(T_NEW);
   const lines = useMemo(() => ridges.map((r) => ({ ...r, d: toLine(ridgePoints(r.seed, r.base, r.amp, r.peaks)) })), []);
 
   useGSAP(
@@ -91,7 +75,7 @@ export default function Hero() {
   );
 
   return (
-    <section className={`hero ${old ? 'is-old' : 'is-new'}`} ref={root}>
+    <section className="hero is-new" ref={root}>
       <div className="hero-card">
         <div className="hero-glow" aria-hidden="true" />
         <svg className="hero-lines" viewBox="0 0 1200 460" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
@@ -103,11 +87,11 @@ export default function Hero() {
         <div className="hero-copy">
           <span className="eyebrow">{t.eyebrow}</span>
           <h1>
-            {!old && <span className="sr-only">{t.lead}: </span>}
+            <span className="sr-only">{t.lead}: </span>
             <span className="line"><span>{t.l1}</span></span>
             <span className="line"><span><em>{t.l2}</em></span></span>
           </h1>
-          <p className="hero-lead"><span>{t.lead}</span>{!old && <span>{t.lead2}</span>}</p>
+          <p className="hero-lead"><span>{t.lead}</span><span>{t.lead2}</span></p>
           <div className="hero-ctas">
             <Link href="/#collection" className="btn hero-btn">
               {t.shop} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
@@ -118,11 +102,6 @@ export default function Hero() {
             {t.lab}
           </p>
         </div>
-
-        <button type="button" className="hero-switch" onClick={flip} aria-label={old ? t.toNew : t.toOld}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17 3l4 4-4 4M21 7H8M7 21l-4-4 4-4M3 17h13" /></svg>
-          {old ? t.toNew : t.toOld}
-        </button>
 
         <div className="hero-product">
           <span className="hero-shadow" aria-hidden="true" />
