@@ -3,6 +3,7 @@
 import Hero from '@/components/Hero';
 import ProofThread from '@/components/ProofThread';
 import CertRidge from '@/components/CertRidge';
+import TopSection from '@/components/TopSection';
 import CollectionGallery from '@/components/CollectionGallery';
 import Reviews from '@/components/Reviews';
 import CertVaultSwitch from '@/components/CertVaultSwitch';
@@ -39,9 +40,11 @@ export default async function HomeView({ lang }) {
   const [products, top3] = await Promise.all([getProducts(lang), getTop3(lang)]);
   return (
     <>
-      <Hero />
-      <ProofThread />
-      <CertRidge />
+      <TopSection>
+        <Hero />
+        <ProofThread />
+        <CertRidge />
+      </TopSection>
       <CollectionGallery products={products} />
       <BenefitsExplorer />
       <WhyMedals />

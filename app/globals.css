@@ -3341,3 +3341,14 @@ html, body { overflow-x: clip; }
 .why-medals .txt{padding:2px 18px 20px 18px}
 }
 @media (prefers-reduced-motion:reduce){.why-medals .body,.why-medals .plus{transition:none}}
+
+/* ===== Home top: hero + proof strip + certifications as one burgundy section (switch) ===== */
+.hx{position:relative;margin:var(--frame) var(--frame) 0;border-radius:var(--r-xl);overflow:hidden;isolation:isolate;background:#3d0610 url('/images/hero/backdrop.webp') center top/cover no-repeat;box-shadow:0 30px 50px -34px rgba(42,1,7,.8)}
+.hx::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(42,1,7,.35),transparent 24%,transparent 62%,rgba(34,2,8,.65))}
+.hx .hero{padding:0}
+.hx .hero-card{background:none;border-radius:0;box-shadow:none}
+.hx .hero-card::after{display:none}
+.hx .pt{padding:0 clamp(14px,2vw,30px)}
+.hx .cr{padding:18px clamp(14px,2vw,30px) 0}
+.hx .cr-band{background:transparent;box-shadow:none;border-radius:0;border-top:1px solid rgba(204,162,94,.28)}
+.top-switch{margin-top:10px;padding-top:6px}
