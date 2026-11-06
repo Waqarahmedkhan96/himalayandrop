@@ -18,7 +18,7 @@ import { pageMeta, pages, BRAND } from '@/lib/seo';
 export function meta(lang) {
   const m = pageMeta('home', lang, '/');
   // The homepage title carries the brand first.
-  return { ...m, title: { absolute: `${BRAND} · ${pages.home[lang].title}` } };
+  return { ...m, title: { absolute: pages.home[lang].title } };
 }
 
 // The three bundles shown on the home page. With Shopify connected, price, stock and variant

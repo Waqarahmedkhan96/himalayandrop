@@ -413,6 +413,7 @@ export default function FaqView({ lang }) {
       <PageHero {...t.hero} />
       <Reveal as="section" className="section tight-top">
         <div className="container narrow" data-reveal>
+          <h2 className="sr-only">{t.hero.eyebrow}</h2>
           <FaqBrowser groups={t.groups} />
           <div className="faq-how"><Link href="/how-to-use/" className="btn outline">{HOW[lang] || HOW.en} <Arrow /></Link></div>
           <p className="faq-research"><Link href={t.researchHref}>{t.research} <Arrow size={14} /></Link></p>

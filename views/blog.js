@@ -24,6 +24,7 @@ export default async function BlogView({ lang }) {
       <PageHero eyebrow={t.eyebrow} title={t.title} accent={t.accent} lead={t.lead} />
       <section className="section blog-section">
         <div className="container">
+          <h2 className="sr-only">{t.eyebrow}</h2>
           <BlogIndex posts={posts} />
         </div>
       </section>
