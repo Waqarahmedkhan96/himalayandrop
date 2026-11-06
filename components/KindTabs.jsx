@@ -17,7 +17,7 @@ export default function KindTabs({ active, onChange, label }) {
           className={active === k.key ? 'on' : ''}
           onClick={() => onChange(k.key)}
         >
-          <span className="kind-thumb"><img src={k.thumb} alt="" /></span>
+          <span className="kind-thumb"><img loading="lazy" decoding="async" src={k.thumb} alt="" /></span>
           {k.label}
         </button>
       ))}

@@ -57,12 +57,12 @@ export default function CertVault({ cream = false }) {
           </div>
           <div className="cv-display">
             <div className="cv-spot" />
-            <div className="cv-mark"><img src={cur.seal} alt="" /></div>
+            <div className="cv-mark"><img loading="lazy" decoding="async" src={cur.seal} alt="" /></div>
             <div className="cv-frame">
               <div className="cv-mat">
                 {cur.img ? (
                   <a className="cv-scan-a" href={cur.img} target="_blank" rel="noopener" aria-label={`${t.items[i][0]}: ${SAMPLE[lang] || SAMPLE.en}`}>
-                    <img className="cv-scan" src={cur.img} alt={t.items[i][0]} />
+                    <img loading="lazy" decoding="async" className="cv-scan" src={cur.img} alt={t.items[i][0]} />
                   </a>
                 ) : (
                   <div className="cv-paper" aria-hidden="true">
@@ -74,7 +74,7 @@ export default function CertVault({ cream = false }) {
                   </div>
                 )}
               </div>
-              <div className="cv-medal"><img src={cur.seal} alt={t.items[i][0]} /></div>
+              <div className="cv-medal"><img loading="lazy" decoding="async" src={cur.seal} alt={t.items[i][0]} /></div>
             </div>
             {cur.caption && <p className="cv-cap">{SAMPLE[lang] || SAMPLE.en}</p>}
           </div>

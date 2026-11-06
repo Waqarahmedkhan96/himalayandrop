@@ -87,7 +87,7 @@ export default function DistributorNetwork({ formId = 'dist' }) {
     <div className="dn" data-region={region} data-country={country || ''}>
       <div className="dn-map" role="group" aria-label={t.map}>
         <div className="dn-stage">
-        <img className="dn-dots" src="/images/world-dots.svg" alt="" width={W} height={H} />
+        <img loading="lazy" decoding="async" className="dn-dots" src="/images/world-dots.svg" alt="" width={W} height={H} />
         <svg className="dn-routes" viewBox={`0 0 ${W} ${H}`} aria-hidden="true" preserveAspectRatio="none">
           {COUNTRIES.filter((c) => !c.origin).map((c, i) => {
             const p = countryPin(c);
@@ -112,7 +112,7 @@ export default function DistributorNetwork({ formId = 'dist' }) {
               onClick={() => pick(c.code)}
               aria-label={`${c[lang]}: ${t.cities(c.cities.length)}`}
             >
-              <img src={`/images/flags/${c.code}.svg`} alt="" width="22" height="22" />
+              <img loading="lazy" decoding="async" src={`/images/flags/${c.code}.svg`} alt="" width="22" height="22" />
               <span className="dn-tip">{c[lang]} · {t.cities(c.cities.length)}</span>
             </button>
           );
@@ -145,7 +145,7 @@ export default function DistributorNetwork({ formId = 'dist' }) {
         {COUNTRIES.map((c) => (
           <article key={c.code} id={`dn-${c.code}`} className="dn-card" data-code={c.code} data-region={c.region} hidden={!visible(c)}>
             <header>
-              <img src={`/images/flags/${c.code}.svg`} alt="" width="44" height="44" />
+              <img loading="lazy" decoding="async" src={`/images/flags/${c.code}.svg`} alt="" width="44" height="44" />
               <div>
                 <h3>{c[lang]}</h3>
                 <p>{t.cities(c.cities.length)}</p>

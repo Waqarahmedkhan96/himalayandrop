@@ -56,7 +56,7 @@ export default function CartDrawer() {
           )}
           {lines.map((l) => (
             <div className="drawer-line" key={l.id}>
-              {l.merchandise.image && <img src={l.merchandise.image.url} alt={l.merchandise.image.altText || ''} />}
+              {l.merchandise.image && <img loading="lazy" decoding="async" src={l.merchandise.image.url} alt={l.merchandise.image.altText || ''} />}
               <div>
                 <strong>{l.merchandise.product.title}</strong>
                 <div style={{ fontSize: 13, color: 'var(--muted)' }}>{t.qty} {l.quantity}</div>

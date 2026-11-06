@@ -180,7 +180,7 @@ export default function HowToTabs() {
 
       <div className="ht-stage" key={tab}>
         <div className="ht-alcove">
-          <div className="ht-arch"><span className="ht-ledge" /><img src={g.img} alt={`Himalayan Drop ${names[tab]}`} /></div>
+          <div className="ht-arch"><span className="ht-ledge" /><img loading="lazy" decoding="async" src={g.img} alt={`Himalayan Drop ${names[tab]}`} /></div>
           <p className="ht-cap">Himalayan Drop · {names[tab]}</p>
         </div>
         <div className="ht-col">

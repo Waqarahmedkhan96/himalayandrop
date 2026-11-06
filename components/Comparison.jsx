@@ -50,7 +50,7 @@ function Table({ kind, active, rows, title, t }) {
         <div className="cmp-row cmp-head" role="row">
           <span className="cmp-label" role="columnheader" />
           <div className="cmp-ours" role="columnheader">
-            <img src={kind.image} alt="" className="cmp-product" />
+            <img loading="lazy" decoding="async" src={kind.image} alt="" className="cmp-product" />
             <strong>Himalayan Drop<br />{title}</strong>
           </div>
           <div className="cmp-market" role="columnheader">
