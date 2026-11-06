@@ -354,7 +354,7 @@ em { font-style: italic; }
 .footer .brand { color: var(--cream); }
 .footer .tagline { margin-top: 12px; font-size: 14px; max-width: 30ch; }
 .footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.footer-col h4 {
+.footer-col h3 {
   font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--gold-soft); margin-bottom: 10px;
 }
@@ -2134,7 +2134,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 .md-front .md-tag { margin-top: 26px; background: rgba(255, 255, 255, 0.14); box-shadow: inset 0 0 0 1px currentColor; }
 .f-gold .md-front .md-tag, .f-paper .md-front .md-tag { background: rgba(88, 15, 27, 0.08); }
 .md-back .md-tag, .bd-detail .md-tag.is-fact { margin-top: 26px; background: rgba(204, 162, 94, 0.2); color: var(--maroon); }
-.md-card h4 { margin-top: 16px; font-size: 24px; line-height: 1.18; position: relative; z-index: 1; }
+.md-card h3 { margin-top: 16px; font-size: 24px; line-height: 1.18; position: relative; z-index: 1; }
 .md-q { position: absolute; inset-inline-end: 10px; bottom: 26px; font-family: var(--display); font-size: 170px; line-height: 1; opacity: 0.1; pointer-events: none; }
 .md-fact { margin-top: 14px; font-size: 14.5px; line-height: 1.55; color: var(--ink); }
 .bd-detail .md-tag { display: flex; width: fit-content; margin-top: 12px; }
@@ -2143,7 +2143,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 .bd-detail h3 { margin-top: 10px; }
 .bd-detail { min-height: 0; }
 @media (min-width: 900px) { .bd-detail { min-height: 300px; } }
-@media (min-width: 900px) { .md-card h4 { font-size: 28px; } .md-fact { font-size: 15.5px; } }
+@media (min-width: 900px) { .md-card h3 { font-size: 28px; } .md-fact { font-size: 15.5px; } }
 @media (prefers-reduced-motion: reduce) { .md-flip { transition: none; } }
 [dir='rtl'] .bd-nav > button svg { transform: scaleX(-1); }
 .bd-hint svg { animation-name: bdHintX; }
@@ -2154,7 +2154,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 .md-card .md-art { width: 62px; height: 62px; flex: none; margin-top: 16px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 35% 30%, #fffdf8, #ead9bf); box-shadow: inset 0 0 0 1px rgba(204, 162, 94, 0.6), 0 10px 20px -12px rgba(0, 0, 0, 0.55); position: relative; z-index: 1; }
 .md-card .md-body { display: flex; flex-direction: column; position: relative; z-index: 1; }
 .md-card .md-front .md-tag, .md-card .md-back .md-tag { margin-top: 16px; }
-.md-card .md-front h4 { margin-top: 12px; }
+.md-card .md-front h3 { margin-top: 12px; }
 .md-timer { position: absolute; inset-inline: 18px; bottom: 14px; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, 0.22); overflow: hidden; z-index: 2; }
 .f-paper .md-timer, .f-gold .md-timer { background: rgba(88, 15, 27, 0.14); }
 .md-timer i, .md-wait-bar i { display: block; height: 100%; background: var(--gold-grad); transform: scaleX(0); transform-origin: left center; }
@@ -2186,7 +2186,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
   .is-wheel .md-card .md-body { grid-area: body; align-self: center; }
   .is-wheel .md-card .md-art { grid-area: art; margin: 0 0 10px; width: 66px; height: 66px; }
   .is-wheel .md-card .md-front .md-tag, .is-wheel .md-card .md-back .md-tag { margin-top: 0; }
-  .is-wheel .md-card h4 { font-size: 22px; margin-top: 10px; }
+  .is-wheel .md-card h3 { font-size: 22px; margin-top: 10px; }
   .is-wheel .md-card .md-back { grid-template-columns: 1fr; grid-template-areas: 'top' 'body'; }
   .is-wheel .md-card .md-back .md-art { display: none; }
   .is-wheel .md-fact { font-size: 13.5px; margin-top: 10px; line-height: 1.5; }
@@ -2198,7 +2198,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 }
 @media (min-width: 1100px) {
   .is-wheel .md-stage { --R: 580px; --cw: 420px; --gap: 44px; --step: 33deg; height: 700px; }
-  .is-wheel .md-card h4 { font-size: 26px; }
+  .is-wheel .md-card h3 { font-size: 26px; }
   .is-wheel .md-fact { font-size: 14.5px; }
   .is-wheel .md-card .bd-card-in { padding: 22px 26px; }
 }

@@ -205,7 +205,7 @@ export default function MythDeck({ kind }) {
                       <span className="md-art"><RealIcon name={it.icon} size={46} /></span>
                       <div className="md-body">
                         <span className="md-tag is-myth"><Cross />{m.myth}</span>
-                        <h4>“{it.myth}”</h4>
+                        <h3>“{it.myth}”</h3>
                       </div>
                       <span className="md-q" aria-hidden="true">?</span>
                       {front && !revealed && (

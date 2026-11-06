@@ -98,7 +98,7 @@ const ICON = {
 };
 
 const L = [
-  { k: 'The promise', t: '60-day guarantee', n: '60', p: 'Use it for 60 days. If it is not for you, send it back and we refund you.', m: 'How the guarantee works', href: '/policies/', icon: () => ICON.days() },
+  { k: 'The promise', t: '60-day guarantee', n: '60', p: 'Use it for 60 days. If it is not for you, send it back and we refund you.', m: 'How the guarantee works', href: '/policies/refund-policy/', icon: () => ICON.days() },
   { k: 'The standard', t: 'Quality standards', n: 'GMP', p: 'Produced under GMP and ISO food-safety standards (ISO 22000 and ISO 9001). The certificates are on our certificates page for anyone to read.', m: 'See the certificates', href: '/certificates/', multi: true, icon: () => [ICON.gmp(), ICON.iso('i22', '22000', 'FOOD SAFETY'), ICON.iso('i90', '9001', 'QUALITY')] },
   { k: 'The proof', t: 'Third-party lab tested', n: 'Lab', p: 'Each product is tested by an independent laboratory for heavy metals. The results are published on our lab results page.', m: 'Read the lab results', href: '/lab-results/', icon: () => ICON.lab() },
   { k: 'The home', t: 'Formulated in Denmark', n: 'DK', p: 'Himalayan Drop is a Danish brand. Every product is formulated in Denmark, from shilajit sourced in the Himalayas.', m: 'Meet the brand', href: '/our-story/', icon: () => ICON.dk() },
