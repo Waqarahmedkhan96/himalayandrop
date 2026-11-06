@@ -28,6 +28,7 @@ export default function ReviewsView({ lang }) {
       <PageHero eyebrow={t.eyebrow} title={t.title} accent={t.accent} lead={isSample ? t.sample : t.real} />
       <Reveal as="section" className="section">
         <div className="container">
+          <h2 className="sr-only">{t.eyebrow}</h2>
           <div className="reviews-grid" data-reveal="stagger">
             {reviews.map((r, i) => (
               <ReviewCard key={i} r={r} />

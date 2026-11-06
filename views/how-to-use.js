@@ -138,6 +138,7 @@ export default function HowToUseView({ lang }) {
 
       <Reveal as="section" className="section tight-top">
         <div className="container" data-reveal>
+          <h2 className="sr-only">{t.hero.eyebrow}</h2>
           <HowToTabs />
         </div>
       </Reveal>

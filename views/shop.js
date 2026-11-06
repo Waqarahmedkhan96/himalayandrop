@@ -35,6 +35,7 @@ export default async function ShopView({ lang }) {
       <PageHero eyebrow={t.eyebrow} title={t.title} accent={t.accent} lead={t.lead} />
       <Reveal as="section" className="section shop-section">
         <div className="container">
+          <h2 className="sr-only">{t.eyebrow}</h2>
           <div className="shop-grid" data-reveal="stagger">
             {products.map((p) => (
               <ShopCard key={p.handle} product={p} />

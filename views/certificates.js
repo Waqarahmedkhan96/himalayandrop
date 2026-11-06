@@ -134,6 +134,7 @@ export default function CertificatesView({ lang }) {
       <PageHero {...t.hero} />
       <Reveal as="section" className="section tight-top">
         <div className="container">
+          <h2 className="sr-only">{t.hero.eyebrow}</h2>
           <div className="cert-grid" data-reveal="stagger">
             {seals.map((s) => {
               const d = t.details[s.id];
