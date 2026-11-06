@@ -1,20 +1,20 @@
 'use client';
-// Email signup. Right now it only shows a thank-you message.
-// To collect emails for real, connect Klaviyo or Shopify's customer API in onSubmit.
+// Email signup: creates a Shopify customer with marketing accepted (see lib/shopifyForms.js).
 import { useMemo, useState } from 'react';
 import Reveal from './Reveal';
 import { Arrow } from './Arrow';
 import { ridgePoints, toLine } from '@/lib/mountains';
 import { useLang } from './LangProvider';
+import { subscribeNewsletter } from '@/lib/shopifyForms';
 
 const T = {
-  en: { eyebrow: 'Letters from Himalayan Drop', h: 'Stay close to', hg: 'the source.', lead: 'Launch news and stories, delivered thoughtfully.', thanks: 'Thank you. We’ll be in touch.', invalid: 'Please enter a valid email address.', label: 'Email address', ph: 'Your email address', btn: 'Subscribe', note: 'By subscribing, you agree to receive our emails. Unsubscribe anytime.' },
-  da: { eyebrow: 'Breve fra Himalayan Drop', h: 'Hold dig tæt på', hg: 'kilden.', lead: 'Nyheder om lanceringen og historier fra bjergene, sendt med omtanke.', thanks: 'Tak. Vi skriver snart.', invalid: 'Skriv en gyldig e-mailadresse.', label: 'E-mailadresse', ph: 'Din e-mailadresse', btn: 'Tilmeld', note: 'Ved at tilmelde dig accepterer du at modtage vores e-mails. Du kan altid afmelde dig.' },
-  de: { eyebrow: 'Post von Himalayan Drop', h: 'Bleib nah an', hg: 'der Quelle.', lead: 'Neuigkeiten zum Start und Geschichten, mit Bedacht verschickt.', thanks: 'Danke. Wir melden uns.', invalid: 'Bitte gib eine gültige E-Mail-Adresse ein.', label: 'E-Mail-Adresse', ph: 'Deine E-Mail-Adresse', btn: 'Abonnieren', note: 'Mit dem Abonnieren stimmst du dem Empfang unserer E-Mails zu. Abmeldung jederzeit möglich.' },
-  fr: { eyebrow: 'Lettres de Himalayan Drop', h: 'Restez proche de', hg: 'la source.', lead: 'Nouveautés et histoires, envoyées avec soin.', thanks: 'Merci. Nous vous écrirons bientôt.', invalid: 'Veuillez saisir une adresse e-mail valide.', label: 'Adresse e-mail', ph: 'Votre adresse e-mail', btn: 'S’abonner', note: 'En vous abonnant, vous acceptez de recevoir nos e-mails. Désabonnement à tout moment.' },
-  es: { eyebrow: 'Cartas de Himalayan Drop', h: 'Mantente cerca de', hg: 'la fuente.', lead: 'Novedades e historias, enviadas con cuidado.', thanks: 'Gracias. Te escribiremos pronto.', invalid: 'Introduce una dirección de correo válida.', label: 'Correo electrónico', ph: 'Tu correo electrónico', btn: 'Suscribirme', note: 'Al suscribirte aceptas recibir nuestros correos. Puedes darte de baja cuando quieras.' },
-  ar: { eyebrow: 'رسائل من Himalayan Drop', h: 'ابقَ قريباً من', hg: 'المصدر.', lead: 'أخبار الإطلاق وقصص مختارة بعناية.', thanks: 'شكراً لك. سنتواصل معك قريباً.', invalid: 'يرجى إدخال بريد إلكتروني صحيح.', label: 'البريد الإلكتروني', ph: 'بريدك الإلكتروني', btn: 'اشترك', note: 'باشتراكك توافق على تلقي رسائلنا. يمكنك إلغاء الاشتراك في أي وقت.' },
-  ur: { eyebrow: 'Himalayan Drop کی طرف سے خطوط', h: 'جڑے رہیں', hg: 'ماخذ سے۔', lead: 'لانچ کی خبریں اور کہانیاں، سوچ سمجھ کر بھیجی گئیں۔', thanks: 'شکریہ۔ ہم رابطے میں رہیں گے۔', invalid: 'براہِ کرم درست ای میل ایڈریس درج کریں۔', label: 'ای میل ایڈریس', ph: 'آپ کا ای میل ایڈریس', btn: 'سبسکرائب کریں', note: 'سبسکرائب کر کے آپ ہماری ای میلز وصول کرنے پر رضامند ہیں۔ کسی بھی وقت ان سبسکرائب کریں۔' },
+  en: { fail: 'Sorry, that did not work. Please try again.', eyebrow: 'Letters from Himalayan Drop', h: 'Stay close to', hg: 'the source.', lead: 'Launch news and stories, delivered thoughtfully.', thanks: 'Thank you. We’ll be in touch.', invalid: 'Please enter a valid email address.', label: 'Email address', ph: 'Your email address', btn: 'Subscribe', note: 'By subscribing, you agree to receive our emails. Unsubscribe anytime.' },
+  da: { fail: 'Beklager, det lykkedes ikke. Prøv igen.', eyebrow: 'Breve fra Himalayan Drop', h: 'Hold dig tæt på', hg: 'kilden.', lead: 'Nyheder om lanceringen og historier fra bjergene, sendt med omtanke.', thanks: 'Tak. Vi skriver snart.', invalid: 'Skriv en gyldig e-mailadresse.', label: 'E-mailadresse', ph: 'Din e-mailadresse', btn: 'Tilmeld', note: 'Ved at tilmelde dig accepterer du at modtage vores e-mails. Du kan altid afmelde dig.' },
+  de: { fail: 'Das hat leider nicht geklappt. Bitte versuche es erneut.', eyebrow: 'Post von Himalayan Drop', h: 'Bleib nah an', hg: 'der Quelle.', lead: 'Neuigkeiten zum Start und Geschichten, mit Bedacht verschickt.', thanks: 'Danke. Wir melden uns.', invalid: 'Bitte gib eine gültige E-Mail-Adresse ein.', label: 'E-Mail-Adresse', ph: 'Deine E-Mail-Adresse', btn: 'Abonnieren', note: 'Mit dem Abonnieren stimmst du dem Empfang unserer E-Mails zu. Abmeldung jederzeit möglich.' },
+  fr: { fail: 'Désolé, cela n’a pas fonctionné. Veuillez réessayer.', eyebrow: 'Lettres de Himalayan Drop', h: 'Restez proche de', hg: 'la source.', lead: 'Nouveautés et histoires, envoyées avec soin.', thanks: 'Merci. Nous vous écrirons bientôt.', invalid: 'Veuillez saisir une adresse e-mail valide.', label: 'Adresse e-mail', ph: 'Votre adresse e-mail', btn: 'S’abonner', note: 'En vous abonnant, vous acceptez de recevoir nos e-mails. Désabonnement à tout moment.' },
+  es: { fail: 'Lo sentimos, no ha funcionado. Inténtalo de nuevo.', eyebrow: 'Cartas de Himalayan Drop', h: 'Mantente cerca de', hg: 'la fuente.', lead: 'Novedades e historias, enviadas con cuidado.', thanks: 'Gracias. Te escribiremos pronto.', invalid: 'Introduce una dirección de correo válida.', label: 'Correo electrónico', ph: 'Tu correo electrónico', btn: 'Suscribirme', note: 'Al suscribirte aceptas recibir nuestros correos. Puedes darte de baja cuando quieras.' },
+  ar: { fail: 'عذراً، لم تنجح العملية. يرجى المحاولة مرة أخرى.', eyebrow: 'رسائل من Himalayan Drop', h: 'ابقَ قريباً من', hg: 'المصدر.', lead: 'أخبار الإطلاق وقصص مختارة بعناية.', thanks: 'شكراً لك. سنتواصل معك قريباً.', invalid: 'يرجى إدخال بريد إلكتروني صحيح.', label: 'البريد الإلكتروني', ph: 'بريدك الإلكتروني', btn: 'اشترك', note: 'باشتراكك توافق على تلقي رسائلنا. يمكنك إلغاء الاشتراك في أي وقت.' },
+  ur: { fail: 'معذرت، یہ کام نہیں ہوا۔ براہِ کرم دوبارہ کوشش کریں۔', eyebrow: 'Himalayan Drop کی طرف سے خطوط', h: 'جڑے رہیں', hg: 'ماخذ سے۔', lead: 'لانچ کی خبریں اور کہانیاں، سوچ سمجھ کر بھیجی گئیں۔', thanks: 'شکریہ۔ ہم رابطے میں رہیں گے۔', invalid: 'براہِ کرم درست ای میل ایڈریس درج کریں۔', label: 'ای میل ایڈریس', ph: 'آپ کا ای میل ایڈریس', btn: 'سبسکرائب کریں', note: 'سبسکرائب کر کے آپ ہماری ای میلز وصول کرنے پر رضامند ہیں۔ کسی بھی وقت ان سبسکرائب کریں۔' },
 };
 
 export default function Newsletter() {
@@ -26,8 +26,10 @@ export default function Newsletter() {
     toLine(ridgePoints(9, 340, 160, 6)),
   ], []);
 
-  const onSubmit = (e) => {
+  const [busy, setBusy] = useState(false);
+  const onSubmit = async (e) => {
     e.preventDefault();
+    if (busy) return;
     const email = e.target.email.value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       setError(t.invalid);
@@ -35,8 +37,15 @@ export default function Newsletter() {
       return;
     }
     setError('');
-    // Connect your email tool (Klaviyo / Shopify Email) here and send `email`.
-    setSent(true);
+    setBusy(true);
+    try {
+      await subscribeNewsletter(email);
+      setSent(true);
+    } catch {
+      setError(t.fail);
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
@@ -56,7 +65,7 @@ export default function Newsletter() {
           <form className="nl-form" onSubmit={onSubmit} noValidate>
             <label htmlFor="email" className="sr-only">{t.label}</label>
             <input id="email" name="email" type="email" required placeholder={t.ph} autoComplete="email" aria-invalid={!!error} aria-describedby={error ? 'nl-error' : undefined} />
-            <button className="btn gold" type="submit">{t.btn} <Arrow size={14} /></button>
+            <button className="btn gold" type="submit" disabled={busy}>{t.btn} <Arrow size={14} /></button>
           </form>
         )}
         {error && !sent && <p className="form-error nl-error" id="nl-error" role="alert">{error}</p>}

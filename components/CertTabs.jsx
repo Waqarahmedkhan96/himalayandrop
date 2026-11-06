@@ -40,7 +40,7 @@ export default function CertTabs({ cream = false }) {
           <div className="ct-tabs" role="tablist" aria-label={t.eyebrow}>
             {ITEMS.map((it, k) => (
               <button key={it.id} type="button" role="tab" aria-selected={i === k} tabIndex={i === k ? 0 : -1} className="ct-tab" onClick={() => setI(k)} onKeyDown={(e) => key(e, k)}>
-                <img src={it.seal} alt="" width="22" height="22" />
+                <img loading="lazy" decoding="async" src={it.seal} alt="" width="22" height="22" />
                 <span>{t.items[k][0]}</span>
               </button>
             ))}
@@ -53,18 +53,18 @@ export default function CertTabs({ cream = false }) {
             <h3>{t.items[i][0]}</h3>
             <p className="ct-desc">{t.items[i][1]}</p>
             <Link className="ct-badge" href={cur.href}>
-              <img src={cur.seal} alt="" width="58" height="58" />
+              <img loading="lazy" decoding="async" src={cur.seal} alt="" width="58" height="58" />
               <span><small>{t.view}</small><b>{SHORT[i]}</b></span>
             </Link>
           </div>
           <div className="ct-show">
             <div className="ct-spot" />
-            <div className="ct-wm"><img src={cur.seal} alt="" /></div>
+            <div className="ct-wm"><img loading="lazy" decoding="async" src={cur.seal} alt="" /></div>
             <div className="ct-frame">
               <div className="ct-mat">
                 {cur.img ? (
                   <a href={cur.img} target="_blank" rel="noopener" aria-label={`${t.items[i][0]}: ${SAMPLE[lang] || SAMPLE.en}`}>
-                    <img className="ct-scan" src={cur.img} alt={t.items[i][0]} />
+                    <img loading="lazy" decoding="async" className="ct-scan" src={cur.img} alt={t.items[i][0]} />
                   </a>
                 ) : (
                   <div className="ct-paper ct-fill" aria-hidden="true">
@@ -75,7 +75,7 @@ export default function CertTabs({ cream = false }) {
                   </div>
                 )}
               </div>
-              <div className="ct-medal"><img src={cur.seal} alt={t.items[i][0]} /></div>
+              <div className="ct-medal"><img loading="lazy" decoding="async" src={cur.seal} alt={t.items[i][0]} /></div>
             </div>
             {cur.caption && <p className="ct-cap">{SAMPLE[lang] || SAMPLE.en}</p>}
           </div>

@@ -586,7 +586,7 @@ export function StickyBuy({ product }) {
   const price = product.amount != null ? formatMoney(product.amount, product.currency) : product.price;
   return (
     <div className={`sticky-buy ${show ? 'on' : ''}`} aria-hidden={!show} inert={!show}>
-      <img src={product.image} alt="" width="48" height="48" />
+      <img loading="lazy" decoding="async" src={product.image} alt="" width="48" height="48" />
       <div className="sb-text">
         <strong>{product.title}</strong>
         <span>{price}</span>

@@ -48,7 +48,7 @@ export default function HomeBundles({ bundles }) {
         <article className="hb-panel" key={b.handle} aria-live="polite">
           <div className="hb-arch">
             <span className="hb-ring" />
-            <img src={b.jars || b.image} alt={b.name} />
+            <img loading="lazy" decoding="async" src={b.jars || b.image} alt={b.name} />
             {diff > 0 && <span className="hb-seal"><small>{t.save}</small><b>{money(diff)}</b></span>}
             {b.badge && <span className="hb-flag">{b.badge}</span>}
           </div>
