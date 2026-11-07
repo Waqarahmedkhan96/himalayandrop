@@ -4,6 +4,8 @@ import Header from './Header';
 import Footer from './Footer';
 import CartDrawer from './CartDrawer';
 import OfferPopup from './OfferPopup';
+import Im8Header from './Im8Header';
+import VersionSwitch, { VERSION_SCRIPT } from './VersionSwitch';
 import JsonLd from './JsonLd';
 import { LangProvider } from './LangProvider';
 import { CartProvider } from '@/lib/cart';
@@ -14,18 +16,21 @@ const SKIP = { en: 'Skip to content', da: 'Gå til indhold', de: 'Zum Inhalt spr
 
 export default function RootShell({ lang, children }) {
   return (
-    <html lang={LANGS[lang]?.hreflang || lang} dir={LANGS[lang]?.dir || 'ltr'} data-lang={lang}>
+    <html lang={LANGS[lang]?.hreflang || lang} dir={LANGS[lang]?.dir || 'ltr'} data-lang={lang} suppressHydrationWarning>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: VERSION_SCRIPT }} />
         <a href="#main" className="skip-link">{SKIP[lang] || SKIP.en}</a>
         <JsonLd data={organizationLd(lang)} />
         <LangProvider lang={lang}>
           <CartProvider>
             <SmoothScroll />
             <Header />
+            <Im8Header />
             <main id="main" tabIndex={-1}>{children}</main>
             <Footer />
             <CartDrawer />
             <OfferPopup />
+            <VersionSwitch />
           </CartProvider>
         </LangProvider>
       </body>

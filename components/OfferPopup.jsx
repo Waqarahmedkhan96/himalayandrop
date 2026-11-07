@@ -117,10 +117,10 @@ export default function OfferPopup() {
       lastFocus.current = document.activeElement;
       setOpen(true);
     };
-    const timer = setTimeout(show, 9000);
+    const timer = setTimeout(show, document.documentElement.getAttribute('data-version') === 'im8' ? 35000 : 9000);
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      if (max > 0 && window.scrollY / max > 0.35) show();
+      if (max > 0 && window.scrollY / max > (document.documentElement.getAttribute('data-version') === 'im8' ? 0.85 : 0.35)) show();
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => { clearTimeout(timer); window.removeEventListener('scroll', onScroll); };

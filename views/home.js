@@ -11,6 +11,7 @@ import Newsletter from '@/components/Newsletter';
 import BenefitsExplorer from '@/components/BenefitsExplorer';
 import HomeBundlesSwitch from '@/components/HomeBundlesSwitch';
 import WhyMedals from '@/components/WhyMedals';
+import Im8Home from '@/components/Im8Home';
 import { getDemoBundles } from '@/lib/bundles';
 import { getProducts, getProduct, isShopifyConnected } from '@/lib/shopify';
 import { pageMeta, pages, BRAND } from '@/lib/seo';
@@ -40,18 +41,25 @@ export default async function HomeView({ lang }) {
   const [products, top3] = await Promise.all([getProducts(lang), getTop3(lang)]);
   return (
     <>
-      <TopSection>
-        <Hero />
-        <ProofThread />
-        <CertRidge />
-      </TopSection>
-      <CollectionGallery products={products} />
-      <BenefitsExplorer />
-      <WhyMedals />
-      <Reviews />
-      <HomeBundlesSwitch bundles={top3} />
-      <CertVaultSwitch />
-      <Newsletter />
+      {/* Current design (default). The version switch shows one of the two. */}
+      <div className="v-classic">
+        <TopSection>
+          <Hero />
+          <ProofThread />
+          <CertRidge />
+        </TopSection>
+        <CollectionGallery products={products} />
+        <BenefitsExplorer />
+        <WhyMedals />
+        <Reviews />
+        <HomeBundlesSwitch bundles={top3} />
+        <CertVaultSwitch />
+        <Newsletter />
+      </div>
+      {/* IM8-inspired design */}
+      <div className="v-im8">
+        <Im8Home products={products} bundles={top3} />
+      </div>
     </>
   );
 }
