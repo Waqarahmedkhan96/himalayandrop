@@ -3304,4 +3304,3 @@ html, body { overflow-x: clip; }
 .hx .pt{padding:0 clamp(14px,2vw,30px)}
 .hx .cr{padding:18px 0 0}
 .hx .cr-band{border-radius:0;box-shadow:none;background:radial-gradient(70% 90% at 50% 100%,rgba(170,50,62,.5),transparent 70%),linear-gradient(180deg,rgba(34,2,8,0),rgba(34,2,8,.94) 38%,#33060f 64%,#45091a)}
-.top-switch{margin-top:10px;padding-top:6px}
