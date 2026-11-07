@@ -51,10 +51,11 @@ const T = {
     rights: 'جملہ حقوق محفوظ ہیں۔',
   },
 };
+export const FOOTER_T = T;
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { ridgePoints, toLine, toShape } from '@/lib/mountains';
 
-function SocialIcon({ name }) {
+export function SocialIcon({ name }) {
   if (name === 'instagram') {
     return (
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">

@@ -21,6 +21,7 @@ import { SUBSCRIBE_PCT } from '@/lib/subscription';
 import { Arrow } from './Arrow';
 import { Icon } from './Icons';
 import RealIcon from './RealIcon';
+import Im8ProductExtras from './Im8ProductExtras';
 import { FORMULA_KEYS } from '@/lib/labdata';
 import { howToSteps } from './HowToTabs';
 import { kindOf } from '@/lib/benefits';
@@ -219,6 +220,7 @@ export default function ProductView({ product }) {
               </button>
             </div>
           )}
+          <Im8ProductExtras handle={product.handle} />
           <div className="pdp-trust">
             {t.trust.map((x) => <span key={x}>{x}</span>)}
           </div>

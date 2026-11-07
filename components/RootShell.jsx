@@ -5,6 +5,7 @@ import Footer from './Footer';
 import CartDrawer from './CartDrawer';
 import OfferPopup from './OfferPopup';
 import Im8Header from './Im8Header';
+import Im8Footer from './Im8Footer';
 import VersionSwitch, { VERSION_SCRIPT } from './VersionSwitch';
 import JsonLd from './JsonLd';
 import { LangProvider } from './LangProvider';
@@ -28,6 +29,7 @@ export default function RootShell({ lang, children }) {
             <Im8Header />
             <main id="main" tabIndex={-1}>{children}</main>
             <Footer />
+            <Im8Footer />
             <CartDrawer />
             <OfferPopup />
             <VersionSwitch />

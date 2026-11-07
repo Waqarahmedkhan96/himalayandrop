@@ -5,6 +5,7 @@ import JsonLd from '@/components/JsonLd';
 import Accordion from '@/components/Accordion';
 import { SectionHead, FeatureGrid } from '@/components/Blocks';
 import { Icon } from '@/components/Icons';
+import Im8Bundles from '@/components/Im8Bundles';
 import { getDemoBundles, maxSaving } from '@/lib/bundles';
 import { getProduct, isShopifyConnected } from '@/lib/shopify';
 import { pageMeta, abs } from '@/lib/seo';
@@ -169,6 +170,10 @@ export default async function BundlesView({ lang }) {
   return (
     <>
       <JsonLd data={list} />
+      <div className="v-im8">
+        <Im8Bundles bundles={bundles} text={{ ...t, hero: t.hero(maxSaving()) }} />
+      </div>
+      <div className="v-classic">
       <PageHero {...t.hero(maxSaving())} />
 
       <section className="section tight-top bundles-trust-wrap">
@@ -203,6 +208,7 @@ export default async function BundlesView({ lang }) {
           </div>
         </div>
       </Reveal>
+      </div>
     </>
   );
 }
