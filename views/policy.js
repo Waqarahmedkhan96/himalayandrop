@@ -24,12 +24,26 @@ const T = {
   ur: { eyebrow: 'پالیسیاں', nav: 'پالیسیاں', template: 'نمونہ متن۔ اسے Shopify ایڈمن ← سیٹنگز ← پالیسیز میں اپنی قانونی طور پر جانچی ہوئی پالیسی سے بدلیں۔' },
 };
 
+// A new line starts a new paragraph; consecutive lines starting with "- " become a list.
+function Text({ text }) {
+  const out = [];
+  let list = [];
+  const flush = () => { if (list.length) { out.push(<ul key={`u${out.length}`}>{list.map((x, i) => <li key={i}>{x}</li>)}</ul>); list = []; } };
+  text.split('\n').forEach((line) => {
+    if (line.startsWith('- ')) list.push(line.slice(2));
+    else { flush(); out.push(<p key={`p${out.length}`}>{line}</p>); }
+  });
+  flush();
+  return out;
+}
+
 export default async function PolicyView({ lang, slug }) {
   const t = tr(T, lang);
   const policies = getPolicies(lang);
   const template = policies[slug];
   if (!template) notFound();
-  const shopify = await getPolicy(slug, lang);
+  // Final texts (written in lib/policies-final.js) win over Shopify's policy text.
+  const shopify = template.final ? null : await getPolicy(slug, lang);
 
   return (
     <>
@@ -46,11 +60,11 @@ export default async function PolicyView({ lang, slug }) {
               <div dangerouslySetInnerHTML={{ __html: shopify.body }} />
             ) : (
               <>
-                <p className="page-notice">{t.template}</p>
+                {!template.final && <p className="page-notice">{t.template}</p>}
                 {template.sections.map(([h, x]) => (
                   <section key={h}>
                     <h2>{h}</h2>
-                    <p>{x}</p>
+                    <Text text={x} />
                   </section>
                 ))}
               </>
