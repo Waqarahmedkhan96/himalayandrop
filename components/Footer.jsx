@@ -147,7 +147,7 @@ export default function Footer() {
 
           <p className="disclaimer">{t.disclaimer}</p>
           <div className="footer-bottom">
-            <span suppressHydrationWarning><bdi dir="ltr">© 2024–{new Date().getFullYear()} Himalayan Drop.</bdi> {t.rights}</span>
+            <span suppressHydrationWarning><bdi dir="ltr">© 2020–{new Date().getFullYear()} Himalayan Drop.</bdi> {t.rights}</span>
             <span className="legal-links">{legal.map(([l, h]) => <Link key={l} href={h}>{l}</Link>)}</span>
           </div>
         </div>

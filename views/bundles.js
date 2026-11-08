@@ -45,7 +45,7 @@ const T = {
       { q: 'Can I use two formats on the same day?', a: 'Each product has its own daily dose on the label. Most people use one format per day, for example resin at home and gummies when they travel. Do not take the full daily dose of several shilajit products on the same day, and ask your doctor if you are unsure.' },
       { q: 'Does every product in a bundle have a lab report?', a: 'Yes. Each product carries its own batch number, and you can look up its report on our Lab results page.' },
       { q: 'Does the 60-day guarantee apply to bundles?', a: 'Yes. If you are not satisfied, contact us within 60 days of delivery and we refund your purchase.' },
-      { q: 'Can I send a bundle as a gift?', a: 'Yes. Gift of the Mountain is made for it, and every product comes in gift-ready packaging. Add the recipient’s address at checkout.' },
+      { q: 'Can I send a bundle as a gift?', a: 'Yes. The Valhalla Gift Box is made for it, and every product comes in gift-ready packaging. Add the recipient’s address at checkout.' },
     ],
   },
   da: {
@@ -63,7 +63,7 @@ const T = {
       { q: 'Kan jeg bruge to former samme dag?', a: 'Hvert produkt har sin egen daglige dosis på etiketten. De fleste bruger én form om dagen, for eksempel resin derhjemme og vingummi på rejsen. Tag ikke den fulde daglige dosis af flere shilajit-produkter samme dag, og spørg din læge, hvis du er i tvivl.' },
       { q: 'Har alle produkter i et sæt en laboratorierapport?', a: 'Ja. Hvert produkt har sit eget batchnummer, og du kan finde rapporten på siden Laboratorieresultater.' },
       { q: 'Gælder 60 dages garanti også for sæt?', a: 'Ja. Er du ikke tilfreds, så kontakt os inden for 60 dage efter levering, så refunderer vi dit køb.' },
-      { q: 'Kan jeg sende et sæt som gave?', a: 'Ja. Gift of the Mountain er lavet til det, og alle produkter kommer i gaveklar emballage. Skriv modtagerens adresse i checkout.' },
+      { q: 'Kan jeg sende et sæt som gave?', a: 'Ja. The Valhalla Gift Box er lavet til det, og alle produkter kommer i gaveklar emballage. Skriv modtagerens adresse i checkout.' },
     ],
   },
   de: {
@@ -81,7 +81,7 @@ const T = {
       { q: 'Kann ich zwei Formen am selben Tag verwenden?', a: 'Jedes Produkt hat seine eigene Tagesdosis auf dem Etikett. Die meisten nutzen eine Form pro Tag, zum Beispiel Harz zu Hause und Gummies auf Reisen. Nimm nicht die volle Tagesdosis mehrerer Shilajit-Produkte am selben Tag, und frag im Zweifel deine Ärztin oder deinen Arzt.' },
       { q: 'Hat jedes Produkt im Set einen Laborbericht?', a: 'Ja. Jedes Produkt trägt seine eigene Chargennummer, und du findest den Bericht auf unserer Seite Laborergebnisse.' },
       { q: 'Gilt die 60-Tage-Garantie auch für Sets?', a: 'Ja. Wenn du nicht zufrieden bist, melde dich innerhalb von 60 Tagen nach Lieferung und wir erstatten deinen Kauf.' },
-      { q: 'Kann ich ein Set verschenken?', a: 'Ja. Gift of the Mountain ist genau dafür gemacht, und jedes Produkt kommt geschenkfertig verpackt. Gib an der Kasse die Adresse des Empfängers an.' },
+      { q: 'Kann ich ein Set verschenken?', a: 'Ja. The Valhalla Gift Box ist genau dafür gemacht, und jedes Produkt kommt geschenkfertig verpackt. Gib an der Kasse die Adresse des Empfängers an.' },
     ],
   },
   fr: {
@@ -99,7 +99,7 @@ const T = {
       { q: 'Puis-je utiliser deux formats le même jour ?', a: 'Chaque produit a sa propre dose journalière sur l’étiquette. La plupart des gens utilisent un format par jour, par exemple la résine à la maison et les gommes en voyage. Ne prenez pas la dose journalière complète de plusieurs produits au shilajit le même jour, et demandez l’avis de votre médecin en cas de doute.' },
       { q: 'Chaque produit du coffret a-t-il un rapport de laboratoire ?', a: 'Oui. Chaque produit porte son propre numéro de lot, et vous pouvez consulter son rapport sur notre page Résultats de laboratoire.' },
       { q: 'La garantie de 60 jours s’applique-t-elle aux coffrets ?', a: 'Oui. Si vous n’êtes pas satisfait, contactez-nous dans les 60 jours suivant la livraison et nous vous remboursons.' },
-      { q: 'Puis-je offrir un coffret ?', a: 'Oui. Gift of the Mountain est fait pour cela, et chaque produit arrive dans un emballage cadeau. Indiquez l’adresse du destinataire lors du paiement.' },
+      { q: 'Puis-je offrir un coffret ?', a: 'Oui. The Valhalla Gift Box est fait pour cela, et chaque produit arrive dans un emballage cadeau. Indiquez l’adresse du destinataire lors du paiement.' },
     ],
   },
   es: {
@@ -117,7 +117,7 @@ const T = {
       { q: '¿Puedo usar dos formatos el mismo día?', a: 'Cada producto tiene su propia dosis diaria en la etiqueta. La mayoría usa un formato al día, por ejemplo resina en casa y gominolas de viaje. No tomes la dosis diaria completa de varios productos de shilajit el mismo día y consulta a tu médico si tienes dudas.' },
       { q: '¿Cada producto del pack tiene informe de laboratorio?', a: 'Sí. Cada producto lleva su propio número de lote y puedes consultar su informe en nuestra página Resultados de laboratorio.' },
       { q: '¿La garantía de 60 días se aplica a los packs?', a: 'Sí. Si no estás satisfecho, escríbenos en los 60 días siguientes a la entrega y te devolvemos el dinero.' },
-      { q: '¿Puedo enviar un pack como regalo?', a: 'Sí. Gift of the Mountain está pensado para eso, y cada producto viene en envase de regalo. Añade la dirección del destinatario al pagar.' },
+      { q: '¿Puedo enviar un pack como regalo?', a: 'Sí. The Valhalla Gift Box está pensado para eso, y cada producto viene en envase de regalo. Añade la dirección del destinatario al pagar.' },
     ],
   },
   ar: {
@@ -135,7 +135,7 @@ const T = {
       { q: 'هل يمكنني استخدام شكلين في اليوم نفسه؟', a: 'لكل منتج جرعته اليومية على الملصق. يستخدم معظم الناس شكلاً واحداً يومياً، مثل الراتنج في المنزل والعلكات في السفر. لا تتناول الجرعة اليومية الكاملة لعدة منتجات شيلاجيت في اليوم نفسه، واستشر طبيبك إن كنت غير متأكد.' },
       { q: 'هل لكل منتج في المجموعة تقرير مخبري؟', a: 'نعم. يحمل كل منتج رقم دفعته الخاص، ويمكنك الاطلاع على تقريره في صفحة نتائج المختبر.' },
       { q: 'هل يشمل ضمان الـ60 يوماً المجموعات؟', a: 'نعم. إن لم تكن راضياً، تواصل معنا خلال 60 يوماً من الاستلام وسنعيد لك المبلغ.' },
-      { q: 'هل يمكنني إرسال مجموعة كهدية؟', a: 'نعم. صُممت مجموعة Gift of the Mountain لذلك، وكل منتج يأتي في تغليف جاهز للإهداء. أضف عنوان المستلم عند الدفع.' },
+      { q: 'هل يمكنني إرسال مجموعة كهدية؟', a: 'نعم. صُممت مجموعة The Valhalla Gift Box لذلك، وكل منتج يأتي في تغليف جاهز للإهداء. أضف عنوان المستلم عند الدفع.' },
     ],
   },
   ur: {
@@ -153,7 +153,7 @@ const T = {
       { q: 'کیا میں ایک ہی دن دو شکلیں استعمال کر سکتا ہوں؟', a: 'ہر پروڈکٹ کی اپنی روزانہ خوراک لیبل پر درج ہے۔ زیادہ تر لوگ روزانہ ایک شکل استعمال کرتے ہیں، مثلاً گھر پر ریزن اور سفر میں گمیز۔ ایک ہی دن کئی سلاجیت مصنوعات کی پوری روزانہ خوراک نہ لیں، اور شک ہو تو ڈاکٹر سے مشورہ کریں۔' },
       { q: 'کیا بنڈل کی ہر پروڈکٹ کی لیب رپورٹ ہے؟', a: 'جی ہاں۔ ہر پروڈکٹ کا اپنا بیچ نمبر ہے اور آپ ہمارے لیب رپورٹس کے صفحے پر اس کی رپورٹ دیکھ سکتے ہیں۔' },
       { q: 'کیا 60 دن کی گارنٹی بنڈلز پر بھی ہے؟', a: 'جی ہاں۔ اگر آپ مطمئن نہیں تو ترسیل کے 60 دن کے اندر رابطہ کریں، ہم رقم واپس کر دیں گے۔' },
-      { q: 'کیا میں بنڈل تحفے میں بھیج سکتا ہوں؟', a: 'جی ہاں۔ Gift of the Mountain اسی کے لیے ہے، اور ہر پروڈکٹ تحفے کی پیکنگ میں آتی ہے۔ چیک آؤٹ پر وصول کنندہ کا پتہ درج کریں۔' },
+      { q: 'کیا میں بنڈل تحفے میں بھیج سکتا ہوں؟', a: 'جی ہاں۔ The Valhalla Gift Box اسی کے لیے ہے، اور ہر پروڈکٹ تحفے کی پیکنگ میں آتی ہے۔ چیک آؤٹ پر وصول کنندہ کا پتہ درج کریں۔' },
     ],
   },
 };
