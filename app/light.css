@@ -67,3 +67,31 @@ html[data-hero='light'] .hx::before { display: none; }
   .ls li + li { border-inline-start: 1px solid rgba(33, 22, 26, 0.1) !important; }
   .ls-seal-row img { width: 52px; height: 52px; }
 }
+
+/* Burgundy version of the same hero: identical layout and sizes, burgundy colours. It sits inside
+   the burgundy .hx section, so its own background stays transparent. */
+.lh-burg { background: none; }
+.lh-burg .rl { color: var(--cream); }
+.lh-burg .rl span:not(.stars) { color: rgba(247, 241, 232, 0.78); }
+.lh-burg .lh-eyebrow { color: #d9b06a; }
+.lh-burg h1 { color: #f6ecdc; }
+.lh-burg h1 em { color: #e3c284; }
+.lh-burg .lh-lead span:first-child { color: #d9b06a; }
+.lh-burg .lh-lead span:last-child { color: rgba(247, 241, 232, 0.84); }
+.lh-burg .lh-btn { background: var(--cream); color: #580f1b; }
+.lh-burg .lh-btn:hover { background: #fff; }
+.lh-burg .lh-lab { color: rgba(247, 241, 232, 0.9); box-shadow: inset 0 0 0 1px rgba(247, 241, 232, 0.3); }
+.lh-burg .lh-lab svg { color: #d9b06a; }
+.lh-burg .lh-art img { filter: drop-shadow(0 30px 30px rgba(20, 3, 8, 0.45)); }
+.lh-burg .lh-ring { background: radial-gradient(circle, rgba(204, 162, 94, 0.2) 0%, rgba(204, 162, 94, 0) 68%); }
+/* The old hero let the stone strip overlap it; the calm hero is shorter, so the strip sits below it. */
+.hv-burg .lh-burg + .pt { margin-top: 28px; }
+.hv-burg .lh-burg { padding-bottom: 8px; }
+@media (min-width: 900px) { .hv-burg .lh-burg + .pt { margin-top: 36px; } }
+/* The packshot is cropped at its bottom and right edge; on burgundy that edge shows, so fade it. */
+.lh-burg .lh-art img {
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 99%), linear-gradient(to right, #000 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, #000 84%, transparent 99%), linear-gradient(to right, #000 90%, transparent 100%);
+  mask-composite: intersect;
+}

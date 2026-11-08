@@ -11,14 +11,12 @@ import { PROOF_T } from './ProofThread';
 
 const SEALS = [['gmp', 'GMP'], ['iso22000', 'ISO 22000'], ['iso9001', 'ISO 9001']];
 
-export default function LightHero() {
-  const lang = useLang();
+// The hero block on its own. tone="burgundy" gives the same layout in burgundy colours (see .lh-burg
+// in app/light.css); it is used inside the burgundy home section.
+export function LightHeroSection({ tone }) {
   const t = useT(T_NEW);
-  const p = PROOF_T[lang] || PROOF_T.en;
-
   return (
-    <>
-      <section className="lh">
+      <section className={`lh${tone === 'burgundy' ? ' lh-burg' : ''}`}>
         <div className="lh-in">
           <div className="lh-copy">
             <RatingLine />
@@ -43,6 +41,16 @@ export default function LightHero() {
           </div>
         </div>
       </section>
+  );
+}
+
+export default function LightHero() {
+  const lang = useLang();
+  const p = PROOF_T[lang] || PROOF_T.en;
+
+  return (
+    <>
+      <LightHeroSection />
 
       <section className="ls" aria-label={`${p.place}. ${p.lab}. ${p.std}.`}>
         <ul>

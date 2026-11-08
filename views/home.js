@@ -1,10 +1,9 @@
 // Homepage. Runs on the server: fetches products from Shopify (or the demo
 // products) and passes them to the animated sections.
-import Hero from '@/components/Hero';
 import ProofThread from '@/components/ProofThread';
 import CertRidge from '@/components/CertRidge';
 import TopSection from '@/components/TopSection';
-import LightHero from '@/components/LightHero';
+import LightHero, { LightHeroSection } from '@/components/LightHero';
 import CollectionGallery from '@/components/CollectionGallery';
 import Reviews from '@/components/Reviews';
 import CertVaultSwitch from '@/components/CertVaultSwitch';
@@ -44,7 +43,7 @@ export default async function HomeView({ lang }) {
       <TopSection>
         {/* Burgundy hero (default) and light hero: HeroSwitch shows one of the two. */}
         <div className="hv-burg">
-          <Hero />
+          <LightHeroSection tone="burgundy" />
           <ProofThread />
           <CertRidge />
         </div>
