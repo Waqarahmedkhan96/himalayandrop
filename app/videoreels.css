@@ -37,3 +37,13 @@
 .wl-videos { max-width: 1240px; margin: 0 auto; padding: 8px var(--gutter) 28px; }
 .wl-videos h2 { font-family: var(--display); font-weight: 500; font-size: clamp(24px, 4.4vw, 34px); color: var(--maroon-deep); margin: 0; }
 .rv-sub { text-align: start; }
+
+/* Filter chips on the reviews page */
+.wl-filters { max-width: 1240px; margin: 0 auto; padding: 4px 16px 18px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
+.wl-filters::-webkit-scrollbar { display: none; }
+.wl-filters button { flex: none; scroll-snap-align: start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: var(--pill); border: 1px solid rgba(88, 15, 27, 0.2); background: #fffaf2; color: var(--maroon-deep); font: inherit; font-weight: 600; font-size: 14.5px; cursor: pointer; transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease); }
+.wl-filters button span { font-size: 12px; font-weight: 700; opacity: 0.6; font-variant-numeric: tabular-nums; }
+.wl-filters button:hover { border-color: var(--maroon); }
+.wl-filters button[aria-pressed='true'] { background: var(--maroon-deep); border-color: var(--maroon-deep); color: #fff; }
+.wl-filters button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+@media (min-width: 900px) { .wl-filters { flex-wrap: wrap; overflow: visible; } }

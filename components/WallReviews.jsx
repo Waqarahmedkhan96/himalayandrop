@@ -2,6 +2,7 @@
 // "Wall of Wellness": the reviews page. A masonry wall of creator posts and customer reviews,
 // then the newsletter signup. All cards are SAMPLE until real, consented posts and verified
 // reviews exist (lib/wall.js, SAMPLE flag).
+import { useState } from 'react';
 import Newsletter from './Newsletter';
 import { Stars } from './Icons';
 import { useLang } from './LangProvider';
@@ -10,6 +11,21 @@ import VideoReels from './VideoReels';
 import { pdpText, mediaDir } from '@/lib/pdp';
 import { WALL, PEOPLE, PEOPLE_QUOTES, SAMPLE } from '@/lib/wall';
 import { RATING, RATING_COPY } from '@/lib/rating';
+
+// Filter chips by product. Cards are sorted into a product by position (see lib/wall.js PEOPLE and
+// lib/reviews.js, whose order is the same in every language).
+const KEYS = ['all', 'resin', 'gummies', 'drops', 'capsules'];
+const LABELS = {
+  en: ['All', 'Resin', 'Gummies', 'Drops', 'Capsules'],
+  da: ['Alle', 'Resin', 'Vingummi', 'Dråber', 'Kapsler'],
+  de: ['Alle', 'Harz', 'Gummies', 'Tropfen', 'Kapseln'],
+  fr: ['Tous', 'Résine', 'Gommes', 'Gouttes', 'Gélules'],
+  es: ['Todos', 'Resina', 'Gominolas', 'Gotas', 'Cápsulas'],
+  ar: ['الكل', 'الراتنج', 'علكات', 'قطرات', 'كبسولات'],
+  ur: ['سب', 'ریزن', 'گمیز', 'قطرے', 'کیپسولز'],
+};
+const REVIEW_KIND = ['resin', 'gummies', 'resin', 'drops', 'resin', 'gummies'];
+const personKind = (p) => (/gumm/i.test(p.product) ? 'gummies' : /drop/i.test(p.product) ? 'drops' : /capsul/i.test(p.product) ? 'capsules' : 'resin');
 
 export default function WallReviews({ reviews = [] }) {
   const lang = useLang();
@@ -24,11 +40,16 @@ export default function WallReviews({ reviews = [] }) {
   });
   const quotes = [...(PEOPLE_QUOTES[lang] || PEOPLE_QUOTES.en), ...w.quotes];
 
+  const [f, setF] = useState('all');
   const cards = [];
   PEOPLE.forEach((p, i) => {
-    cards.push({ kind: 'creator', p, q: quotes[i] });
-    if (reviews[i]) cards.push({ kind: 'review', r: reviews[i] });
+    cards.push({ kind: 'creator', p, q: quotes[i], k: personKind(p) });
+    if (reviews[i]) cards.push({ kind: 'review', r: reviews[i], k: REVIEW_KIND[i] || 'resin' });
   });
+
+  const labels = LABELS[lang] || LABELS.en;
+  const count = (k) => (k === 'all' ? cards.length : cards.filter((x) => x.k === k).length);
+  const shown = f === 'all' ? cards : cards.filter((x) => x.k === f);
 
   return (
     <div className="wl wl-wall">
@@ -48,8 +69,16 @@ export default function WallReviews({ reviews = [] }) {
         <VideoReels items={clips} sample={c.sample} play={rv.play} />
       </section>
 
+      <div className="wl-filters" role="group" aria-label={labels[0]}>
+        {KEYS.map((k, i) => count(k) > 0 && (
+          <button key={k} type="button" aria-pressed={f === k} onClick={() => setF(k)}>
+            {labels[i]} <span>{count(k)}</span>
+          </button>
+        ))}
+      </div>
+
       <section className="wl-wall-grid" aria-label={w.title}>
-        {cards.map((x, i) => x.kind === 'creator' ? (
+        {shown.map((x, i) => x.kind === 'creator' ? (
           <figure key={`c${i}`} className={`wl-wcard creator t${i % 3}`}>
             <div className="wl-person-top">
               <span className="wl-avatar" style={{ background: x.p.hue }} aria-hidden="true">{x.p.name.charAt(0)}</span>
