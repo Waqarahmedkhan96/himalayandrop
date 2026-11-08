@@ -3278,3 +3278,7 @@ html, body { overflow-x: clip; }
 @media (max-width: 767px) {
   .hero-product img { width: min(calc(100vw - 36px), 560px); margin-inline: calc((100% - min(100vw - 36px, 560px)) / 2); }
 }
+
+/* Burgundy hero button: maroon lightning bolt on the cream button (same icon as every other button) */
+.hero-btn .arrow.bolt { fill: var(--maroon); filter: none; }
+[dir='rtl'] .hero-btn svg.bolt { transform: none; }
