@@ -88,10 +88,17 @@ html[data-hero='light'] .hx::before { display: none; }
 .hv-burg .lh-burg + .pt { margin-top: 28px; }
 .hv-burg .lh-burg { padding-bottom: 8px; }
 @media (min-width: 900px) { .hv-burg .lh-burg + .pt { margin-top: 36px; } }
-/* The packshot is cropped at its bottom and right edge; on burgundy that edge shows, so fade it. */
-.lh-burg .lh-art img {
-  -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 99%), linear-gradient(to right, #000 90%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to bottom, #000 84%, transparent 99%), linear-gradient(to right, #000 90%, transparent 100%);
-  mask-composite: intersect;
+/* The packshot is cropped at its right and bottom edge. Instead of fading that cut (it looked blurry),
+   let the photo run off the right of the card and tuck its bottom under the stone strip. */
+.lh-burg .lh-art { justify-items: end; padding-top: 4px; }
+.lh-burg .lh-art img { width: 114%; max-width: none; margin-inline-end: -14%; }
+.hv-burg .lh-burg { padding-bottom: 0; }
+.hv-burg .lh-burg + .pt { margin-top: -34px; }
+@media (min-width: 900px) {
+  .lh-burg { position: relative; overflow: visible; padding-bottom: 28px; }
+  .lh-burg .lh-art { position: absolute; inset-inline-end: 0; bottom: -52px; width: min(43vw, 780px); display: block; padding: 0; }
+  .lh-burg .lh-art img { width: 100%; margin: 0; }
+  .lh-burg .lh-ring { inset-inline-end: 10%; }
+  .lh-burg .lh-in { min-height: 430px; }
+  .hv-burg .lh-burg + .pt { margin-top: 14px; }
 }
