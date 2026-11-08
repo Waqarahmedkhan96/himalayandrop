@@ -9,17 +9,9 @@ import { useState } from 'react';
 import FormulaBenefits from './FormulaBenefits';
 import { useLang } from './LangProvider';
 
-const IC = {
-  pin: <path d="M12 21s-6-5.5-6-10a6 6 0 0 1 12 0c0 4.5-6 10-6 10Z M12 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0-4 0" />,
-  flask: <path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3" />,
-  gem: <path d="m6 3-3 6 9 12 9-12-3-6ZM3 9h18" />,
-  shield: <path d="M12 3 5 6v6c0 4.5 3 7.8 7 9 4-1.2 7-4.5 7-9V6Zm-3 9 2 2 4-4" />,
-  sun: <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5" />,
-  drop: <path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z" />,
-  leaf: <path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15M5 19c3-5 6-8 10-10" />,
-  box: <path d="M3 8 12 3l9 5v8l-9 5-9-5ZM3 8l9 5 9-5M12 13v8" />,
-  check: <path d="M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm-3.5 8 2.5 2.5 4.5-5" />,
-};
+// Coloured icons: Twemoji (CC-BY 4.0), copied to /public/images/emoji. Filename = emoji code.
+const ZINC_IC = ['1f6e1', '1f9e0', '2728', '1f487', '1f485', '1f9b4', '1f441', '1f4aa', '1f331', '1f35e', '1f951', '1f957', '2696', '1f955', '1f9ec', '1f95a', '1f52c', '1f9eb'];
+const SEL_IC = ['1f6e1', '1f98b', '1f487', '1f485', '1f9ea', '1f9eb'];
 
 // ── Capsules: authorised claims (Regulation (EU) 432/2012), word for word ──
 const CLAIMS = {
@@ -76,49 +68,49 @@ const FACTS = {
   en: {
     eyebrow: 'What is in it', note: 'A description of the product only.',
     resin: { h: 'Inside every', hg: 'jar.', p: 'What nature puts into real Himalayan resin, with the numbers from our independent lab.', items: [
-      ['pin', 'Origin', '5,000 m', 'Skardu origin', 'Hand-collected above 5,000 m in Skardu, Pakistan, far from roads and industry.'],
-      ['flask', 'Fulvic acid', '83.1%', 'Fulvic acid', 'The water-soluble organic acids shilajit is known for, measured by an independent lab.'],
-      ['gem', 'Minerals', '85+', 'Minerals & trace elements', 'Naturally present in the rock it seeps from. Nothing added, every batch screened for heavy metals.'],
-      ['shield', 'Purity', 'Every batch', 'Tested for purity', 'Each batch is screened for heavy metals and has its own lab report you can look up.'],
-      ['sun', 'Process', 'Up to 60 days', 'Slow, careful process', 'Harvested, filtered, sun-dried, tested and packed in six patient steps.'],
+      ['1f3d4', 'Origin', '5,000 m', 'Skardu origin', 'Hand-collected above 5,000 m in Skardu, Pakistan, far from roads and industry.'],
+      ['1f9ea', 'Fulvic acid', '83.1%', 'Fulvic acid', 'The water-soluble organic acids shilajit is known for, measured by an independent lab.'],
+      ['1f48e', 'Minerals', '85+', 'Minerals & trace elements', 'Naturally present in the rock it seeps from. Nothing added, every batch screened for heavy metals.'],
+      ['2705', 'Purity', 'Every batch', 'Tested for purity', 'Each batch is screened for heavy metals and has its own lab report you can look up.'],
+      ['2600', 'Process', 'Up to 60 days', 'Slow, careful process', 'Harvested, filtered, sun-dried, tested and packed in six patient steps.'],
     ] },
     gummies: { h: 'Inside every', hg: 'gummy.', p: 'Shilajit with six companion ingredients. Amounts are per serving of two gummies.', items: [
-      ['leaf', 'Shilajit', '500 mg', 'Shilajit', '500 mg purified shilajit in every serving of two gummies.'],
-      ['flask', 'Formula', '6 extras', 'Six companion ingredients', 'L-Citrulline 50 mg, Panax ginseng 20 mg, zinc 1 mg, selenium 5 µg, sea moss 20 mg and black seed 10 mg per serving.'],
-      ['drop', 'Flavour', 'Strawberry', 'Strawberry flavour', 'A soft gummy with a gentle earthy note from the shilajit.'],
-      ['box', 'Serving', '60 gummies', 'One tin, one month', 'Two gummies a day: a tin of 60 lasts 30 days.'],
-      ['shield', 'Lab tested', 'Every batch', 'Tested and traceable', 'Every batch is lab tested and the report is one click away.'],
+      ['1f33f', 'Shilajit', '500 mg', 'Shilajit', '500 mg purified shilajit in every serving of two gummies.'],
+      ['1f9ea', 'Formula', '6 extras', 'Six companion ingredients', 'L-Citrulline 50 mg, Panax ginseng 20 mg, zinc 1 mg, selenium 5 µg, sea moss 20 mg and black seed 10 mg per serving.'],
+      ['1f353', 'Flavour', 'Strawberry', 'Strawberry flavour', 'A soft gummy with a gentle earthy note from the shilajit.'],
+      ['1f4e6', 'Serving', '60 gummies', 'One tin, one month', 'Two gummies a day: a tin of 60 lasts 30 days.'],
+      ['1f52c', 'Lab tested', 'Every batch', 'Tested and traceable', 'Every batch is lab tested and the report is one click away.'],
     ] },
     drops: { h: 'Inside every', hg: 'drop.', p: 'Shilajit with companion ingredients in a dropper bottle. Amounts are per daily portion of 3 drops.', items: [
-      ['leaf', 'Shilajit', '20 mg', 'Shilajit', '20 mg purified shilajit in a daily portion of 3 drops.'],
-      ['flask', 'Formula', '6 extras', 'Six companion ingredients', 'L-Citrulline 5 mg, Panax ginseng 2 mg, zinc 0.5 mg, selenium 5 µg, sea moss 2 mg and black seed 2 mg per portion.'],
-      ['drop', 'Flavour', 'Elderberry', 'Elderberry flavour', 'Elderberry, with the natural earthy depth of shilajit.'],
-      ['box', 'Bottle', '30 ml', 'Months in one bottle', 'At 3 drops a day, one 30 ml bottle lasts for months.'],
-      ['shield', 'Lab tested', 'Every batch', 'Tested and traceable', 'Every batch is lab tested and the report is one click away.'],
+      ['1f33f', 'Shilajit', '20 mg', 'Shilajit', '20 mg purified shilajit in a daily portion of 3 drops.'],
+      ['1f9ea', 'Formula', '6 extras', 'Six companion ingredients', 'L-Citrulline 5 mg, Panax ginseng 2 mg, zinc 0.5 mg, selenium 5 µg, sea moss 2 mg and black seed 2 mg per portion.'],
+      ['1f347', 'Flavour', 'Elderberry', 'Elderberry flavour', 'Elderberry, with the natural earthy depth of shilajit.'],
+      ['1f4a7', 'Bottle', '30 ml', 'Months in one bottle', 'At 3 drops a day, one 30 ml bottle lasts for months.'],
+      ['1f52c', 'Lab tested', 'Every batch', 'Tested and traceable', 'Every batch is lab tested and the report is one click away.'],
     ] },
   },
   da: {
     eyebrow: 'Hvad er der i', note: 'Kun en beskrivelse af produktet.',
     resin: { h: 'Indeni hver', hg: 'krukke.', p: 'Hvad naturen lægger i ægte Himalaya-resin, med tallene fra vores uafhængige laboratorium.', items: [
-      ['pin', 'Oprindelse', '5.000 m', 'Skardu-oprindelse', 'Håndsamlet over 5.000 m i Skardu, Pakistan, langt fra veje og industri.'],
-      ['flask', 'Fulvinsyre', '83,1 %', 'Fulvinsyre', 'De vandopløselige organiske syrer, shilajit er kendt for, målt af et uafhængigt laboratorium.'],
-      ['gem', 'Mineraler', '85+', 'Mineraler og sporstoffer', 'Naturligt til stede i den sten, det siver fra. Intet tilsat, hver batch screenet for tungmetaller.'],
-      ['shield', 'Renhed', 'Hver batch', 'Testet for renhed', 'Hver batch screenes for tungmetaller og har sin egen laboratorierapport, du kan slå op.'],
-      ['sun', 'Proces', 'Op til 60 dage', 'Langsom, omhyggelig proces', 'Høstet, filtreret, soltørret, testet og pakket i seks tålmodige trin.'],
+      ['1f3d4', 'Oprindelse', '5.000 m', 'Skardu-oprindelse', 'Håndsamlet over 5.000 m i Skardu, Pakistan, langt fra veje og industri.'],
+      ['1f9ea', 'Fulvinsyre', '83,1 %', 'Fulvinsyre', 'De vandopløselige organiske syrer, shilajit er kendt for, målt af et uafhængigt laboratorium.'],
+      ['1f48e', 'Mineraler', '85+', 'Mineraler og sporstoffer', 'Naturligt til stede i den sten, det siver fra. Intet tilsat, hver batch screenet for tungmetaller.'],
+      ['2705', 'Renhed', 'Hver batch', 'Testet for renhed', 'Hver batch screenes for tungmetaller og har sin egen laboratorierapport, du kan slå op.'],
+      ['2600', 'Proces', 'Op til 60 dage', 'Langsom, omhyggelig proces', 'Høstet, filtreret, soltørret, testet og pakket i seks tålmodige trin.'],
     ] },
     gummies: { h: 'Indeni hver', hg: 'vingummi.', p: 'Shilajit med seks følgeingredienser. Mængderne gælder pr. portion på to vingummi.', items: [
-      ['leaf', 'Shilajit', '500 mg', 'Shilajit', '500 mg renset shilajit i hver portion på to vingummi.'],
-      ['flask', 'Formel', '6 ekstra', 'Seks følgeingredienser', 'L-citrullin 50 mg, Panax ginseng 20 mg, zink 1 mg, selen 5 µg, havmos 20 mg og sortkommen 10 mg pr. portion.'],
-      ['drop', 'Smag', 'Jordbær', 'Jordbærsmag', 'En blød vingummi med en mild jordnær tone fra shilajit.'],
-      ['box', 'Portion', '60 vingummi', 'Én dåse, én måned', 'To vingummi om dagen: en dåse med 60 rækker i 30 dage.'],
-      ['shield', 'Labtestet', 'Hver batch', 'Testet og sporbar', 'Hver batch er labtestet, og rapporten er et klik væk.'],
+      ['1f33f', 'Shilajit', '500 mg', 'Shilajit', '500 mg renset shilajit i hver portion på to vingummi.'],
+      ['1f9ea', 'Formel', '6 ekstra', 'Seks følgeingredienser', 'L-citrullin 50 mg, Panax ginseng 20 mg, zink 1 mg, selen 5 µg, havmos 20 mg og sortkommen 10 mg pr. portion.'],
+      ['1f353', 'Smag', 'Jordbær', 'Jordbærsmag', 'En blød vingummi med en mild jordnær tone fra shilajit.'],
+      ['1f4e6', 'Portion', '60 vingummi', 'Én dåse, én måned', 'To vingummi om dagen: en dåse med 60 rækker i 30 dage.'],
+      ['1f52c', 'Labtestet', 'Hver batch', 'Testet og sporbar', 'Hver batch er labtestet, og rapporten er et klik væk.'],
     ] },
     drops: { h: 'Indeni hver', hg: 'dråbe.', p: 'Shilajit med følgeingredienser i en pipetteflaske. Mængderne gælder pr. daglig portion på 3 dråber.', items: [
-      ['leaf', 'Shilajit', '20 mg', 'Shilajit', '20 mg renset shilajit i en daglig portion på 3 dråber.'],
-      ['flask', 'Formel', '6 ekstra', 'Seks følgeingredienser', 'L-citrullin 5 mg, Panax ginseng 2 mg, zink 0,5 mg, selen 5 µg, havmos 2 mg og sortkommen 2 mg pr. portion.'],
-      ['drop', 'Smag', 'Hyldebær', 'Hyldebærsmag', 'Hyldebær med shilajits naturlige jordnære dybde.'],
-      ['box', 'Flaske', '30 ml', 'Måneder i én flaske', 'Med 3 dråber om dagen rækker en flaske på 30 ml i flere måneder.'],
-      ['shield', 'Labtestet', 'Hver batch', 'Testet og sporbar', 'Hver batch er labtestet, og rapporten er et klik væk.'],
+      ['1f33f', 'Shilajit', '20 mg', 'Shilajit', '20 mg renset shilajit i en daglig portion på 3 dråber.'],
+      ['1f9ea', 'Formel', '6 ekstra', 'Seks følgeingredienser', 'L-citrullin 5 mg, Panax ginseng 2 mg, zink 0,5 mg, selen 5 µg, havmos 2 mg og sortkommen 2 mg pr. portion.'],
+      ['1f347', 'Smag', 'Hyldebær', 'Hyldebærsmag', 'Hyldebær med shilajits naturlige jordnære dybde.'],
+      ['1f4a7', 'Flaske', '30 ml', 'Måneder i én flaske', 'Med 3 dråber om dagen rækker en flaske på 30 ml i flere måneder.'],
+      ['1f52c', 'Labtestet', 'Hver batch', 'Testet og sporbar', 'Hver batch er labtestet, og rapporten er et klik væk.'],
     ] },
   },
 };
@@ -126,7 +118,7 @@ const FACTS = {
 function Chip({ icon, label, on, onClick, hide }) {
   return (
     <button type="button" className={`pc-chip${on ? ' on' : ''}${hide ? ' pc-more' : ''}`} aria-pressed={on} onClick={onClick}>
-      <i><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{IC[icon]}</svg></i>
+      <img src={`/images/emoji/${icon}.svg`} alt="" width="28" height="28" loading="lazy" decoding="async" />
       {label}
     </button>
   );
@@ -143,7 +135,7 @@ function Claims({ t }) {
       <p className="pc-group">{label}</p>
       <div className="pc-chips">
         {list.map(([l], i) => (
-          <Chip key={key + i} icon="check" label={l} on={sel[0] === key && sel[1] === i} hide={!open && key === 'zinc' ? i >= 8 : !open && key === 'selenium'} onClick={() => setSel([key, i])} />
+          <Chip key={key + i} icon={(key === 'zinc' ? ZINC_IC : SEL_IC)[i]} label={l} on={sel[0] === key && sel[1] === i} hide={!open && key === 'zinc' ? i >= 8 : !open && key === 'selenium'} onClick={() => setSel([key, i])} />
         ))}
       </div>
     </>
@@ -162,6 +154,7 @@ function Claims({ t }) {
           <span>{t.verb(mineral)} {cur[1]}.</span>
           <small>{t.note}</small>
         </div>
+        <p className="pc-credit">Icons: Twemoji, CC-BY 4.0</p>
       </div>
     </section>
   );
@@ -187,6 +180,7 @@ function Facts({ t, kind }) {
           <span>{it[4]}</span>
           <small>{t.note}</small>
         </div>
+        <p className="pc-credit">Icons: Twemoji, CC-BY 4.0</p>
       </div>
     </section>
   );
