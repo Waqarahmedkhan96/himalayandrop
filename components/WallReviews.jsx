@@ -6,6 +6,8 @@ import Newsletter from './Newsletter';
 import { Stars } from './Icons';
 import { useLang } from './LangProvider';
 import RatingLine from './RatingLine';
+import VideoReels from './VideoReels';
+import { pdpText, mediaDir } from '@/lib/pdp';
 import { WALL, PEOPLE, PEOPLE_QUOTES, SAMPLE } from '@/lib/wall';
 import { RATING, RATING_COPY } from '@/lib/rating';
 
@@ -13,6 +15,13 @@ export default function WallReviews({ reviews = [] }) {
   const lang = useLang();
   const w = WALL[lang] || WALL.en;
   const c = RATING_COPY[lang] || RATING_COPY.en;
+  const rv = pdpText(lang).reviews;
+  const DIRS = ['gold-resin', 'gummies', 'drops', 'capsules', 'silver-resin', 'gold-resin'];
+  const DUR = ['0:42', '1:05', '0:38', '0:51', '0:47', '0:56'];
+  const clips = rv.caps.map((cap, i) => {
+    const d = mediaDir(DIRS[i % DIRS.length]);
+    return { cap, dur: DUR[i], src: `${d}/video-${i + 1}.mp4`, poster: `${d}/video-${i + 1}.webp` };
+  });
   const quotes = [...(PEOPLE_QUOTES[lang] || PEOPLE_QUOTES.en), ...w.quotes];
 
   const cards = [];
@@ -32,6 +41,11 @@ export default function WallReviews({ reviews = [] }) {
           <span>{w.based(RATING.count)}</span>
         </div>
         {SAMPLE && <span className="wl-sample">{w.sample}</span>}
+      </section>
+
+      <section className="wl-videos" aria-label={rv.videosH}>
+        <h2>{rv.videosH}</h2>
+        <VideoReels items={clips} sample={c.sample} play={rv.play} />
       </section>
 
       <section className="wl-wall-grid" aria-label={w.title}>

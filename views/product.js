@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import ProductView from '@/components/ProductView';
 import MythDeck from '@/components/MythDeck';
-import ShilajitAnatomy from '@/components/ShilajitAnatomy';
 import StoneComposition from '@/components/StoneComposition';
 import FormulaBenefits from '@/components/FormulaBenefits';
 import Comparison from '@/components/Comparison';
@@ -88,7 +87,6 @@ export default async function ProductPageView({ lang, handle }) {
       <ProofStrip />
       <LabSpotlight product={product} />
       <LabelPanel product={product} kind={kind} />
-      <ShilajitAnatomy product={product} kind={kind} />
       <StoneComposition />
       {kind === 'capsules' && <FormulaBenefits product={product} />}
       <MythDeck kind={kind} />
