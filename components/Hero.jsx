@@ -44,17 +44,12 @@ export default function Hero() {
         .to(paths, { strokeDashoffset: 0, duration: 2.6, stagger: 0.25, ease: 'power2.inOut' }, 0.1)
         .from('.hero .eyebrow', { y: 14, opacity: 0, duration: 1 }, 0.3)
         .from('.hero h1 .line > span', { yPercent: 115, stagger: 0.12 }, 0.4)
-        .fromTo('.hero-lead, .hero-ctas > *, .hero-lab', { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 1.1, clearProps: 'transform,opacity' }, 0.75)
-        .from('.hero-product img', { y: 120, scale: 0.86, opacity: 0, duration: 1.8 }, 0.55)
-        .from('.hero-shadow', { scaleX: 0.3, opacity: 0, duration: 1.6 }, 0.75);
+        .fromTo('.hero-lead, .hero-ctas > *, .hero-lab', { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 1.1, clearProps: 'transform,opacity' }, 0.75);
 
-      // Gentle float after it lands.
-      gsap.to('.hero-product img', { y: -12, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2.4 });
-      gsap.to('.hero-shadow', { scaleX: 0.9, opacity: 0.75, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2.4 });
+      // The product picture is static on purpose (same as the light hero): no entrance, float or scroll movement.
 
-      // Scroll: product lifts, line-art and glow drift slower than the page.
+      // Scroll: line-art and glow drift slower than the page.
       const st = { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true };
-      gsap.to('.hero-product', { yPercent: -10, scale: 0.94, ease: 'none', scrollTrigger: st });
       gsap.to('.hero-lines', { yPercent: 14, ease: 'none', scrollTrigger: st });
       gsap.to('.hero-glow', { scale: 1.25, opacity: 0.6, ease: 'none', scrollTrigger: st });
       gsap.to('.hero-copy', { yPercent: -25, opacity: 0, ease: 'none', scrollTrigger: { ...st, end: '45% top' } });
