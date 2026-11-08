@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import ProductView from '@/components/ProductView';
 import MythDeck from '@/components/MythDeck';
 import StoneComposition from '@/components/StoneComposition';
-import FormulaBenefits from '@/components/FormulaBenefits';
+import ProductChips from '@/components/ProductChips';
 import Comparison from '@/components/Comparison';
 import JsonLd from '@/components/JsonLd';
 import { ProofStrip, LabSpotlight, LabelPanel, ProductReviews, Guarantee, ProductFaq, StickyBuy, RefreshOnLoad } from '@/components/ProductSections';
@@ -88,7 +88,7 @@ export default async function ProductPageView({ lang, handle }) {
       <LabSpotlight product={product} />
       <LabelPanel product={product} kind={kind} />
       <StoneComposition />
-      {kind === 'capsules' && <FormulaBenefits product={product} />}
+      <ProductChips product={product} kind={kind} />
       <MythDeck kind={kind} />
       <ProductReviews product={product} kind={kind} />
       <Comparison initial={kind} />
