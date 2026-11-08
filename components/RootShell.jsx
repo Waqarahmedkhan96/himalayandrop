@@ -5,6 +5,7 @@ import Footer from './Footer';
 import CartDrawer from './CartDrawer';
 import OfferPopup from './OfferPopup';
 import CookieConsent from './CookieConsent';
+import HeroSwitch, { HERO_SCRIPT } from './HeroSwitch';
 import JsonLd from './JsonLd';
 import { LangProvider } from './LangProvider';
 import { CartProvider } from '@/lib/cart';
@@ -15,8 +16,9 @@ const SKIP = { en: 'Skip to content', da: 'Gå til indhold', de: 'Zum Inhalt spr
 
 export default function RootShell({ lang, children }) {
   return (
-    <html lang={LANGS[lang]?.hreflang || lang} dir={LANGS[lang]?.dir || 'ltr'} data-lang={lang}>
+    <html lang={LANGS[lang]?.hreflang || lang} dir={LANGS[lang]?.dir || 'ltr'} data-lang={lang} suppressHydrationWarning>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: HERO_SCRIPT }} />
         <a href="#main" className="skip-link">{SKIP[lang] || SKIP.en}</a>
         <JsonLd data={organizationLd(lang)} />
         <LangProvider lang={lang}>
@@ -28,6 +30,7 @@ export default function RootShell({ lang, children }) {
             <CartDrawer />
             <OfferPopup />
             <CookieConsent />
+            <HeroSwitch />
           </CartProvider>
         </LangProvider>
       </body>

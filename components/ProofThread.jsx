@@ -7,7 +7,7 @@ import Link from './LLink';
 import { useLang } from './LangProvider';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 
-const T = {
+export const PROOF_T = {
   en: { place: 'Skardu, Pakistan', alt: 'Harvested above 5,000 m', lab: 'Batch lab reports', labCta: 'Explore our testing', std: 'Quality standards', stdCta: 'Explore our standards' },
   da: { place: 'Skardu, Pakistan', alt: 'Hentet over 5.000 m', lab: 'Laboratorierapport for hver batch', labCta: 'Udforsk vores test', std: 'Kvalitetsstandarder', stdCta: 'Udforsk vores standarder' },
   de: { place: 'Skardu, Pakistan', alt: 'Gewonnen über 5.000 m', lab: 'Laborberichte je Charge', labCta: 'Unsere Prüfungen entdecken', std: 'Qualitätsstandards', stdCta: 'Unsere Standards entdecken' },
@@ -41,7 +41,7 @@ function Tablet({ href, icon, title, sub, cta, hidden }) {
 
 export default function ProofThread() {
   const lang = useLang();
-  const t = T[lang] || T.en;
+  const t = PROOF_T[lang] || PROOF_T.en;
   const root = useRef(null);
   const track = useRef(null);
   const [slide, setSlide] = useState(0);

@@ -2,6 +2,9 @@
    Himalayan Drop — mobile-first styles.
    Base rules are for phones; @media (min-width) adds tablet/desktop.
    ═══════════════════════════════════════════════════════════════ */
+@import './light.css';
+@import './wall.css';
+@import './ingredients.css';
 
 :root {
   --maroon: #580f1b;
