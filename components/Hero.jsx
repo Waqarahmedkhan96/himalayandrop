@@ -15,7 +15,7 @@ const ridges = [
   { seed: 31, base: 450, amp: 150, peaks: 7, op: 0.4, w: 1 },
 ];
 
-const T_NEW = {
+export const T_NEW = {
   en: { eyebrow: 'The Skardu Collection', l1: 'Feel the energy', l2: 'Live the difference.', lead: 'Authentic Himalayan Shilajit', lead2: 'Hand-harvested at 5,000 m · 100% Natural', shop: 'Shop Premium Shilajit', lab: '3rd-Party Lab Tested', alt: 'Himalayan Drop shilajit collection: capsules, gummies, drops and two resin jars on a stone pedestal' },
   da: { eyebrow: 'Skardu-kollektionen', l1: 'Mærk energien', l2: 'Lev forskellen.', lead: 'Autentisk Himalaya-shilajit', lead2: 'Håndhøstet i 5.000 m højde · 100% naturlig', shop: 'Shop premium shilajit', lab: 'Testet af uafhængigt laboratorium', alt: 'Himalayan Drop shilajit kollektion: kapsler, vingummi, dråber og to krukker resin på en stensokkel' },
   de: { eyebrow: 'Die Skardu-Kollektion', l1: 'Spüre die Energie', l2: 'Lebe den Unterschied.', lead: 'Authentisches Himalaya-Shilajit', lead2: 'Handgeerntet auf 5.000 m · 100 % natürlich', shop: 'Premium-Shilajit shoppen', lab: 'Von unabhängigem Labor geprüft', alt: 'Himalayan Drop Shilajit-Kollektion: Kapseln, Gummies, Tropfen und zwei Harzgläser auf einem Steinsockel' },

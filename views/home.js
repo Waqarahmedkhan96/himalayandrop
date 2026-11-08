@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import ProofThread from '@/components/ProofThread';
 import CertRidge from '@/components/CertRidge';
 import TopSection from '@/components/TopSection';
+import LightHero from '@/components/LightHero';
 import CollectionGallery from '@/components/CollectionGallery';
 import Reviews from '@/components/Reviews';
 import CertVaultSwitch from '@/components/CertVaultSwitch';
@@ -41,9 +42,15 @@ export default async function HomeView({ lang }) {
   return (
     <>
       <TopSection>
-        <Hero />
-        <ProofThread />
-        <CertRidge />
+        {/* Burgundy hero (default) and light hero: HeroSwitch shows one of the two. */}
+        <div className="hv-burg">
+          <Hero />
+          <ProofThread />
+          <CertRidge />
+        </div>
+        <div className="hv-light">
+          <LightHero />
+        </div>
       </TopSection>
       <CollectionGallery products={products} />
       <BenefitsExplorer />

@@ -14,6 +14,7 @@ const STATIC = [
   ['/bundles/', 0.8, 'weekly'],
   ['/our-shilajit/', 0.8, 'monthly'],
   ['/process/', 0.7, 'monthly'],
+  ['/ingredients/', 0.7, 'monthly'],
   ['/lab-results/', 0.8, 'monthly'],
   ['/how-to-use/', 0.7, 'monthly'],
   ['/faq/', 0.7, 'monthly'],
