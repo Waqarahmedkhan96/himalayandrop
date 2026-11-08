@@ -1,7 +1,8 @@
 'use client';
 // IM8-inspired home page. Order of sections follows what works on IM8:
-// hero with a clear offer, proof right after, bundle first, then products by
-// format, origin, standards, guarantee, a short note and the newsletter.
+// hero with a clear offer, one proof strip (stats and certificates once), sample
+// ambassadors, bundle first, products by format, the daily ritual, origin,
+// guarantee, a founder note and the newsletter.
 // Prices, stock and variants come from Shopify through the same props as the
 // current home page. Only visible when <html data-version="im8">.
 import { useEffect, useState } from 'react';
@@ -12,6 +13,7 @@ import { Icon } from './Icons';
 import { useLang } from './LangProvider';
 import { formatMoney } from '@/lib/shopify';
 import { IM8 } from '@/lib/im8-i18n';
+import { IM8H, SAMPLE, PHOTOS, PEOPLE } from '@/lib/im8-home2';
 
 const ORDER = ['shilajit-gold-resin', 'shilajit-silver-resin', 'shilajit-gummies', 'shilajit-drops', 'shilajit-capsules'];
 const IN_SUMMIT = ['shilajit-gold-resin', 'shilajit-gummies', 'shilajit-drops', 'shilajit-capsules'];
@@ -20,6 +22,7 @@ const SET_ORDER = ['bundle-summit-set', 'bundle-daily-ritual', 'bundle-gift-of-t
 export default function Im8Home({ products = [], bundles = [] }) {
   const lang = useLang();
   const t = IM8[lang] || IM8.en;
+  const h = IM8H[lang] || IM8H.en;
   const [stuck, setStuck] = useState(false);
 
   useEffect(() => {
@@ -47,9 +50,6 @@ export default function Im8Home({ products = [], bundles = [] }) {
               <Link href="/bundles/#bundle-summit-set" className="im8-btn dark">{t.hero.cta1} <Arrow size={14} /></Link>
               <Link href="/lab-results/" className="im8-btn outl">{t.hero.cta2}</Link>
             </div>
-            <ul className="im8-chips">
-              {t.hero.chips.map((c, i) => <li key={c}><Icon name={['shield', 'flask', 'mountain'][i]} size={15} />{c}</li>)}
-            </ul>
           </div>
           <div className="im8-hero-art">
             <span className="im8-hero-ring" aria-hidden="true" />
@@ -58,13 +58,42 @@ export default function Im8Home({ products = [], bundles = [] }) {
         </div>
       </section>
 
-      {/* 2 · Proof strip */}
-      <section className="im8-proof" aria-label={t.standards.eyebrow}>
+      {/* 2 · Proof: stats and the certificates, once */}
+      <section className="im8-proof" aria-label={h.proof.certs}>
         <ul>
-          {t.proof.map(([big, small]) => (
+          {h.proof.stats.map(([big, small]) => (
             <li key={big}><strong>{big}</strong><span>{small}</span></li>
           ))}
+          <li className="im8-proof-certs">
+            <span className="im8-proof-certimgs">
+              {['gmp', 'iso22000', 'iso9001'].map((c) => <img key={c} src={`/images/certs/${c}.webp`} alt={c.toUpperCase()} loading="lazy" />)}
+            </span>
+            <span>GMP · ISO 22000 · ISO 9001</span>
+          </li>
         </ul>
+        <p className="im8-proof-link"><Link href="/lab-results/">{h.proof.link} <Arrow size={13} /></Link></p>
+      </section>
+
+      {/* 2b · Ambassadors (sample) */}
+      <section className="im8-sec im8-people" aria-labelledby="im8-people-h">
+        <header className="im8-head">
+          <p className="im8-eyebrow">{h.people.eyebrow}</p>
+          <h2 id="im8-people-h">{h.people.title}</h2>
+          <p>{h.people.sub}</p>
+          {SAMPLE && <span className="im8-sample">Sample content, replace with real partners before launch</span>}
+        </header>
+        <div className="im8-people-track">
+          {PEOPLE.map((p, i) => (
+            <figure key={p.handle} className="im8-person">
+              <div className="im8-person-top">
+                <span className="im8-avatar" style={{ background: p.hue }} aria-hidden="true">{p.name.charAt(0)}</span>
+                <div><strong>{p.name}</strong><span dir="ltr">{p.handle}</span></div>
+              </div>
+              <blockquote>{h.people.quotes[i]}</blockquote>
+              <figcaption>{p.product} · {p.city}</figcaption>
+            </figure>
+          ))}
+        </div>
       </section>
 
       {/* 3 · Sets first */}
@@ -92,10 +121,6 @@ export default function Im8Home({ products = [], bundles = [] }) {
                   <span>{t.sets.vat}</span>
                 </div>
                 {b.compareAt > b.amount && <p className="im8-save">{t.sets.youSave(money(b.compareAt - b.amount, b.currency))}</p>}
-                <ul className="im8-ticks">
-                  <li><Icon name="shield" size={14} />{t.hero.chips[0]}</li>
-                  <li><Icon name="flask" size={14} />{t.hero.chips[1]}</li>
-                </ul>
                 <Link href={`/bundles/#${b.handle}`} className="im8-btn dark block">{t.sets.shop} <Arrow size={14} /></Link>
               </div>
             </article>
@@ -131,6 +156,27 @@ export default function Im8Home({ products = [], bundles = [] }) {
         </div>
       </section>
 
+      {/* 4b · Daily ritual with photos */}
+      <section className="im8-ritual">
+        <div className="im8-ritual-in">
+          <div className="im8-ritual-photos">
+            <figure className="a"><img src={PHOTOS.pour.src} alt="" loading="lazy" /><figcaption>{h.ritual.credit}: {PHOTOS.pour.by} / Unsplash</figcaption></figure>
+            <figure className="b"><img src={PHOTOS.cup.src} alt="" loading="lazy" /><figcaption>{h.ritual.credit}: {PHOTOS.cup.by} / Unsplash</figcaption></figure>
+          </div>
+          <div className="im8-ritual-copy">
+            <p className="im8-eyebrow">{h.ritual.eyebrow}</p>
+            <h2>{h.ritual.title}</h2>
+            <p className="im8-ritual-text">{h.ritual.text}</p>
+            <ol className="im8-ritual-steps">
+              {h.ritual.steps.map(([a, b], i) => (
+                <li key={a}><span>{i + 1}</span><div><strong>{a}</strong><p>{b}</p></div></li>
+              ))}
+            </ol>
+            <Link href="/bundles/#bundle-summit-set" className="im8-btn dark">{h.ritual.cta} <Arrow size={14} /></Link>
+          </div>
+        </div>
+      </section>
+
       {/* 5 · From mountain to jar */}
       <section className="im8-sec">
         <header className="im8-head">
@@ -147,24 +193,10 @@ export default function Im8Home({ products = [], bundles = [] }) {
           ))}
         </ol>
         <p className="im8-center"><Link href="/process/" className="im8-btn outl">{t.source.cta}</Link></p>
-      </section>
-
-      {/* 6 · Standards you can check */}
-      <section className="im8-standards">
-        <div className="im8-standards-in">
-          <div>
-            <p className="im8-eyebrow gold">{t.standards.eyebrow}</p>
-            <h2>{t.standards.title}</h2>
-            <p>{t.standards.text}</p>
-            <div className="im8-cta-row">
-              <Link href="/certificates/" className="im8-btn gold">{t.standards.c1}</Link>
-              <Link href="/lab-results/" className="im8-btn ghost">{t.standards.c2}</Link>
-            </div>
-          </div>
-          <ul className="im8-certs">
-            {['gmp', 'iso22000', 'iso9001'].map((c) => <li key={c}><img src={`/images/certs/${c}.webp`} alt={c.toUpperCase()} loading="lazy" /></li>)}
-          </ul>
-        </div>
+        <figure className="im8-peaks">
+          <img src={PHOTOS.peaks.src} alt="" loading="lazy" />
+          <figcaption>{h.peaks.caption} · {h.ritual.credit}: {PHOTOS.peaks.by} / Unsplash</figcaption>
+        </figure>
       </section>
 
       {/* 7 · Guarantee */}
@@ -177,12 +209,22 @@ export default function Im8Home({ products = [], bundles = [] }) {
         </div>
       </section>
 
-      {/* 8 · Short brand note */}
-      <section className="im8-note">
-        <p className="im8-eyebrow">{t.note.eyebrow}</p>
-        <h2>{t.note.title}</h2>
-        <p>{t.note.text}</p>
-        <Link href="/our-story/" className="im8-btn outl">{t.note.cta}</Link>
+      {/* 8 · Founder note */}
+      <section className="im8-founder">
+        <div className="im8-founder-in">
+          <figure className="im8-founder-img">
+            <img src={PHOTOS.valley.src} alt="" loading="lazy" />
+            <figcaption>{h.peaks.caption} · {h.ritual.credit}: {PHOTOS.valley.by} / Unsplash</figcaption>
+          </figure>
+          <div className="im8-founder-copy">
+            <p className="im8-eyebrow">{h.founder.eyebrow}</p>
+            <h2>{h.founder.title}</h2>
+            {h.founder.paras.map((x) => <p key={x}>{x}</p>)}
+            <p className="im8-sign"><strong>Founder name</strong><span>{h.founder.role}</span></p>
+            {SAMPLE && <span className="im8-sample">Sample letter, replace with the founder’s own words and photo</span>}
+            <Link href="/our-story/" className="im8-btn outl">{h.founder.cta}</Link>
+          </div>
+        </div>
       </section>
 
       <div className="im8-news"><Newsletter /></div>
