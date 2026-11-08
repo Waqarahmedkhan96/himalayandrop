@@ -3270,3 +3270,11 @@ html, body { overflow-x: clip; }
   .ckb { inset-inline: 10px; bottom: 10px; width: auto; padding: 18px 18px 12px; }
   .ck-actions { gap: 8px; }
 }
+
+/* Burgundy hero product: same size and static, like the light hero (574 px on desktop, 560 px on tablets,
+   screen width minus 36 px on phones). No animation is applied to it in components/Hero.jsx. */
+.hero-product img { will-change: auto; max-width: none; width: min(560px, 100%); margin-inline: auto; }
+@media (min-width: 1100px) { .hero-product img { width: min(574px, 100%); margin-inline: auto 0; } }
+@media (max-width: 767px) {
+  .hero-product img { width: min(calc(100vw - 36px), 560px); margin-inline: calc((100% - min(100vw - 36px, 560px)) / 2); }
+}
