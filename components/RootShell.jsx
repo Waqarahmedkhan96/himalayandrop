@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import CartDrawer from './CartDrawer';
 import OfferPopup from './OfferPopup';
+import CookieConsent from './CookieConsent';
 import JsonLd from './JsonLd';
 import { LangProvider } from './LangProvider';
 import { CartProvider } from '@/lib/cart';
@@ -26,6 +27,7 @@ export default function RootShell({ lang, children }) {
             <Footer />
             <CartDrawer />
             <OfferPopup />
+            <CookieConsent />
           </CartProvider>
         </LangProvider>
       </body>

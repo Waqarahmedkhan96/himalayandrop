@@ -12,6 +12,7 @@ import { usePathname } from 'next/navigation';
 import { useT } from './LangProvider';
 import { Arrow } from './Arrow';
 import Link from './LLink';
+import { getConsent } from '@/lib/consent';
 
 export const OFFER_CODE = 'WELCOME10';
 const KEY = 'hd_offer_v1';
@@ -113,6 +114,7 @@ export default function OfferPopup() {
     let shown = false;
     const show = () => {
       if (shown) return;
+      if (!getConsent()) return; // wait until the visitor has answered the cookie banner
       shown = true;
       lastFocus.current = document.activeElement;
       setOpen(true);
@@ -123,7 +125,9 @@ export default function OfferPopup() {
       if (max > 0 && window.scrollY / max > 0.35) show();
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => { clearTimeout(timer); window.removeEventListener('scroll', onScroll); };
+    const onConsent = () => setTimeout(show, 1500);
+    window.addEventListener('hd:consent', onConsent);
+    return () => { clearTimeout(timer); window.removeEventListener('scroll', onScroll); window.removeEventListener('hd:consent', onConsent); };
   }, [blocked]);
 
   // Pause smooth scrolling, focus the dialog, close on Escape.
