@@ -1,0 +1,39 @@
+/* ═══════════ Video review carousel (components/VideoReels.jsx) ═══════════
+   Mobile first: swipe row with the next card peeking; arrows appear with a mouse. */
+.vr { position: relative; }
+.vr-row { list-style: none; margin: 16px calc(var(--gutter) * -1) 0; padding: 4px var(--gutter) 10px; display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.vr-row::-webkit-scrollbar { display: none; }
+.vr-card { position: relative; flex: none; width: min(46vw, 210px); aspect-ratio: 9 / 15; border-radius: 16px; overflow: hidden; scroll-snap-align: start; background: var(--maroon-deep); isolation: isolate; }
+.vr-card img, .vr-card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vr-card video { opacity: 0; transition: opacity 0.4s var(--ease); }
+.vr-card.is-on video { opacity: 1; }
+.vr-card::after { content: ''; position: absolute; inset: 45% 0 0; z-index: 1; background: linear-gradient(transparent, rgba(42, 1, 7, 0.78)); pointer-events: none; }
+.vr-hit { position: absolute; inset: 0; z-index: 5; background: none; border: 0; padding: 0; cursor: pointer; border-radius: inherit; -webkit-tap-highlight-color: transparent; }
+.vr-hit:focus-visible { outline: 2px solid var(--gold); outline-offset: -4px; }
+.vr-tag, .vr-dur { position: absolute; top: 10px; z-index: 2; padding: 3px 8px; border-radius: var(--pill); font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.vr-tag { inset-inline-start: 10px; background: rgba(247, 241, 232, 0.92); color: var(--muted); }
+.vr-dur { inset-inline-end: 10px; background: rgba(42, 1, 7, 0.7); color: var(--cream); letter-spacing: 0.02em; font-size: 11px; font-variant-numeric: tabular-nums; }
+.vr-cap { position: absolute; z-index: 2; inset-inline: 10px; bottom: 54px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.vr-cap strong { font-family: var(--display); font-weight: 500; font-size: 15px; line-height: 1.15; color: #fff; background: var(--maroon); padding: 5px 9px; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.vr-play { position: absolute; z-index: 3; inset-inline-end: 10px; bottom: 10px; width: 40px; height: 40px; display: grid; place-items: center; background: #fff; color: var(--maroon); clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%); transition: opacity 0.3s var(--ease), transform 0.4s var(--ease); pointer-events: none; }
+.vr-play svg { margin-inline-start: 2px; }
+[dir='rtl'] .vr-play svg { margin-inline-start: 0; margin-right: 2px; transform: scaleX(-1); }
+.vr-card.is-on .vr-play { opacity: 0; transform: scale(0.6); }
+.vr-nav { display: none; }
+@media (min-width: 640px) { .vr-card { width: 200px; } }
+@media (min-width: 1000px) {
+  .vr-row { margin-inline: 0; padding-inline: 0; scroll-padding-inline: 0; gap: 14px; }
+  .vr-card { width: calc((100% - 56px) / 5); }
+  .vr-card .vr-cap strong { font-size: 16px; }
+}
+@media (hover: hover) and (min-width: 900px) {
+  .vr-nav { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+  .vr-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(88, 15, 27, 0.35); background: transparent; color: var(--maroon); display: grid; place-items: center; cursor: pointer; transition: background 0.3s var(--ease), color 0.3s var(--ease); }
+  .vr-arrow:hover { background: var(--maroon); color: #fff; }
+  [dir='rtl'] .vr-arrow svg { transform: scaleX(-1); }
+}
+@media (prefers-reduced-motion: reduce) { .vr-card video { display: none; } }
+/* Section heading on the reviews page */
+.wl-videos { max-width: 1240px; margin: 0 auto; padding: 8px var(--gutter) 28px; }
+.wl-videos h2 { font-family: var(--display); font-weight: 500; font-size: clamp(24px, 4.4vw, 34px); color: var(--maroon-deep); margin: 0; }
+.rv-sub { text-align: start; }
