@@ -1,5 +1,5 @@
 'use client';
-// "The Ritual Wall": IM8-style review page. A masonry wall of creator posts and
+// "Wall of Wellness": IM8-style review page. A masonry wall of creator posts and
 // customer reviews, then a community signup. All cards are SAMPLE until real,
 // consented posts and verified reviews exist.
 import Newsletter from './Newsletter';
