@@ -7,7 +7,7 @@ import Link from './LLink';
 import { useT } from './LangProvider';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { ridgePoints, toLine } from '@/lib/mountains';
-import { Arrow } from './Arrow';
+import RatingLine from './RatingLine';
 
 const ridges = [
   { seed: 7, base: 330, amp: 260, peaks: 3, op: 0.9, w: 1.4 },
@@ -42,7 +42,7 @@ export default function Hero() {
       gsap.timeline({ defaults: { ease: 'expo.out', duration: 1.4 } })
         .from('.hero-card', { scale: 0.96, borderRadius: 64, duration: 1.6 })
         .to(paths, { strokeDashoffset: 0, duration: 2.6, stagger: 0.25, ease: 'power2.inOut' }, 0.1)
-        .from('.hero .eyebrow', { y: 14, opacity: 0, duration: 1 }, 0.3)
+        .from('.hero .eyebrow, .hero .rl', { y: 14, opacity: 0, duration: 1 }, 0.3)
         .from('.hero h1 .line > span', { yPercent: 115, stagger: 0.12 }, 0.4)
         .fromTo('.hero-lead, .hero-ctas > *, .hero-lab', { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 1.1, clearProps: 'transform,opacity' }, 0.75)
         .from('.hero-product img', { y: 120, scale: 0.86, opacity: 0, duration: 1.8 }, 0.55)
@@ -85,6 +85,7 @@ export default function Hero() {
         </svg>
 
         <div className="hero-copy">
+          <RatingLine />
           <span className="eyebrow">{t.eyebrow}</span>
           <h1>
             <span className="sr-only">{t.lead}: </span>
@@ -94,7 +95,7 @@ export default function Hero() {
           <p className="hero-lead"><span>{t.lead}</span><span>{t.lead2}</span></p>
           <div className="hero-ctas">
             <Link href="/#collection" className="btn hero-btn">
-              {t.shop} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+              {t.shop} <svg className="bolt" width="16" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.6 2 5 13.6h5.9L9.9 22 19 10.2h-6z" /></svg>
             </Link>
           </div>
           <p className="hero-lab">

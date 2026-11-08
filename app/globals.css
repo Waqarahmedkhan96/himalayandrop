@@ -3270,3 +3270,15 @@ html, body { overflow-x: clip; }
   .ckb { inset-inline: 10px; bottom: 10px; width: auto; padding: 18px 18px 12px; }
   .ck-actions { gap: 8px; }
 }
+
+/* Burgundy hero tune: rating line on top, headline size as the light hero, packshot 12% smaller (kept centred in its box), energy bolt on the button. */
+.hv-burg .hero .rl { display: flex; width: fit-content; color: var(--cream); margin: 0 auto 18px; }
+@media (min-width: 900px) { .hv-burg .hero .rl { margin-inline: 0; } }
+.hv-burg .hero .rl span:not(.stars) { color: rgba(247, 241, 232, 0.78); }
+.hv-burg .hero h1 { font-size: clamp(40px, 11vw, 62px); }
+.hv-burg .hero-product { display: flex; justify-content: center; align-items: flex-end; }
+.hv-burg .hero-product img { display: block; width: 88%; }
+.hero-btn .bolt { color: #b8893a; flex: none; }
+.hero-btn:hover .bolt { transform: none; }
+[dir='rtl'] .hero-btn .bolt { transform: none; }
+@media (min-width: 900px) { .hv-burg .hero h1 { font-size: clamp(50px, 4.9vw, 78px); } }
