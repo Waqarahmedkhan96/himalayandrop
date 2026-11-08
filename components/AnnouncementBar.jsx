@@ -2,7 +2,7 @@
 // Thin bar above the floating header: free delivery, the 60-day guarantee, lab testing.
 // The header sits below it at the top of the page and slides up to its normal place as you scroll
 // (the scroll position is passed to the CSS in --sy; see .header in app/globals.css).
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from './LLink';
 import { useLang } from './LangProvider';
 
@@ -15,6 +15,36 @@ const T = {
   ar: [['توصيل مجاني', 'في جميع أنحاء البلاد'], ['60 يومًا', 'ضمان استرداد الأموال'], ['مُختبَر في المختبر', 'كل دفعة']],
   ur: [['مفت ڈیلیوری', 'پورے ملک میں'], ['60 دن', 'رقم واپسی کی ضمانت'], ['لیب ٹیسٹڈ', 'ہر بیچ']],
 };
+// Countdown to 30 November, 10:00 Copenhagen time (CET, UTC+1) = 09:00 UTC. The offer must really
+// end then; after that the countdown hides itself. Change or remove END to change it.
+const END = Date.UTC(2026, 10, 30, 9, 0, 0);
+const CD = {
+  en: ['Offer ends in', 'Days', 'Hrs', 'Mins', 'Secs'],
+  da: ['Tilbuddet slutter om', 'Dage', 'Timer', 'Min', 'Sek'],
+  de: ['Angebot endet in', 'Tage', 'Std', 'Min', 'Sek'],
+  fr: ["L'offre se termine dans", 'Jours', 'H', 'Min', 'Sec'],
+  es: ['La oferta termina en', 'Días', 'H', 'Min', 'Seg'],
+  ar: ['ينتهي العرض خلال', 'أيام', 'ساعة', 'دقيقة', 'ثانية'],
+  ur: ['پیشکش ختم ہونے میں', 'دن', 'گھنٹے', 'منٹ', 'سیکنڈ'],
+};
+const pad = (n) => String(n).padStart(2, '0');
+
+function Countdown({ lang, left }) {
+  const c = CD[lang] || CD.en;
+  const t = left === null ? null : Math.max(0, Math.floor(left / 1000));
+  const parts = t === null ? ['--', '--', '--', '--'] : [pad(Math.floor(t / 86400)), pad(Math.floor((t % 86400) / 3600)), pad(Math.floor((t % 3600) / 60)), pad(t % 60)];
+  return (
+    <div className="abar-cd" dir="ltr">
+      <span className="abar-cd-lab" dir="auto">{c[0]}</span>
+      <span className="abar-cd-t" aria-hidden="true">
+        {parts.map((v, i) => (
+          <span key={i} className="abar-cd-u"><b>{v}</b><small>{c[i + 1]}</small></span>
+        ))}
+      </span>
+    </div>
+  );
+}
+
 const HREF = ['/policies/shipping-policy/', '/policies/refund-policy/', '/lab-results/'];
 const ICON = [
   <path key="a" d="M3 6h11v10H3zM14 9h4l3 3v4h-7M7 18h.01M17 18h.01" />,
@@ -25,6 +55,18 @@ const ICON = [
 export default function AnnouncementBar() {
   const lang = useLang();
   const items = T[lang] || T.en;
+  const [left, setLeft] = useState(null);
+  const over = left !== null && left <= 0;
+  useEffect(() => {
+    const tick = () => setLeft(END - Date.now());
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+  useEffect(() => {
+    const root = document.documentElement;
+    if (over) root.setAttribute('data-cd', 'off'); else root.removeAttribute('data-cd');
+  }, [over]);
   useEffect(() => {
     const root = document.documentElement;
     let raf = 0;
@@ -46,6 +88,7 @@ export default function AnnouncementBar() {
           </li>
         ))}
       </ul>
+      {!over && <Countdown lang={lang} left={left} />}
     </div>
   );
 }
