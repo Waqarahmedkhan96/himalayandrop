@@ -4,6 +4,7 @@
 import { useMemo, useRef } from 'react';
 import Link from './LLink';
 import Logo from './Logo';
+import CookieSettingsLink from './CookieSettingsLink';
 import { site, SOCIAL } from '@/lib/site';
 import { useLang } from './LangProvider';
 
@@ -148,7 +149,7 @@ export default function Footer() {
           <p className="disclaimer">{t.disclaimer}</p>
           <div className="footer-bottom">
             <span suppressHydrationWarning><bdi dir="ltr">© 2020–{new Date().getFullYear()} Himalayan Drop.</bdi> {t.rights}</span>
-            <span className="legal-links">{legal.map(([l, h]) => <Link key={l} href={h}>{l}</Link>)}</span>
+            <span className="legal-links">{legal.map(([l, h]) => <Link key={l} href={h}>{l}</Link>)}<CookieSettingsLink /></span>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import CartDrawer from './CartDrawer';
 import OfferPopup from './OfferPopup';
+import CookieConsent from './CookieConsent';
 import HeroSwitch, { HERO_SCRIPT } from './HeroSwitch';
 import JsonLd from './JsonLd';
 import { LangProvider } from './LangProvider';
@@ -28,6 +29,7 @@ export default function RootShell({ lang, children }) {
             <Footer />
             <CartDrawer />
             <OfferPopup />
+            <CookieConsent />
             <HeroSwitch />
           </CartProvider>
         </LangProvider>
