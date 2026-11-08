@@ -22,6 +22,7 @@ import { Arrow } from './Arrow';
 import { Icon } from './Icons';
 import RealIcon from './RealIcon';
 import Im8ProductExtras from './Im8ProductExtras';
+import Im8Rating from './Im8Rating';
 import { FORMULA_KEYS } from '@/lib/labdata';
 import { howToSteps } from './HowToTabs';
 import { kindOf } from '@/lib/benefits';
@@ -192,6 +193,7 @@ export default function ProductView({ product }) {
           <h1>
             <span className="line"><span>{titleParts ? <>{titleParts[0]} <em>{titleParts[1]}</em></> : product.title}</span></span>
           </h1>
+          <div className="v-im8"><Im8Rating /></div>
           <p className="sub">{product.subtitle}</p>
           <p className="price">
             {product.amount != null ? formatMoney(product.amount, product.currency) : product.price || t.soon} <span className="vat">{t.vat}</span>

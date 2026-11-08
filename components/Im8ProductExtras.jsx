@@ -1,6 +1,6 @@
 'use client';
 // IM8-style additions on the product page: trust chips under the buy box, a
-// "pair it with the Summit Set" card and an "inside every jar" strip.
+// "pair it with the Viking Stack" card and an "inside every jar" strip.
 // Hidden unless <html data-version="im8">.
 import Link from './LLink';
 import { Arrow } from './Arrow';
@@ -8,7 +8,6 @@ import { Icon } from './Icons';
 import { useLang } from './LangProvider';
 import { IM8, IM8X } from '@/lib/im8-i18n';
 
-const IN_SUMMIT = ['shilajit-gold-resin', 'shilajit-gummies', 'shilajit-drops', 'shilajit-capsules'];
 
 export default function Im8ProductExtras({ handle }) {
   const lang = useLang();
@@ -19,9 +18,9 @@ export default function Im8ProductExtras({ handle }) {
       <ul className="im8-chips">
         {[t.hero.chips[0], t.hero.chips[1], x.ship].map((c, i) => <li key={c}><Icon name={['shield', 'flask', 'truck'][i]} size={15} />{c}</li>)}
       </ul>
-      {IN_SUMMIT.includes(handle) && (
-        <Link href="/bundles/#bundle-summit-set" className="im8-pdp-set">
-          <img src="/images/bundles/summit-set.webp" alt="" loading="lazy" />
+      {(
+        <Link href="/bundles/#bundle-complete-collection" className="im8-pdp-set">
+          <img src="/images/bundles/complete-collection.webp" alt="" loading="lazy" />
           <span><strong>{x.also}</strong><em>{x.alsoText}</em></span>
           <Arrow size={14} />
         </Link>

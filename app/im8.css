@@ -441,3 +441,33 @@ html[data-version='im8'] .im8-footer { display: block; background: var(--maroon-
 .im8-founder-copy .im8-sample { display: block; width: fit-content; margin: 8px 0 20px; }
 @media (min-width: 900px) { .im8-founder { padding: 88px 32px; } .im8-founder-in { grid-template-columns: 1fr 1fr; gap: 60px; } .im8-founder-img { aspect-ratio: 4 / 4.4; } }
 .im8-people .im8-head h2 { margin: 0 0 12px; }
+
+/* ═════ Round 4: rating line, review wall ═════ */
+.im8-rating { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; font: 600 14px/1 var(--sans); color: var(--maroon-ink); text-decoration: none; }
+.im8-rating svg { width: 15px; height: 15px; }
+.im8-rating strong { font-weight: 700; }
+.im8-rating span { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.im8-sample.sm { margin: 0; margin-inline-start: 6px; padding: 3px 8px; font-size: 10.5px; font-style: normal; }
+.im8-pdp .im8-rating, .pdp-info .im8-rating { margin: 6px 0 10px; }
+
+.im8-wall-sum { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 18px; color: var(--muted); font-size: 14px; }
+.im8-wall-sum .im8-rating { margin: 0; font-size: 18px; }
+.im8-wall-sum .im8-rating svg { width: 20px; height: 20px; }
+.im8-wall .im8-bhero h1 { font-size: clamp(38px, 9vw, 72px); }
+.im8-wall-grid { max-width: 1240px; margin: 0 auto; padding: 8px 16px 56px; columns: 1; column-gap: 16px; }
+@media (min-width: 640px) { .im8-wall-grid { columns: 2; } }
+@media (min-width: 1000px) { .im8-wall-grid { columns: 3; column-gap: 20px; padding-bottom: 80px; } }
+.im8-wcard { break-inside: avoid; margin: 0 0 16px; padding: 22px; border-radius: 20px; display: grid; gap: 14px; background: #fff; box-shadow: 0 18px 36px -26px rgba(33, 22, 26, 0.35), inset 0 0 0 1px rgba(33, 22, 26, 0.08); }
+.im8-wcard blockquote { margin: 0; color: var(--maroon-ink); }
+.im8-wcard.creator blockquote { font: 400 clamp(18px, 4.6vw, 21px)/1.45 var(--display); }
+.im8-wcard.rvw blockquote { font: 400 16px/1.55 var(--sans); }
+.im8-wcard figcaption { font: 600 12px/1.5 var(--sans); letter-spacing: 0.03em; color: var(--muted); }
+.im8-wcard.rvw figcaption strong { color: var(--maroon-ink); margin-inline-end: 4px; }
+.im8-wcard.creator figcaption { text-transform: uppercase; color: var(--im8-gold-dark); }
+.im8-wcard.creator.t1 { background: #f4ebdf; }
+.im8-wcard.creator.t2 { background: linear-gradient(160deg, #6a1422, #40010a); box-shadow: none; }
+.im8-wcard.creator.t2 blockquote, .im8-wcard.creator.t2 .im8-person-top strong { color: var(--cream); }
+.im8-wcard.creator.t2 .im8-person-top span[dir] { color: rgba(247, 241, 232, 0.7); }
+.im8-wcard.creator.t2 figcaption { color: #e3c07f; }
+.im8-wall .im8-news { margin-top: 0; }
+.im8-wcard figcaption { display: block; }

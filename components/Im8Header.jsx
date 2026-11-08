@@ -78,7 +78,7 @@ export default function Im8Header() {
               <div className="im8-mega">
                 <div className="im8-mega-in">
                   <Link href="/bundles/" className="im8-tile big">
-                    <img src="/images/bundles/summit-set.webp" alt="" loading="lazy" />
+                    <img src="/images/bundles/complete-collection.webp" alt="" loading="lazy" />
                     <span><strong>{t.bundles}</strong><em>{t.bundlesSub}</em></span>
                   </Link>
                   {products.map((p) => (
@@ -111,7 +111,7 @@ export default function Im8Header() {
         <div className="im8-drawer-in">
           <Link href="/bundles/" onClick={close} tabIndex={tab} className="im8-dtile feature">
             <span className="im8-dtext"><strong>{t.bundles}</strong><em>{t.bundlesSub}</em></span>
-            <img src="/images/bundles/summit-set.webp" alt="" loading="lazy" />
+            <img src="/images/bundles/complete-collection.webp" alt="" loading="lazy" />
           </Link>
           {products.map((p) => (
             <Link key={p.href} href={p.href} onClick={close} tabIndex={tab} className="im8-dtile">

@@ -12,6 +12,7 @@ import { formatMoney } from '@/lib/shopify';
 import { demoProducts, localizeProduct } from '@/lib/products';
 import { useLang } from './LangProvider';
 import { IM8, IM8X } from '@/lib/im8-i18n';
+import { FLAGSHIP, nameOf } from '@/lib/im8-names';
 
 function Actions({ b, x }) {
   const { addItem, buyNow, busy } = useCart();
@@ -55,7 +56,7 @@ export default function Im8Bundles({ bundles, text }) {
   const t = IM8[lang] || IM8.en;
   const x = IM8X[lang] || IM8X.en;
   const money = (n, c) => formatMoney(n, c || 'DKK');
-  const feature = bundles.find((b) => b.handle === 'bundle-summit-set') || bundles[0];
+  const feature = bundles.find((b) => b.handle === FLAGSHIP) || bundles[0];
   const rest = bundles.filter((b) => b !== feature);
   const gift = bundles.find((b) => b.handle === 'bundle-gift-of-the-mountain');
 
@@ -76,12 +77,12 @@ export default function Im8Bundles({ bundles, text }) {
             <span className="im8-ribbon">★ {t.sets.best}</span>
             <div className="im8-bfeature-in">
               <div className="im8-set-img">
-                <img src={feature.image} alt={feature.name} />
+                <img src={feature.image} alt={nameOf(feature)} />
                 <span className="im8-off">{t.sets.save(feature.savePct)}</span>
               </div>
               <div className="im8-bfeature-body">
                 <p className="im8-kicker">{feature.tags.join(' · ')}</p>
-                <h2>{feature.name}</h2>
+                <h2>{nameOf(feature)}</h2>
                 <p className="im8-tag">{feature.tagline}</p>
                 <p className="im8-bfeature-text">{feature.text}</p>
                 <p className="im8-kicker mt">{x.separately}</p>
@@ -99,12 +100,12 @@ export default function Im8Bundles({ bundles, text }) {
             <article key={b.handle} className="im8-set" id={b.handle}>
               {b.badge && <span className="im8-ribbon">{b.badge}</span>}
               <div className="im8-set-img">
-                <img src={b.image} alt={b.name} loading="lazy" />
+                <img src={b.image} alt={nameOf(b)} loading="lazy" />
                 <span className="im8-off">{t.sets.save(b.savePct)}</span>
               </div>
               <div className="im8-set-body">
                 <p className="im8-kicker">{b.tags.join(' · ')}</p>
-                <h3>{b.name}</h3>
+                <h3>{nameOf(b)}</h3>
                 <p className="im8-tag">{b.tagline}</p>
                 <Inside b={b} lang={lang} x={x} money={(n) => money(n, b.currency)} />
                 <Price b={b} t={t} money={(n) => money(n, b.currency)} />
@@ -119,7 +120,7 @@ export default function Im8Bundles({ bundles, text }) {
         <section className="im8-bgift">
           <Icon name="gift" size={28} />
           <div><h2>{x.gift}</h2><p>{x.giftText}</p></div>
-          <Link href="#bundle-gift-of-the-mountain" className="im8-btn dark">{gift.name}</Link>
+          <Link href="#bundle-gift-of-the-mountain" className="im8-btn dark">{nameOf(gift)}</Link>
         </section>
       )}
 

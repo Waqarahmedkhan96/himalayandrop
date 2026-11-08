@@ -14,10 +14,11 @@ import { useLang } from './LangProvider';
 import { formatMoney } from '@/lib/shopify';
 import { IM8 } from '@/lib/im8-i18n';
 import { IM8H, SAMPLE, PHOTOS, PEOPLE } from '@/lib/im8-home2';
+import { nameOf } from '@/lib/im8-names';
+import Im8Rating from './Im8Rating';
 
 const ORDER = ['shilajit-gold-resin', 'shilajit-silver-resin', 'shilajit-gummies', 'shilajit-drops', 'shilajit-capsules'];
-const IN_SUMMIT = ['shilajit-gold-resin', 'shilajit-gummies', 'shilajit-drops', 'shilajit-capsules'];
-const SET_ORDER = ['bundle-summit-set', 'bundle-daily-ritual', 'bundle-gift-of-the-mountain'];
+const SET_ORDER = ['bundle-complete-collection', 'bundle-summit-set', 'bundle-daily-ritual'];
 
 export default function Im8Home({ products = [], bundles = [] }) {
   const lang = useLang();
@@ -43,11 +44,11 @@ export default function Im8Home({ products = [], bundles = [] }) {
       <section className="im8-hero">
         <div className="im8-hero-in">
           <div className="im8-hero-copy">
-            <p className="im8-eyebrow">{t.hero.eyebrow}</p>
+            <Im8Rating />
             <h1>{t.hero.h1a} <em>{t.hero.h1b}</em></h1>
             <p className="im8-lead">{t.hero.sub}</p>
             <div className="im8-cta-row">
-              <Link href="/bundles/#bundle-summit-set" className="im8-btn dark">{t.hero.cta1} <Arrow size={14} /></Link>
+              <Link href="/bundles/#bundle-complete-collection" className="im8-btn dark">{t.hero.cta1} <Arrow size={14} /></Link>
               <Link href="/lab-results/" className="im8-btn outl">{t.hero.cta2}</Link>
             </div>
           </div>
@@ -113,7 +114,7 @@ export default function Im8Home({ products = [], bundles = [] }) {
               </Link>
               <div className="im8-set-body">
                 <p className="im8-kicker">{b.tags.join(' · ')}</p>
-                <h3>{b.name}</h3>
+                <h3>{nameOf(b)}</h3>
                 <p className="im8-tag">{b.tagline}</p>
                 <div className="im8-price">
                   <strong>{b.amount != null ? money(b.amount, b.currency) : ''}</strong>
@@ -147,9 +148,7 @@ export default function Im8Home({ products = [], bundles = [] }) {
               <p className="im8-card-price">{p.amount != null ? money(p.amount, p.currency) : p.price}</p>
               <div className="im8-card-cta">
                 <Link href={`/products/${p.handle}/`} className="im8-btn dark block">{t.formats.shop}</Link>
-                {IN_SUMMIT.includes(p.handle)
-                  ? <Link href="/bundles/#bundle-summit-set" className="im8-also">{t.formats.fromSet}</Link>
-                  : <span className="im8-also" aria-hidden="true">&nbsp;</span>}
+                <Link href="/bundles/#bundle-complete-collection" className="im8-also">{t.formats.fromSet}</Link>
               </div>
             </article>
           ))}
@@ -172,7 +171,7 @@ export default function Im8Home({ products = [], bundles = [] }) {
                 <li key={a}><span>{i + 1}</span><div><strong>{a}</strong><p>{b}</p></div></li>
               ))}
             </ol>
-            <Link href="/bundles/#bundle-summit-set" className="im8-btn dark">{h.ritual.cta} <Arrow size={14} /></Link>
+            <Link href="/bundles/#bundle-complete-collection" className="im8-btn dark">{h.ritual.cta} <Arrow size={14} /></Link>
           </div>
         </div>
       </section>
@@ -233,7 +232,7 @@ export default function Im8Home({ products = [], bundles = [] }) {
       {summit && (
         <div className={`im8-sticky ${stuck ? 'show' : ''}`} aria-hidden={!stuck}>
           <span><strong>{t.sticky.label}</strong><em>{money(summit.amount, summit.currency)}{summit.compareAt > summit.amount ? ` · ${t.sets.save(summit.savePct)}` : ''}</em></span>
-          <Link href="/bundles/#bundle-summit-set" className="im8-btn dark" tabIndex={stuck ? 0 : -1}>{t.sticky.cta}</Link>
+          <Link href="/bundles/#bundle-complete-collection" className="im8-btn dark" tabIndex={stuck ? 0 : -1}>{t.sticky.cta}</Link>
         </div>
       )}
     </div>

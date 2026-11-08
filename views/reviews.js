@@ -4,6 +4,7 @@ import Reveal from '@/components/Reveal';
 import { getReviews } from '@/lib/reviews';
 import { pageMeta } from '@/lib/seo';
 import { tr } from '@/lib/i18n';
+import Im8Reviews from '@/components/Im8Reviews';
 
 export const meta = (lang) => pageMeta('reviews', lang, '/reviews/');
 
@@ -25,6 +26,8 @@ export default function ReviewsView({ lang }) {
   const isSample = reviews.some((r) => r.sample);
   return (
     <>
+      <div className="v-im8"><Im8Reviews reviews={reviews} /></div>
+      <div className="v-classic">
       <PageHero eyebrow={t.eyebrow} title={t.title} accent={t.accent} lead={isSample ? t.sample : t.real} />
       <Reveal as="section" className="section">
         <div className="container">
@@ -36,6 +39,7 @@ export default function ReviewsView({ lang }) {
           </div>
         </div>
       </Reveal>
+      </div>
     </>
   );
 }
