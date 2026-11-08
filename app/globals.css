@@ -6,6 +6,7 @@
 @import './wall.css';
 @import './ingredients.css';
 @import './videoreels.css';
+@import './announce.css';
 
 :root {
   --maroon: #580f1b;
@@ -115,7 +116,7 @@ em { font-style: italic; }
 /* ───────── Floating pill header ───────── */
 .header {
   position: fixed; z-index: 50;
-  top: calc(env(safe-area-inset-top, 0px) + 10px); left: 10px; right: 10px;
+  top: calc(env(safe-area-inset-top, 0px) + 10px + max(0px, calc(var(--bar-h) - var(--sy, 0px)))); left: 10px; right: 10px;
   transition: transform 0.6s var(--ease);
 }
 .header.hidden { transform: translateY(calc(-100% - 20px)); }

@@ -1,5 +1,6 @@
 // The page frame shared by every language's root layout.
 import SmoothScroll from './SmoothScroll';
+import AnnouncementBar from './AnnouncementBar';
 import Header from './Header';
 import Footer from './Footer';
 import CartDrawer from './CartDrawer';
@@ -24,6 +25,7 @@ export default function RootShell({ lang, children }) {
         <LangProvider lang={lang}>
           <CartProvider>
             <SmoothScroll />
+            <AnnouncementBar />
             <Header />
             <main id="main" tabIndex={-1}>{children}</main>
             <Footer />
