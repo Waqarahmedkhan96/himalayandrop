@@ -89,7 +89,7 @@ export default function Hero() {
           <p className="hero-lead"><span>{t.lead}</span><span>{t.lead2}</span></p>
           <div className="hero-ctas">
             <Link href="/#collection" className="btn hero-btn">
-              {t.shop} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+              {t.shop} <Arrow size={14} />
             </Link>
           </div>
           <p className="hero-lab">
