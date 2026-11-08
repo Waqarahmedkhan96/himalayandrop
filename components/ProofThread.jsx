@@ -8,11 +8,11 @@ import { useLang } from './LangProvider';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 
 const T = {
-  en: { place: 'Skardu, Pakistan', alt: 'Harvested above 5,000 m', lab: 'Batch lab reports', labCta: 'Explore our testing', std: 'Quality standards', stdCta: 'Explore our standards' },
-  da: { place: 'Skardu, Pakistan', alt: 'Hentet over 5.000 m', lab: 'Laboratorierapport for hver batch', labCta: 'Udforsk vores test', std: 'Kvalitetsstandarder', stdCta: 'Udforsk vores standarder' },
-  de: { place: 'Skardu, Pakistan', alt: 'Gewonnen über 5.000 m', lab: 'Laborberichte je Charge', labCta: 'Unsere Prüfungen entdecken', std: 'Qualitätsstandards', stdCta: 'Unsere Standards entdecken' },
-  fr: { place: 'Skardu, Pakistan', alt: 'Récolté au-dessus de 5 000 m', lab: 'Rapports de labo par lot', labCta: 'Découvrir nos analyses', std: 'Normes de qualité', stdCta: 'Découvrir nos normes' },
-  es: { place: 'Skardu, Pakistán', alt: 'Recolectado a más de 5.000 m', lab: 'Informes de laboratorio por lote', labCta: 'Explora nuestras pruebas', std: 'Estándares de calidad', stdCta: 'Explora nuestros estándares' },
+  en: { place: 'Skardu, Pakistan', alt: 'Harvested above 5,000 m', lab: 'Batch lab reports', labCta: 'Explore our testing', std: 'Quality standards', stdCta: 'Explore our standards' },
+  da: { place: 'Skardu, Pakistan', alt: 'Hentet over 5.000 m', lab: 'Laboratorierapport for hver batch', labCta: 'Udforsk vores test', std: 'Kvalitetsstandarder', stdCta: 'Udforsk vores standarder' },
+  de: { place: 'Skardu, Pakistan', alt: 'Gewonnen über 5.000 m', lab: 'Laborberichte je Charge', labCta: 'Unsere Prüfungen entdecken', std: 'Qualitätsstandards', stdCta: 'Unsere Standards entdecken' },
+  fr: { place: 'Skardu, Pakistan', alt: 'Récolté au-dessus de 5 000 m', lab: 'Rapports de labo par lot', labCta: 'Découvrir nos analyses', std: 'Normes de qualité', stdCta: 'Découvrir nos normes' },
+  es: { place: 'Skardu, Pakistán', alt: 'Recolectado a más de 5.000 m', lab: 'Informes de laboratorio por lote', labCta: 'Explora nuestras pruebas', std: 'Estándares de calidad', stdCta: 'Explora nuestros estándares' },
   ar: { place: 'سكاردو، باكستان', alt: 'يُجمع فوق 5000 متر', lab: 'تقارير مخبرية لكل دفعة', labCta: 'اكتشف فحوصاتنا', std: 'معايير الجودة', stdCta: 'اكتشف معاييرنا' },
   ur: { place: 'اسکردو، پاکستان', alt: '5,000 میٹر سے اوپر سے حاصل', lab: 'ہر بیچ کی لیب رپورٹ', labCta: 'ہمارے ٹیسٹ دیکھیں', std: 'معیار کے سرٹیفکیٹ', stdCta: 'ہمارے معیار دیکھیں' },
 };

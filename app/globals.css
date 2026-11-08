@@ -2368,7 +2368,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 @media (min-width: 1100px) { .hero-lab { margin: 28px 0 0; } }
 
 /* ═══════════ Proof strip over the hero edge (components/ProofThread.jsx) ═══════════ */
-.hero:has(+ .pt) .hero-card { padding-bottom: calc(var(--pth, 150px) + 56px); }
+.hero:has(+ .pt) .hero-card { padding-bottom: calc(var(--pth, 150px) + 132px); }
 /* Home strip: three carved stone tablets joined by gold wire. Pieces are the images in /public/images/strip. */
 :root { --pth: calc((100vw - 2 * var(--frame) - 80px) / 8.52); }
 .pt { position: relative; z-index: 4; margin-top: calc(var(--pth) * -1 - 46px); padding: 0 var(--frame) 38px; }
@@ -2402,7 +2402,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
   .pt-tab-in { padding: 0 6% 0 9%; }
   .pt-tab-ico { width: 20%; }
   .pt-tab-tx strong { font-size: clamp(15px, 4.6vw, 19px); }
-  .pt-tab-tx small { font-size: 13px; }
+  .pt-tab-tx small { font-size: 12.5px; }
   .pt-dots { display: flex; justify-content: center; gap: 7px; margin-top: 12px; }
 }
 
@@ -2418,7 +2418,7 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
   .hero-ctas { order: 5; margin-top: 18px; width: 100%; }
   .hero-ctas .hero-btn { width: min(100%, 340px); justify-content: center; }
   .hero-lab { order: 6; margin: 12px auto 0; }
-  .hero:has(+ .pt) .hero-card { padding-bottom: calc(var(--pth) + 28px); }
+  .hero:has(+ .pt) .hero-card { padding-bottom: calc(var(--pth) + 64px); }
 
   .pt-nav { display: flex; align-items: center; justify-content: center; position: relative; height: 26px; margin-top: 4px; }
   .pt-dots { margin: 0; gap: 12px; align-items: center; }
