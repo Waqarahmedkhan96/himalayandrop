@@ -20,7 +20,6 @@ const STATIC = [
   ['/faq/', 0.7, 'monthly'],
   ['/blog/', 0.7, 'weekly'],
   ['/about/', 0.5, 'monthly'],
-  ['/our-story/', 0.5, 'monthly'],
   ['/certificates/', 0.5, 'monthly'],
   ['/reviews/', 0.5, 'weekly'],
   ['/contact/', 0.4, 'yearly'],
