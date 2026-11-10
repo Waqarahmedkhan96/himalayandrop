@@ -216,8 +216,8 @@ export default function CertRidge() {
         <div className="cr-sky" aria-hidden="true" />
         <svg className="cr-svg" preserveAspectRatio="none" aria-hidden="true">
           <defs>
-            <linearGradient id="cr-nf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#4b0b1a" /><stop offset="1" stopColor="#1c0207" /></linearGradient>
-            <linearGradient id="cr-nf2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#4b0b1a" /><stop offset="1" stopColor="#1c0207" /></linearGradient>
+            <linearGradient id="cr-nf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#40010a" /><stop offset="1" stopColor="#1c0207" /></linearGradient>
+            <linearGradient id="cr-nf2" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stopColor="#40010a" /><stop offset="1" stopColor="#1c0207" /></linearGradient>
             <radialGradient id="cr-dg" cx=".38" cy=".32" r=".8"><stop offset="0" stopColor="#FFF8DC" /><stop offset=".4" stopColor="#FFC25C" /><stop offset="1" stopColor="#B9620F" /></radialGradient>
             <filter id="cr-bl" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="6" /></filter>
           </defs>

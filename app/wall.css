@@ -5,7 +5,7 @@
 [dir='rtl'] .wl-eyebrow { letter-spacing: 0.04em; }
 .wl-eyebrow.gold { color: var(--gold-soft); }
 .wl-lead { margin: 18px 0 0; font-size: 16.5px; line-height: 1.6; color: #4a3b35; max-width: 34em; }
-.wl-bhero { text-align: center; padding: 44px 20px 28px; background: linear-gradient(180deg, #f5e6d6 0%, #fbf8f3 100%); }
+.wl-bhero { text-align: center; padding: 44px 20px 28px; background: linear-gradient(180deg, var(--cream-2) 0%, #fbf8f3 100%); }
 .wl-bhero h1 { font-size: clamp(36px, 9vw, 64px); line-height: 1.05; }
 .wl-bhero h1 em { font-style: italic; color: var(--maroon); }
 .wl-bhero .wl-lead { margin-inline: auto; }
@@ -31,9 +31,9 @@
 .wl-wcard.rvw figcaption strong { color: var(--maroon-ink); margin-inline-end: 4px; }
 .wl-wcard.creator figcaption { text-transform: uppercase; color: var(--wl-gold-dark); }
 .wl-wcard.creator.t1 { background: #f4ebdf; }
-.wl-wcard.creator.t2 { background: linear-gradient(160deg, #6a1422, #40010a); box-shadow: none; }
+.wl-wcard.creator.t2 { background: linear-gradient(160deg, var(--burgundy-2), var(--burgundy-deep)); box-shadow: none; }
 .wl-wcard.creator.t2 blockquote, .wl-wcard.creator.t2 .wl-person-top strong { color: var(--cream); }
 .wl-wcard.creator.t2 .wl-person-top span[dir] { color: rgba(247, 241, 232, 0.7); }
-.wl-wcard.creator.t2 figcaption { color: #e3c07f; }
+.wl-wcard.creator.t2 figcaption { color: var(--gold-soft); }
 .wl-wall .wl-news { margin-top: 0; }
 .wl-wcard figcaption { display: block; }

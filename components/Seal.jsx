@@ -35,9 +35,9 @@ export function Seal({ s, prefix = 'h' }) {
     <svg className="seal-svg" viewBox="0 0 200 200" role="img" aria-label={`${s.main.join(' ')} ${s.sub}`}>
       <defs>
         <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#f6e2ad" />
+          <stop offset="0" stopColor="#eed9a6" />
           <stop offset="0.45" stopColor="#cca25e" />
-          <stop offset="0.7" stopColor="#a8803f" />
+          <stop offset="0.7" stopColor="#b88f4d" />
           <stop offset="1" stopColor="#e2c487" />
         </linearGradient>
         <path id={cid} d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0" />

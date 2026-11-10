@@ -4,15 +4,15 @@
 import { useId } from 'react';
 
 const GOLD = ['#f6e7bf', '#d9b36d', '#a87f3f'];
-const WINE = ['#8e2236', '#5a0f1c', '#2f0108'];
+const WINE = ['#8e2236', '#580f1b', '#2a0107'];
 
 function Defs({ id }) {
   return (
     <defs>
       <linearGradient id={`${id}g`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor={GOLD[0]} /><stop offset=".5" stopColor={GOLD[1]} /><stop offset="1" stopColor={GOLD[2]} /></linearGradient>
       <linearGradient id={`${id}m`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor={WINE[0]} /><stop offset=".55" stopColor={WINE[1]} /><stop offset="1" stopColor={WINE[2]} /></linearGradient>
-      <linearGradient id={`${id}c`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fffdf8" /><stop offset="1" stopColor="#efe2cf" /></linearGradient>
-      <linearGradient id={`${id}glass`} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#ffffff" stopOpacity=".85" /><stop offset=".5" stopColor="#f1ece4" stopOpacity=".5" /><stop offset="1" stopColor="#d9cfc2" stopOpacity=".8" /></linearGradient>
+      <linearGradient id={`${id}c`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fffdf8" /><stop offset="1" stopColor="#efe2d3" /></linearGradient>
+      <linearGradient id={`${id}glass`} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#ffffff" stopOpacity=".85" /><stop offset=".5" stopColor="#f7f1e8" stopOpacity=".5" /><stop offset="1" stopColor="#d9cfc2" stopOpacity=".8" /></linearGradient>
       <linearGradient id={`${id}amber`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#b8742b" /><stop offset="1" stopColor="#5a2c0c" /></linearGradient>
       <linearGradient id={`${id}resin`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#5a4636" /><stop offset=".5" stopColor="#21150e" /><stop offset="1" stopColor="#0b0604" /></linearGradient>
       <linearGradient id={`${id}leaf`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#a9b97a" /><stop offset="1" stopColor="#4f6b33" /></linearGradient>
@@ -66,7 +66,7 @@ const SHAPES = {
   dropper: (u) => (
     <>
       <ellipse cx="24" cy="44" rx="10" ry="2" fill="#000" opacity=".15" />
-      <rect x="20" y="2.5" width="8" height="9" rx="4" fill="#f5efe6" stroke="#d9cfc2" />
+      <rect x="20" y="2.5" width="8" height="9" rx="4" fill="#f7f1e8" stroke="#d9cfc2" />
       <rect x="18" y="11" width="12" height="6" rx="1.5" fill={u('g')} />
       <path d="M16 19 C16 17.5 17 17 18 17 H30 C31 17 32 17.5 32 19 L33 22 C35 23 36 25 36 27 V40 C36 42 34.5 43 33 43 H15 C13.5 43 12 42 12 40 V27 C12 25 13 23 15 22 Z" fill={u('amber')} />
       <rect x="14.5" y="28" width="19" height="10" rx="1.5" fill={u('c')} />
@@ -192,7 +192,7 @@ const SHAPES = {
   shake: (u) => (
     <>
       <g transform="rotate(-14 24 26)">
-        <rect x="19.5" y="4" width="9" height="5" rx="2" fill="#f5efe6" stroke="#d9cfc2" />
+        <rect x="19.5" y="4" width="9" height="5" rx="2" fill="#f7f1e8" stroke="#d9cfc2" />
         <rect x="18" y="8.5" width="12" height="5" rx="1.5" fill={u('g')} />
         <path d="M15 17 C15 14.5 16.5 13.5 18 13.5 H30 C31.5 13.5 33 14.5 33 17 V40 C33 42 31.5 43 30 43 H18 C16.5 43 15 42 15 40 Z" fill={u('amber')} />
         <rect x="17" y="24" width="14" height="10" rx="1.5" fill={u('c')} />
