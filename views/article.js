@@ -7,7 +7,7 @@ import { buildMeta, breadcrumbLd, abs, BRAND } from '@/lib/seo';
 import { localizeHref, SITE_URL, LOCALES, LANGS } from '@/lib/i18n';
 import { refs } from '@/lib/sources';
 
-const HOME = { en: 'Home', da: 'Forside', de: 'Startseite', fr: 'Accueil', es: 'Inicio', ar: 'الرئيسية', ur: 'ہوم' };
+const HOME = { en: 'Home', da: 'Forside', de: 'Startseite', fr: 'Accueil', es: 'Inicio', ar: 'الرئيسية' };
 
 export async function params(lang) {
   const posts = await getArticles(lang);

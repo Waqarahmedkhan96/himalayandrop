@@ -22,7 +22,6 @@ export const T_NEW = {
   fr: { eyebrow: 'La collection Skardu', l1: 'Ressentez l’énergie', l2: 'Vivez la différence.', lead: 'Shilajit authentique de l’Himalaya', lead2: 'Récolté à la main à 5 000 m · 100 % naturel', shop: 'Découvrir le shilajit premium', lab: 'Testé par un laboratoire indépendant', alt: 'Collection de shilajit Himalayan Drop : gélules, gommes, gouttes et deux pots de résine sur un socle en pierre' },
   es: { eyebrow: 'La colección Skardu', l1: 'Siente la energía', l2: 'Vive la diferencia.', lead: 'Shilajit auténtico del Himalaya', lead2: 'Recolectado a mano a 5.000 m · 100 % natural', shop: 'Comprar shilajit premium', lab: 'Analizado por un laboratorio independiente', alt: 'Colección de shilajit Himalayan Drop: cápsulas, gominolas, gotas y dos tarros de resina sobre un pedestal de piedra' },
   ar: { eyebrow: 'مجموعة سكاردو', l1: 'اشعر بالطاقة', l2: 'عِش الفرق.', lead: 'شيلاجيت هيمالايا أصيل', lead2: 'محصود يدويًا على ارتفاع 5000 م · طبيعي 100%', shop: 'تسوّق الشيلاجيت الفاخر', lab: 'مفحوص في مختبر مستقل', alt: 'مجموعة شيلاجيت Himalayan Drop: كبسولات وعلكات وقطرات وبرطمانا راتنج على قاعدة حجرية' },
-  ur: { eyebrow: 'اسکردو کلیکشن', l1: 'توانائی محسوس کریں', l2: 'فرق کو جیئیں۔', lead: 'خالص ہمالیائی شلاجیت', lead2: '5,000 میٹر پر ہاتھ سے چُنی گئی · 100% قدرتی', shop: 'پریمیم شلاجیت خریدیں', lab: 'آزاد لیب سے ٹیسٹ شدہ', alt: 'Himalayan Drop شلاجیت کلیکشن: کیپسول، گمیز، ڈراپس اور ریزن کے دو جار پتھر کے اسٹینڈ پر' },
 };
 
 export default function Hero() {

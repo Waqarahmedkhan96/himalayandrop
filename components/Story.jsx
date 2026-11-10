@@ -12,7 +12,6 @@ const T = {
   fr: { aria: 'Crêtes de l’Himalaya au coucher du soleil', eyebrow: 'Notre histoire', l1: 'Inspiré par', l2: 'les montagnes.', p: 'Himalayan Drop repose sur un profond respect de la nature et une fascination pour ce que les montagnes nous offrent. Nous apportons cette patience de haute altitude à un rituel quotidien moderne, conçu au Danemark.', cta: 'Lire notre histoire' },
   es: { aria: 'Cordilleras del Himalaya al atardecer', eyebrow: 'Nuestra historia', l1: 'Inspirado por', l2: 'las montañas.', p: 'Himalayan Drop nace de un profundo respeto por la naturaleza y de la fascinación por lo que ofrecen las montañas. Llevamos esa paciencia de alta montaña a un ritual diario moderno, diseñado en Dinamarca.', cta: 'Leer nuestra historia' },
   ar: { aria: 'سلاسل جبال الهيمالايا عند الغروب', eyebrow: 'قصتنا', l1: 'مستوحاة من', l2: 'الجبال.', p: 'تقوم Himalayan Drop على احترام عميق للطبيعة وشغف بما تمنحه الجبال. ننقل صبر المرتفعات إلى طقس يومي عصري، مصمم في الدنمارك.', cta: 'اقرأ قصتنا' },
-  ur: { aria: 'غروبِ آفتاب کے وقت ہمالیہ کی چوٹیاں', eyebrow: 'ہماری کہانی', l1: 'پہاڑوں سے', l2: 'متاثر۔', p: 'Himalayan Drop فطرت کے گہرے احترام اور پہاڑوں کی عطا سے محبت پر قائم ہے۔ ہم بلندیوں کے اسی صبر کو ایک جدید روزمرہ معمول میں لاتے ہیں، جو ڈنمارک میں ڈیزائن کیا گیا ہے۔', cta: 'ہماری کہانی پڑھیں' },
 };
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { ridgePoints, toLine, toShape } from '@/lib/mountains';

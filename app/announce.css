@@ -36,7 +36,7 @@
 .pc-toggle { display: none; margin: 14px auto 0; min-height: 44px; padding: 0 22px; border-radius: var(--pill); border: 1px solid var(--maroon); background: transparent; color: var(--maroon); font: inherit; font-weight: 700; cursor: pointer; }
 .pc-panel { position: relative; text-align: start; margin-top: 18px; padding: 22px 22px 22px 26px; border-radius: 20px; background: #fff; box-shadow: 0 18px 36px -26px rgba(33, 22, 26, 0.4), inset 0 0 0 1px rgba(33, 22, 26, 0.07); overflow: hidden; display: grid; gap: 6px; }
 .pc-panel::before { content: ''; position: absolute; inset-block: 0; inset-inline-start: 0; width: 4px; background: var(--maroon); }
-.pc-panel b { font-family: var(--display); font-weight: 500; font-size: 22px; color: var(--maroon-ink, var(--burgundy-ink)); }
+.pc-panel b { font-family: var(--display); font-weight: 400; font-size: 22px; color: var(--maroon-ink, var(--burgundy-ink)); }
 .pc-panel span { color: #5d4d50; line-height: 1.55; }
 .pc-panel small { margin-top: 6px; font-size: 12px; color: #8a7a7d; }
 .pc-big { font-family: var(--display); font-style: normal; font-size: 30px; color: var(--gold); }

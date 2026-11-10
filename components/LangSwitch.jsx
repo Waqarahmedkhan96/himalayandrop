@@ -2,7 +2,7 @@
 // Language picker with round flags.
 // Desktop: a flag + code button that opens a list (native name, then
 // language · country in the visitor's own language, gold check on the current).
-// Phone menu (className "m-lang"): all seven flags in one row.
+// Phone menu (className "m-lang"): all six flags in one row.
 // Each link goes to the same page in that language (articles have their own
 // slug per language).
 import { useEffect, useRef, useState } from 'react';
@@ -18,7 +18,6 @@ const T = {
   fr: { label: 'Langue', choose: 'Choisir la langue', intl: 'International' },
   es: { label: 'Idioma', choose: 'Elegir idioma', intl: 'Internacional' },
   ar: { label: 'اللغة', choose: 'اختر اللغة', intl: 'دولي' },
-  ur: { label: 'زبان', choose: 'زبان منتخب کریں', intl: 'بین الاقوامی' },
 };
 
 function targetFor(pathname, to, current) {

@@ -24,7 +24,7 @@ const sealsBy = {
   fr: sealRings(['BONNES PRATIQUES DE FABRICATION · ', 'SÉCURITÉ DES ALIMENTS · ', 'MANAGEMENT DE LA QUALITÉ · ', 'LABORATOIRE INDÉPENDANT · ', 'SATISFAIT OU REMBOURSÉ · '], ['Certifié', 'Certifié', 'Certifié', 'Testé', 'Jours'], ['MÉTAUX', 'LOURDS']),
   es: sealRings(['BUENAS PRÁCTICAS DE FABRICACIÓN · ', 'SEGURIDAD ALIMENTARIA · ', 'GESTIÓN DE LA CALIDAD · ', 'LABORATORIO INDEPENDIENTE · ', 'GARANTÍA DE DEVOLUCIÓN · '], ['Certificado', 'Certificado', 'Certificado', 'Analizado', 'Días'], ['METALES', 'PESADOS']),
 };
-// Arabic and Urdu keep the English seal rings: they are certification marks.
+// Arabic keep the English seal rings: they are certification marks.
 export const getSeals = (lang) => sealsBy[lang] || seals;
 
 export function Seal({ s, prefix = 'h' }) {
@@ -46,20 +46,20 @@ export function Seal({ s, prefix = 'h' }) {
       <circle cx="100" cy="100" r="88" fill="#40010a" />
       <circle cx="100" cy="100" r="84" fill="none" stroke={`url(#${gid})`} strokeWidth="1" strokeDasharray="2 4" />
       <g className="seal-ring">
-        <text fill={`url(#${gid})`} fontSize="11.5" fontWeight="700" letterSpacing="2.2" fontFamily="Manrope Variable, Manrope, sans-serif">
+        <text fill={`url(#${gid})`} fontSize="11.5" fontWeight="700" letterSpacing="2.2" fontFamily="Figtree Variable, Figtree, sans-serif">
           <textPath href={`#${cid}`} textLength="440">{s.ring.repeat(2)}</textPath>
         </text>
       </g>
       <circle cx="100" cy="100" r="58" fill="none" stroke={`url(#${gid})`} strokeWidth="1.2" />
       {twoLine ? (
         <>
-          <text x="100" y="94" textAnchor="middle" fill={`url(#${gid})`} fontSize="20" fontWeight="600" fontFamily="Playfair Display Variable, Playfair Display, serif">{s.main[0]}</text>
-          <text x="100" y="118" textAnchor="middle" fill={`url(#${gid})`} fontSize={s.main[1].length > 4 ? 19 : 24} fontWeight="600" fontFamily="Playfair Display Variable, Playfair Display, serif">{s.main[1]}</text>
+          <text x="100" y="94" textAnchor="middle" fill={`url(#${gid})`} fontSize="20" fontWeight="600" fontFamily="Fraunces Variable, Fraunces, serif">{s.main[0]}</text>
+          <text x="100" y="118" textAnchor="middle" fill={`url(#${gid})`} fontSize={s.main[1].length > 4 ? 19 : 24} fontWeight="600" fontFamily="Fraunces Variable, Fraunces, serif">{s.main[1]}</text>
         </>
       ) : (
-        <text x="100" y="113" textAnchor="middle" fill={`url(#${gid})`} fontSize={s.main[0].length > 2 ? 36 : 46} fontWeight="600" fontFamily="Playfair Display Variable, Playfair Display, serif">{s.main[0]}</text>
+        <text x="100" y="113" textAnchor="middle" fill={`url(#${gid})`} fontSize={s.main[0].length > 2 ? 36 : 46} fontWeight="600" fontFamily="Fraunces Variable, Fraunces, serif">{s.main[0]}</text>
       )}
-      <text x="100" y="140" textAnchor="middle" fill="#e2c487" fontSize="9.5" fontWeight="700" letterSpacing="2.5" fontFamily="Manrope Variable, Manrope, sans-serif">{s.sub.toUpperCase()}</text>
+      <text x="100" y="140" textAnchor="middle" fill="#e2c487" fontSize="9.5" fontWeight="700" letterSpacing="2.5" fontFamily="Figtree Variable, Figtree, sans-serif">{s.sub.toUpperCase()}</text>
       <path d="M78 150 L86 144 L92 149 L100 141 L108 149 L114 144 L122 150" fill="none" stroke="#cca25e" strokeWidth="1.2" />
     </svg>
   );

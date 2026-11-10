@@ -11,7 +11,6 @@ const W = {
   fr: { all: 'Tous', label: 'Filtrer les articles' },
   es: { all: 'Todos', label: 'Filtrar artículos' },
   ar: { all: 'الكل', label: 'تصفية المقالات' },
-  ur: { all: 'سب', label: 'مضامین فلٹر کریں' },
 };
 
 export default function BlogIndex({ posts }) {

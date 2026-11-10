@@ -22,7 +22,6 @@ const LABELS = {
   fr: ['Tous', 'Résine', 'Gommes', 'Gouttes', 'Gélules'],
   es: ['Todos', 'Resina', 'Gominolas', 'Gotas', 'Cápsulas'],
   ar: ['الكل', 'الراتنج', 'علكات', 'قطرات', 'كبسولات'],
-  ur: ['سب', 'ریزن', 'گمیز', 'قطرے', 'کیپسولز'],
 };
 const REVIEW_KIND = ['resin', 'gummies', 'resin', 'drops', 'resin', 'gummies'];
 const personKind = (p) => (/gumm/i.test(p.product) ? 'gummies' : /drop/i.test(p.product) ? 'drops' : /capsul/i.test(p.product) ? 'capsules' : 'resin');

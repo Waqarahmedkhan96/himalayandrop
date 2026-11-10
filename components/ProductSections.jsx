@@ -20,7 +20,7 @@ const nf = (lang, n, d = 1) =>
   new Intl.NumberFormat(`${LANGS[lang]?.locale || 'en-GB'}-u-nu-latn`, { minimumFractionDigits: d, maximumFractionDigits: d }).format(n);
 const pct = (lang, n, d = 1) => {
   const s = nf(lang, n, d);
-  return lang === 'en' || lang === 'ar' || lang === 'ur' ? `${s}%` : `${s} %`;
+  return lang === 'en' || lang === 'ar' ? `${s}%` : `${s} %`;
 };
 
 // Gold line icons, drawn on scroll (pathLength=1 lets CSS/GSAP draw them).
@@ -329,7 +329,7 @@ export function InsideGrid({ product, kind }) {
 // SAMPLE content. Replace with real reviews (e.g. Judge.me) before launch.
 const DIST = [86, 10, 3, 1, 0]; // PLACEHOLDER distribution for the layout
 const DUR = ['0:42', '1:05', '0:38', '0:51', '0:47', '0:56'];
-const SAMPLE = { en: 'Sample', da: 'Eksempel', de: 'Beispiel', fr: 'Exemple', es: 'Ejemplo', ar: 'مثال', ur: 'نمونہ' };
+const SAMPLE = { en: 'Sample', da: 'Eksempel', de: 'Beispiel', fr: 'Exemple', es: 'Ejemplo', ar: 'مثال' };
 
 export function ProductReviews({ product, kind }) {
   const lang = useLang();

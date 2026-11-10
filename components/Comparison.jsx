@@ -12,7 +12,6 @@ const T = {
   fr: { eyebrow: 'Choisir en confiance', h: 'Himalayan Drop', hg: 'face au marché.', p: 'Ce qui entre dans chaque pot, comparé à ce que l’on trouve souvent ailleurs.', choose: 'Comparer un produit', market: ['Produits', 'courants'], note: 'La colonne marché décrit des pratiques courantes, pas une marque précise.', aria: (x) => `${x} comparé aux produits courants du marché` },
   es: { eyebrow: 'Elige con confianza', h: 'Himalayan Drop', hg: 'frente al mercado.', p: 'Lo que lleva cada tarro, comparado con lo que se encuentra a menudo en otros lugares.', choose: 'Compara un producto', market: ['Productos', 'habituales'], note: 'La columna de mercado describe prácticas habituales, no una marca concreta.', aria: (x) => `${x} comparado con productos habituales del mercado` },
   ar: { eyebrow: 'اختر بثقة', h: 'Himalayan Drop', hg: 'مقارنة بالسوق.', p: 'ما يدخل في كل عبوة، مقارنة بما تجده غالباً في أماكن أخرى.', choose: 'قارن منتجاً', market: ['منتجات', 'السوق المعتادة'], note: 'يصف عمود السوق الممارسات الشائعة، وليس علامة تجارية بعينها.', aria: (x) => `${x} مقارنة بمنتجات السوق المعتادة` },
-  ur: { eyebrow: 'اعتماد سے انتخاب کریں', h: 'Himalayan Drop', hg: 'بمقابلہ مارکیٹ۔', p: 'ہر برتن میں کیا ہے، اس کا موازنہ اس سے جو عام طور پر دوسری جگہ ملتا ہے۔', choose: 'پروڈکٹ کا موازنہ کریں', market: ['عام', 'مارکیٹ مصنوعات'], note: 'مارکیٹ کالم عام طریقوں کو بیان کرتا ہے، کسی خاص برانڈ کو نہیں۔', aria: (x) => `${x} کا عام مارکیٹ مصنوعات سے موازنہ` },
 };
 import KindTabs from './KindTabs';
 

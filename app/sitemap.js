@@ -1,5 +1,5 @@
 // /sitemap.xml: every page in every language, each linked to all its
-// counterparts with hreflang (with country codes: de-DE, ar-AE, ur-PK ...).
+// counterparts with hreflang (with country codes: de-DE, ar-AE ...).
 import { SITE_URL, LOCALES, LANGS, localizeHref } from '@/lib/i18n';
 import { getProducts } from '@/lib/shopify';
 import { POST_SLUGS } from '@/lib/postSlugs';

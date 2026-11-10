@@ -14,7 +14,6 @@ export const PROOF_T = {
   fr: { place: 'Skardu, Pakistan', alt: 'Récolté au-dessus de 5 000 m', lab: 'Rapports de labo par lot', labCta: 'Découvrir nos analyses', std: 'Normes de qualité', stdCta: 'Découvrir nos normes' },
   es: { place: 'Skardu, Pakistán', alt: 'Recolectado a más de 5.000 m', lab: 'Informes de laboratorio por lote', labCta: 'Explora nuestras pruebas', std: 'Estándares de calidad', stdCta: 'Explora nuestros estándares' },
   ar: { place: 'سكاردو، باكستان', alt: 'يُجمع فوق 5000 متر', lab: 'تقارير مخبرية لكل دفعة', labCta: 'اكتشف فحوصاتنا', std: 'معايير الجودة', stdCta: 'اكتشف معاييرنا' },
-  ur: { place: 'اسکردو، پاکستان', alt: '5,000 میٹر سے اوپر سے حاصل', lab: 'ہر بیچ کی لیب رپورٹ', labCta: 'ہمارے ٹیسٹ دیکھیں', std: 'معیار کے سرٹیفکیٹ', stdCta: 'ہمارے معیار دیکھیں' },
 };
 // Carved icon sizes (px) in /public/images/strip: the strip is built from these stone and gold pieces.
 const ICON = { mountain: [520, 315], flask: [520, 628], rosette: [520, 643] };

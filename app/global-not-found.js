@@ -1,6 +1,6 @@
-import '@fontsource-variable/playfair-display';
-import '@fontsource-variable/playfair-display/wght-italic.css';
-import '@fontsource-variable/manrope';
+import '@fontsource-variable/fraunces/full.css';
+import '@fontsource-variable/fraunces/full-italic.css';
+import '@fontsource-variable/figtree';
 import 'lenis/dist/lenis.css';
 import './globals.css';
 

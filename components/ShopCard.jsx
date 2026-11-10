@@ -12,7 +12,6 @@ const T = {
   fr: { soon: 'Bientôt disponible', vat: 'TVA incluse', choose: 'Choisir la quantité', buy: 'Acheter', add: 'Ajouter au panier', details: 'Voir le détail' },
   es: { soon: 'Próximamente', vat: 'IVA incluido', choose: 'Elige la cantidad', buy: 'Comprar ahora', add: 'Añadir al carrito', details: 'Ver detalles' },
   ar: { soon: 'قريباً', vat: 'شامل الضريبة', choose: 'اختر الكمية', buy: 'اشترِ الآن', add: 'أضف إلى السلة', details: 'عرض التفاصيل' },
-  ur: { soon: 'جلد دستیاب', vat: 'ٹیکس سمیت', choose: 'مقدار منتخب کریں', buy: 'ابھی خریدیں', add: 'کارٹ میں شامل کریں', details: 'تفصیلات دیکھیں' },
 };
 import { useCart } from '@/lib/cart';
 import { formatMoney } from '@/lib/shopify';

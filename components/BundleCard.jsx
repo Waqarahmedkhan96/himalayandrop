@@ -17,7 +17,6 @@ const T = {
   fr: { save: (p) => `-${p} %`, inside: 'Contenu', separately: 'À l’unité', youSave: (x) => `Vous économisez ${x}`, vat: 'TVA incluse', buy: 'Acheter', add: 'Ajouter au panier', guarantee: 'Garantie satisfait ou remboursé 60 jours', soon: 'Bientôt disponible' },
   es: { save: (p) => `Ahorra ${p} %`, inside: 'Qué incluye', separately: 'Por separado', youSave: (x) => `Ahorras ${x}`, vat: 'IVA incluido', buy: 'Comprar ahora', add: 'Añadir al carrito', guarantee: 'Garantía de devolución de 60 días', soon: 'Próximamente' },
   ar: { save: (p) => `وفّر ${p}%`, inside: 'محتويات المجموعة', separately: 'منفردة', youSave: (x) => `توفّر ${x}`, vat: 'شامل الضريبة', buy: 'اشترِ الآن', add: 'أضف إلى السلة', guarantee: 'ضمان استرداد المال لمدة 60 يوماً', soon: 'قريباً' },
-  ur: { save: (p) => `${p}% بچت`, inside: 'سیٹ میں شامل', separately: 'الگ الگ', youSave: (x) => `آپ کی بچت ${x}`, vat: 'ٹیکس سمیت', buy: 'ابھی خریدیں', add: 'کارٹ میں شامل کریں', guarantee: '60 دن کی منی بیک گارنٹی', soon: 'جلد دستیاب' },
 };
 
 export default function BundleCard({ bundle: b }) {

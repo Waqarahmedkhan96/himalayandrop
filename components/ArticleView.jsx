@@ -12,7 +12,6 @@ const T = {
   fr: { journal: 'Journal', min: 'min de lecture', explore: 'Découvrir la collection', keep: 'Continuer la lecture', toc: 'Dans cet article', sources: 'Sources', updated: 'Mis à jour', faq: 'Questions fréquentes', view: 'Voir le produit' },
   es: { journal: 'Journal', min: 'min de lectura', explore: 'Descubre la colección', keep: 'Sigue leyendo', toc: 'En este artículo', sources: 'Fuentes', updated: 'Actualizado', faq: 'Preguntas frecuentes', view: 'Ver producto' },
   ar: { journal: 'المدونة', min: 'دقائق للقراءة', explore: 'اكتشف المجموعة', keep: 'تابع القراءة', toc: 'في هذا المقال', sources: 'المصادر', updated: 'آخر تحديث', faq: 'الأسئلة الشائعة', view: 'عرض المنتج' },
-  ur: { journal: 'بلاگ', min: 'منٹ کا مطالعہ', explore: 'کلیکشن دیکھیں', keep: 'مزید پڑھیں', toc: 'اس مضمون میں', sources: 'حوالہ جات', updated: 'تازہ کاری', faq: 'عام سوالات', view: 'پروڈکٹ دیکھیں' },
 };
 
 export const slugify = (s) => s.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/æ/g, 'ae').replace(/ø/g, 'oe').replace(/å/g, 'aa').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

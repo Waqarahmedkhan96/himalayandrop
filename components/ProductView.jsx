@@ -10,7 +10,6 @@ const T = {
   fr: { step: 'Étape', nothing: 'Rien d’ajouté', images: 'Images du produit', shop: 'Boutique', soon: 'Bientôt disponible', vat: 'TVA incluse', buy: 'Acheter', add: 'Ajouter au panier', trust: ['Récolté au-dessus de 5 000 m', 'Marque danoise', 'Rapport de labo par lot'], ingredient: 'Ingrédient', amount: 'Quantité', how: 'Utilisation', storage: 'Conservation', caution: 'Précautions', lab: 'Résultats de laboratoire', labText: 'Chaque lot est testé par un laboratoire indépendant : métaux lourds, qualité et acide fulvique. Consultez votre numéro de lot sur notre page Résultats de laboratoire.' },
   es: { step: 'Paso', nothing: 'Nada añadido', images: 'Imágenes del producto', shop: 'Tienda', soon: 'Próximamente', vat: 'IVA incluido', buy: 'Comprar ahora', add: 'Añadir al carrito', trust: ['Recolectado a más de 5.000 m', 'Marca danesa', 'Informe de laboratorio por lote'], ingredient: 'Ingrediente', amount: 'Cantidad', how: 'Modo de uso', storage: 'Conservación', caution: 'Advertencias', lab: 'Resultados de laboratorio', labText: 'Cada lote lo analiza un laboratorio independiente: metales pesados, calidad y ácido fúlvico. Busca tu número de lote en nuestra página Resultados de laboratorio.' },
   ar: { step: 'الخطوة', nothing: 'لا شيء مضاف', images: 'صور المنتج', shop: 'المتجر', soon: 'قريباً', vat: 'شامل الضريبة', buy: 'اشترِ الآن', add: 'أضف إلى السلة', trust: ['يُجمع فوق 5000 متر', 'علامة دنماركية', 'تقرير مخبري لكل دفعة'], ingredient: 'المكوّن', amount: 'الكمية', how: 'طريقة الاستخدام', storage: 'الحفظ', caution: 'تحذيرات', lab: 'نتائج المختبر', labText: 'يفحص مختبر مستقل كل دفعة للمعادن الثقيلة والجودة وحمض الفولفيك. ابحث عن رقم دفعتك في صفحة نتائج المختبر.' },
-  ur: { step: 'مرحلہ', nothing: 'کچھ شامل نہیں', images: 'پروڈکٹ کی تصاویر', shop: 'شاپ', soon: 'جلد دستیاب', vat: 'ٹیکس سمیت', buy: 'ابھی خریدیں', add: 'کارٹ میں شامل کریں', trust: ['5,000 میٹر سے بلند سے حاصل', 'ڈنمارک کا برانڈ', 'ہر بیچ کی لیب رپورٹ'], ingredient: 'جزو', amount: 'مقدار', how: 'استعمال کا طریقہ', storage: 'محفوظ کرنا', caution: 'احتیاط', lab: 'لیب رپورٹس', labText: 'ہر بیچ ایک آزاد لیبارٹری میں بھاری دھاتوں، معیار اور فلوک ایسڈ کے لیے ٹیسٹ ہوتا ہے۔ ہمارے لیب رپورٹس کے صفحے پر اپنا بیچ نمبر تلاش کریں۔' },
 };
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { useCart } from '@/lib/cart';
@@ -79,13 +78,12 @@ const ALC = {
   fr: { eyebrow: 'La collection Skardu', withSub: '{p} avec l’abonnement', guarantee: 'Garantie satisfait ou remboursé 60 jours', place: 'Skardu, Pakistan · au-delà de 5 000 m', view: 'Voir la collection' },
   es: { eyebrow: 'La colección Skardu', withSub: '{p} con suscripción', guarantee: 'Garantía de devolución de 60 días', place: 'Skardu, Pakistán · más de 5.000 m', view: 'Ver la colección' },
   ar: { eyebrow: 'مجموعة سكردو', withSub: '{p} مع الاشتراك والتوفير', guarantee: 'ضمان استرداد المال لمدة 60 يوماً', place: 'سكردو، باكستان · فوق 5000 م', view: 'عرض المجموعة' },
-  ur: { eyebrow: 'سکردو کلیکشن', withSub: 'سبسکرائب اینڈ سیو کے ساتھ {p}', guarantee: '60 دن کی منی بیک گارنٹی', place: 'سکردو، پاکستان · 5,000 میٹر سے بلند', view: 'کلیکشن دیکھیں' },
 };
 
 // Small icon per formula row (same order as lib/products.js).
 // How-to step icons: the measuring step shows the spoon.
 const STEP_ICON = { jar: 'spoon' };
-const GUIDE = { en: 'See the full guide', da: 'Se hele vejledningen', de: 'Zur ganzen Anleitung', fr: 'Voir le guide complet', es: 'Ver la guía completa', ar: 'عرض الدليل الكامل', ur: 'مکمل رہنمائی دیکھیں' };
+const GUIDE = { en: 'See the full guide', da: 'Se hele vejledningen', de: 'Zur ganzen Anleitung', fr: 'Voir le guide complet', es: 'Ver la guía completa', ar: 'عرض الدليل الكامل' };
 
 export default function ProductView({ product }) {
   const root = useRef(null);

@@ -25,7 +25,7 @@ html[data-hero='light'] .hx::before { display: none; }
 .lh-copy { display: grid; justify-items: start; }
 .lh-copy .rl { margin-bottom: 20px; }
 .lh-eyebrow { margin: 0 0 12px; font: 700 11.5px/1.2 var(--sans); letter-spacing: 0.24em; text-transform: uppercase; color: #9a7430; }
-.lh h1 { font: 500 clamp(40px, 11vw, 62px)/1.04 var(--display); letter-spacing: -0.01em; color: var(--maroon-ink); margin: 0; }
+.lh h1 { font: 400 clamp(40px, 11vw, 62px)/1.04 var(--display); letter-spacing: -0.01em; color: var(--maroon-ink); margin: 0; }
 .lh h1 span, .lh h1 em { display: block; }
 .lh h1 em { font-style: italic; color: var(--maroon); }
 .lh-lead { margin: 22px 0 0; display: grid; gap: 8px; }
@@ -53,7 +53,7 @@ html[data-hero='light'] .hx::before { display: none; }
 .ls li:nth-child(odd) { border-inline-end: 1px solid rgba(33, 22, 26, 0.08); }
 .ls li:nth-child(-n + 2) { border-bottom: 1px solid rgba(33, 22, 26, 0.08); }
 .ls a { display: grid; gap: 6px; color: inherit; text-decoration: none; }
-.ls strong { font: 500 clamp(18px, 4.9vw, 32px)/1.15 var(--display); color: var(--burgundy); overflow-wrap: anywhere; hyphens: auto; }
+.ls strong { font: 400 clamp(18px, 4.9vw, 32px)/1.15 var(--display); color: var(--burgundy); overflow-wrap: anywhere; hyphens: auto; }
 .ls span { font-size: 13px; line-height: 1.45; color: var(--muted); }
 .ls a span { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
 .ls a:hover span { color: var(--burgundy); }

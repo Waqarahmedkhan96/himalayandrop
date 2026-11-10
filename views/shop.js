@@ -18,7 +18,6 @@ const T = {
   fr: { eyebrow: 'La boutique', title: 'Découvrez la', accent: 'collection.', lead: 'Résine, gommes, gouttes et gélules. Choisissez-en un, ou économisez avec deux ou trois.' },
   es: { eyebrow: 'La tienda', title: 'Descubre la', accent: 'colección.', lead: 'Resina, gominolas, gotas y cápsulas. Elige uno, o ahorra con dos o tres.' },
   ar: { eyebrow: 'المتجر', title: 'تسوّق', accent: 'المجموعة.', lead: 'راتنج وعلكات وقطرات وكبسولات. اختر واحداً، أو وفّر مع اثنين أو ثلاثة.' },
-  ur: { eyebrow: 'شاپ', title: 'کلیکشن', accent: 'خریدیں۔', lead: 'ریزن، گمیز، ڈراپس اور کیپسول۔ ایک منتخب کریں، یا دو یا تین کے ساتھ بچت کریں۔' },
 };
 
 export default async function ShopView({ lang }) {

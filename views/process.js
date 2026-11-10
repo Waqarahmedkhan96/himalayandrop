@@ -56,14 +56,6 @@ const T = {
       { eyebrow: 'المتجر', title: 'ابدأ طقسك', text: 'راتنج أو علكات أو قطرات أو كبسولات.', cta: 'تسوّق الآن', href: '/shop/' },
     ],
   },
-  ur: {
-    hero: { eyebrow: 'تیاری کا طریقہ', title: 'سست رفتار', accent: 'جان بوجھ کر۔', lead: 'ہمالیہ کی بلندیوں سے ہاتھ سے جمع، پھر فلٹر، دھوپ میں خشک، ٹیسٹ اور شیشے میں بند۔' },
-    ctas: [
-      { eyebrow: 'ثبوت', title: 'لیب کے نتائج', text: 'اپنے بیچ کی رپورٹ دیکھیں۔', cta: 'نتائج دیکھیں', href: '/lab-results/', dark: true },
-      { eyebrow: 'ماخذ', title: 'ہمارا سلاجیت', text: 'یہ کہاں سے آتا ہے اور اسے کیا منفرد بناتا ہے۔', cta: 'مزید جانیں', href: '/our-shilajit/' },
-      { eyebrow: 'شاپ', title: 'اپنی رسم شروع کریں', text: 'ریزن، گمیز، ڈراپس یا کیپسول۔', cta: 'ابھی خریدیں', href: '/shop/' },
-    ],
-  },
 };
 
 export default function ProcessView({ lang }) {

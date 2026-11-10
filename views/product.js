@@ -13,9 +13,9 @@ import { kindOf } from '@/lib/benefits';
 import { buildMeta, breadcrumbLd, abs, BRAND } from '@/lib/seo';
 import { localizeHref, tr } from '@/lib/i18n';
 
-const CATEGORY = { en: 'Food supplement', da: 'Kosttilskud', de: 'Nahrungsergänzungsmittel', fr: 'Complément alimentaire', es: 'Complemento alimenticio', ar: 'مكمل غذائي', ur: 'غذائی سپلیمنٹ' };
-const HOME = { en: 'Home', da: 'Forside', de: 'Startseite', fr: 'Accueil', es: 'Inicio', ar: 'الرئيسية', ur: 'ہوم' };
-const SHOP = { en: 'Shop', da: 'Shop', de: 'Shop', fr: 'Boutique', es: 'Tienda', ar: 'المتجر', ur: 'شاپ' };
+const CATEGORY = { en: 'Food supplement', da: 'Kosttilskud', de: 'Nahrungsergänzungsmittel', fr: 'Complément alimentaire', es: 'Complemento alimenticio', ar: 'مكمل غذائي' };
+const HOME = { en: 'Home', da: 'Forside', de: 'Startseite', fr: 'Accueil', es: 'Inicio', ar: 'الرئيسية' };
+const SHOP = { en: 'Shop', da: 'Shop', de: 'Shop', fr: 'Boutique', es: 'Tienda', ar: 'المتجر' };
 
 export async function params() {
   const products = await getProducts();

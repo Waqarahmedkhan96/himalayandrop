@@ -13,7 +13,6 @@ const T = {
   fr: { send: 'Envoyer', thanks: 'Merci. Nous revenons vers vous.', error: 'Une erreur est survenue. Veuillez réessayer.', choose: 'Choisir', wait: 'Veuillez patienter…' },
   es: { send: 'Enviar', thanks: 'Gracias. Te responderemos pronto.', error: 'Algo ha salido mal. Inténtalo de nuevo.', choose: 'Elegir', wait: 'Espera un momento…' },
   ar: { send: 'إرسال', thanks: 'شكراً لك. سنتواصل معك.', error: 'حدث خطأ ما. يرجى المحاولة مرة أخرى.', choose: 'اختر', wait: 'يرجى الانتظار…' },
-  ur: { send: 'بھیجیں', thanks: 'شکریہ۔ ہم رابطہ کریں گے۔', error: 'کچھ غلط ہو گیا۔ دوبارہ کوشش کریں۔', choose: 'منتخب کریں', wait: 'براہِ کرم انتظار کریں…' },
 };
 
 export default function SimpleForm({ id, fields, submit, thanks, thanksText, consent, onSend }) {

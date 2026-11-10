@@ -16,7 +16,6 @@ const T = {
   fr: { eyebrow: 'Coffrets', h: ['Choisissez votre', 'rituel'], sub: 'Chaque coffret arrive dans une seule boîte, avec notre garantie remboursé 60 jours.', worth: 'Valeur', set: 'Prix du coffret', save: 'Vous économisez', vat: 'TVA incluse', explore: 'Découvrir ce coffret', all: 'Tous les coffrets', guarantee: 'Garantie remboursé 60 jours', ship: 'Expédition suivie depuis le Danemark', soon: 'Bientôt disponible' },
   es: { eyebrow: 'Packs', h: ['Elige tu', 'ritual'], sub: 'Cada pack llega en una sola caja, con nuestra garantía de devolución de 60 días.', worth: 'Valor', set: 'Precio del pack', save: 'Ahorras', vat: 'IVA incluido', explore: 'Descubrir este pack', all: 'Ver todos los packs', guarantee: 'Garantía de devolución de 60 días', ship: 'Envío con seguimiento desde Dinamarca', soon: 'Próximamente' },
   ar: { eyebrow: 'المجموعات', h: ['اختر', 'طقسك'], sub: 'تصل كل مجموعة في صندوق واحد مع ضمان استرداد المال لمدة 60 يوماً.', worth: 'قيمتها', set: 'سعر المجموعة', save: 'توفّر', vat: 'شامل الضريبة', explore: 'استكشف المجموعة', all: 'كل المجموعات', guarantee: 'ضمان استرداد المال لمدة 60 يوماً', ship: 'شحن متتبَّع من الدنمارك', soon: 'قريباً' },
-  ur: { eyebrow: 'بنڈلز', h: ['اپنا رسم', 'چنیں'], sub: 'ہر سیٹ ایک ڈبے میں آتا ہے، 60 دن کی منی بیک گارنٹی کے ساتھ۔', worth: 'مالیت', set: 'سیٹ کی قیمت', save: 'آپ کی بچت', vat: 'ٹیکس سمیت', explore: 'سیٹ دیکھیں', all: 'تمام بنڈلز', guarantee: '60 دن کی منی بیک گارنٹی', ship: 'ڈنمارک سے ٹریک شدہ شپنگ', soon: 'جلد دستیاب' },
 };
 
 export default function HomeBundles({ bundles }) {

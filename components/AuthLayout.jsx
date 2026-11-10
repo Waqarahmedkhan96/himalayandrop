@@ -10,7 +10,6 @@ const T = {
   fr: { h: 'Les membres montent', hg: 'plus haut.', perks: ['Des points à chaque commande', 'Paiement plus rapide', 'Historique et suivi des commandes'] },
   es: { h: 'Los miembros llegan', hg: 'más alto.', perks: ['Puntos en cada pedido', 'Pago más rápido', 'Historial y seguimiento de pedidos'] },
   ar: { h: 'الأعضاء يصعدون', hg: 'أعلى.', perks: ['نقاط مع كل طلب', 'دفع أسرع', 'سجل الطلبات وتتبعها'] },
-  ur: { h: 'ممبرز پہنچتے ہیں', hg: 'مزید بلندی تک۔', perks: ['ہر آرڈر پر پوائنٹس', 'تیز چیک آؤٹ', 'آرڈر ہسٹری اور ٹریکنگ'] },
 };
 
 // Split layout for login/register: brand panel on one side, form on the other.

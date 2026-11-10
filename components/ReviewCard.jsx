@@ -2,7 +2,7 @@
 import { Stars } from './Icons';
 import { useLang } from './LangProvider';
 
-const SAMPLE = { en: 'Sample', da: 'Eksempel', de: 'Beispiel', fr: 'Exemple', es: 'Ejemplo', ar: 'مثال', ur: 'نمونہ' };
+const SAMPLE = { en: 'Sample', da: 'Eksempel', de: 'Beispiel', fr: 'Exemple', es: 'Ejemplo', ar: 'مثال' };
 
 export default function ReviewCard({ r }) {
   const lang = useLang();

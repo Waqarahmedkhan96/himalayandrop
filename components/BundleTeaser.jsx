@@ -12,7 +12,6 @@ const T = {
   fr: { eyebrow: 'Coffrets', h: (n) => `Jusqu’à ${n} % d’économie`, hg: 'avec un coffret.', p: 'Résine, gommes, gouttes et gélules, associées pour chaque type de journée. Une commande, un colis.', cta: 'Voir les coffrets' },
   es: { eyebrow: 'Packs', h: (n) => `Ahorra hasta un ${n} %`, hg: 'con un pack.', p: 'Resina, gominolas, gotas y cápsulas, combinadas para cada tipo de día. Un pedido, un paquete.', cta: 'Ver packs' },
   ar: { eyebrow: 'المجموعات', h: (n) => `وفّر حتى ${n}%`, hg: 'مع مجموعة.', p: 'راتنج وعلكات وقطرات وكبسولات، منسقة لكل أنواع الأيام. طلب واحد وطرد واحد.', cta: 'تسوّق المجموعات' },
-  ur: { eyebrow: 'بنڈلز', h: (n) => `${n}% تک بچت`, hg: 'سیٹ کے ساتھ۔', p: 'ریزن، گمیز، ڈراپس اور کیپسول، ہر طرح کے دن کے لیے۔ ایک آرڈر، ایک پارسل۔', cta: 'بنڈلز دیکھیں' },
 };
 
 export default function BundleTeaser() {

@@ -11,7 +11,6 @@ const W = {
   fr: { all: 'Tous', label: 'Thèmes' },
   es: { all: 'Todos', label: 'Temas' },
   ar: { all: 'الكل', label: 'المواضيع' },
-  ur: { all: 'سب', label: 'موضوعات' },
 };
 
 export default function FaqBrowser({ groups }) {

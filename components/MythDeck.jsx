@@ -18,7 +18,6 @@ const T = {
   fr: { hint: 'Faites glisser ou touchez une carte', prev: 'Mythe précédent', next: 'Mythe suivant', of: 'sur', reveal: 'Touchez la carte pour voir la réalité', again: 'Touchez à nouveau pour le mythe' },
   es: { hint: 'Arrastra, desliza o toca una tarjeta', prev: 'Mito anterior', next: 'Mito siguiente', of: 'de', reveal: 'Toca la tarjeta para ver la realidad', again: 'Toca otra vez para el mito' },
   ar: { hint: 'اسحب أو اضغط على بطاقة', prev: 'الخرافة السابقة', next: 'الخرافة التالية', of: 'من', reveal: 'اضغط على البطاقة لرؤية الحقيقة', again: 'اضغط مجدداً لرؤية الخرافة' },
-  ur: { hint: 'کارڈ کو کھینچیں، سوائپ کریں یا ٹیپ کریں', prev: 'پچھلی غلط فہمی', next: 'اگلی غلط فہمی', of: 'میں سے', reveal: 'حقیقت دیکھنے کے لیے کارڈ پر ٹیپ کریں', again: 'غلط فہمی کے لیے دوبارہ ٹیپ کریں' },
 };
 
 const FINISH = ['velvet', 'gold', 'paper', 'ink', 'rose'];
@@ -88,7 +87,7 @@ export default function MythDeck({ kind }) {
     { scope: root }
   );
 
-  const rtl = lang === 'ar' || lang === 'ur';
+  const rtl = lang === 'ar';
   // Wheel: drag up/down with mouse or touch. Fan (phones): drag up/down with a mouse, swipe sideways with touch.
   const amountOf = (d, e) => {
     const dy = e.clientY - d.y;

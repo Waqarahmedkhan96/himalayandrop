@@ -14,7 +14,7 @@
 .vr-tag { inset-inline-start: 10px; background: rgba(247, 241, 232, 0.92); color: var(--muted); }
 .vr-dur { inset-inline-end: 10px; background: rgba(42, 1, 7, 0.7); color: var(--cream); letter-spacing: 0.02em; font-size: 11px; font-variant-numeric: tabular-nums; }
 .vr-cap { position: absolute; z-index: 2; inset-inline: 10px; bottom: 54px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-.vr-cap strong { font-family: var(--display); font-weight: 500; font-size: 15px; line-height: 1.15; color: #fff; background: var(--maroon); padding: 5px 9px; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.vr-cap strong { font-family: var(--display); font-weight: 400; font-size: 15px; line-height: 1.15; color: #fff; background: var(--maroon); padding: 5px 9px; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .vr-play { position: absolute; z-index: 3; inset-inline-end: 10px; bottom: 10px; width: 40px; height: 40px; display: grid; place-items: center; background: #fff; color: var(--maroon); clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%); transition: opacity 0.3s var(--ease), transform 0.4s var(--ease); pointer-events: none; }
 .vr-play svg { margin-inline-start: 2px; }
 [dir='rtl'] .vr-play svg { margin-inline-start: 0; margin-right: 2px; transform: scaleX(-1); }
@@ -35,7 +35,7 @@
 @media (prefers-reduced-motion: reduce) { .vr-card video { display: none; } }
 /* Section heading on the reviews page */
 .wl-videos { max-width: 1240px; margin: 0 auto; padding: 8px var(--gutter) 28px; }
-.wl-videos h2 { font-family: var(--display); font-weight: 500; font-size: clamp(24px, 4.4vw, 34px); color: var(--maroon-deep); margin: 0; }
+.wl-videos h2 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 4.4vw, 34px); color: var(--maroon-deep); margin: 0; }
 .rv-sub { text-align: start; }
 
 /* Filter chips on the reviews page */
