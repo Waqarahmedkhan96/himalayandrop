@@ -157,7 +157,7 @@ export default function Harvest() {
           <svg viewBox={`0 -80 ${W} ${H + 80}`} role="img" aria-label={t.aria}>
             <defs>
               <linearGradient id="contour-gold" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stopColor="#a8803f" />
+                <stop offset="0" stopColor="#b88f4d" />
                 <stop offset="0.45" stopColor="#eed9a6" />
                 <stop offset="1" stopColor="#b88f4d" />
               </linearGradient>

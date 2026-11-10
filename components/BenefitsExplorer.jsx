@@ -55,7 +55,7 @@ function Panel({ kind, active, b, t }) {
             <linearGradient id={`bx-gold-${kind.key}`} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stopColor="#eed9a6" />
               <stop offset="0.5" stopColor="#cca25e" />
-              <stop offset="1" stopColor="#a8803f" />
+              <stop offset="1" stopColor="#b88f4d" />
             </linearGradient>
           </defs>
           <circle cx={CX} cy={CY} r="200" fill="none" stroke="rgba(88,15,27,0.25)" strokeWidth="2" strokeDasharray="1 9" strokeLinecap="round" />

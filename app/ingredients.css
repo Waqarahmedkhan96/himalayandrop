@@ -11,26 +11,26 @@
 .ig-card.is-flip .ig-inner { transform: rotateY(180deg); }
 .ig-face { position: absolute; inset: 0; display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; background: #f4ebe9; box-shadow: inset 0 0 0 1px rgba(33, 22, 26, 0.07); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .ig-back { transform: rotateY(180deg); background: #f6eeec; }
-.ig-photo { flex: none; aspect-ratio: 16 / 10; overflow: hidden; background: #e9dccb; }
+.ig-photo { flex: none; aspect-ratio: 16 / 10; overflow: hidden; background: var(--cream-2); }
 .ig-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.ig-photo.is-pack { display: grid; place-items: center; background: linear-gradient(160deg, #f5e6d6, #ead3b8); }
+.ig-photo.is-pack { display: grid; place-items: center; background: linear-gradient(160deg, var(--cream-2), #ead3b8); }
 .ig-photo.is-pack img { width: auto; height: 92%; object-fit: contain; }
 .ig-p-amino img { object-position: 50% 88%; transform: scale(1.35); transform-origin: 50% 85%; }
 .ig-body { padding: 18px 20px 76px; }
 .ig-body h3 { font: 500 clamp(20px, 2.1vw, 24px)/1.2 var(--display); color: var(--maroon-ink); margin: 0 0 8px; }
 .ig-body p { margin: 0; font-size: 15px; line-height: 1.55; color: #4a3b35; }
-.ig-body .ig-value { margin-top: 12px; font-size: 14px; color: #580f1b; }
+.ig-body .ig-value { margin-top: 12px; font-size: 14px; color: var(--burgundy); }
 .ig-btn { position: absolute; inset-inline-end: 16px; bottom: 16px; width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid rgba(33, 22, 26, 0.55); border-radius: 50%; background: #fff; color: var(--maroon-ink); cursor: pointer; transition: background 0.3s, color 0.3s, transform 0.3s; }
-.ig-btn:hover { background: #580f1b; color: #fff; transform: scale(1.06); }
-.ig-btn:focus-visible { outline: 2px solid #580f1b; outline-offset: 3px; }
-.ig-scroll { flex: 1; overflow-y: auto; padding: 22px 22px 80px; margin: 14px 12px 0; border-inline-start: 3px solid #a31224; padding-inline-start: 18px; scrollbar-width: thin; }
+.ig-btn:hover { background: var(--burgundy); color: #fff; transform: scale(1.06); }
+.ig-btn:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 3px; }
+.ig-scroll { flex: 1; overflow-y: auto; padding: 22px 22px 80px; margin: 14px 12px 0; border-inline-start: 3px solid var(--burgundy); padding-inline-start: 18px; scrollbar-width: thin; }
 .ig-scroll h3 { font: 500 22px/1.2 var(--display); color: var(--maroon-ink); margin: 0 0 10px; }
 .ig-scroll p { margin: 0 0 12px; font-size: 15px; line-height: 1.6; color: #3e3236; }
 .ig-rows { margin: 16px 0 0; padding: 12px 0 0; border-top: 1px solid rgba(33, 22, 26, 0.14); font-size: 14.5px; }
 .ig-rows > div { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; }
 .ig-rows dt, .ig-rows dd { margin: 0; }
 .ig-rows .ig-rows-h { font: 700 11.5px/1.2 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: #9a7430; padding-bottom: 6px; }
-.ig-rows dd { font-weight: 700; color: #580f1b; }
+.ig-rows dd { font-weight: 700; color: var(--burgundy); }
 .ig-claims { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
 .ig-claims li { font-size: 13px; line-height: 1.5; font-style: italic; color: #5b4a44; }
 .ig-credit { text-align: center; font-size: 12px; color: var(--muted); margin: 0 0 8px; }

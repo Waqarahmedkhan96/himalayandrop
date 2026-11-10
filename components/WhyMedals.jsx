@@ -3,7 +3,7 @@
 import { Fragment, useState } from 'react';
 import LLink from './LLink';
 
-const GOLD = '#f6e3ae';
+const GOLD = '#eed9a6';
 const SERIF = 'var(--display), serif';
 const SANS = 'var(--sans), sans-serif';
 
@@ -33,8 +33,8 @@ function Seal({ id, top, bottom, children }) {
     <svg className="md" viewBox="0 0 120 120" aria-hidden="true">
       <defs>
         <linearGradient id={`sg${id}`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#fdf0c9" /><stop offset=".45" stopColor="#d9b46a" /><stop offset="1" stopColor="#8a6429" /></linearGradient>
-        <linearGradient id={`sb${id}`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f3dca0" /><stop offset="1" stopColor="#b98c43" /></linearGradient>
-        <radialGradient id={`sd${id}`} cx=".38" cy=".3" r=".95"><stop offset="0" stopColor="#7d1b2d" /><stop offset="1" stopColor="#31060e" /></radialGradient>
+        <linearGradient id={`sb${id}`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#eed9a6" /><stop offset="1" stopColor="#b88f4d" /></linearGradient>
+        <radialGradient id={`sd${id}`} cx=".38" cy=".3" r=".95"><stop offset="0" stopColor="#7d1b2d" /><stop offset="1" stopColor="#2a0107" /></radialGradient>
         <path id={`ta${id}`} d="M19.5 60A40.5 40.5 0 0 1 100.5 60" />
         <path id={`tb${id}`} d="M12.5 60A47.5 47.5 0 0 0 107.5 60" />
       </defs>
@@ -50,7 +50,7 @@ function Seal({ id, top, bottom, children }) {
       <path d={star(11.5, 60, 3.4)} fill="#3a0813" />
       <path d={star(108.5, 60, 3.4)} fill="#3a0813" />
       <circle cx="60" cy="60" r="35" fill={`url(#sd${id})`} />
-      <circle cx="60" cy="60" r="34" fill="none" stroke="#e9cf8d" strokeWidth=".8" opacity=".85" />
+      <circle cx="60" cy="60" r="34" fill="none" stroke="#e2c487" strokeWidth=".8" opacity=".85" />
       <g fill="none" stroke={GOLD} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">{children}</g>
     </svg>
   );

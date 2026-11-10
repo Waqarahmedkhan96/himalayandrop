@@ -19,7 +19,7 @@ import { ridgePoints, toLine, toShape } from '@/lib/mountains';
 import { Arrow } from './Arrow';
 
 const layers = [
-  { seed: 11, base: 520, amp: 340, peaks: 3, fill: '#f1e2d2', speed: -4 },
+  { seed: 11, base: 520, amp: 340, peaks: 3, fill: '#efe2d3', speed: -4 },
   { seed: 27, base: 600, amp: 230, peaks: 4, fill: '#c98f7c', speed: -8 },
   { seed: 43, base: 680, amp: 170, peaks: 5, fill: '#8c3a44', speed: -14 },
   { seed: 61, base: 760, amp: 120, peaks: 6, fill: '#580f1b', speed: -22 },
@@ -74,7 +74,7 @@ export default function Story() {
               <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
                 <stop offset="0" stopColor="#fff6e2" stopOpacity="1" />
                 <stop offset="0.35" stopColor="#ffe9c2" stopOpacity="0.7" />
-                <stop offset="1" stopColor="#ffe0b0" stopOpacity="0" />
+                <stop offset="1" stopColor="#eed9a6" stopOpacity="0" />
               </radialGradient>
               <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0" stopColor="#f6e6c8" stopOpacity="0" />
