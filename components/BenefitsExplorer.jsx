@@ -64,7 +64,7 @@ function Panel({ kind, active, b, t }) {
             <g key={i} className="bx-link">
               <path d={`M ${p.x + 22} ${p.y} L ${PILL_X} ${p.y}`} stroke="rgba(88,15,27,0.35)" strokeWidth="2" strokeDasharray="1 8" strokeLinecap="round" fill="none" />
               <circle className="bx-node" cx={p.x} cy={p.y} r="21" fill="#580f1b" stroke="#f7f1e8" strokeWidth="4" />
-              <text x={p.x} y={p.y + 5} textAnchor="middle" fill="#e2c487" fontSize="15" fontWeight="700" fontFamily="Fraunces Variable, Fraunces, serif">{i + 1}</text>
+              <text x={p.x} y={p.y + 5} textAnchor="middle" fill="#e2c487" fontSize="15" fontWeight="700" fontFamily="Rosario Variable, Rosario, sans-serif">{i + 1}</text>
             </g>
           ))}
         </svg>

@@ -168,19 +168,19 @@ export default function Harvest() {
             <g className="harvest-zone">
               <line x1="0" y1={harvestY} x2={W} y2={harvestY} stroke="#e2c487" strokeWidth="1" strokeDasharray="6 6" opacity="0.7" />
               <rect x="0" y={harvestY - 28} width="190" height="22" rx="11" fill="rgba(42,1,7,0.75)" />
-              <text x="12" y={harvestY - 13} fill="#eed9a6" fontSize="11.5" fontWeight="700" letterSpacing="1.8" fontFamily="Figtree Variable, Figtree, sans-serif">{t.zone}</text>
+              <text x="12" y={harvestY - 13} fill="#eed9a6" fontSize="11.5" fontWeight="700" letterSpacing="1.8" fontFamily="Albert Sans Variable, Albert Sans, sans-serif">{t.zone}</text>
             </g>
             <g className="k2-label">
               <path d={`M ${0.515 * W + 6} ${bottleY} L ${0.515 * W + 70} ${bottleY - 22} L ${0.515 * W + 120} ${bottleY - 22}`} fill="none" stroke="#e2c487" strokeWidth="1" />
               <circle cx={0.515 * W} cy={bottleY + 2} r="4" fill="#eed9a6" />
-              <text x={0.515 * W + 126} y={bottleY - 18} fill="#eed9a6" fontSize="13" fontStyle="italic" fontFamily="Fraunces Variable, Fraunces, serif">The Bottleneck</text>
-              <text x={0.515 * W + 126} y={bottleY - 3} fill="rgba(247,241,232,0.6)" fontSize="10" letterSpacing="1.5" fontFamily="Figtree Variable, Figtree, sans-serif">{t.bneck}</text>
+              <text x={0.515 * W + 126} y={bottleY - 18} fill="#eed9a6" fontSize="13" fontStyle="italic" fontFamily="Rosario Variable, Rosario, sans-serif">The Bottleneck</text>
+              <text x={0.515 * W + 126} y={bottleY - 3} fill="rgba(247,241,232,0.6)" fontSize="10" letterSpacing="1.5" fontFamily="Albert Sans Variable, Albert Sans, sans-serif">{t.bneck}</text>
             </g>
             <g className="summit" transform={`translate(${0.465 * W} ${peakY - 4})`}>
               <circle r="26" fill="url(#summit-glow)" className="summit-pulse" />
               <circle r="5.5" fill="#fff6e2" />
               <line x1="0" y1="-10" x2="0" y2="-44" stroke="#e2c487" strokeWidth="1" strokeDasharray="3 3" />
-              <text y="-52" textAnchor="middle" fill="#eed9a6" fontSize="13" fontWeight="700" letterSpacing="2" fontFamily="Figtree Variable, Figtree, sans-serif">{t.peak}</text>
+              <text y="-52" textAnchor="middle" fill="#eed9a6" fontSize="13" fontWeight="700" letterSpacing="2" fontFamily="Albert Sans Variable, Albert Sans, sans-serif">{t.peak}</text>
             </g>
           </svg>
           <p className="art-caption">{t.cap}</p>

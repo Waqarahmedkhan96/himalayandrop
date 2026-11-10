@@ -64,12 +64,12 @@ export function Route() {
           <circle r="18" fill="rgba(204,162,94,0.18)" /><circle r="7" fill="#eed9a6" />
         </g>
         <g className="route-label">
-          <text x="470" y="210" textAnchor="middle" fill="#f7f1e8" fontSize="18" fontFamily="Fraunces Variable, Fraunces, serif">Skardu</text>
-          <text x="470" y="232" textAnchor="middle" fill="#e2c487" fontSize="11" fontWeight="700" letterSpacing="2" fontFamily="Figtree Variable, Figtree, sans-serif">{m.sourced}</text>
+          <text x="470" y="210" textAnchor="middle" fill="#f7f1e8" fontSize="18" fontFamily="Rosario Variable, Rosario, sans-serif">Skardu</text>
+          <text x="470" y="232" textAnchor="middle" fill="#e2c487" fontSize="11" fontWeight="700" letterSpacing="2" fontFamily="Albert Sans Variable, Albert Sans, sans-serif">{m.sourced}</text>
         </g>
         <g className="route-label">
-          <text x="120" y="88" textAnchor="middle" fill="#f7f1e8" fontSize="18" fontFamily="Fraunces Variable, Fraunces, serif">{m.dk}</text>
-          <text x="120" y="66" textAnchor="middle" fill="#e2c487" fontSize="11" fontWeight="700" letterSpacing="2" fontFamily="Figtree Variable, Figtree, sans-serif">{m.packed}</text>
+          <text x="120" y="88" textAnchor="middle" fill="#f7f1e8" fontSize="18" fontFamily="Rosario Variable, Rosario, sans-serif">{m.dk}</text>
+          <text x="120" y="66" textAnchor="middle" fill="#e2c487" fontSize="11" fontWeight="700" letterSpacing="2" fontFamily="Albert Sans Variable, Albert Sans, sans-serif">{m.packed}</text>
         </g>
       </svg>
     </div>

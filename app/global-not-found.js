@@ -1,6 +1,6 @@
-import '@fontsource-variable/fraunces/full.css';
-import '@fontsource-variable/fraunces/full-italic.css';
-import '@fontsource-variable/figtree';
+import '@fontsource-variable/rosario';
+import '@fontsource-variable/rosario/wght-italic.css';
+import '@fontsource-variable/albert-sans';
 import 'lenis/dist/lenis.css';
 import './globals.css';
 
