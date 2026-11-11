@@ -45,7 +45,6 @@ export default function Header() {
   const t = useT(T);
   const { menu } = site[lang];
   const [hidden, setHidden] = useState(false);
-  const [compact, setCompact] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [hold, setHold] = useState(false);
   const pathname = usePathname();
@@ -74,7 +73,6 @@ export default function Header() {
     const onScroll = () => {
       const y = window.scrollY;
       setHidden(y > 300 && y > last);
-      setCompact(y > 60);
       last = y;
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -159,7 +157,7 @@ export default function Header() {
         })()}
       </nav>
 
-      <header className={`header ${hidden && !menuOpen ? 'hidden' : ''} ${compact && !menuOpen ? 'compact' : ''}`}>
+      <header className={`header ${hidden && !menuOpen ? 'hidden' : ''}`}>
         <div className="header-inner">
           <button className={`icon-btn menu-btn ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen((m) => !m)} aria-label={t.menu} aria-expanded={menuOpen}>
             <span className={`burger ${menuOpen ? 'is-open' : ''}`} aria-hidden="true"><i /><i /><i /></span>

@@ -18,8 +18,8 @@
     transition: width 0.6s var(--ease), box-shadow 0.4s;
   }
   .header .menu-btn { grid-column: 1; justify-self: start; color: var(--ivory); }
-  .header .brand { grid-column: 2; justify-self: center; gap: 9px; font-size: clamp(9.5px, calc((100vw - 252px) / 11.4), 12px); letter-spacing: 0.1em; min-width: 0; transition: gap 0.5s var(--ease); }
-  .header .brand span { display: block; overflow: hidden; max-width: 220px; color: var(--ivory); transition: max-width 0.5s var(--ease), opacity 0.35s; }
+  .header .brand { grid-column: 2; justify-self: center; gap: 9px; font-size: clamp(9.5px, calc((100vw - 252px) / 11.4), 12px); letter-spacing: 0.1em; min-width: 0; }
+  .header .brand span { display: block; overflow: hidden; color: var(--ivory); }
   .header .brand .drop { display: inline; color: var(--gold-soft); }
   .header .brand sup { display: none; }
   .header .header-actions { grid-column: 3; justify-self: end; gap: 0; }
@@ -27,10 +27,6 @@
   .header .cart-btn { color: var(--ivory); }
   .header .icon-btn:hover { background: rgba(247, 241, 232, 0.1); }
 
-  /* Scrolled: the pill shrinks to the logo mark between the icons. */
-  .header.compact .header-inner { width: min(100%, 224px); }
-  .header.compact .brand { gap: 0; }
-  .header.compact .brand span { max-width: 0; opacity: 0; }
 
   /* ───────── Bag count: a small gold drop ───────── */
   .header .cart-count {
@@ -79,7 +75,6 @@
 @media (min-width: 768px) and (max-width: 1099.98px) {
   .header .header-inner { height: 62px; padding: 0 10px; grid-template-columns: 96px minmax(0, 1fr) 96px; }
   .header .brand { font-size: 13px; }
-  .header.compact .header-inner { width: min(100%, 260px); }
 }
 
 @media (max-width: 359.98px) {
