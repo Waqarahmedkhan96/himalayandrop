@@ -141,8 +141,9 @@ export default function ArticleView({ post, related }) {
       </div>
 
       <header className="article-head">
-        <p className="crumb"><Link href="/blog/">{t.journal}</Link> · {post.category}</p>
+        <p className="crumb"><Link href="/blog/">{t.journal}</Link></p>
         <h1><span className="line"><span>{post.title}</span></span></h1>
+        {post.category && <p className="article-tag">{post.category}</p>}
         <p className="journal-meta"><time dateTime={post.date}>{formatDate(post.date, lang)}</time>{post.updated && <> · {t.updated} <time dateTime={post.updated}>{formatDate(post.updated, lang)}</time></>} · {post.readMin} {t.min} · Himalayan Drop</p>
         {post.excerpt && <p className="lede">{post.excerpt}</p>}
       </header>

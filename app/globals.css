@@ -38,6 +38,7 @@
   --display: 'Rosario Variable', 'Optima', 'Candara', sans-serif;
   --sans: 'Albert Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --label: 'Albert Sans Variable', system-ui, sans-serif;
+  --tag: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
 
   /* Type scale (Luxury Typography Guidelines, 05/08). Phone first. */
   --fs-h1: clamp(40px, 11.6vw, 52px);
@@ -690,7 +691,7 @@ em { font-style: italic; }
 .article { padding: 92px 0 72px; }
 .article-head { max-width: 780px; margin: 0 auto; padding: 18px var(--gutter) 0; text-align: center; }
 .article-head .crumb { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-family: var(--label); }
-.article-head h1 { font-size: var(--fs-h1); margin: 16px 0 14px; }
+.article-head h1 { font-size: var(--fs-h2); line-height: 1.08; margin: 16px 0 14px; }
 .article-head .lede { margin: 18px auto 0; font-family: var(--display); font-size: clamp(19px, 2.4vw, 24px); line-height: 1.45; color: var(--ink); max-width: 40ch; }
 .article-cover { margin: 32px var(--frame) 0; border-radius: var(--r-xl); overflow: hidden; aspect-ratio: 16 / 10; background: var(--sand); }
 .article-cover img { width: 100%; height: 100%; object-fit: cover; }
@@ -1739,7 +1740,7 @@ main:focus { outline: none; }
 .nav.nav-hold .chev { transform: none !important; }
 
 /* ═════════ Arabic (right-to-left) ═════════ */
-html[data-lang='ar'] { --display: 'Rosario Variable', 'Noto Naskh Arabic Variable', Georgia, serif; --sans: 'Albert Sans Variable', 'Noto Naskh Arabic Variable', system-ui, sans-serif; --label: 'Albert Sans Variable', 'Noto Naskh Arabic Variable', system-ui, sans-serif; }
+html[data-lang='ar'] { --display: 'Rosario Variable', 'Noto Naskh Arabic Variable', Georgia, serif; --sans: 'Albert Sans Variable', 'Noto Naskh Arabic Variable', system-ui, sans-serif; --label: 'Albert Sans Variable', 'Noto Naskh Arabic Variable', system-ui, sans-serif; --tag: 'Noto Naskh Arabic Variable', system-ui, sans-serif; }
 /* Letter-spacing breaks Arabic letter joining, and Arabic has no italics. */
 [dir='rtl'] *, [dir='rtl'] *::before, [dir='rtl'] *::after { letter-spacing: 0 !important; }
 [dir='rtl'] em, [dir='rtl'] i, [dir='rtl'] .gold-text { font-style: normal; }
@@ -3331,7 +3332,7 @@ html, body { overflow-x: clip; }
 }
 
 /* Paragraphs: clean sans, 1.5–1.65 line height, 55–70 characters a line */
-.article-body { font-size: var(--fs-body); line-height: 1.65; }
+.article-body { font-size: var(--fs-body); line-height: 1.8; }
 .article-body p, .policy-body p { max-width: 68ch; }
 
 /* Prices: sans, medium */
@@ -3439,3 +3440,13 @@ html, body { overflow-x: clip; }
 }
 [dir='rtl'] .bx-tag, [dir='rtl'] .bx-chip em { transform: translateX(50%); left: auto; right: 50%; }
 .bx-cta-price { text-transform: none; letter-spacing: 0; font-size: 1.08em; }
+
+/* Blog category tags, as on IM8's blog: blocky bold capitals in a pill
+   (Space Mono stands in for NB Architekt) */
+.journal-card .card-tag, .article-tag {
+  font-family: var(--tag); font-weight: 700; font-size: 13px; line-height: 1.35;
+  letter-spacing: 0.02em; text-transform: uppercase; color: var(--maroon);
+  padding: 6px 14px; border-radius: var(--pill);
+}
+.article-tag { display: inline-block; margin: 4px 0 14px; background: #f6ebe4; border: 1px solid rgba(88, 15, 27, 0.55); }
+@media (min-width: 768px) { .journal-card .card-tag, .article-tag { font-size: 14px; } }
