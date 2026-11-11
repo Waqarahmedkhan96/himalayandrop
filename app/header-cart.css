@@ -1,0 +1,126 @@
+/* ═══════════════════════════════════════════════════════════════
+   Phone + tablet header, full-screen menu details and the empty cart.
+   Everything for the header sits inside max-width: 1099.98px, so the
+   desktop header (1100px and wider) is left exactly as it was.
+   Imported at the top of globals.css, so selectors here are written
+   with extra weight (.header …, .mobile-nav .mn …) to win over it.
+   ═══════════════════════════════════════════════════════════════ */
+
+.cart-count b { font-weight: inherit; }
+.mobile-nav .mn-acc summary .mn-dp { display: none; }
+html:not([data-hdr='old']) .mobile-nav .mn-acc summary .mn-dp { display: block; }
+html:not([data-hdr='old']) .mobile-nav .mn-acc summary .chev { display: none; }
+
+/* Previous header on phones: menu button back on the right (it comes first in the markup for the new layout). */
+@media (max-width: 1099.98px) {
+  html[data-hdr='old'] .header .menu-btn { order: 3; margin-inline-start: -8px; }
+  html[data-hdr='old'] .header .header-actions { margin-inline-start: auto; }
+}
+
+/* Header switch (review tool, phones and tablets only) */
+.hdsw { display: none; }
+@media (max-width: 1099.98px) {
+  .hdsw { position: fixed; z-index: 90; bottom: 14px; inset-inline-start: 14px; display: flex; align-items: center; gap: 2px; padding: 3px 3px 3px 12px; border-radius: 999px; background: rgba(33, 22, 26, 0.92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(226, 196, 135, 0.25); }
+  .hdsw span { font: 700 10px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-soft); margin-inline-end: 4px; }
+  .hdsw button { border: 0; border-radius: 999px; padding: 9px 13px; font: 700 12px/1 var(--sans); letter-spacing: 0.04em; color: rgba(247, 241, 232, 0.72); background: none; cursor: pointer; transition: background 0.3s, color 0.3s; }
+  .hdsw button[aria-pressed='true'] { background: var(--gold-grad); color: var(--maroon-ink); }
+  .hdsw button:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; }
+}
+
+@media (max-width: 1099.98px) {
+  /* ───────── Pill: menu left · logo centre · account + bag right ───────── */
+  html:not([data-hdr='old']) .header .header-inner {
+    display: grid; grid-template-columns: 88px minmax(0, 1fr) 88px; align-items: center; gap: 0;
+    width: 100%; height: 58px; padding: 0 8px;
+    background: linear-gradient(180deg, var(--burgundy-2) 0%, var(--burgundy) 100%);
+    box-shadow: 0 14px 34px -16px rgba(42, 1, 7, 0.75), inset 0 0 0 1px rgba(226, 196, 135, 0.28), inset 0 1px 0 rgba(238, 217, 166, 0.16);
+    transition: width 0.6s var(--ease), box-shadow 0.4s;
+  }
+  html:not([data-hdr='old']) .header .menu-btn { grid-column: 1; justify-self: start; color: var(--ivory); }
+  html:not([data-hdr='old']) .header .brand { grid-column: 2; justify-self: center; gap: 9px; font-size: clamp(9.5px, calc((100vw - 252px) / 11.4), 12px); letter-spacing: 0.1em; min-width: 0; }
+  html:not([data-hdr='old']) .header .brand span { display: block; overflow: hidden; color: var(--ivory); }
+  html:not([data-hdr='old']) .header .brand .drop { display: inline; color: var(--gold-soft); }
+  html:not([data-hdr='old']) .header .brand sup { display: none; }
+  html:not([data-hdr='old']) .header .header-actions { grid-column: 3; justify-self: end; gap: 0; }
+  html:not([data-hdr='old']) .header .account-btn { display: grid; color: var(--ivory); }
+  html:not([data-hdr='old']) .header .cart-btn { color: var(--ivory); }
+  html:not([data-hdr='old']) .header .icon-btn:hover { background: rgba(247, 241, 232, 0.1); }
+
+
+  /* ───────── Bag count: a small gold drop ───────── */
+  html:not([data-hdr='old']) .header .cart-count {
+    top: 4px; right: 4px; width: 17px; height: 17px; min-width: 0; padding: 0;
+    border-radius: 0 50% 50% 50%; transform: rotate(45deg);
+    background: var(--gold-grad); color: var(--burgundy-ink);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+  html:not([data-hdr='old']) .header .cart-count b { display: block; transform: rotate(-45deg); font-size: 10px; font-weight: 800; line-height: 1; }
+
+  /* ───────── Menu button: lines of different length, becomes a gold drop with × ───────── */
+  html:not([data-hdr='old']) .header .burger i { transition: top 0.45s var(--ease), right 0.45s var(--ease), transform 0.45s var(--ease), opacity 0.3s; }
+  html:not([data-hdr='old']) .header .burger i:nth-child(2) { right: 7px; }
+  html:not([data-hdr='old']) .header .burger i:nth-child(3) { right: 3px; }
+  html:not([data-hdr='old']) .header .burger.is-open i { right: 0; }
+  html:not([data-hdr='old']) .header .menu-btn .burger { position: relative; z-index: 1; transition: color 0.3s; }
+  html:not([data-hdr='old']) .header .menu-btn::before {
+    content: ''; position: absolute; inset: 5px; border-radius: 50%;
+    background: var(--gold-grad); opacity: 0; transform: scale(0.5);
+    transition: opacity 0.35s, transform 0.55s var(--ease), border-radius 0.55s var(--ease);
+  }
+  html:not([data-hdr='old']) .header .menu-btn.open::before { opacity: 1; border-radius: 0 50% 50% 50%; transform: rotate(45deg) scale(0.92); }
+  html:not([data-hdr='old']) .header .menu-btn.open .burger { color: var(--burgundy-ink); }
+  html:not([data-hdr='old']) .header .menu-btn.open:hover { background: none; }
+
+  /* ───────── Full-screen menu: numbered rows with a drop + ───────── */
+  /* Start below the pill, and below the announcement bar while it is on screen. */
+  html:not([data-hdr='old']) nav.mobile-nav { padding-top: calc(env(safe-area-inset-top, 0px) + 86px + max(0px, calc(var(--bar-h) - var(--sy, 0px)))); }
+  html:not([data-hdr='old']) .mobile-nav .mn { counter-reset: mn; }
+  html:not([data-hdr='old']) .mobile-nav .mn-shop .m-title { margin: 0; font: 400 22px/1.1 var(--display); letter-spacing: -0.01em; text-transform: none; color: var(--cream); }
+  html:not([data-hdr='old']) .mobile-nav .mn-shop .m-title::before,
+  html:not([data-hdr='old']) .mobile-nav .mn-acc summary > span::before,
+  html:not([data-hdr='old']) .mobile-nav a.mn-row > span::before {
+    counter-increment: mn; content: counter(mn, decimal-leading-zero);
+    display: inline-block; margin-inline-end: 14px; vertical-align: 0.5em;
+    font: 700 10.5px var(--label); letter-spacing: 0.16em; color: var(--gold);
+  }
+  html:not([data-hdr='old']) .mobile-nav .mn-acc summary { gap: 12px; }
+  html:not([data-hdr='old']) .mobile-nav .mn-dp { flex: none; overflow: visible; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35)); }
+  html:not([data-hdr='old']) .mobile-nav .mn-dp .d { fill: var(--gold); transition: fill 0.3s; }
+  html:not([data-hdr='old']) .mobile-nav .mn-dp .p { fill: none; stroke: var(--burgundy-ink); stroke-width: 3.4; stroke-linecap: round; transform-origin: 24px 34px; transition: transform 0.5s var(--ease); }
+  html:not([data-hdr='old']) .mobile-nav .mn-acc[open] .mn-dp .p { transform: rotate(45deg); }
+  html:not([data-hdr='old']) .mobile-nav .mn-acc[open] .mn-dp .d { fill: var(--gold-light); }
+}
+
+@media (min-width: 768px) and (max-width: 1099.98px) {
+  html:not([data-hdr='old']) .header .header-inner { height: 62px; padding: 0 10px; grid-template-columns: 96px minmax(0, 1fr) 96px; }
+  html:not([data-hdr='old']) .header .brand { font-size: 13px; }
+}
+
+@media (max-width: 359.98px) {
+  html:not([data-hdr='old']) .header .header-inner { grid-template-columns: 80px minmax(0, 1fr) 80px; }
+  html:not([data-hdr='old']) .header .brand { gap: 6px; letter-spacing: 0.06em; }
+  html:not([data-hdr='old']) .header .brand img { width: 22px !important; height: auto; }
+}
+
+/* ───────── Empty cart ───────── */
+.drawer-body:has(.cart-empty) { padding: 14px 18px 22px; }
+.cart-empty { display: grid; gap: 22px; text-align: center; animation: cart-in 0.7s var(--ease) both; }
+.cart-empty-img {
+  position: relative; margin: 0; border-radius: var(--r-md); overflow: hidden; aspect-ratio: 16 / 10.5;
+  background: var(--burgundy-ink); box-shadow: 0 18px 36px -24px rgba(42, 1, 7, 0.7);
+}
+.cart-empty-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; display: block; }
+.cart-empty-img::after { content: ''; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(226, 196, 135, 0.35); pointer-events: none; }
+.cart-empty h4 { font: 400 clamp(26px, 7.4vw, 31px) / 1.1 var(--display); letter-spacing: -0.02em; color: var(--burgundy); padding: 0 6px; text-wrap: balance; }
+.cart-empty .cart-shop {
+  min-height: 54px; font-size: 14px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--burgundy); color: var(--ivory); box-shadow: 0 14px 28px -16px rgba(64, 1, 10, 0.9), inset 0 0 0 1px rgba(226, 196, 135, 0.4);
+}
+.cart-empty .cart-shop::before { background: var(--burgundy-deep); }
+.cart-empty .cart-shop .arrow { color: var(--gold-soft); }
+.cart-note { display: grid; gap: 12px; justify-items: center; padding: 4px 6px 0; }
+.cart-note .drop-mark { width: 22px; height: 22px; color: var(--gold-shadow); }
+.cart-note p { margin: 0; max-width: 30ch; font: 400 clamp(18px, 5vw, 21px) / 1.35 var(--display); color: var(--burgundy); text-wrap: balance; }
+.cart-note small { font: 600 11px/1.5 ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+@keyframes cart-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .cart-empty { animation: none; } }

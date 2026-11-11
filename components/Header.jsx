@@ -29,6 +29,16 @@ function Chevron() {
   );
 }
 
+// Drop-shaped + button, the same one used on the About team cards.
+function DropPlus() {
+  return (
+    <svg className="mn-dp" width="30" height="30" viewBox="0 0 48 48" aria-hidden="true">
+      <path className="d" d="M24 3C24 3 7 22 7 34a17 17 0 0 0 34 0C41 22 24 3 24 3Z" />
+      <g className="p"><path d="M24 27v14M17 34h14" /></g>
+    </svg>
+  );
+}
+
 export default function Header() {
   const { cart, setOpen } = useCart();
   const lang = useLang();
@@ -115,6 +125,7 @@ export default function Header() {
                     <summary tabIndex={tab}>
                       <span>{g.label}</span>
                       <Chevron />
+                      <DropPlus />
                     </summary>
                     <div className="mn-sub">
                       {g.items.map((it) => (
@@ -149,6 +160,9 @@ export default function Header() {
 
       <header className={`header ${hidden && !menuOpen ? 'hidden' : ''}`}>
         <div className="header-inner">
+          <button className={`icon-btn menu-btn ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen((m) => !m)} aria-label={t.menu} aria-expanded={menuOpen}>
+            <span className={`burger ${menuOpen ? 'is-open' : ''}`} aria-hidden="true"><i /><i /><i /></span>
+          </button>
           <Logo size={26} />
           <nav className={`nav ${hold ? 'nav-hold' : ''}`} aria-label={t.main} onClickCapture={navClick} onMouseLeave={() => setHold(false)}>
             {menu.map((g) =>
@@ -201,10 +215,7 @@ export default function Header() {
                 <path d="M5 8h14l-1 12H6L5 8Z" />
                 <path d="M9 8V6a3 3 0 0 1 6 0v2" />
               </svg>
-              {count > 0 && <span className="cart-count">{count}</span>}
-            </button>
-            <button className="icon-btn menu-btn" onClick={() => setMenuOpen((m) => !m)} aria-label={t.menu} aria-expanded={menuOpen}>
-              <span className={`burger ${menuOpen ? 'is-open' : ''}`} aria-hidden="true"><i /><i /><i /></span>
+              {count > 0 && <span className="cart-count"><b>{count}</b></span>}
             </button>
           </div>
         </div>

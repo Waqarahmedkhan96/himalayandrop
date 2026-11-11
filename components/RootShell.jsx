@@ -7,6 +7,7 @@ import CartDrawer from './CartDrawer';
 import OfferPopup from './OfferPopup';
 import CookieConsent from './CookieConsent';
 import HeroSwitch, { HERO_SCRIPT } from './HeroSwitch';
+import HeaderSwitch, { HDR_SCRIPT } from './HeaderSwitch';
 import JsonLd from './JsonLd';
 import { LangProvider } from './LangProvider';
 import { CartProvider } from '@/lib/cart';
@@ -20,6 +21,7 @@ export default function RootShell({ lang, children }) {
     <html lang={LANGS[lang]?.hreflang || lang} dir={LANGS[lang]?.dir || 'ltr'} data-lang={lang} suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: HERO_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: HDR_SCRIPT }} />
         <a href="#main" className="skip-link">{SKIP[lang] || SKIP.en}</a>
         <JsonLd data={organizationLd(lang)} />
         <LangProvider lang={lang}>
@@ -33,6 +35,7 @@ export default function RootShell({ lang, children }) {
             <OfferPopup />
             <CookieConsent />
             <HeroSwitch />
+            <HeaderSwitch />
           </CartProvider>
         </LangProvider>
       </body>

@@ -8,6 +8,7 @@
 @import './about.css';
 @import './videoreels.css';
 @import './announce.css';
+@import './header-cart.css';
 
 :root {
   --maroon: #580f1b;
