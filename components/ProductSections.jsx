@@ -5,8 +5,8 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from './LLink';
 import Accordion from './Accordion';
-import ReviewCard from './ReviewCard';
 import VideoReels from './VideoReels';
+import ReviewMarquee from './ReviewMarquee';
 import { Stars } from './Icons';
 import { Arrow } from './Arrow';
 import { useLang } from './LangProvider';
@@ -91,196 +91,6 @@ export function ProofStrip() {
 }
 
 // ───────── 2. Lab spotlight: fulvic acid + heavy metals ─────────
-export function LabSpotlight({ product }) {
-  const lang = useLang();
-  const t = pdpText(lang).lab;
-  const root = useRef(null);
-  const num = useRef(null);
-  const R = 92;
-  const C = 2 * Math.PI * R;
-  const date = new Intl.DateTimeFormat(`${LANGS[lang]?.locale || 'en-GB'}-u-nu-latn`, { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(LAB.date));
-
-  useGSAP(
-    () => {
-      const st = { trigger: root.current, start: 'top 70%', once: true };
-      if (prefersReducedMotion()) return;
-      const o = { v: 0 };
-      const tl = gsap.timeline({ scrollTrigger: st });
-      tl.from('.lab-card', { clipPath: 'inset(6% 4% 6% 4% round 40px)', duration: 1.3, ease: 'expo.out' })
-        .from('.lab-copy > *', { y: 26, opacity: 0, stagger: 0.07, duration: 1, ease: 'expo.out' }, 0.15)
-        .fromTo('.lab-ring-val', { strokeDashoffset: C }, { strokeDashoffset: C * (1 - LAB.fulvic / 100), duration: 2.2, ease: 'power3.out' }, 0.3)
-        .to(o, { v: LAB.fulvic, duration: 2.2, ease: 'power3.out', onUpdate: () => { if (num.current) num.current.textContent = nf(lang, o.v); } }, 0.3)
-        .from('.lab-product', { y: 60, opacity: 0, rotate: -6, duration: 1.4, ease: 'expo.out' }, 0.4)
-        .from('.lab-spec tr', { x: -20, opacity: 0, stagger: 0.07, duration: 0.8, ease: 'expo.out' }, 0.6);
-      gsap.from('.metal-fill', { scaleX: 0, duration: 1.6, stagger: 0.15, ease: 'expo.out', scrollTrigger: { trigger: '.lab-metals', start: 'top 85%', once: true } });
-      gsap.to('.lab-orbit', { rotation: 360, svgOrigin: '120 120', duration: 30, repeat: -1, ease: 'none' });
-      gsap.to('.lab-product', { yPercent: -8, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: true } });
-    },
-    { scope: root }
-  );
-
-  return (
-    <section className="section lab-section" ref={root} id="lab">
-      <div className="container">
-        <div className="lab-card">
-          <div className="lab-copy">
-            <p className="eyebrow lab-eyebrow"><i aria-hidden="true" /> {t.eyebrow}</p>
-            <h2>{t.h} <em className="gold-text">{t.hg}</em></h2>
-            <p className="lab-lead">{t.p}</p>
-            <table className="lab-spec">
-              <tbody>
-                <tr><th scope="row">{t.result}</th><td><strong><bdi dir="ltr">{pct(lang, LAB.fulvic)} ± {nf(lang, LAB.fulvicMargin)}</bdi></strong> {t.fulvicLabel}</td></tr>
-                <tr><th scope="row">{t.method}</th><td>{LAB.method}</td></tr>
-                <tr><th scope="row">{t.lab}</th><td>{t.labName}</td></tr>
-                <tr><th scope="row">{t.report}</th><td><bdi>{LAB.report}</bdi> · {date}</td></tr>
-              </tbody>
-            </table>
-            <div className="lab-actions">
-              <Link href="/lab-results/" className="btn gold">{t.cta} <Arrow /></Link>
-              <span className="lab-certs">{t.certs} {LAB.certs.map((c) => <b key={c}>{c}</b>)}</span>
-            </div>
-          </div>
-          <div className="lab-stage" aria-hidden="true">
-            <svg className="lab-ring" viewBox="0 0 240 240">
-              <defs>
-                <linearGradient id="lab-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#eed9a6" /><stop offset=".5" stopColor="#cca25e" /><stop offset="1" stopColor="#b88f4d" /></linearGradient>
-              </defs>
-              <g className="lab-orbit">
-                <circle cx="120" cy="120" r="112" fill="none" stroke="rgba(226,196,135,.35)" strokeDasharray="1 7" />
-                <circle cx="120" cy="8" r="3" fill="#e2c487" />
-              </g>
-              <circle cx="120" cy="120" r={R} fill="none" stroke="rgba(247,241,232,.1)" strokeWidth="14" />
-              <circle className="lab-ring-val" cx="120" cy="120" r={R} fill="none" stroke="url(#lab-g)" strokeWidth="14" strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - LAB.fulvic / 100)} transform="rotate(-90 120 120)" />
-            </svg>
-            <div className="lab-num">
-              <strong><span ref={num}>{nf(lang, LAB.fulvic)}</span><small>%</small></strong>
-              <span>{t.fulvicLabel}</span>
-            </div>
-            <img className="lab-product" src={product.image} alt="" loading="lazy" />
-            <div className="lab-ticket">
-              <span>{t.example}</span>
-              <b><bdi>{LAB.report}</bdi></b>
-            </div>
-          </div>
-        </div>
-
-        <div className="lab-metals">
-          <div className="lab-metals-head">
-            <h3>{t.metalsH}</h3>
-            <p>{t.metalsP}</p>
-          </div>
-          <ul>
-            {LAB.metals.map((m) => {
-              const share = Math.max(2, Math.round((m.value / m.limit) * 100));
-              return (
-                <li key={m.key}>
-                  <div className="metal-top">
-                    <span className="metal-sym">{m.sym}</span>
-                    <strong>{t.metals[m.key]}</strong>
-                    <span className="metal-val"><bdi>{nf(lang, m.value, m.value < 0.1 ? 3 : 2)} mg/kg</bdi></span>
-                  </div>
-                  <div className="metal-bar" role="img" aria-label={t.ofLimit(share)}>
-                    <span className="metal-fill" style={{ width: `${share}%` }} />
-                  </div>
-                  <div className="metal-foot">
-                    <span>{t.ofLimit(share)}</span>
-                    <span>{t.limit}: <bdi>{nf(lang, m.limit, m.limit < 1 ? 2 : 1)} mg/kg</bdi></span>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-          {product.formula?.note && <p className="lab-note">*{product.formula.note}</p>}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ───────── 3. Label: supplement facts / typical analysis ─────────
-export function LabelPanel({ product, kind }) {
-  const lang = useLang();
-  const t = pdpText(lang).facts;
-  const root = useRef(null);
-  const f = product.formula;
-  const keys = FORMULA_KEYS[kind];
-  const isFormula = kind !== 'resin' && f && keys;
-
-  useGSAP(
-    () => {
-      if (prefersReducedMotion()) return;
-      const st = { trigger: root.current, start: 'top 72%', once: true };
-      gsap.timeline({ scrollTrigger: st })
-        .from('.facts-copy > *', { y: 26, opacity: 0, stagger: 0.07, duration: 1, ease: 'expo.out' })
-        .from('.facts-label', { y: 60, rotate: 2, opacity: 0, duration: 1.3, ease: 'expo.out' }, 0.1)
-        .from('.facts-label tbody tr', { opacity: 0, x: 16, stagger: 0.06, duration: 0.7, ease: 'expo.out' }, 0.5)
-        .from('.nrv-fill', { scaleX: 0, stagger: 0.1, duration: 1.2, ease: 'expo.out' }, 0.8);
-    },
-    { scope: root }
-  );
-
-  return (
-    <section className="section facts-section" ref={root} id="facts">
-      <div className="container facts-grid">
-        <div className="facts-copy">
-          <p className="eyebrow">{t.eyebrow}</p>
-          <h2>{t.h} <em>{t.hg}</em></h2>
-          <p className="facts-lead">{t.p}</p>
-          {kind === 'resin' && (
-            <ul className="free-list">
-              {t.free.map((x) => <li key={x}><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>{x}</li>)}
-            </ul>
-          )}
-          {kind === 'capsules' && (
-            <div className="claims">
-              <h3>{t.claimsH}</h3>
-              <ul>{t.claims.map((c) => <li key={c}>{c}</li>)}</ul>
-            </div>
-          )}
-        </div>
-        <div className="facts-label">
-          <div className="fl-head">
-            <span className="fl-brand">Himalayan Drop<sup>®</sup></span>
-            <h3>{isFormula ? f.title : t.resinH}</h3>
-            <p>{isFormula ? f.serving : product.subtitle}</p>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">{isFormula ? t.perServing : t.resinServing}</th>
-                <th scope="col">{t.amount}</th>
-                {isFormula && <th scope="col">{t.nrv}</th>}
-              </tr>
-            </thead>
-            <tbody>
-              {isFormula
-                ? f.rows.map(([n, a], i) => {
-                    const p = nrvPct(keys[i], a);
-                    return (
-                      <tr key={n}>
-                        <th scope="row">{n}</th>
-                        <td><bdi>{a}</bdi></td>
-                        <td>
-                          {p != null ? (
-                            <span className="nrv"><span className="nrv-bar"><span className="nrv-fill" style={{ width: `${Math.min(100, p)}%` }} /></span><bdi>{p}%</bdi></span>
-                          ) : '†'}
-                        </td>
-                      </tr>
-                    );
-                  })
-                : t.resinRows.map(([n, a]) => (
-                    <tr key={n}><th scope="row">{n}</th><td><bdi>{a}</bdi></td></tr>
-                  ))}
-            </tbody>
-          </table>
-          <p className="fl-note">{isFormula ? t.nrvNote : `*${f?.note || ''}`}</p>
-          {isFormula && f.note && <p className="fl-note">{f.note}</p>}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ───────── 4. Inside: compounds (resin) or ingredients (formulas) ─────────
 export function InsideGrid({ product, kind }) {
   const lang = useLang();
@@ -376,9 +186,7 @@ export function ProductReviews({ product, kind }) {
         <h3 className="rv-sub">{t.videosH}</h3>
         <VideoReels items={t.caps.map((cap, i) => ({ cap, dur: DUR[i], src: `${dir}/video-${i + 1}.mp4`, poster: `${dir}/video-${i + 1}.webp` }))} sample={SAMPLE[lang] || SAMPLE.en} play={t.play} />
 
-        <div className="rv-texts">
-          {reviews.map((r, i) => <ReviewCard key={i} r={r} />)}
-        </div>
+        <ReviewMarquee reviews={reviews} />
       </div>
     </section>
   );

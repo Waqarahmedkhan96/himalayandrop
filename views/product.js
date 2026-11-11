@@ -4,8 +4,11 @@ import MythDeck from '@/components/MythDeck';
 import StoneComposition from '@/components/StoneComposition';
 import ProductChips from '@/components/ProductChips';
 import Comparison from '@/components/Comparison';
+import Harvest from '@/components/Harvest';
+import CertTabs from '@/components/CertTabs';
+import { LabSpotlight, HeavyMetals } from '@/components/LabResults';
 import JsonLd from '@/components/JsonLd';
-import { ProofStrip, LabSpotlight, LabelPanel, ProductReviews, Guarantee, ProductFaq, StickyBuy, RefreshOnLoad } from '@/components/ProductSections';
+import { ProofStrip, ProductReviews, Guarantee, ProductFaq, StickyBuy, RefreshOnLoad } from '@/components/ProductSections';
 import { faqItems } from '@/lib/pdp';
 import { getProduct, getProducts, isShopifyConnected } from '@/lib/shopify';
 import { productSeo } from '@/lib/products';
@@ -86,12 +89,14 @@ export default async function ProductPageView({ lang, handle }) {
       <ProductView product={product} />
       <ProofStrip />
       <LabSpotlight product={product} />
-      <LabelPanel product={product} kind={kind} />
+      <HeavyMetals />
+      <Harvest />
       <StoneComposition />
       <ProductChips product={product} kind={kind} />
       <MythDeck kind={kind} />
       <ProductReviews product={product} kind={kind} />
       <Comparison initial={kind} />
+      <CertTabs />
       <Guarantee product={product} kind={kind} />
       <ProductFaq product={product} kind={kind} />
       <StickyBuy product={product} />
