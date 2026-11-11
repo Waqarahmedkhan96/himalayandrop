@@ -4,12 +4,12 @@ import Link from './LLink';
 import { useT } from './LangProvider';
 
 const T = {
-  en: { step: 'Step', nothing: 'Nothing added', images: 'Product images', shop: 'Shop', soon: 'Launching soon', vat: 'incl. VAT', buy: 'Buy now', add: 'Add to cart', trust: ['Harvested above 5,000 m', 'Danish brand', 'Lab report per batch'], ingredient: 'Ingredient', amount: 'Amount', how: 'How to use', storage: 'Storage', caution: 'Caution', lab: 'Lab results', labText: 'Each batch is tested by an independent lab for heavy metals, quality and fulvic acid. Look up your batch number on our Lab results page.' },
-  da: { step: 'Trin', nothing: 'Intet tilsat', images: 'Produktbilleder', shop: 'Shop', soon: 'Lanceres snart', vat: 'inkl. moms', buy: 'Køb nu', add: 'Læg i kurv', trust: ['Høstet over 5.000 m', 'Dansk brand', 'Rapport for hver batch'], ingredient: 'Ingrediens', amount: 'Mængde', how: 'Sådan bruger du det', storage: 'Opbevaring', caution: 'Advarsler', lab: 'Laboratorieresultater', labText: 'Hver batch testes af et uafhængigt laboratorium for tungmetaller, kvalitet og fulvinsyre. Find dit batchnummer på siden Laboratorieresultater.' },
-  de: { step: 'Schritt', nothing: 'Nichts zugesetzt', images: 'Produktbilder', shop: 'Shop', soon: 'Bald erhältlich', vat: 'inkl. MwSt.', buy: 'Jetzt kaufen', add: 'In den Warenkorb', trust: ['Geerntet über 5.000 m', 'Dänische Marke', 'Laborbericht je Charge'], ingredient: 'Zutat', amount: 'Menge', how: 'Anwendung', storage: 'Aufbewahrung', caution: 'Hinweise', lab: 'Laborergebnisse', labText: 'Jede Charge wird von einem unabhängigen Labor auf Schwermetalle, Qualität und Fulvinsäure geprüft. Gib deine Chargennummer auf unserer Seite Laborergebnisse ein.' },
-  fr: { step: 'Étape', nothing: 'Rien d’ajouté', images: 'Images du produit', shop: 'Boutique', soon: 'Bientôt disponible', vat: 'TVA incluse', buy: 'Acheter', add: 'Ajouter au panier', trust: ['Récolté au-dessus de 5 000 m', 'Marque danoise', 'Rapport de labo par lot'], ingredient: 'Ingrédient', amount: 'Quantité', how: 'Utilisation', storage: 'Conservation', caution: 'Précautions', lab: 'Résultats de laboratoire', labText: 'Chaque lot est testé par un laboratoire indépendant : métaux lourds, qualité et acide fulvique. Consultez votre numéro de lot sur notre page Résultats de laboratoire.' },
-  es: { step: 'Paso', nothing: 'Nada añadido', images: 'Imágenes del producto', shop: 'Tienda', soon: 'Próximamente', vat: 'IVA incluido', buy: 'Comprar ahora', add: 'Añadir al carrito', trust: ['Recolectado a más de 5.000 m', 'Marca danesa', 'Informe de laboratorio por lote'], ingredient: 'Ingrediente', amount: 'Cantidad', how: 'Modo de uso', storage: 'Conservación', caution: 'Advertencias', lab: 'Resultados de laboratorio', labText: 'Cada lote lo analiza un laboratorio independiente: metales pesados, calidad y ácido fúlvico. Busca tu número de lote en nuestra página Resultados de laboratorio.' },
-  ar: { step: 'الخطوة', nothing: 'لا شيء مضاف', images: 'صور المنتج', shop: 'المتجر', soon: 'قريباً', vat: 'شامل الضريبة', buy: 'اشترِ الآن', add: 'أضف إلى السلة', trust: ['يُجمع فوق 5000 متر', 'علامة دنماركية', 'تقرير مخبري لكل دفعة'], ingredient: 'المكوّن', amount: 'الكمية', how: 'طريقة الاستخدام', storage: 'الحفظ', caution: 'تحذيرات', lab: 'نتائج المختبر', labText: 'يفحص مختبر مستقل كل دفعة للمعادن الثقيلة والجودة وحمض الفولفيك. ابحث عن رقم دفعتك في صفحة نتائج المختبر.' },
+  en: { step: 'Step', nothing: 'Nothing added', images: 'Product images', shop: 'Shop', soon: 'Launching soon', vat: 'incl. VAT', buy: 'Buy now', add: 'Add to cart', trust: ['Harvested above 5,000 m', 'Tested in Denmark', 'Lab report per batch'], ingredient: 'Ingredient', amount: 'Amount', how: 'How to use', storage: 'Storage', caution: 'Caution', lab: 'Lab results', labText: 'Each batch is tested by an independent lab for heavy metals, quality and fulvic acid. Look up your batch number on our Lab results page.' },
+  da: { step: 'Trin', nothing: 'Intet tilsat', images: 'Produktbilleder', shop: 'Shop', soon: 'Lanceres snart', vat: 'inkl. moms', buy: 'Køb nu', add: 'Læg i kurv', trust: ['Høstet over 5.000 m', 'Testet i Danmark', 'Rapport for hver batch'], ingredient: 'Ingrediens', amount: 'Mængde', how: 'Sådan bruger du det', storage: 'Opbevaring', caution: 'Advarsler', lab: 'Laboratorieresultater', labText: 'Hver batch testes af et uafhængigt laboratorium for tungmetaller, kvalitet og fulvinsyre. Find dit batchnummer på siden Laboratorieresultater.' },
+  de: { step: 'Schritt', nothing: 'Nichts zugesetzt', images: 'Produktbilder', shop: 'Shop', soon: 'Bald erhältlich', vat: 'inkl. MwSt.', buy: 'Jetzt kaufen', add: 'In den Warenkorb', trust: ['Geerntet über 5.000 m', 'In Dänemark getestet', 'Laborbericht je Charge'], ingredient: 'Zutat', amount: 'Menge', how: 'Anwendung', storage: 'Aufbewahrung', caution: 'Hinweise', lab: 'Laborergebnisse', labText: 'Jede Charge wird von einem unabhängigen Labor auf Schwermetalle, Qualität und Fulvinsäure geprüft. Gib deine Chargennummer auf unserer Seite Laborergebnisse ein.' },
+  fr: { step: 'Étape', nothing: 'Rien d’ajouté', images: 'Images du produit', shop: 'Boutique', soon: 'Bientôt disponible', vat: 'TVA incluse', buy: 'Acheter', add: 'Ajouter au panier', trust: ['Récolté au-dessus de 5 000 m', 'Testé au Danemark', 'Rapport de labo par lot'], ingredient: 'Ingrédient', amount: 'Quantité', how: 'Utilisation', storage: 'Conservation', caution: 'Précautions', lab: 'Résultats de laboratoire', labText: 'Chaque lot est testé par un laboratoire indépendant : métaux lourds, qualité et acide fulvique. Consultez votre numéro de lot sur notre page Résultats de laboratoire.' },
+  es: { step: 'Paso', nothing: 'Nada añadido', images: 'Imágenes del producto', shop: 'Tienda', soon: 'Próximamente', vat: 'IVA incluido', buy: 'Comprar ahora', add: 'Añadir al carrito', trust: ['Recolectado a más de 5.000 m', 'Analizado en Dinamarca', 'Informe de laboratorio por lote'], ingredient: 'Ingrediente', amount: 'Cantidad', how: 'Modo de uso', storage: 'Conservación', caution: 'Advertencias', lab: 'Resultados de laboratorio', labText: 'Cada lote lo analiza un laboratorio independiente: metales pesados, calidad y ácido fúlvico. Busca tu número de lote en nuestra página Resultados de laboratorio.' },
+  ar: { step: 'الخطوة', nothing: 'لا شيء مضاف', images: 'صور المنتج', shop: 'المتجر', soon: 'قريباً', vat: 'شامل الضريبة', buy: 'اشترِ الآن', add: 'أضف إلى السلة', trust: ['يُجمع فوق 5000 متر', 'فُحص في الدنمارك', 'تقرير مخبري لكل دفعة'], ingredient: 'المكوّن', amount: 'الكمية', how: 'طريقة الاستخدام', storage: 'الحفظ', caution: 'تحذيرات', lab: 'نتائج المختبر', labText: 'يفحص مختبر مستقل كل دفعة للمعادن الثقيلة والجودة وحمض الفولفيك. ابحث عن رقم دفعتك في صفحة نتائج المختبر.' },
 };
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { useCart } from '@/lib/cart';
@@ -20,6 +20,8 @@ import { SUBSCRIBE_PCT } from '@/lib/subscription';
 import { Arrow } from './Arrow';
 import { Icon } from './Icons';
 import RealIcon from './RealIcon';
+import RatingLine from './RatingLine';
+import NutritionLabel from './NutritionLabel';
 import { FORMULA_KEYS } from '@/lib/labdata';
 import { howToSteps } from './HowToTabs';
 import { kindOf } from '@/lib/benefits';
@@ -181,6 +183,10 @@ export default function ProductView({ product }) {
               ))}
             </div>
           )}
+          <div className="pdp-after">
+            <RatingLine />
+            <NutritionLabel product={product} kind={kind} />
+          </div>
         </div>
         <div className="pdp-info">
           <p className="crumb">
