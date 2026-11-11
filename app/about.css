@@ -6,7 +6,10 @@
 .ab-sec { padding: clamp(56px, 8vw, 96px) 18px; max-width: 1280px; margin: 0 auto; }
 
 .ab-hero { padding: clamp(110px, 14vw, 170px) 14px clamp(48px, 7vw, 80px); background: linear-gradient(180deg, #f3e1d6 0%, var(--ivory) 60%); text-align: center; }
-.ab-hero h1 { max-width: 19em; margin: 0 auto clamp(36px, 6vw, 72px); font-size: var(--fs-h1); line-height: 1.12; padding: 0 8px; }
+.ab-hero h1 { max-width: 1104px; margin: 0 auto clamp(36px, 6vw, 72px); font-size: clamp(28px, 8.4vw, 34px); line-height: 1.12; letter-spacing: -0.02em; padding: 0 8px; }
+/* Same sizes as IM8's About statement: 34px tablet, 46px laptop, 56px large screens */
+@media (min-width: 990px) { .ab-hero h1 { font-size: 46px; } }
+@media (min-width: 1440px) { .ab-hero h1 { font-size: 56px; } }
 .ab-pillars { display: grid; gap: 14px; max-width: 1400px; margin: 0 auto; grid-template-columns: 1fr; }
 .ab-pillars img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 22px; display: block; }
 @media (min-width: 820px) { .ab-pillars { grid-template-columns: repeat(3, 1fr); } }
