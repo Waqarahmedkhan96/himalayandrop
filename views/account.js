@@ -32,10 +32,6 @@ const T = {
     login: { title: 'مرحباً', accent: 'بعودتك.', lead: 'سجّل الدخول لرؤية طلباتك ونقاط مكافآت Summit.', switchText: 'جديد في Himalayan Drop؟', switchLabel: 'أنشئ حساباً' },
     register: { title: 'أنشئ', accent: 'حسابك.', lead: 'انضم إلى مكافآت Summit وابدأ من المخيم الأساسي بـ100 نقطة.', switchText: 'لديك حساب بالفعل؟', switchLabel: 'تسجيل الدخول' },
   },
-  ur: {
-    login: { title: 'دوبارہ', accent: 'خوش آمدید۔', lead: 'اپنے آرڈرز اور سمٹ ریوارڈز پوائنٹس دیکھنے کے لیے لاگ ان کریں۔', switchText: 'Himalayan Drop پر نئے ہیں؟', switchLabel: 'اکاؤنٹ بنائیں' },
-    register: { title: 'اپنا', accent: 'اکاؤنٹ بنائیں۔', lead: 'سمٹ ریوارڈز میں شامل ہوں اور بیس کیمپ سے 100 پوائنٹس کے ساتھ آغاز کریں۔', switchText: 'پہلے سے ممبر ہیں؟', switchLabel: 'لاگ ان' },
-  },
 };
 
 export function LoginView({ lang }) {

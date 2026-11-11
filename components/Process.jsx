@@ -108,7 +108,6 @@ const T = {
   fr: { steps: stepsFr, alt: '5 000 m+', day: 'JOUR', checks: ['Métaux lourds', 'Qualité', 'Acide fulvique %'], eyebrow: 'Notre processus', h: 'De la montagne', hg: 'au pot.', lead: 'Six étapes patientes et jusqu’à 60 jours au soleil. Faites défiler pour suivre le voyage.', within: 'The Mountain', withinG: 'within.' },
   es: { steps: stepsEs, alt: '5.000 m+', day: 'DÍA', checks: ['Metales pesados', 'Calidad', 'Ácido fúlvico %'], eyebrow: 'Nuestro proceso', h: 'De la montaña', hg: 'al tarro.', lead: 'Seis pasos pacientes y hasta 60 días al sol. Desplázate para seguir el viaje.', within: 'The Mountain', withinG: 'within.' },
   ar: { steps: stepsAr, alt: '+5,000 م', day: 'يوم', checks: ['المعادن الثقيلة', 'الجودة', 'نسبة حمض الفولفيك'], eyebrow: 'مراحل الإنتاج', h: 'من الجبل', hg: 'إلى العبوة.', lead: 'ست خطوات متأنية وحتى 60 يوماً تحت الشمس. مرّر لتتبع الرحلة.', within: 'The Mountain', withinG: 'within.' },
-  ur: { steps: stepsUr, alt: '+5,000 میٹر', day: 'دن', checks: ['بھاری دھاتیں', 'معیار', 'فلوک ایسڈ %'], eyebrow: 'ہمارا طریقہ', h: 'پہاڑ سے', hg: 'برتن تک۔', lead: 'چھ صبر آزما مراحل اور 60 دن تک دھوپ۔ سفر دیکھنے کے لیے اسکرول کریں۔', within: 'The Mountain', withinG: 'within.' },
 };
 
 function Scene({ k, day, t }) {

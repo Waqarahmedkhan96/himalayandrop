@@ -19,7 +19,6 @@ const T = {
   fr: { mobile: 'Mobile', main: 'Menu principal', login: 'Connexion', create: 'Créer un compte', discover: 'Découvrir', account: 'Compte', cart: (n) => `Ouvrir le panier, ${n} articles`, menu: 'Menu', viewAll: 'Voir tous les produits', trust: ['Chaque lot testé en laboratoire', 'Garantie satisfait ou remboursé 60 jours'] },
   es: { mobile: 'Móvil', main: 'Menú principal', login: 'Iniciar sesión', create: 'Crear cuenta', discover: 'Descubrir', account: 'Cuenta', cart: (n) => `Abrir carrito, ${n} artículos`, menu: 'Menú', viewAll: 'Ver todos los productos', trust: ['Cada lote analizado en laboratorio', 'Garantía de devolución de 60 días'] },
   ar: { mobile: 'الجوال', main: 'القائمة الرئيسية', login: 'تسجيل الدخول', create: 'إنشاء حساب', discover: 'اكتشف', account: 'الحساب', cart: (n) => `فتح السلة، ${n} منتجات`, menu: 'القائمة', viewAll: 'عرض جميع المنتجات', trust: ['كل دفعة مفحوصة مخبرياً', 'ضمان استرداد المال لمدة 60 يوماً'] },
-  ur: { mobile: 'موبائل', main: 'مین مینو', login: 'لاگ ان', create: 'اکاؤنٹ بنائیں', discover: 'مزید دیکھیں', account: 'اکاؤنٹ', cart: (n) => `کارٹ کھولیں، ${n} اشیاء`, menu: 'مینو', viewAll: 'تمام مصنوعات دیکھیں', trust: ['ہر بیچ لیب ٹیسٹڈ', '60 دن کی منی بیک گارنٹی'] },
 };
 
 function Chevron() {

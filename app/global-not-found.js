@@ -1,6 +1,7 @@
-import '@fontsource-variable/playfair-display';
-import '@fontsource-variable/playfair-display/wght-italic.css';
-import '@fontsource-variable/manrope';
+import '@fontsource-variable/rosario';
+import '@fontsource-variable/rosario/wght-italic.css';
+import '@fontsource-variable/albert-sans';
+import '@fontsource/space-mono/latin-700.css';
 import 'lenis/dist/lenis.css';
 import './globals.css';
 

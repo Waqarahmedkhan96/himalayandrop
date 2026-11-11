@@ -14,7 +14,7 @@ const ITEMS = [
 const SAMPLE = {
   en: 'Sample test report · PCSIR Karachi · Nov 2023', da: 'Eksempel på testrapport · PCSIR Karachi · nov. 2023', de: 'Beispiel-Prüfbericht · PCSIR Karachi · Nov. 2023',
   fr: 'Exemple de rapport d’essai · PCSIR Karachi · nov. 2023', es: 'Informe de ensayo de muestra · PCSIR Karachi · nov. 2023',
-  ar: 'نموذج تقرير اختبار · PCSIR كراتشي · نوفمبر 2023', ur: 'نمونہ ٹیسٹ رپورٹ · PCSIR کراچی · نومبر 2023',
+  ar: 'نموذج تقرير اختبار · PCSIR كراتشي · نوفمبر 2023', 
 };
 
 const SHORT = ['GMP', 'ISO 22000', 'ISO 9001'];

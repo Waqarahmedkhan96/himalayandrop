@@ -34,7 +34,6 @@ const MAP = {
   fr: { route: 'Une route de l’Himalaya au Danemark', sourced: 'RÉCOLTÉ AU-DESSUS DE 5 000 M', dk: 'Danemark', packed: 'CONÇU ET CONDITIONNÉ' },
   es: { route: 'Una ruta del Himalaya a Dinamarca', sourced: 'RECOLECTADO A MÁS DE 5.000 M', dk: 'Dinamarca', packed: 'DISEÑADO Y ENVASADO' },
   ar: { route: 'رحلة من الهيمالايا إلى الدنمارك', sourced: 'يُجمع فوق 5000 متر', dk: 'الدنمارك', packed: 'التصميم والتعبئة' },
-  ur: { route: 'ہمالیہ سے ڈنمارک تک کا سفر', sourced: '5,000 میٹر سے بلند سے حاصل', dk: 'ڈنمارک', packed: 'ڈیزائن اور پیکنگ' },
 };
 
 export function Route() {
@@ -65,12 +64,12 @@ export function Route() {
           <circle r="18" fill="rgba(204,162,94,0.18)" /><circle r="7" fill="#eed9a6" />
         </g>
         <g className="route-label">
-          <text x="470" y="210" textAnchor="middle" fill="#f7f1e8" fontSize="18" fontFamily="Playfair Display Variable, Playfair Display, serif">Skardu</text>
-          <text x="470" y="232" textAnchor="middle" fill="#e2c487" fontSize="11" fontWeight="700" letterSpacing="2" fontFamily="Manrope Variable, Manrope, sans-serif">{m.sourced}</text>
+          <text x="470" y="210" textAnchor="middle" fill="#f7f1e8" fontSize="18" fontFamily="Rosario Variable, Rosario, sans-serif">Skardu</text>
+          <text x="470" y="232" textAnchor="middle" fill="#e2c487" fontSize="11" fontWeight="700" letterSpacing="2" fontFamily="Albert Sans Variable, Albert Sans, sans-serif">{m.sourced}</text>
         </g>
         <g className="route-label">
-          <text x="120" y="88" textAnchor="middle" fill="#f7f1e8" fontSize="18" fontFamily="Playfair Display Variable, Playfair Display, serif">{m.dk}</text>
-          <text x="120" y="66" textAnchor="middle" fill="#e2c487" fontSize="11" fontWeight="700" letterSpacing="2" fontFamily="Manrope Variable, Manrope, sans-serif">{m.packed}</text>
+          <text x="120" y="88" textAnchor="middle" fill="#f7f1e8" fontSize="18" fontFamily="Rosario Variable, Rosario, sans-serif">{m.dk}</text>
+          <text x="120" y="66" textAnchor="middle" fill="#e2c487" fontSize="11" fontWeight="700" letterSpacing="2" fontFamily="Albert Sans Variable, Albert Sans, sans-serif">{m.packed}</text>
         </g>
       </svg>
     </div>

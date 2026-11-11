@@ -34,10 +34,6 @@ const T = {
     names: ['راتنج الهيمالايا الذهبي', 'راتنج سكردو الفاخر', 'علكات شيلاجيت', 'قطرات شيلاجيت', 'كبسولات شيلاجيت'],
     short: ['راتنج الهيمالايا الذهبي', 'راتنج سكردو الفاخر', 'العلكات', 'القطرات', 'الكبسولات'],
     detail: ['إصدار الهيمالايا الذهبي · 30 غ', 'سكردو الفاخر · 30 غ', 'فراولة · 60 علكة', 'بيلسان · 30 مل', 'تركيبة يومية · 60 كبسولة'] },
-  ur: { eyebrow: 'کلیکشن', title: 'اپنی روزانہ کی رسم چنیں۔', sub: 'ریزن، گمیز، ڈراپس اور کیپسول۔', prev: 'پچھلی پروڈکٹس', next: 'اگلی پروڈکٹس', status: '{n} میں سے {a} تا {b}', shop: '{x} خریدیں',
-    names: ['ہمالین گولڈ ریزن', 'پریمیم اسکردو ریزن', 'سلاجیت گمیز', 'سلاجیت ڈراپس', 'سلاجیت کیپسول'],
-    short: ['ہمالین گولڈ ریزن', 'پریمیم اسکردو ریزن', 'گمیز', 'ڈراپس', 'کیپسول'],
-    detail: ['ہمالین گولڈ ایڈیشن · 30 گرام', 'پریمیم اسکردو · 30 گرام', 'اسٹرابیری · 60 گمیز', 'ایلڈربیری · 30 ملی لیٹر', 'روزانہ فارمولا · 60 کیپسول'] },
 };
 
 // Each product's display plate: one third of the reference artwork (alcove,
@@ -56,7 +52,7 @@ const pad = (n) => String(n).padStart(2, '0');
 export default function CollectionGallery({ products }) {
   const lang = useLang();
   const t = T[lang] || T.en;
-  const rtl = lang === 'ar' || lang === 'ur';
+  const rtl = lang === 'ar';
   const track = useRef(null);
   const drag = useRef(null);
   const [view, setView] = useState({ first: 0, per: 3 });

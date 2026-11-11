@@ -13,7 +13,7 @@ import { CartProvider } from '@/lib/cart';
 import { organizationLd } from '@/lib/seo';
 import { LANGS } from '@/lib/i18n';
 
-const SKIP = { en: 'Skip to content', da: 'Gå til indhold', de: 'Zum Inhalt springen', fr: 'Aller au contenu', es: 'Ir al contenido', ar: 'انتقل إلى المحتوى', ur: 'مواد پر جائیں' };
+const SKIP = { en: 'Skip to content', da: 'Gå til indhold', de: 'Zum Inhalt springen', fr: 'Aller au contenu', es: 'Ir al contenido', ar: 'انتقل إلى المحتوى' };
 
 export default function RootShell({ lang, children }) {
   return (

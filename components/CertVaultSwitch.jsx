@@ -11,7 +11,6 @@ const T = {
   fr: { dark: 'Bordeaux', cream: 'Crème', label: 'Style' },
   es: { dark: 'Burdeos', cream: 'Crema', label: 'Estilo' },
   ar: { dark: 'عنابي', cream: 'كريمي', label: 'النمط' },
-  ur: { dark: 'مرون', cream: 'کریم', label: 'انداز' },
 };
 
 export default function CertVaultSwitch() {

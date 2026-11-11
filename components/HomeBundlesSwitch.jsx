@@ -12,7 +12,6 @@ const T = {
   fr: { toCards: 'Passer aux cartes', toRitual: 'Passer à la vue rituel' },
   es: { toCards: 'Cambiar a tarjetas', toRitual: 'Cambiar a vista ritual' },
   ar: { toCards: 'التبديل إلى البطاقات', toRitual: 'التبديل إلى عرض الطقس' },
-  ur: { toCards: 'کارڈز پر جائیں', toRitual: 'رسم کے منظر پر جائیں' },
 };
 
 export default function HomeBundlesSwitch({ bundles }) {

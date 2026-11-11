@@ -21,7 +21,6 @@ const T = {
   fr: { eyebrow: 'Politiques', nav: 'Politiques', template: 'Texte modèle. Remplacez-le par votre propre politique dans Shopify admin → Paramètres → Politiques, vérifiée par un conseiller juridique.' },
   es: { eyebrow: 'Políticas', nav: 'Políticas', template: 'Texto de plantilla. Sustitúyelo por tu propia política en Shopify admin → Configuración → Políticas, revisada por un asesor legal.' },
   ar: { eyebrow: 'السياسات', nav: 'السياسات', template: 'نص نموذجي. استبدله بسياستك الخاصة في لوحة Shopify ← الإعدادات ← السياسات، بعد مراجعته من مستشار قانوني.' },
-  ur: { eyebrow: 'پالیسیاں', nav: 'پالیسیاں', template: 'نمونہ متن۔ اسے Shopify ایڈمن ← سیٹنگز ← پالیسیز میں اپنی قانونی طور پر جانچی ہوئی پالیسی سے بدلیں۔' },
 };
 
 // A new line starts a new paragraph; consecutive lines starting with "- " become a list.

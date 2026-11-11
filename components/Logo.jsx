@@ -2,7 +2,7 @@
 import Link from './LLink';
 import { useLang } from './LangProvider';
 
-const HOME = { en: 'Himalayan Drop home', da: 'Himalayan Drop forside', de: 'Himalayan Drop Startseite', fr: 'Accueil Himalayan Drop', es: 'Inicio de Himalayan Drop', ar: 'الصفحة الرئيسية لـ Himalayan Drop', ur: 'Himalayan Drop ہوم' };
+const HOME = { en: 'Himalayan Drop home', da: 'Himalayan Drop forside', de: 'Himalayan Drop Startseite', fr: 'Accueil Himalayan Drop', es: 'Inicio de Himalayan Drop', ar: 'الصفحة الرئيسية لـ Himalayan Drop' };
 
 export default function Logo({ size = 32 }) {
   const lang = useLang();

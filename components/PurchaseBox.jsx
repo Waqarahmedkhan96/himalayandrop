@@ -1,130 +1,153 @@
 'use client';
-// Purchase box on product pages: One-time or Subscribe & Save, delivery
-// interval, number of packs, a clear total, and Buy now / Add to cart.
+// Purchase box on product pages, in two simple steps:
+//   1. Quantity: 1, 2 or 3 packs, shown with the pack picture.
+//   2. Purchase option: Subscribe & Save (with what you get) or One-time.
+// Then one button with the total.
 // One-time is selected by default: under EU/Danish consumer rules a
 // subscription must be an active choice, never pre-selected.
-// Settings and the Shopify setup are in lib/subscription.js.
+// Badges only state facts we can back up (the saving, the lowest price per
+// pack); no "best seller" claims. Settings live in lib/subscription.js.
 import { useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { formatMoney } from '@/lib/shopify';
-import { SUBSCRIBE_PCT, TIERS, DAYS_PER_PACK, showPerDay, demoPlans, defaultInterval } from '@/lib/subscription';
+import { SUBSCRIBE_PCT, TIERS, DAYS_PER_PACK, demoPlans, defaultInterval } from '@/lib/subscription';
 import { useT } from './LangProvider';
-import { Arrow } from './Arrow';
 
 const T = {
   en: {
-    type: 'Purchase type', once: 'One-time purchase', sub: 'Subscribe & Save', save: (p) => `Save ${p}%`,
-    perDay: '{p} per day', every: 'Deliver every', days: (d) => `${d} days`, rec: 'Recommended',
-    qty: 'Quantity', packs: (n) => (n === 1 ? '1 pack' : `${n} packs`), each: '{p} each',
-    total: 'Total', youSave: 'You save {p}',
-    perks: ['{pct}% off every delivery', 'Change the interval whenever you like', 'Pause, skip or cancel anytime. No binding period'],
+    qty: 'Choose quantity', packs: (n) => (n === 1 ? '1 pack' : `${n} packs`), supply: '{d}-day supply', each: '{p} each',
+    saveTag: (p) => `Save ${p}%`, bestValue: 'Best value',
+    type: 'Purchase option', banner: 'Best price: save {pct}% on every order',
+    sub: 'Subscribe & Save', every: 'Delivered every', days: (d) => `${d} days`, rec: 'Recommended',
+    perks: ['Save {pct}% on every order', 'You choose how often it arrives', 'Skip, pause or cancel anytime. No commitment'],
+    once: 'One-time purchase', onceLine: 'A single order, no subscription',
+    youSave: 'Save {p}',
+    add: 'Add to cart', subAdd: 'Subscribe & add to cart',
     terms: 'Renews automatically every {d} days at {p} until you cancel. Manage or cancel anytime in your account.',
     how: 'How Subscribe & Save works',
     steps: [
-      ['Choose your interval', 'Pick how often you want a new delivery: every 30, 60 or 90 days.'],
-      ['We deliver automatically', 'Your order ships on schedule at the subscription price.'],
-      ['You stay in control', 'Skip a delivery, change the interval or cancel in your account. No fees, no binding period.'],
+      ['Choose how often', 'Every 30, 60 or 90 days. You can change it later.'],
+      ['We deliver automatically', 'Each order ships on time at the subscription price.'],
+      ['You stay in control', 'Skip, pause or cancel in your account. No fees, no commitment.'],
     ],
-    buy: 'Buy now', subscribe: 'Subscribe now', add: 'Add to cart',
   },
   da: {
-    type: 'Købstype', once: 'Engangskøb', sub: 'Abonnér & Spar', save: (p) => `Spar ${p}%`,
-    perDay: '{p} pr. dag', every: 'Levering hver', days: (d) => `${d}. dag`, rec: 'Anbefalet',
-    qty: 'Antal', packs: (n) => (n === 1 ? '1 pakke' : `${n} pakker`), each: '{p} pr. stk.',
-    total: 'I alt', youSave: 'Du sparer {p}',
-    perks: ['{pct} % rabat på hver levering', 'Skift interval, når du vil', 'Sæt på pause, spring over eller opsig når som helst. Ingen binding'],
+    qty: 'Vælg antal', packs: (n) => (n === 1 ? '1 pakke' : `${n} pakker`), supply: 'Rækker {d} dage', each: '{p} pr. stk.',
+    saveTag: (p) => `Spar ${p} %`, bestValue: 'Bedste pris',
+    type: 'Købsmulighed', banner: 'Bedste pris: spar {pct} % på hver ordre',
+    sub: 'Abonnér & Spar', every: 'Levering hver', days: (d) => `${d}. dag`, rec: 'Anbefalet',
+    perks: ['Spar {pct} % på hver ordre', 'Du bestemmer, hvor ofte den kommer', 'Spring over, sæt på pause eller opsig når som helst. Ingen binding'],
+    once: 'Engangskøb', onceLine: 'Én ordre, intet abonnement',
+    youSave: 'Spar {p}',
+    add: 'Læg i kurv', subAdd: 'Abonnér og læg i kurv',
     terms: 'Fornyes automatisk hver {d}. dag til {p}, indtil du opsiger. Administrér eller opsig når som helst på din konto.',
     how: 'Sådan fungerer Abonnér & Spar',
     steps: [
-      ['Vælg dit interval', 'Vælg hvor ofte du vil have en ny levering: hver 30., 60. eller 90. dag.'],
-      ['Vi leverer automatisk', 'Din ordre sendes til tiden til abonnementsprisen.'],
-      ['Du har kontrollen', 'Spring en levering over, skift interval eller opsig på din konto. Ingen gebyrer og ingen binding.'],
+      ['Vælg hvor ofte', 'Hver 30., 60. eller 90. dag. Du kan ændre det senere.'],
+      ['Vi leverer automatisk', 'Hver ordre sendes til tiden til abonnementsprisen.'],
+      ['Du har kontrollen', 'Spring over, sæt på pause eller opsig på din konto. Ingen gebyrer, ingen binding.'],
     ],
-    buy: 'Køb nu', subscribe: 'Abonnér nu', add: 'Læg i kurv',
   },
   de: {
-    type: 'Kaufart', once: 'Einmalkauf', sub: 'Abo & Sparen', save: (p) => `${p} % sparen`,
-    perDay: '{p} pro Tag', every: 'Lieferung alle', days: (d) => `${d} Tage`, rec: 'Empfohlen',
-    qty: 'Menge', packs: (n) => (n === 1 ? '1 Packung' : `${n} Packungen`), each: '{p} pro Stück',
-    total: 'Gesamt', youSave: 'Du sparst {p}',
-    perks: ['{pct} % Rabatt auf jede Lieferung', 'Intervall jederzeit ändern', 'Jederzeit pausieren, überspringen oder kündigen. Keine Mindestlaufzeit'],
+    qty: 'Menge wählen', packs: (n) => (n === 1 ? '1 Packung' : `${n} Packungen`), supply: 'Reicht {d} Tage', each: '{p} pro Stück',
+    saveTag: (p) => `${p} % sparen`, bestValue: 'Bester Preis',
+    type: 'Kaufoption', banner: 'Bester Preis: {pct} % auf jede Bestellung',
+    sub: 'Abo & Sparen', every: 'Lieferung alle', days: (d) => `${d} Tage`, rec: 'Empfohlen',
+    perks: ['{pct} % Rabatt auf jede Bestellung', 'Du bestimmst, wie oft geliefert wird', 'Jederzeit überspringen, pausieren oder kündigen. Keine Mindestlaufzeit'],
+    once: 'Einmalkauf', onceLine: 'Eine Bestellung, kein Abo',
+    youSave: '{p} sparen',
+    add: 'In den Warenkorb', subAdd: 'Abonnieren & in den Warenkorb',
     terms: 'Verlängert sich automatisch alle {d} Tage zum Preis von {p}, bis du kündigst. Verwalten oder kündigen jederzeit in deinem Konto.',
     how: 'So funktioniert Abo & Sparen',
     steps: [
-      ['Wähle dein Intervall', 'Bestimme, wie oft du eine neue Lieferung möchtest: alle 30, 60 oder 90 Tage.'],
-      ['Wir liefern automatisch', 'Deine Bestellung wird pünktlich zum Abo-Preis versendet.'],
-      ['Du behältst die Kontrolle', 'Lieferung überspringen, Intervall ändern oder kündigen in deinem Konto. Keine Gebühren, keine Mindestlaufzeit.'],
+      ['Wähle, wie oft', 'Alle 30, 60 oder 90 Tage. Du kannst es später ändern.'],
+      ['Wir liefern automatisch', 'Jede Bestellung wird pünktlich zum Abo-Preis versendet.'],
+      ['Du behältst die Kontrolle', 'Überspringen, pausieren oder kündigen in deinem Konto. Keine Gebühren, keine Mindestlaufzeit.'],
     ],
-    buy: 'Jetzt kaufen', subscribe: 'Jetzt abonnieren', add: 'In den Warenkorb',
   },
   fr: {
-    type: 'Type d’achat', once: 'Achat unique', sub: 'Abonnement', save: (p) => `-${p} %`,
-    perDay: '{p} par jour', every: 'Livraison tous les', days: (d) => `${d} jours`, rec: 'Recommandé',
-    qty: 'Quantité', packs: (n) => (n === 1 ? '1 unité' : `${n} unités`), each: '{p} l’unité',
-    total: 'Total', youSave: 'Vous économisez {p}',
-    perks: ['{pct} % de réduction sur chaque livraison', 'Changez la fréquence quand vous voulez', 'Pause, report ou résiliation à tout moment. Sans engagement'],
+    qty: 'Choisissez la quantité', packs: (n) => (n === 1 ? '1 unité' : `${n} unités`), supply: 'Pour {d} jours', each: '{p} l’unité',
+    saveTag: (p) => `-${p} %`, bestValue: 'Meilleur prix',
+    type: 'Option d’achat', banner: 'Meilleur prix : -{pct} % sur chaque commande',
+    sub: 'Abonnement', every: 'Livré tous les', days: (d) => `${d} jours`, rec: 'Recommandé',
+    perks: ['-{pct} % sur chaque commande', 'Vous choisissez la fréquence de livraison', 'Report, pause ou résiliation à tout moment. Sans engagement'],
+    once: 'Achat unique', onceLine: 'Une seule commande, sans abonnement',
+    youSave: 'Économisez {p}',
+    add: 'Ajouter au panier', subAdd: 'S’abonner et ajouter au panier',
     terms: 'Renouvelé automatiquement tous les {d} jours au prix de {p} jusqu’à résiliation. Gérez ou résiliez à tout moment depuis votre compte.',
     how: 'Comment fonctionne l’abonnement',
     steps: [
-      ['Choisissez votre fréquence', 'Indiquez à quel rythme vous souhaitez être livré : tous les 30, 60 ou 90 jours.'],
-      ['Livraison automatique', 'Votre commande est expédiée à la date prévue, au prix de l’abonnement.'],
-      ['Vous gardez le contrôle', 'Reportez une livraison, changez la fréquence ou résiliez depuis votre compte. Sans frais, sans engagement.'],
+      ['Choisissez la fréquence', 'Tous les 30, 60 ou 90 jours. Modifiable à tout moment.'],
+      ['Livraison automatique', 'Chaque commande part à temps, au prix de l’abonnement.'],
+      ['Vous gardez le contrôle', 'Reportez, mettez en pause ou résiliez depuis votre compte. Sans frais, sans engagement.'],
     ],
-    buy: 'Acheter', subscribe: 'S’abonner', add: 'Ajouter au panier',
   },
   es: {
-    type: 'Tipo de compra', once: 'Compra única', sub: 'Suscríbete y ahorra', save: (p) => `Ahorra ${p} %`,
-    perDay: '{p} al día', every: 'Entrega cada', days: (d) => `${d} días`, rec: 'Recomendado',
-    qty: 'Cantidad', packs: (n) => (n === 1 ? '1 unidad' : `${n} unidades`), each: '{p} cada uno',
-    total: 'Total', youSave: 'Ahorras {p}',
-    perks: ['{pct} % de descuento en cada envío', 'Cambia la frecuencia cuando quieras', 'Pausa, salta o cancela cuando quieras. Sin permanencia'],
+    qty: 'Elige la cantidad', packs: (n) => (n === 1 ? '1 unidad' : `${n} unidades`), supply: 'Para {d} días', each: '{p} cada uno',
+    saveTag: (p) => `Ahorra ${p} %`, bestValue: 'Mejor precio',
+    type: 'Opción de compra', banner: 'Mejor precio: ahorra {pct} % en cada pedido',
+    sub: 'Suscríbete y ahorra', every: 'Entrega cada', days: (d) => `${d} días`, rec: 'Recomendado',
+    perks: ['Ahorra {pct} % en cada pedido', 'Tú eliges cada cuánto llega', 'Salta, pausa o cancela cuando quieras. Sin permanencia'],
+    once: 'Compra única', onceLine: 'Un solo pedido, sin suscripción',
+    youSave: 'Ahorras {p}',
+    add: 'Añadir al carrito', subAdd: 'Suscribirme y añadir al carrito',
     terms: 'Se renueva automáticamente cada {d} días por {p} hasta que canceles. Gestiona o cancela cuando quieras desde tu cuenta.',
     how: 'Cómo funciona Suscríbete y ahorra',
     steps: [
-      ['Elige la frecuencia', 'Decide cada cuánto quieres recibir un envío: cada 30, 60 o 90 días.'],
-      ['Enviamos automáticamente', 'Tu pedido sale a tiempo con el precio de suscripción.'],
-      ['Tú tienes el control', 'Salta un envío, cambia la frecuencia o cancela desde tu cuenta. Sin comisiones ni permanencia.'],
+      ['Elige cada cuánto', 'Cada 30, 60 o 90 días. Puedes cambiarlo después.'],
+      ['Enviamos automáticamente', 'Cada pedido sale a tiempo con el precio de suscripción.'],
+      ['Tú tienes el control', 'Salta, pausa o cancela desde tu cuenta. Sin comisiones ni permanencia.'],
     ],
-    buy: 'Comprar ahora', subscribe: 'Suscribirme', add: 'Añadir al carrito',
   },
   ar: {
-    type: 'نوع الشراء', once: 'شراء لمرة واحدة', sub: 'اشترك ووفّر', save: (p) => `وفّر ${p}%`,
-    perDay: '{p} يومياً', every: 'التوصيل كل', days: (d) => `${d} يوماً`, rec: 'موصى به',
-    qty: 'الكمية', packs: (n) => (n === 1 ? 'عبوة واحدة' : n === 2 ? 'عبوتان' : `${n} عبوات`), each: '{p} للعبوة',
-    total: 'الإجمالي', youSave: 'توفّر {p}',
-    perks: ['خصم {pct}% على كل توصيلة', 'غيّر الفترة متى شئت', 'أوقف مؤقتاً أو تخطَّ أو ألغِ في أي وقت. بلا التزام'],
+    qty: 'اختر الكمية', packs: (n) => (n === 1 ? 'عبوة واحدة' : n === 2 ? 'عبوتان' : `${n} عبوات`), supply: 'تكفي {d} يوماً', each: '{p} للعبوة',
+    saveTag: (p) => `وفّر ${p}%`, bestValue: 'أفضل سعر',
+    type: 'خيار الشراء', banner: 'أفضل سعر: وفّر {pct}% على كل طلب',
+    sub: 'اشترك ووفّر', every: 'التوصيل كل', days: (d) => `${d} يوماً`, rec: 'موصى به',
+    perks: ['وفّر {pct}% على كل طلب', 'أنت تختار مدى تكرار التوصيل', 'تخطَّ أو أوقف مؤقتاً أو ألغِ في أي وقت. بلا التزام'],
+    once: 'شراء لمرة واحدة', onceLine: 'طلب واحد، بلا اشتراك',
+    youSave: 'وفّر {p}',
+    add: 'أضف إلى السلة', subAdd: 'اشترك وأضف إلى السلة',
     terms: 'يتجدد تلقائياً كل {d} يوماً بسعر {p} حتى تلغيه. يمكنك الإدارة أو الإلغاء في أي وقت من حسابك.',
     how: 'كيف يعمل الاشتراك والتوفير',
     steps: [
-      ['اختر الفترة', 'حدد عدد مرات التوصيل: كل 30 أو 60 أو 90 يوماً.'],
-      ['نوصل تلقائياً', 'يُشحن طلبك في موعده بسعر الاشتراك.'],
-      ['التحكم بيدك', 'تخطَّ توصيلة أو غيّر الفترة أو ألغِ من حسابك. بلا رسوم وبلا التزام.'],
+      ['اختر مدى التكرار', 'كل 30 أو 60 أو 90 يوماً. يمكنك تغييره لاحقاً.'],
+      ['نوصل تلقائياً', 'يُشحن كل طلب في موعده بسعر الاشتراك.'],
+      ['التحكم بيدك', 'تخطَّ أو أوقف مؤقتاً أو ألغِ من حسابك. بلا رسوم وبلا التزام.'],
     ],
-    buy: 'اشترِ الآن', subscribe: 'اشترك الآن', add: 'أضف إلى السلة',
-  },
-  ur: {
-    type: 'خریداری کی قسم', once: 'ایک بار خریداری', sub: 'سبسکرائب کریں اور بچت کریں', save: (p) => `${p}% بچت`,
-    perDay: '{p} روزانہ', every: 'ترسیل ہر', days: (d) => `${d} دن`, rec: 'تجویز کردہ',
-    qty: 'تعداد', packs: (n) => `${n} پیک`, each: '{p} فی پیک',
-    total: 'کل', youSave: 'آپ کی بچت {p}',
-    perks: ['ہر ترسیل پر {pct}% رعایت', 'جب چاہیں وقفہ تبدیل کریں', 'کسی بھی وقت روکیں، چھوڑیں یا منسوخ کریں۔ کوئی پابندی نہیں'],
-    terms: 'ہر {d} دن بعد {p} پر خود بخود تجدید ہوتی ہے جب تک آپ منسوخ نہ کریں۔ اپنے اکاؤنٹ سے کسی بھی وقت تبدیل یا منسوخ کریں۔',
-    how: 'سبسکرپشن کیسے کام کرتی ہے',
-    steps: [
-      ['وقفہ منتخب کریں', 'طے کریں کہ نئی ترسیل کتنی بار چاہیے: ہر 30، 60 یا 90 دن۔'],
-      ['خودکار ترسیل', 'آپ کا آرڈر وقت پر سبسکرپشن قیمت پر بھیجا جاتا ہے۔'],
-      ['اختیار آپ کے پاس', 'اپنے اکاؤنٹ سے ترسیل چھوڑیں، وقفہ بدلیں یا منسوخ کریں۔ کوئی فیس نہیں، کوئی پابندی نہیں۔'],
-    ],
-    buy: 'ابھی خریدیں', subscribe: 'ابھی سبسکرائب کریں', add: 'کارٹ میں شامل کریں',
   },
 };
 
 const fill = (s, v) => s.replace(/\{(\w+)\}/g, (_, k) => v[k] ?? '');
+// Same as fill, but the value is wrapped in an element (e.g. a bold price).
+const fillEl = (s, k, el) => s.split(`{${k}}`).flatMap((part, i) => (i ? [el, part] : [part]));
+
+// The resins come as jar + box; the quantity cards show just the jars.
+const JARS = { 'shilajit-gold-resin': '/images/jar-gold.webp', 'shilajit-silver-resin': '/images/jar-silver.webp' };
 const round2 = (n) => Math.round(n * 100) / 100;
+
+function Check() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  );
+}
+
+// 1, 2 or 3 copies of the pack picture, overlapping like jars on a shelf.
+function Packs({ src, n, wide }) {
+  return (
+    <span className={`bx-packs n${n}${wide ? ' is-wide' : ''}`} aria-hidden="true">
+      {Array.from({ length: n }, (_, i) => (
+        <img key={i} src={src} alt="" loading="lazy" decoding="async" style={{ '--i': i }} />
+      ))}
+    </span>
+  );
+}
 
 export default function PurchaseBox({ product }) {
   const t = useT(T);
-  const { addItem, buyNow, busy } = useCart();
+  const { addItem, busy } = useCart();
   const plans = product.plans?.length ? product.plans : demoPlans();
   const subPct = plans[0]?.pct ?? SUBSCRIBE_PCT;
 
@@ -133,101 +156,109 @@ export default function PurchaseBox({ product }) {
   const [qty, setQty] = useState(1);
 
   const base = product.amount;
+  if (base == null) return null;
+
   const cur = product.currency || 'DKK';
   const money = (n) => formatMoney(round2(n), cur);
   const tierPct = (n) => TIERS.find((x) => x.qty === n)?.pct || 0;
-  const unit = (m, n) => (base == null ? null : base * (1 - tierPct(n) / 100) * (m === 'sub' ? 1 - subPct / 100 : 1));
+  const unit = (m, n) => base * (1 - tierPct(n) / 100) * (m === 'sub' ? 1 - subPct / 100 : 1);
   const packDays = DAYS_PER_PACK[product.handle];
-  const perDay = showPerDay.has(product.handle) && packDays;
+  const maxTier = Math.max(...TIERS.map((x) => x.qty));
+  const packImg = JARS[product.handle] || product.image;
+  const wide = /pack-(drops|capsules)/.test(packImg || '');
 
   const plan = plans.find((p) => p.days === days) || plans[0];
-  const total = base == null ? null : unit(mode, qty) * qty;
-  const saved = base == null ? 0 : base * qty - total;
-  const go = (fn) => fn(product.variantId, qty, mode === 'sub' ? plan?.id || null : null);
+  const subTotal = unit('sub', qty) * qty;
+  const onceTotal = unit('once', qty) * qty;
+  const total = mode === 'sub' ? subTotal : onceTotal;
+  const subSaved = onceTotal - subTotal;
 
-  if (base == null) return null;
+  const add = () => addItem(product.variantId, qty, mode === 'sub' ? plan?.id || null : null);
 
   return (
-    <div
-      className="buybox"
-      data-base={base}
-      data-cur={cur}
-      data-sub={subPct}
-      data-tiers={TIERS.map((x) => `${x.qty}:${x.pct}`).join(',')}
-      data-perday={perDay ? packDays : ''}
-      data-mode={mode}
-    >
-      <p className="bb-label" id="bb-type">{t.type}</p>
-      <div className="bb-types" role="radiogroup" aria-labelledby="bb-type">
-        {product.requiresPlan ? null : (
-          <button type="button" role="radio" aria-checked={mode === 'once'} className="bb-type" data-mode="once" onClick={() => setMode('once')}>
-            <span className="bb-type-name">{t.once}</span>
-            <span className="bb-type-price" data-role="price-once">{money(unit('once', qty))}</span>
-            {perDay && <span className="bb-type-per" data-role="perday-once" data-tpl={t.perDay}>{fill(t.perDay, { p: money(unit('once', qty) / packDays) })}</span>}
-          </button>
-        )}
-        <button type="button" role="radio" aria-checked={mode === 'sub'} className="bb-type" data-mode="sub" onClick={() => setMode('sub')}>
-          <span className="bb-badge">{t.save(subPct)}</span>
-          <span className="bb-type-name">{t.sub}</span>
-          <span className="bb-type-price" data-role="price-sub">
-            <span data-role="price-sub-now">{money(unit('sub', qty))}</span> <s data-role="price-sub-was">{money(unit('once', qty))}</s>
-          </span>
-          {perDay && <span className="bb-type-per" data-role="perday-sub" data-tpl={t.perDay}>{fill(t.perDay, { p: money(unit('sub', qty) / packDays) })}</span>}
-        </button>
-      </div>
-
-      <div className="bb-sub" hidden={mode !== 'sub'}>
-        <p className="bb-label" id="bb-every">{t.every}</p>
-        <div className="bb-chips" role="radiogroup" aria-labelledby="bb-every">
-          {plans.map((p) => (
-            <button type="button" role="radio" key={p.days ?? p.id} aria-checked={p.days === days} className="bb-chip" data-days={p.days} onClick={() => setDays(p.days)}>
-              {p.days ? t.days(p.days) : p.name}
-              {p.days === packDays && <em>{t.rec}</em>}
-            </button>
-          ))}
-        </div>
-        <ul className="bb-perks">
-          {t.perks.map((x) => <li key={x}>{fill(x, { pct: subPct })}</li>)}
-        </ul>
-      </div>
-
-      <p className="bb-label" id="bb-qty">{t.qty}</p>
-      <div className="bb-qtys" role="radiogroup" aria-labelledby="bb-qty">
+    <div className="bx" data-mode={mode}>
+      {/* Step 1: quantity */}
+      <p className="bx-label" id="bx-qty">{t.qty}</p>
+      <div className="bx-qtys" role="radiogroup" aria-labelledby="bx-qty">
         {TIERS.map(({ qty: n, pct }) => (
-          <button type="button" role="radio" key={n} aria-checked={qty === n} className="bb-qty" data-qty={n} onClick={() => setQty(n)}>
-            {pct > 0 && <span className="bb-qty-save">-{pct}%</span>}
-            <span className="bb-qty-n">{t.packs(n)}</span>
-            <span className="bb-qty-each" data-role={`each-${n}`} data-tpl={t.each}>{fill(t.each, { p: money(unit(mode, n)) })}</span>
+          <button type="button" role="radio" key={n} aria-checked={qty === n} className="bx-qty" onClick={() => setQty(n)}>
+            {pct > 0 && <span className={`bx-tag${n === maxTier ? ' is-best' : ''}`}>{n === maxTier ? t.bestValue : t.saveTag(pct)}</span>}
+            {packImg && <Packs src={packImg} n={n} wide={wide} />}
+            <span className="bx-qty-name">{t.packs(n)}</span>
+            {packDays && <span className="bx-qty-supply">{fill(t.supply, { d: packDays * n })}</span>}
+            <span className="bx-qty-each">{fillEl(t.each, 'p', <b key="p">{money(unit(mode, n))}</b>)}</span>
           </button>
         ))}
       </div>
 
-      <div className="bb-total" aria-live="polite">
-        <span>{t.total}</span>
-        <strong data-role="total">{money(total)}</strong>
-        <em data-role="saved" hidden={saved < 0.5} data-tpl={t.youSave}>{fill(t.youSave, { p: money(saved) })}</em>
+      {/* Step 2: purchase option */}
+      <p className="bx-label" id="bx-type">{t.type}</p>
+      <div className="bx-opts" role="radiogroup" aria-labelledby="bx-type">
+        <div className={`bx-opt is-sub${mode === 'sub' ? ' is-on' : ''}`}>
+          <p className="bx-banner">{fill(t.banner, { pct: subPct })}</p>
+          <button type="button" role="radio" aria-checked={mode === 'sub'} className="bx-opt-head" onClick={() => setMode('sub')}>
+            <span className="bx-radio" aria-hidden="true" />
+            <span className="bx-opt-name">
+              <strong>{t.sub}</strong>
+              <small>{t.every} {plan?.days ? t.days(plan.days) : plan?.name}</small>
+            </span>
+            <span className="bx-opt-price">
+              <strong>{money(subTotal)}</strong>
+              <s>{money(onceTotal)}</s>
+              {subSaved >= 0.5 && <em>{fill(t.youSave, { p: money(subSaved) })}</em>}
+            </span>
+          </button>
+          <ul className="bx-perks">
+            {t.perks.map((x) => <li key={x}><Check />{fill(x, { pct: subPct })}</li>)}
+          </ul>
+          {mode === 'sub' && (
+            <div className="bx-every">
+              <p className="bx-every-label" id="bx-every">{t.every}</p>
+              <div className="bx-chips" role="radiogroup" aria-labelledby="bx-every">
+                {plans.map((p) => (
+                  <button type="button" role="radio" key={p.days ?? p.id} aria-checked={p.days === days} className="bx-chip" onClick={() => setDays(p.days)}>
+                    {p.days ? t.days(p.days) : p.name}
+                    {p.days === packDays && <em>{t.rec}</em>}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {product.requiresPlan ? null : (
+          <div className={`bx-opt is-once${mode === 'once' ? ' is-on' : ''}`}>
+            <button type="button" role="radio" aria-checked={mode === 'once'} className="bx-opt-head" onClick={() => setMode('once')}>
+              <span className="bx-radio" aria-hidden="true" />
+              <span className="bx-opt-name">
+                <strong>{t.once}</strong>
+                <small>{t.onceLine}</small>
+              </span>
+              <span className="bx-opt-price"><strong>{money(onceTotal)}</strong></span>
+            </button>
+          </div>
+        )}
       </div>
 
-      <div className="pdp-actions">
-        <button className="btn gold block" onClick={() => go(buyNow)} disabled={busy}>
-          <span data-role="buy" data-once={t.buy} data-sub={t.subscribe}>{mode === 'sub' ? t.subscribe : t.buy}</span> <Arrow />
-        </button>
-        <button className="btn outline block" onClick={() => go(addItem)} disabled={busy}>
-          {t.add}
-        </button>
-      </div>
+      <button className="btn block bx-cta" onClick={add} disabled={busy}>
+        <span>{mode === 'sub' ? t.subAdd : t.add}</span>
+        <span className="bx-cta-dot" aria-hidden="true">·</span>
+        <span className="bx-cta-price">{money(total)}</span>
+      </button>
 
-      <div className="bb-sub" hidden={mode !== 'sub'}>
-        <p className="bb-terms" data-role="terms" data-tpl={t.terms}>{fill(t.terms, { d: plan?.days ?? '', p: money(total) })}</p>
-        <details className="bb-how">
-          <summary>{t.how}</summary>
-          <ol>
-            {t.steps.map(([h, x]) => (
-              <li key={h}><strong>{h}</strong> {x}</li>
-            ))}
-          </ol>
-        </details>
-      </div>
+      {mode === 'sub' && (
+        <div className="bx-sub-info">
+          <p className="bx-terms">{fill(t.terms, { d: plan?.days ?? '', p: money(subTotal) })}</p>
+          <details className="bx-how">
+            <summary>{t.how}</summary>
+            <ol>
+              {t.steps.map(([h, x]) => (
+                <li key={h}><strong>{h}</strong> {x}</li>
+              ))}
+            </ol>
+          </details>
+        </div>
+      )}
     </div>
   );
 }

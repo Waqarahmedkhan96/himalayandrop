@@ -13,7 +13,6 @@ const T = {
   fr: { eyebrow: 'Le journal', a: 'Notes venues', b: 'des montagnes.', all: 'Tous les articles' },
   es: { eyebrow: 'El journal', a: 'Notas desde', b: 'las montañas.', all: 'Todos los artículos' },
   ar: { eyebrow: 'المدونة', a: 'ملاحظات من', b: 'الجبال.', all: 'جميع المقالات' },
-  ur: { eyebrow: 'بلاگ', a: 'پہاڑوں سے', b: 'نوٹس۔', all: 'تمام مضامین' },
 };
 
 export default function JournalSection({ posts }) {

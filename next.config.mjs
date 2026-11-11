@@ -13,6 +13,15 @@ const nextConfig = {
     unoptimized: isStaticExport,
     remotePatterns: [{ protocol: 'https', hostname: 'cdn.shopify.com' }],
   },
+  // Urdu was removed: old /ur/ links go to the same page in English.
+  ...(isStaticExport ? {} : {
+    async redirects() {
+      return [
+        { source: '/ur', destination: '/', permanent: true },
+        { source: '/ur/:path*', destination: '/:path*', permanent: true },
+      ];
+    },
+  }),
 };
 
 export default nextConfig;

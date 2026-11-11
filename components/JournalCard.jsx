@@ -11,7 +11,6 @@ const W = {
   fr: { min: 'min de lecture', read: 'Lire l’article' },
   es: { min: 'min de lectura', read: 'Leer artículo' },
   ar: { min: 'دقائق للقراءة', read: 'اقرأ المقال' },
-  ur: { min: 'منٹ کا مطالعہ', read: 'مضمون پڑھیں' },
 };
 
 export default function JournalCard({ post, featured = false }) {

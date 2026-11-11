@@ -16,7 +16,6 @@ const T = {
   fr: { eyebrow: 'Avis', a: 'Avec leurs', b: 'propres mots.', note: 'Avis d’exemple pour la mise en page. Les vrais avis clients apparaîtront ici après le lancement.', play: 'Lancer les avis', pause: 'Mettre les avis en pause', all: 'Lire tous les avis' },
   es: { eyebrow: 'Opiniones', a: 'En sus', b: 'propias palabras.', note: 'Opiniones de ejemplo para el diseño. Las opiniones reales aparecerán aquí tras el lanzamiento.', play: 'Reproducir opiniones', pause: 'Pausar opiniones', all: 'Leer todas las opiniones' },
   ar: { eyebrow: 'آراء العملاء', a: 'بكلماتهم', b: 'الخاصة.', note: 'آراء تجريبية لعرض التصميم. ستظهر آراء العملاء الحقيقية هنا بعد الإطلاق.', play: 'تشغيل الآراء', pause: 'إيقاف الآراء', all: 'اقرأ جميع الآراء' },
-  ur: { eyebrow: 'ریویوز', a: 'ان کے', b: 'اپنے الفاظ میں۔', note: 'ڈیزائن کے لیے نمونہ ریویوز۔ اصل گاہکوں کے ریویوز لانچ کے بعد یہاں آئیں گے۔', play: 'ریویوز چلائیں', pause: 'ریویوز روکیں', all: 'تمام ریویوز پڑھیں' },
 };
 
 export default function Reviews() {

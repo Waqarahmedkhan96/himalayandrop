@@ -13,7 +13,6 @@ const T = {
   fr: { eyebrow: 'Coffrets', h: ['Top 3', 'coffrets'], up: (n) => `Jusqu’à ${n} % d’économie`, all: 'Tous les coffrets', explore: 'Découvrir ce coffret', save: (p) => `-${p} %` },
   es: { eyebrow: 'Packs', h: ['Top 3', 'packs'], up: (n) => `Ahorra hasta un ${n} %`, all: 'Ver todos los packs', explore: 'Descubrir este pack', save: (p) => `Ahorra ${p} %` },
   ar: { eyebrow: 'المجموعات', h: ['أفضل 3', 'مجموعات'], up: (n) => `وفّر حتى ${n}%`, all: 'كل المجموعات', explore: 'استكشف المجموعة', vat: 'شامل الضريبة', save: (p) => `وفّر ${p}%` },
-  ur: { eyebrow: 'بنڈلز', h: ['ٹاپ 3', 'بنڈلز'], up: (n) => `${n}% تک بچت`, all: 'تمام بنڈلز', explore: 'سیٹ دیکھیں', vat: 'ٹیکس سمیت', save: (p) => `${p}% بچت` },
 };
 
 export default function HomeBundlesCards({ bundles }) {

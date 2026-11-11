@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 
 export const HERO_SCRIPT = `(function(){try{var d=document.documentElement,q=new URLSearchParams(location.search).get('hero'),s=localStorage.getItem('hd_hero');if(q==='light'||q==='burgundy'){localStorage.setItem('hd_hero',q);s=q}d.setAttribute('data-hero',s==='light'?'light':'burgundy')}catch(e){document.documentElement.setAttribute('data-hero','burgundy')}})();`;
 
-const HOME = /^\/(da|de|fr|es|ar|ur)?\/?$/;
+const HOME = /^\/(da|de|fr|es|ar)?\/?$/;
 
 export default function HeroSwitch() {
   const path = usePathname();

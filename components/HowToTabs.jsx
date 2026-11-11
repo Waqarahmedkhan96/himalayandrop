@@ -81,7 +81,7 @@ const guidesDa = {
   },
 };
 
-// German, French, Spanish, Arabic and Urdu: same icons and images, new words.
+// German, French, Spanish, Arabic: same icons and images, new words.
 const make = (names, rows) => Object.fromEntries(Object.values(guidesEn).map((g, i) => [names[i], { ...g, steps: g.steps.map((s, j) => [s[0], ...rows[i][j]]) }]));
 const guidesBy = {
   da: guidesDa,
@@ -109,12 +109,6 @@ const guidesBy = {
     [['رجّ جيداً', 'رجّ الزجاجة برفق قبل كل استخدام.'], ['ثلاث قطرات', 'للبالغين: 3 قطرات يومياً مباشرة أو في الماء أو الشاي.'], ['قبل الطعام', 'تناولها قبل الوجبة بنحو 30 دقيقة.'], ['درجة حرارة الغرفة', 'أغلقها بإحكام واحفظها في درجة حرارة الغرفة، لا في الثلاجة.']],
     [['تناول اثنتين', 'للبالغين: كبسولتان يومياً. الكبسولتان حصة واحدة.'], ['مع الماء', 'ابتلعهما مع كوب من الماء. بلا طعم وبلا قياس.'], ['الوقت نفسه يومياً', 'ضع الزجاجة بجانب روتينك الصباحي.'], ['مكان بارد وجاف', 'أغلقها بإحكام وأبعدها عن أشعة الشمس المباشرة.']],
   ]),
-  ur: make(['ریزن', 'گمیز', 'ڈراپس', 'کیپسول'], [
-    [['ناپیں', 'چمچ سے مٹر کے دانے جتنی مقدار لیں۔ لیبل پر درج روزانہ خوراک پر عمل کریں۔'], ['حل کریں', 'ایک گلاس نیم گرم پانی یا چائے میں ملائیں۔ گرم، ابلتا ہوا نہیں۔'], ['تھوڑا انتظار', 'چند منٹ دیں اور وقفے وقفے سے ہلاتے رہیں، یہاں تک کہ چمچ صاف ہو جائے۔'], ['لطف اٹھائیں', 'آہستہ آہستہ پئیں۔ ذائقہ مٹی جیسا اور دھواں دار؛ تھوڑا شہد ملا سکتے ہیں۔']],
-    [['دو لیں', 'بالغ افراد: روزانہ 2 گمیز چبائیں۔ دو گمیز ایک خوراک ہیں۔'], ['روزانہ ایک ہی وقت', 'ناشتے یا صبح کی چائے کے ساتھ یاد رکھنا آسان ہے۔'], ['اچھی طرح چبائیں', 'اسٹرابیری ذائقہ، چھ ساتھی اجزاء کے ساتھ۔ پانی کی ضرورت نہیں۔'], ['ٹن بند کریں', 'اچھی طرح بند، خشک، 25 ڈگری سے کم اور دھوپ سے دور رکھیں۔']],
-    [['اچھی طرح ہلائیں', 'ہر استعمال سے پہلے بوتل کو ہلکا سا ہلائیں۔'], ['تین قطرے', 'بالغ افراد: روزانہ 3 قطرے، براہِ راست یا پانی یا چائے میں۔'], ['کھانے سے پہلے', 'کھانے سے تقریباً 30 منٹ پہلے لیں۔'], ['کمرے کا درجہ حرارت', 'اچھی طرح بند کریں۔ کمرے کے درجہ حرارت پر رکھیں، فریج میں نہیں۔']],
-    [['دو لیں', 'بالغ افراد: روزانہ 2 کیپسول۔ دو کیپسول ایک خوراک ہیں۔'], ['پانی کے ساتھ', 'ایک گلاس پانی کے ساتھ نگل لیں۔ نہ ذائقہ، نہ ناپ تول۔'], ['روزانہ ایک ہی وقت', 'بوتل کو اپنے صبح کے معمول کے پاس رکھیں۔'], ['ٹھنڈا اور خشک', 'اچھی طرح بند کریں اور براہِ راست دھوپ سے دور رکھیں۔']],
-  ]),
 };
 // Four steps for one product family, e.g. howToSteps('de', 'drops').
 export function howToSteps(lang, kind) {
@@ -122,7 +116,7 @@ export function howToSteps(lang, kind) {
   return Object.values(guidesBy[lang] || guidesEn)[Math.max(0, i)].steps;
 }
 
-const CHOOSE = { en: 'Choose a product', da: 'Vælg et produkt', de: 'Produkt wählen', fr: 'Choisir un produit', es: 'Elige un producto', ar: 'اختر منتجاً', ur: 'پروڈکٹ منتخب کریں' };
+const CHOOSE = { en: 'Choose a product', da: 'Vælg et produkt', de: 'Produkt wählen', fr: 'Choisir un produit', es: 'Elige un producto', ar: 'اختر منتجاً' };
 
 // Quick facts above the steps: labels per language, then values for resin, gummies, drops, capsules.
 const SPEC_LABELS = {
@@ -132,7 +126,6 @@ const SPEC_LABELS = {
   fr: ['Par jour', 'À prendre avec', 'Quand'],
   es: ['Al día', 'Tomar con', 'Cuándo'],
   ar: ['يومياً', 'يؤخذ مع', 'متى'],
-  ur: ['روزانہ', 'کے ساتھ لیں', 'کب'],
 };
 const SPECS = {
   en: [['A pea-sized amount', 'Warm water or tea', 'Same time each day'], ['2 gummies', 'Nothing needed', 'Same time each day'], ['3 drops', 'Directly, in water or tea', '30 min before food'], ['2 capsules', 'A glass of water', 'Same time each day']],
@@ -141,7 +134,6 @@ const SPECS = {
   fr: [['Une noisette, taille d’un petit pois', 'Eau chaude ou thé', 'Chaque jour à la même heure'], ['2 gommes', 'Rien de nécessaire', 'Chaque jour à la même heure'], ['3 gouttes', 'Pures, dans l’eau ou le thé', '30 min avant le repas'], ['2 gélules', 'Un verre d’eau', 'Chaque jour à la même heure']],
   es: [['Del tamaño de un guisante', 'Agua caliente o té', 'A la misma hora cada día'], ['2 gominolas', 'Nada necesario', 'A la misma hora cada día'], ['3 gotas', 'Directas, en agua o té', '30 min antes de comer'], ['2 cápsulas', 'Un vaso de agua', 'A la misma hora cada día']],
   ar: [['بحجم حبة البازلاء', 'ماء دافئ أو شاي', 'الوقت نفسه يومياً'], ['علكتان', 'لا شيء مطلوب', 'الوقت نفسه يومياً'], ['3 قطرات', 'مباشرة أو في الماء أو الشاي', 'قبل الأكل بـ 30 دقيقة'], ['كبسولتان', 'كوب من الماء', 'الوقت نفسه يومياً']],
-  ur: [['مٹر کے دانے جتنی', 'نیم گرم پانی یا چائے', 'روزانہ ایک ہی وقت'], ['2 گمیز', 'کچھ ضروری نہیں', 'روزانہ ایک ہی وقت'], ['3 قطرے', 'براہِ راست، پانی یا چائے میں', 'کھانے سے 30 منٹ پہلے'], ['2 کیپسول', 'ایک گلاس پانی', 'روزانہ ایک ہی وقت']],
 };
 const KEYS = ['resin', 'gummies', 'drops', 'capsules'];
 

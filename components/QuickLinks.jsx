@@ -9,9 +9,8 @@ const LABELS = {
   fr: { 'Shilajit resin': 'Résine de shilajit', Gummies: 'Gommes', Drops: 'Gouttes', 'All products': 'Tous les produits', 'Lab results': 'Résultats de labo' },
   es: { 'Shilajit resin': 'Resina de shilajit', Gummies: 'Gominolas', Drops: 'Gotas', 'All products': 'Todos los productos', 'Lab results': 'Resultados de laboratorio' },
   ar: { 'Shilajit resin': 'راتنج الشيلاجيت', Gummies: 'علكات', Drops: 'قطرات', 'All products': 'جميع المنتجات', 'Lab results': 'نتائج المختبر' },
-  ur: { 'Shilajit resin': 'سلاجیت ریزن', Gummies: 'گمیز', Drops: 'ڈراپس', 'All products': 'تمام مصنوعات', 'Lab results': 'لیب رپورٹس' },
 };
-const SHORTCUTS = { en: 'Shortcuts', da: 'Genveje', de: 'Schnellzugriff', fr: 'Raccourcis', es: 'Accesos directos', ar: 'اختصارات', ur: 'شارٹ کٹس' };
+const SHORTCUTS = { en: 'Shortcuts', da: 'Genveje', de: 'Schnellzugriff', fr: 'Raccourcis', es: 'Accesos directos', ar: 'اختصارات' };
 const items = [
   { label: 'Shilajit resin', href: '/products/shilajit-gold-resin/', img: '/images/pillar-resin.webp' },
   { label: 'Gummies', href: '/#gummies', img: '/images/pillar-approach.webp' },

@@ -13,7 +13,6 @@ const T = {
   fr: [['Livraison offerte', 'dans tout le pays'], ['60 jours', 'satisfait ou remboursé'], ['Testé en laboratoire', 'chaque lot']],
   es: [['Envío gratis', 'en todo el país'], ['60 días', 'garantía de devolución'], ['Probado en laboratorio', 'cada lote']],
   ar: [['توصيل مجاني', 'في جميع أنحاء البلاد'], ['60 يومًا', 'ضمان استرداد الأموال'], ['مُختبَر في المختبر', 'كل دفعة']],
-  ur: [['مفت ڈیلیوری', 'پورے ملک میں'], ['60 دن', 'رقم واپسی کی ضمانت'], ['لیب ٹیسٹڈ', 'ہر بیچ']],
 };
 // Countdown to 30 November, 10:00 Copenhagen time (CET, UTC+1) = 09:00 UTC. The offer must really
 // end then; after that the countdown hides itself. Change or remove END to change it.
@@ -25,7 +24,6 @@ const CD = {
   fr: ["L'offre se termine dans", 'Jours', 'H', 'Min', 'Sec'],
   es: ['La oferta termina en', 'Días', 'H', 'Min', 'Seg'],
   ar: ['ينتهي العرض خلال', 'أيام', 'ساعة', 'دقيقة', 'ثانية'],
-  ur: ['پیشکش ختم ہونے میں', 'دن', 'گھنٹے', 'منٹ', 'سیکنڈ'],
 };
 const pad = (n) => String(n).padStart(2, '0');
 

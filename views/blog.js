@@ -13,7 +13,6 @@ const T = {
   fr: { eyebrow: 'Le journal', title: 'Notes venues', accent: 'des montagnes.', lead: 'Des guides sur l’origine, la qualité et le rituel quotidien. Lisez, puis choisissez en confiance.' },
   es: { eyebrow: 'El journal', title: 'Notas desde', accent: 'las montañas.', lead: 'Guías sobre origen, calidad y el ritual diario. Lee y elige con confianza.' },
   ar: { eyebrow: 'المدونة', title: 'ملاحظات من', accent: 'الجبال.', lead: 'أدلة عن المصدر والجودة والطقس اليومي. اقرأ ثم اختر بثقة.' },
-  ur: { eyebrow: 'بلاگ', title: 'پہاڑوں سے', accent: 'نوٹس۔', lead: 'ماخذ، معیار اور روزمرہ معمول پر رہنمائی۔ پڑھیں اور اعتماد سے انتخاب کریں۔' },
 };
 
 export default async function BlogView({ lang }) {
