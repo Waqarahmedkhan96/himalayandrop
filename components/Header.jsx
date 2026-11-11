@@ -124,6 +124,7 @@ export default function Header() {
                   <details className="mn-acc" key={g.label} style={{ '--i': products.length + gi }}>
                     <summary tabIndex={tab}>
                       <span>{g.label}</span>
+                      <Chevron />
                       <DropPlus />
                     </summary>
                     <div className="mn-sub">
