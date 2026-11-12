@@ -5,7 +5,7 @@
 // to the side (drag up/down, use the up/down buttons, keys or tap a card).
 // A new front card shows the myth first; after a few seconds (a gold bar shows
 // the time) or on a tap, it turns over to the fact. Text: lib/pdp.js (myths).
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useLang } from './LangProvider';
 import RealIcon from './RealIcon';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
@@ -56,6 +56,25 @@ export default function MythDeck({ kind }) {
   const root = useRef(null);
   const drag = useRef(null);
   const stage = useRef(null);
+
+  const prevD = useRef(null);
+
+  // A card that wraps round from one end of the deck to the other must not sweep back across the
+  // wheel. Its position (--d) jumps by almost the whole circle, so the CSS transition would carry it
+  // the long way round, the opposite way to the others. Mark it, so it jumps while invisible and
+  // then fades in at its new place.
+  useLayoutEffect(() => {
+    const els = stage.current?.querySelectorAll('[data-i]');
+    if (!els) return undefined;
+    const now = Array.from(els, (_, i) => { let d = i - active; if (d > n / 2) d -= n; if (d < -n / 2) d += n; return d; });
+    const jumped = [];
+    if (prevD.current) now.forEach((d, i) => { if (Math.abs(d - prevD.current[i]) > n / 2) { els[i].dataset.jump = '1'; jumped.push(els[i]); } });
+    prevD.current = now;
+    if (!jumped.length) return undefined;
+    let r2;
+    const r1 = requestAnimationFrame(() => { r2 = requestAnimationFrame(() => jumped.forEach((el) => { delete el.dataset.jump; })); });
+    return () => { cancelAnimationFrame(r1); cancelAnimationFrame(r2); jumped.forEach((el) => { delete el.dataset.jump; }); };
+  }, [active, n]);
 
   const go = useCallback((i) => { setActive(((i % n) + n) % n); setRevealed(false); setAuto(true); }, [n]);
 
