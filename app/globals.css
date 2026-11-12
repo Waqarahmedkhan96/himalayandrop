@@ -2224,25 +2224,36 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 .is-wheel .bd-hint svg { animation-name: bdHintY; transform: rotate(90deg); }
 @keyframes bdHintY { 0%, 100% { transform: rotate(90deg); } 50% { transform: rotate(90deg) translateX(3px); } }
 
-/* Phones: a smaller wheel, swipe sideways */
+/* Phones: upright cards on a wide arc, swipe sideways. The front card is straight; the cards either side lean away and fade. */
 @media (max-width: 767.98px) {
   .md-section.is-wheel { padding: 56px 0 64px; }
-  .is-wheel .md-stage { --R: 400px; --cw: min(304px, calc(100vw - 50px)); --gap: 3px; --step: 30deg; height: 520px; }
-  .is-wheel .bd-glow { width: 240px; height: 240px; }
-  .is-wheel .md-card .bd-card-in { padding: 13px 15px; column-gap: 10px; border-radius: 16px; }
-  .is-wheel .md-card h3 { font-size: 17px; line-height: 1.2; margin-top: 8px; }
-  .is-wheel .md-card .md-art { width: 46px; height: 46px; margin: 0 0 4px; }
-  .is-wheel .md-card .md-art svg { width: 28px; height: 28px; }
-  .is-wheel .md-tag { font-size: 9px; padding: 4px 9px; letter-spacing: 0.14em; }
-  .is-wheel .md-fact { font-size: 12.5px; line-height: 1.45; margin-top: 8px; }
-  .is-wheel .md-again { font-size: 9.5px; bottom: 9px; inset-inline-end: 14px; }
-  .is-wheel .md-q { font-size: 96px; top: 6px; inset-inline-end: 66px; }
-  .is-wheel .bd-top .bd-no { font-size: 11px; }
-  .is-wheel .bd-emblem { width: 30px; }
-  /* The front card already shows the myth and the fact, so the copy block above only keeps the headline and the controls. */
-  .md-section .bd-detail { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; min-height: 0; }
+  .md-section .bd-grid { gap: 10px; }
   .md-section .bd-nav { margin-top: 18px; }
-  .md-section .bd-grid { gap: 8px; }
+  .md-section .bd-detail { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; min-height: 0; }
+  .is-wheel .md-stage { --R: 900px; --cw: min(270px, calc(100vw - 96px)); --step: 15deg; height: 480px; margin-inline: calc(var(--gutter, 22px) * -1); place-items: center; -webkit-mask-image: none; mask-image: none; }
+  .is-wheel .bd-glow { inset-inline-start: calc(50% - 120px); width: 240px; height: 240px; }
+  .is-wheel .md-ring { top: 50%; inset-inline-start: calc(50% - var(--R)); border-width: 1.5px; }
+  .is-wheel .md-ring span { display: none; }
+  .is-wheel .md-ring::before { top: -5px; inset-inline-start: calc(50% - 5px); margin-top: 0; }
+  .is-wheel .md-card, [dir='rtl'] .is-wheel .md-card { margin-inline-start: 0; aspect-ratio: 270 / 372; transform-origin: 50% calc(50% + var(--R)); transform: rotate(calc(var(--d) * var(--step) + var(--pull-deg, 0deg) * -1)); opacity: calc(1 - var(--ad) * 0.58); filter: blur(calc(var(--ad) * 1.2px)) brightness(calc(1 - var(--ad) * 0.06)); transition-property: transform, filter, opacity; }
+  [dir='rtl'] .is-wheel .md-card { transform: rotate(calc(var(--d) * var(--step) * -1 + var(--pull-deg, 0deg))); }
+  .is-wheel .md-card.is-front, [dir='rtl'] .is-wheel .md-card.is-front { transform: rotate(calc(var(--pull-deg, 0deg) * -1)); opacity: 1; filter: none; }
+  [dir='rtl'] .is-wheel .md-card.is-front { transform: rotate(var(--pull-deg, 0deg)); }
+  .is-wheel .md-card .bd-card-in { display: flex; flex-direction: column; align-items: stretch; padding: 18px; border-radius: 22px; }
+  .is-wheel .md-card .bd-top { width: 100%; }
+  .is-wheel .md-card .md-art { align-self: flex-start; }
+  .is-wheel .md-card .md-art, .is-wheel .md-card .md-back .md-art { display: grid; width: 54px; height: 54px; margin: 14px 0 0; }
+  .is-wheel .md-card .md-art svg { width: 32px; height: 32px; }
+  .is-wheel .md-card .md-body { align-self: auto; }
+  .is-wheel .md-card .md-front .md-tag, .is-wheel .md-card .md-back .md-tag { margin-top: 14px; }
+  .is-wheel .md-card h3 { font-size: 22px; line-height: 1.2; margin-top: 10px; }
+  .is-wheel .md-tag { font-size: 10px; padding: 5px 10px; }
+  .is-wheel .md-fact { font-size: 14px; line-height: 1.5; margin-top: 10px; }
+  .is-wheel .md-again { position: static; margin-top: auto; font-size: 10.5px; }
+  .is-wheel .md-q { font-size: 130px; top: auto; bottom: 22px; inset-inline-end: 10px; }
+  .is-wheel .bd-nav > button svg, [dir='rtl'] .is-wheel .bd-nav > button svg { transform: none; }
+  [dir='rtl'] .is-wheel .bd-nav > button svg { transform: scaleX(-1); }
+  .is-wheel .bd-hint svg { animation-name: bdHintX; transform: none; }
 }
 @media (min-width: 1100px) {
   .is-wheel .md-stage { --R: 580px; --cw: 420px; --gap: 44px; --step: 33deg; height: 700px; }
