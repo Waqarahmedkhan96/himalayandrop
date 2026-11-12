@@ -2198,29 +2198,62 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
 @media (min-width: 768px) {
   .md-section.is-wheel { padding: 110px 0; }
   .md-section.is-wheel .bd-grid { grid-template-columns: 0.82fr 1.18fr; gap: 24px; }
-  .is-wheel .md-stage { --R: 440px; --cw: 330px; --gap: 30px; --step: 33deg; height: 600px; place-items: center start; overflow: hidden; touch-action: none; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 13%, #000 87%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 13%, #000 87%, transparent 100%); }
-  .is-wheel .bd-glow { inset-inline-start: calc(var(--gap) + var(--cw) / 2 - 170px); }
-  .is-wheel .md-ring { display: block; position: absolute; top: calc(50% - var(--R)); inset-inline-start: calc(var(--gap) + var(--cw) / 2); width: calc(var(--R) * 2); height: calc(var(--R) * 2); border-radius: 50%; border: 1.5px dashed rgba(204, 162, 94, 0.6); pointer-events: none; }
-  .is-wheel .md-ring span { position: absolute; inset: 70px; border-radius: 50%; border: 1px solid rgba(204, 162, 94, 0.18); }
-  .is-wheel .md-ring::before { content: ''; position: absolute; top: 50%; inset-inline-start: -5px; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 6px rgba(204, 162, 94, 0.18); }
-  .is-wheel .md-card { grid-area: 1 / 1; width: var(--cw); aspect-ratio: 1.58; margin-inline-start: var(--gap); transform-origin: calc(50% + var(--R)) 50%; transform: rotate(calc(var(--d) * var(--step) * -1 + var(--pull-deg, 0deg))) scale(calc(1 - var(--ad) * 0.07)); filter: brightness(calc(1 - var(--ad) * 0.12)); transition: transform 1.05s var(--ease), filter 0.9s var(--ease); }
-  .is-wheel .md-card.is-front { transform: rotate(var(--pull-deg, 0deg)) scale(1.03); }
-  [dir='rtl'] .is-wheel .md-card { transform-origin: calc(50% - var(--R)) 50%; transform: rotate(calc(var(--d) * var(--step) + var(--pull-deg, 0deg))) scale(calc(1 - var(--ad) * 0.07)); }
-  [dir='rtl'] .is-wheel .md-card.is-front { transform: rotate(var(--pull-deg, 0deg)) scale(1.03); }
-  .is-wheel .md-card .bd-card-in { border-radius: 20px; padding: 18px 22px; display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr; grid-template-areas: 'top top' 'body art'; align-items: end; column-gap: 16px; }
-  .is-wheel .md-card .bd-top { grid-area: top; }
-  .is-wheel .md-card .md-body { grid-area: body; align-self: center; }
-  .is-wheel .md-card .md-art { grid-area: art; margin: 0 0 10px; width: 66px; height: 66px; }
-  .is-wheel .md-card .md-front .md-tag, .is-wheel .md-card .md-back .md-tag { margin-top: 0; }
-  .is-wheel .md-card h3 { font-size: 22px; margin-top: 10px; }
-  .is-wheel .md-card .md-back { grid-template-columns: 1fr; grid-template-areas: 'top' 'body'; }
-  .is-wheel .md-card .md-back .md-art { display: none; }
-  .is-wheel .md-fact { font-size: 13.5px; margin-top: 10px; line-height: 1.5; }
-  .is-wheel .md-again { position: absolute; bottom: 12px; inset-inline-end: 18px; font-size: 10.5px; }
-  .is-wheel .md-q { font-size: 150px; bottom: auto; top: 8px; inset-inline-end: 96px; }
-  .is-wheel .bd-nav > button svg, [dir='rtl'] .is-wheel .bd-nav > button svg { transform: rotate(90deg); }
-  .is-wheel .bd-hint svg { animation-name: bdHintY; transform: rotate(90deg); }
-  @keyframes bdHintY { 0%, 100% { transform: rotate(90deg); } 50% { transform: rotate(90deg) translateX(3px); } }
+  .is-wheel .md-stage { touch-action: none; }
+}
+.is-wheel .md-stage { --R: 440px; --cw: 330px; --gap: 30px; --step: 33deg; height: 600px; place-items: center start; overflow: hidden; touch-action: pan-y; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 13%, #000 87%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 13%, #000 87%, transparent 100%); }
+.is-wheel .bd-glow { inset-inline-start: calc(var(--gap) + var(--cw) / 2 - 170px); }
+.is-wheel .md-ring { display: block; position: absolute; top: calc(50% - var(--R)); inset-inline-start: calc(var(--gap) + var(--cw) / 2); width: calc(var(--R) * 2); height: calc(var(--R) * 2); border-radius: 50%; border: 1.5px dashed rgba(204, 162, 94, 0.6); pointer-events: none; }
+.is-wheel .md-ring span { position: absolute; inset: 70px; border-radius: 50%; border: 1px solid rgba(204, 162, 94, 0.18); }
+.is-wheel .md-ring::before { content: ''; position: absolute; top: 50%; inset-inline-start: -5px; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 6px rgba(204, 162, 94, 0.18); }
+.is-wheel .md-card { grid-area: 1 / 1; width: var(--cw); aspect-ratio: 1.58; margin-inline-start: var(--gap); transform-origin: calc(50% + var(--R)) 50%; transform: rotate(calc(var(--d) * var(--step) * -1 + var(--pull-deg, 0deg))) scale(calc(1 - var(--ad) * 0.07)); filter: brightness(calc(1 - var(--ad) * 0.12)); transition: transform 1.05s var(--ease), filter 0.9s var(--ease); }
+.is-wheel .md-card.is-front { transform: rotate(var(--pull-deg, 0deg)) scale(1.03); }
+[dir='rtl'] .is-wheel .md-card { transform-origin: calc(50% - var(--R)) 50%; transform: rotate(calc(var(--d) * var(--step) + var(--pull-deg, 0deg))) scale(calc(1 - var(--ad) * 0.07)); }
+[dir='rtl'] .is-wheel .md-card.is-front { transform: rotate(var(--pull-deg, 0deg)) scale(1.03); }
+.is-wheel .md-card .bd-card-in { border-radius: 20px; padding: 18px 22px; display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr; grid-template-areas: 'top top' 'body art'; align-items: end; column-gap: 16px; }
+.is-wheel .md-card .bd-top { grid-area: top; }
+.is-wheel .md-card .md-body { grid-area: body; align-self: center; }
+.is-wheel .md-card .md-art { grid-area: art; margin: 0 0 10px; width: 66px; height: 66px; }
+.is-wheel .md-card .md-front .md-tag, .is-wheel .md-card .md-back .md-tag { margin-top: 0; }
+.is-wheel .md-card h3 { font-size: 22px; margin-top: 10px; }
+.is-wheel .md-card .md-back { grid-template-columns: 1fr; grid-template-areas: 'top' 'body'; }
+.is-wheel .md-card .md-back .md-art { display: none; }
+.is-wheel .md-fact { font-size: 13.5px; margin-top: 10px; line-height: 1.5; }
+.is-wheel .md-again { position: absolute; bottom: 12px; inset-inline-end: 18px; font-size: 10.5px; }
+.is-wheel .md-q { font-size: 150px; bottom: auto; top: 8px; inset-inline-end: 96px; }
+.is-wheel .bd-nav > button svg, [dir='rtl'] .is-wheel .bd-nav > button svg { transform: rotate(90deg); }
+.is-wheel .bd-hint svg { animation-name: bdHintY; transform: rotate(90deg); }
+@keyframes bdHintY { 0%, 100% { transform: rotate(90deg); } 50% { transform: rotate(90deg) translateX(3px); } }
+
+/* Phones: upright cards on a wide arc, swipe sideways. The front card is straight; the cards either side lean away and fade. */
+@media (max-width: 767.98px) {
+  .md-section.is-wheel { padding: 56px 0 64px; }
+  .md-section .bd-grid { gap: 10px; }
+  .md-section .bd-nav { margin-top: 18px; }
+  .md-section .bd-detail { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; min-height: 0; }
+  .is-wheel .md-stage { --R: 900px; --cw: min(270px, calc(100vw - 96px)); --step: 15deg; height: 480px; margin-inline: calc(var(--gutter, 22px) * -1); place-items: center; -webkit-mask-image: none; mask-image: none; }
+  .is-wheel .bd-glow { inset-inline-start: calc(50% - 120px); width: 240px; height: 240px; }
+  .is-wheel .md-ring { top: 50%; inset-inline-start: calc(50% - var(--R)); border-width: 1.5px; }
+  .is-wheel .md-ring span { display: none; }
+  .is-wheel .md-ring::before { top: -5px; inset-inline-start: calc(50% - 5px); margin-top: 0; }
+  .is-wheel .md-card, [dir='rtl'] .is-wheel .md-card { margin-inline-start: 0; aspect-ratio: 270 / 372; transform-origin: 50% calc(50% + var(--R)); transform: rotate(calc(var(--d) * var(--step) + var(--pull-deg, 0deg) * -1)); opacity: calc(1 - var(--ad) * 0.58); filter: blur(calc(var(--ad) * 1.2px)) brightness(calc(1 - var(--ad) * 0.06)); transition-property: transform, filter, opacity; }
+  [dir='rtl'] .is-wheel .md-card { transform: rotate(calc(var(--d) * var(--step) * -1 + var(--pull-deg, 0deg))); }
+  .is-wheel .md-card.is-front, [dir='rtl'] .is-wheel .md-card.is-front { transform: rotate(calc(var(--pull-deg, 0deg) * -1)); opacity: 1; filter: none; }
+  [dir='rtl'] .is-wheel .md-card.is-front { transform: rotate(var(--pull-deg, 0deg)); }
+  .is-wheel .md-card .bd-card-in { display: flex; flex-direction: column; align-items: stretch; padding: 18px; border-radius: 22px; }
+  .is-wheel .md-card .bd-top { width: 100%; }
+  .is-wheel .md-card .md-art { align-self: flex-start; }
+  .is-wheel .md-card .md-art, .is-wheel .md-card .md-back .md-art { display: grid; width: 54px; height: 54px; margin: 14px 0 0; }
+  .is-wheel .md-card .md-art svg { width: 32px; height: 32px; }
+  .is-wheel .md-card .md-body { align-self: auto; }
+  .is-wheel .md-card .md-front .md-tag, .is-wheel .md-card .md-back .md-tag { margin-top: 14px; }
+  .is-wheel .md-card h3 { font-size: 22px; line-height: 1.2; margin-top: 10px; }
+  .is-wheel .md-tag { font-size: 10px; padding: 5px 10px; }
+  .is-wheel .md-fact { font-size: 14px; line-height: 1.5; margin-top: 10px; }
+  .is-wheel .md-again { position: static; margin-top: auto; font-size: 10.5px; }
+  .is-wheel .md-q { font-size: 130px; top: auto; bottom: 22px; inset-inline-end: 10px; }
+  .is-wheel .bd-nav > button svg, [dir='rtl'] .is-wheel .bd-nav > button svg { transform: none; }
+  [dir='rtl'] .is-wheel .bd-nav > button svg { transform: scaleX(-1); }
+  .is-wheel .bd-hint svg { animation-name: bdHintX; transform: none; }
 }
 @media (min-width: 1100px) {
   .is-wheel .md-stage { --R: 580px; --cw: 420px; --gap: 44px; --step: 33deg; height: 700px; }
@@ -2228,6 +2261,11 @@ html[data-lang='ar'] h1, html[data-lang='ar'] h1 .line { line-height: 1.45 !impo
   .is-wheel .md-fact { font-size: 14.5px; }
   .is-wheel .md-card .bd-card-in { padding: 22px 26px; }
 }
+
+/* Wrap-around card: jump while invisible, then fade in (see MythDeck.jsx) */
+.md-section .md-card { opacity: 1; }
+.md-section .md-card[data-jump] { transition: none !important; opacity: 0; }
+.md-section .md-card:not([data-jump]) { transition-property: transform, filter, opacity; transition-duration: 1.05s, 0.9s, 0.7s; transition-timing-function: var(--ease); }
 
 /* ═══════════ Capsule benefits (components/FormulaBenefits.jsx) ═══════════ */
 .fb-section { padding: 72px 0; background: radial-gradient(55% 50% at 50% 60%, rgba(106, 20, 34, 0.12), transparent 70%), var(--cream); overflow: hidden; }

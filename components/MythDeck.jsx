@@ -1,11 +1,10 @@
 'use client';
 // Myth vs fact carousel.
-// Phones: a fanned hand of cards (swipe sideways or tap).
-// Tablet and desktop: a wheel of landscape cards turning around a centre off
-// to the side (drag up/down, use the up/down buttons, keys or tap a card).
+// A wheel of landscape cards turning around a centre off to the side. Desktop and tablet: drag
+// up/down. Phones: a smaller wheel, swipe sideways. Also the buttons, keys or tap a card.
 // A new front card shows the myth first; after a few seconds (a gold bar shows
 // the time) or on a tap, it turns over to the fact. Text: lib/pdp.js (myths).
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useLang } from './LangProvider';
 import RealIcon from './RealIcon';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
@@ -52,17 +51,37 @@ export default function MythDeck({ kind }) {
   const [active, setActive] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [auto, setAuto] = useState(true);
-  const [wheel, setWheel] = useState(false);
+  const wheel = true; // the wheel is used at every width; phones get a smaller one
+  const [narrow, setNarrow] = useState(false);
   const root = useRef(null);
   const drag = useRef(null);
   const stage = useRef(null);
 
+  const prevD = useRef(null);
+
+  // A card that wraps round from one end of the deck to the other must not sweep back across the
+  // wheel. Its position (--d) jumps by almost the whole circle, so the CSS transition would carry it
+  // the long way round, the opposite way to the others. Mark it, so it jumps while invisible and
+  // then fades in at its new place.
+  useLayoutEffect(() => {
+    const els = stage.current?.querySelectorAll('[data-i]');
+    if (!els) return undefined;
+    const now = Array.from(els, (_, i) => { let d = i - active; if (d > n / 2) d -= n; if (d < -n / 2) d += n; return d; });
+    const jumped = [];
+    if (prevD.current) now.forEach((d, i) => { if (Math.abs(d - prevD.current[i]) > n / 2) { els[i].dataset.jump = '1'; jumped.push(els[i]); } });
+    prevD.current = now;
+    if (!jumped.length) return undefined;
+    let r2;
+    const r1 = requestAnimationFrame(() => { r2 = requestAnimationFrame(() => jumped.forEach((el) => { delete el.dataset.jump; })); });
+    return () => { cancelAnimationFrame(r1); cancelAnimationFrame(r2); jumped.forEach((el) => { delete el.dataset.jump; }); };
+  }, [active, n]);
+
   const go = useCallback((i) => { setActive(((i % n) + n) % n); setRevealed(false); setAuto(true); }, [n]);
 
-  // Wheel layout from tablet width up.
+  // Phones: the page scrolls up/down, so the wheel is turned by swiping sideways there.
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
-    const set = () => setWheel(mq.matches);
+    const mq = window.matchMedia('(max-width: 767.98px)');
+    const set = () => setNarrow(mq.matches);
     set();
     mq.addEventListener('change', set);
     return () => mq.removeEventListener('change', set);
@@ -92,7 +111,7 @@ export default function MythDeck({ kind }) {
   const amountOf = (d, e) => {
     const dy = e.clientY - d.y;
     const dx = e.clientX - d.x;
-    if (wheel || d.type === 'mouse' || Math.abs(dy) > Math.abs(dx)) return dy;
+    if ((wheel && !narrow) || d.type === 'mouse' || Math.abs(dy) > Math.abs(dx)) return dy;
     return rtl ? -dx : dx;
   };
   const onDown = (e) => {
