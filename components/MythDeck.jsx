@@ -1,8 +1,7 @@
 'use client';
 // Myth vs fact carousel.
-// Phones: a fanned hand of cards (swipe sideways or tap).
-// Tablet and desktop: a wheel of landscape cards turning around a centre off
-// to the side (drag up/down, use the up/down buttons, keys or tap a card).
+// A wheel of landscape cards turning around a centre off to the side. Desktop and tablet: drag
+// up/down. Phones: a smaller wheel, swipe sideways. Also the buttons, keys or tap a card.
 // A new front card shows the myth first; after a few seconds (a gold bar shows
 // the time) or on a tap, it turns over to the fact. Text: lib/pdp.js (myths).
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
@@ -52,7 +51,8 @@ export default function MythDeck({ kind }) {
   const [active, setActive] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [auto, setAuto] = useState(true);
-  const [wheel, setWheel] = useState(false);
+  const wheel = true; // the wheel is used at every width; phones get a smaller one
+  const [narrow, setNarrow] = useState(false);
   const root = useRef(null);
   const drag = useRef(null);
   const stage = useRef(null);
@@ -78,10 +78,10 @@ export default function MythDeck({ kind }) {
 
   const go = useCallback((i) => { setActive(((i % n) + n) % n); setRevealed(false); setAuto(true); }, [n]);
 
-  // Wheel layout from tablet width up.
+  // Phones: the page scrolls up/down, so the wheel is turned by swiping sideways there.
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
-    const set = () => setWheel(mq.matches);
+    const mq = window.matchMedia('(max-width: 767.98px)');
+    const set = () => setNarrow(mq.matches);
     set();
     mq.addEventListener('change', set);
     return () => mq.removeEventListener('change', set);
@@ -111,7 +111,7 @@ export default function MythDeck({ kind }) {
   const amountOf = (d, e) => {
     const dy = e.clientY - d.y;
     const dx = e.clientX - d.x;
-    if (wheel || d.type === 'mouse' || Math.abs(dy) > Math.abs(dx)) return dy;
+    if ((wheel && !narrow) || d.type === 'mouse' || Math.abs(dy) > Math.abs(dx)) return dy;
     return rtl ? -dx : dx;
   };
   const onDown = (e) => {
