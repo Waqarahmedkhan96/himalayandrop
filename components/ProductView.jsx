@@ -1,4 +1,5 @@
 'use client';
+import { isHimalayan, localizeOrigin } from '@/lib/origin';
 import { useRef, useState } from 'react';
 import Link from './LLink';
 import { useT } from './LangProvider';
@@ -68,7 +69,7 @@ function Ridge() {
 }
 // Wrap the place name in the title so it can sit in gold italics.
 const markSkardu = (txt) => {
-  const m = txt.match(/(Skardu|سکردو|سكردو)/);
+  const m = txt.match(/(Skardu|Himalayan|Himalaya|الهيمالايا|سکردو|سكردو)/);
   if (!m) return txt;
   const i = m.index;
   return <>{txt.slice(0, i)}<em>{m[0]}</em>{txt.slice(i + m[0].length)}</>;
@@ -90,14 +91,17 @@ const GUIDE = { en: 'See the full guide', da: 'Se hele vejledningen', de: 'Zur g
 export default function ProductView({ product }) {
   const root = useRef(null);
   const { addItem, buyNow, busy } = useCart();
-  const t = useT(T);
+  const t0 = useT(T);
   const lang = useLang();
   const kind = kindOf(product.handle);
   const steps = howToSteps(lang, kind);
 
   // First slide is the clean packshot, then the packaging photos.
   const stage = STAGE[product.handle];
-  const a = useT(ALC);
+  const a0 = useT(ALC);
+  const him = isHimalayan(product.handle);
+  const t = him ? localizeOrigin(t0, lang) : t0;
+  const a = him ? localizeOrigin(a0, lang) : a0;
   const slides = [
     stage ? { src: stage, alt: product.imageAlt, cutout: false } : { src: product.image, alt: product.imageAlt, cutout: product.cutout },
     ...(product.gallery || []).map((g) => ({ ...g, cutout: false })),

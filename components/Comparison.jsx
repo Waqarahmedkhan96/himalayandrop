@@ -4,6 +4,8 @@ import { useRef, useState } from 'react';
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { getKinds, getComparison, getBenefits } from '@/lib/benefits';
 import { useLang } from './LangProvider';
+import { useHandle } from './OriginContext';
+import { isHimalayan, localizeOrigin } from '@/lib/origin';
 
 const T = {
   en: { eyebrow: 'Choose with confidence', h: 'Himalayan Drop', hg: 'vs. the market.', p: 'What goes into every jar, compared with what you often find elsewhere.', choose: 'Compare a product', market: ['Typical market', 'products'], note: 'The market column describes common practices, not any specific brand.', aria: (x) => `${x} compared with typical market products` },
@@ -74,7 +76,8 @@ export default function Comparison({ initial = 'resin', id = 'compare' }) {
   const lang = useLang();
   const t = T[lang];
   const kinds = getKinds(lang);
-  const comparison = getComparison(lang);
+  const himalayan = isHimalayan(useHandle());
+  const comparison = himalayan ? localizeOrigin(getComparison(lang), lang) : getComparison(lang);
   const benefits = getBenefits(lang);
   const [active, setActive] = useState(initial);
 

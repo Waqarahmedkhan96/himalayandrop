@@ -8,6 +8,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { useLang } from './LangProvider';
 import RealIcon from './RealIcon';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
+import { usePdp } from './OriginContext';
 import { pdpText } from '@/lib/pdp';
 
 const T = {
@@ -39,7 +40,7 @@ const Arrow = ({ d }) => <svg viewBox="0 0 24 24" width="20" height="20" aria-hi
 export default function MythDeck({ kind }) {
   const lang = useLang();
   const t = T[lang] || T.en;
-  const m = pdpText(lang).myths;
+  const m = usePdp(lang).myths;
   const items = [
     [m.shared[0], 'crystal'],
     [m[kind] || m.resin, KIND_ICON[kind] || 'glass'],

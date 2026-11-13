@@ -11,6 +11,7 @@ import { Stars } from './Icons';
 import { Arrow } from './Arrow';
 import { useLang } from './LangProvider';
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/gsap';
+import { usePdp } from './OriginContext';
 import { pdpText, mediaDir, faqItems } from '@/lib/pdp';
 import { LAB, FORMULA_KEYS, nrvPct } from '@/lib/labdata';
 import { LANGS } from '@/lib/i18n';
@@ -66,7 +67,7 @@ function useDraw(scope, sel = '.draw path, .draw circle, .draw rect') {
 // ───────── 1. Proof strip ─────────
 export function ProofStrip() {
   const lang = useLang();
-  const t = pdpText(lang);
+  const t = usePdp(lang);
   const root = useRef(null);
   useDraw(root);
   useGSAP(
@@ -94,7 +95,7 @@ export function ProofStrip() {
 // ───────── 4. Inside: compounds (resin) or ingredients (formulas) ─────────
 export function InsideGrid({ product, kind }) {
   const lang = useLang();
-  const t = pdpText(lang).inside;
+  const t = usePdp(lang).inside;
   const root = useRef(null);
   useDraw(root);
   useGSAP(
@@ -143,7 +144,7 @@ const SAMPLE = { en: 'Sample', da: 'Eksempel', de: 'Beispiel', fr: 'Exemple', es
 
 export function ProductReviews({ product, kind }) {
   const lang = useLang();
-  const t = pdpText(lang).reviews;
+  const t = usePdp(lang).reviews;
   const root = useRef(null);
   const dir = mediaDir(product.handle, kind);
   const reviews = (t.text[kind] || t.text.resin).map((text, i) => ({ name: t.name, place: t.places[i], product: product.title, rating: i === 2 ? 4 : 5, text, sample: true }));
@@ -215,7 +216,7 @@ function FlipCard({ m, f, i, t }) {
 
 export function MythFacts({ kind }) {
   const lang = useLang();
-  const t = pdpText(lang).myths;
+  const t = usePdp(lang).myths;
   const root = useRef(null);
   const items = [t.shared[0], t[kind] || t.resin, t.shared[1], t.shared[2]];
   useGSAP(
@@ -245,7 +246,7 @@ export function MythFacts({ kind }) {
 // ───────── 7. Guarantee banner ─────────
 export function Guarantee({ product, kind }) {
   const lang = useLang();
-  const t = pdpText(lang).guarantee;
+  const t = usePdp(lang).guarantee;
   const root = useRef(null);
   const toBuy = (e) => {
     const box = document.querySelector('.pdp-info');
@@ -293,7 +294,7 @@ export function Guarantee({ product, kind }) {
 // ───────── 8. Product FAQ ─────────
 export function ProductFaq({ product, kind }) {
   const lang = useLang();
-  const t = pdpText(lang).faq;
+  const t = usePdp(lang).faq;
   const root = useRef(null);
   useGSAP(
     () => {
@@ -320,7 +321,7 @@ export function ProductFaq({ product, kind }) {
 // ───────── 9. Sticky buy bar ─────────
 export function StickyBuy({ product }) {
   const lang = useLang();
-  const t = pdpText(lang).sticky;
+  const t = usePdp(lang).sticky;
   const [show, setShow] = useState(false);
   useEffect(() => {
     const info = document.querySelector('.pdp-info');

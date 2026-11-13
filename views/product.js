@@ -8,6 +8,8 @@ import Harvest from '@/components/Harvest';
 import CertTabs from '@/components/CertTabs';
 import { LabSpotlight, HeavyMetals } from '@/components/LabResults';
 import JsonLd from '@/components/JsonLd';
+import { OriginProvider } from '@/components/OriginContext';
+import { isHimalayan } from '@/lib/origin';
 import { ProofStrip, ProductReviews, Guarantee, ProductFaq, StickyBuy, RefreshOnLoad } from '@/components/ProductSections';
 import { faqItems } from '@/lib/pdp';
 import { getProduct, getProducts, isShopifyConnected } from '@/lib/shopify';
@@ -86,11 +88,12 @@ export default async function ProductPageView({ lang, handle }) {
       <JsonLd data={productLd} />
       <JsonLd data={crumbs} />
       <JsonLd data={faqLd} />
+    <OriginProvider handle={handle}>
       <ProductView product={product} />
       <ProofStrip />
       <LabSpotlight product={product} />
       <HeavyMetals />
-      <Harvest />
+      {!isHimalayan(handle) && <Harvest />}
       <StoneComposition />
       <ProductChips product={product} kind={kind} />
       <MythDeck kind={kind} />
@@ -101,6 +104,7 @@ export default async function ProductPageView({ lang, handle }) {
       <ProductFaq product={product} kind={kind} />
       <StickyBuy product={product} />
       <RefreshOnLoad />
+    </OriginProvider>
     </>
   );
 }
