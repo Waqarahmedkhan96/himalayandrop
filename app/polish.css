@@ -154,3 +154,12 @@ html .vr-card.is-on .vr-play { opacity: 0; transform: rotate(45deg) scale(0.6); 
 @keyframes rm-slide { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .rm-view { overflow-x: auto; } .rm-track { animation: none; } }
 @media (min-width: 768px) { .rm-card { width: 262px; } }
+
+/* Reviews at the top of the info column on desktop (in place of the breadcrumb); under the images on phones */
+html .pdp-rate-top { margin: 0 0 14px; font-size: 14px; }
+@media (max-width: 767.98px) { html .pdp-rate-top { display: none; } }
+@media (min-width: 768px) {
+  html .pdp-crumb-m, html .pdp-rate-m { display: none; }
+  html .pdp-after { border-top: 0; margin-top: 18px; padding-top: 0; justify-items: center; }
+  html .pdp-after .nl-btn { width: auto; min-width: 250px; min-height: 44px; padding: 0 28px; }
+}
