@@ -74,7 +74,7 @@ export default function Spotlight() {
         <div className="spot-copy">
           <span className="eyebrow">{t.eyebrow}</span>
           <h2>
-            <span className="line"><span>Shilajit Gummies</span></span>
+            <span className="line"><span>Aura Shilajit Gummies</span></span>
           </h2>
           <p>{t.p}</p>
           <div className="spot-facts">
