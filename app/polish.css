@@ -160,6 +160,6 @@ html .pdp-rate-top { margin: 0 0 14px; font-size: 14px; }
 @media (max-width: 767.98px) { html .pdp-rate-top { display: none; } }
 @media (min-width: 768px) {
   html .pdp-crumb-m, html .pdp-rate-m { display: none; }
-  html .pdp-after { border-top: 0; margin-top: 18px; padding-top: 0; justify-items: center; }
-  html .pdp-after .nl-btn { width: auto; min-width: 250px; min-height: 44px; padding: 0 28px; }
+  html .pdp-after { border-top: 0; margin-top: 18px; padding-top: 0; justify-items: stretch; }
+  html .pdp-after .nl-btn { width: 100%; min-height: 46px; }
 }
