@@ -3490,3 +3490,9 @@ html, body { overflow-x: clip; }
 }
 .article-tag { display: inline-block; margin: 4px 0 14px; background: #f6ebe4; border: 1px solid rgba(88, 15, 27, 0.55); }
 @media (min-width: 768px) { .journal-card .card-tag, .article-tag { font-size: 14px; } }
+
+/* Menu cards: benefit words (ENERGY • STAMINA • DRIVE) */
+.mobile-nav .mn-txt em.mn-benefits { font-family: var(--sans); font-weight: 500; letter-spacing: 0; }
+.mn-benefits span { white-space: nowrap; }
+.mobile-nav .mn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.mobile-nav a.mn-card, .mobile-nav .mn-txt { min-width: 0; }

@@ -111,7 +111,12 @@ export default function Header() {
                       <span className="mn-img"><img src={it.img} alt="" loading="lazy" />{it.badge && <span className="mn-badge">{it.badge}</span>}</span>
                       <span className="mn-txt">
                         <strong>{it.label}</strong>
-                        <em>{it.blurb}</em>
+                        {it.blurb?.includes('•') ? (
+                          // Benefit words: each word keeps its dot, so lines never start with "•"
+                          <em className="mn-benefits">
+                            {it.blurb.split(' • ').map((w, j, a) => [j > 0 && ' ', <span key={w}>{w.charAt(0) + w.slice(1).toLocaleLowerCase()}{j < a.length - 1 ? '\u00a0•' : ''}</span>])}
+                          </em>
+                        ) : <em>{it.blurb}</em>}
                       </span>
                     </Link>
                   ))}
