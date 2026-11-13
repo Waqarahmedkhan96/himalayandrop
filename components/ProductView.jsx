@@ -188,14 +188,15 @@ export default function ProductView({ product }) {
             </div>
           )}
           <div className="pdp-after">
-            <RatingLine />
+            <RatingLine className="pdp-rate-m" />
             <NutritionLabel product={product} kind={kind} />
           </div>
         </div>
         <div className="pdp-info">
-          <p className="crumb">
+          <p className="crumb pdp-crumb-m">
             <Link href="/shop/">{t.shop}</Link> / {product.title}
           </p>
+          <RatingLine className="pdp-rate-top" />
           <h1>
             <span className="line"><span>{titleParts ? <>{titleParts[0]} <em>{titleParts[1]}</em></> : product.title}</span></span>
           </h1>
