@@ -21,7 +21,7 @@ export const batches = [
   { id: 'HD-S-2611', product: 'Shilajit Resin Premium Skardu', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
   { id: 'HD-GU-2611', product: 'Aura Shilajit Gummies', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
   { id: 'HD-D-2611', product: 'Élan Shilajit Drops', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
-  { id: 'HD-C-2611', product: 'Viva Shilajit Capsules', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
+  { id: 'HD-C-2611', product: 'Vigor Shilajit Capsules', tested: 'November 2026', lab: 'Independent EU laboratory', pdf: null },
 ];
 
 export default function BatchLookup() {
