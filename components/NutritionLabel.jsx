@@ -3,6 +3,7 @@
 // typical analysis (resin) in a dialog, with the free-from list or the authorised claims under it.
 import { useEffect, useRef, useState } from 'react';
 import { useLang } from './LangProvider';
+import { usePdp } from './OriginContext';
 import { pdpText } from '@/lib/pdp';
 import { FORMULA_KEYS, nrvPct } from '@/lib/labdata';
 
@@ -18,7 +19,7 @@ const BTN = {
 export default function NutritionLabel({ product, kind }) {
   const lang = useLang();
   const b = BTN[lang] || BTN.en;
-  const t = pdpText(lang).facts;
+  const t = usePdp(lang).facts;
   const [open, setOpen] = useState(false);
   const back = useRef(null);
   const x = useRef(null);

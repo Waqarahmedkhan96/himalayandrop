@@ -8,6 +8,7 @@
 import { useState } from 'react';
 import FormulaBenefits from './FormulaBenefits';
 import { useLang } from './LangProvider';
+import { localizeOrigin, isHimalayan } from '@/lib/origin';
 
 // Coloured icons: Twemoji (CC-BY 4.0), copied to /public/images/emoji. Filename = emoji code.
 const ZINC_IC = ['1f6e1', '1f9e0', '2728', '1f487', '1f485', '1f9b4', '1f441', '1f4aa', '1f331', '1f35e', '1f951', '1f957', '2696', '1f955', '1f9ec', '1f95a', '1f52c', '1f9eb'];
@@ -189,6 +190,7 @@ function Facts({ t, kind }) {
 export default function ProductChips({ product, kind }) {
   const lang = useLang();
   if (kind === 'capsules') return CLAIMS[lang] ? <Claims t={CLAIMS[lang]} /> : <FormulaBenefits product={product} />;
-  const t = FACTS[lang];
+  const base = FACTS[lang];
+  const t = base && isHimalayan(product.handle) ? localizeOrigin(base, lang) : base;
   return t ? <Facts t={t} kind={kind} /> : null;
 }

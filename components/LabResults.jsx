@@ -10,6 +10,7 @@ import Link from './LLink';
 import { Arrow } from './Arrow';
 import { useLang } from './LangProvider';
 import { gsap, useGSAP, prefersReducedMotion } from '@/lib/gsap';
+import { usePdp, useFulvic } from './OriginContext';
 import { pdpText } from '@/lib/pdp';
 import { LAB } from '@/lib/labdata';
 import { LANGS } from '@/lib/i18n';
@@ -27,8 +28,9 @@ const HM = {
 };
 
 export function LabSpotlight({ product }) {
+  const fulvic = useFulvic();
   const lang = useLang();
-  const t = pdpText(lang).lab;
+  const t = usePdp(lang).lab;
   const root = useRef(null);
   const num = useRef(null);
   const date = new Intl.DateTimeFormat(`${LANGS[lang]?.locale || 'en-GB'}-u-nu-latn`, { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(LAB.date));
@@ -39,7 +41,7 @@ export function LabSpotlight({ product }) {
       const o = { v: 0 };
       const tl = gsap.timeline({ scrollTrigger: { trigger: root.current, start: 'top 72%', once: true } });
       tl.from('.lr-copy > *', { y: 22, opacity: 0, stagger: 0.07, duration: 1, ease: 'expo.out' })
-        .to(o, { v: LAB.fulvic, duration: 2, ease: 'power3.out', onUpdate: () => { if (num.current) num.current.textContent = nf(lang, o.v); } }, 0.1)
+        .to(o, { v: fulvic, duration: 2, ease: 'power3.out', onUpdate: () => { if (num.current) num.current.textContent = nf(lang, o.v); } }, 0.1)
         .from('.lr-jar', { y: 50, opacity: 0, duration: 1.3, ease: 'expo.out' }, 0.2)
         .from('.lr-report', { y: 50, x: -24, rotate: -14, opacity: 0, duration: 1.3, ease: 'expo.out' }, 0.4);
     },
@@ -50,8 +52,8 @@ export function LabSpotlight({ product }) {
     <section className="section lr" ref={root} id="lab">
       <div className="lr-card">
         <div className="lr-stage">
-          <div className="lr-big" aria-label={`${nf(lang, LAB.fulvic)}% ${t.fulvicLabel}`}>
-            <strong aria-hidden="true"><span ref={num}>{nf(lang, LAB.fulvic)}</span><small>%</small></strong>
+          <div className="lr-big" aria-label={`${nf(lang, fulvic)}% ${t.fulvicLabel}`}>
+            <strong aria-hidden="true"><span ref={num}>{nf(lang, fulvic)}</span><small>%</small></strong>
             <span className="lr-unit">{t.fulvicLabel}</span>
           </div>
           <img className="lr-jar" src={product.image} alt="" loading="lazy" />
@@ -59,7 +61,7 @@ export function LabSpotlight({ product }) {
             <b className="lr-rh">{HM[lang]?.rep || HM.en.rep}</b>
             <span className="lr-rn"><bdi>{LAB.report}</bdi> · {date}</span>
             <dl>
-              <div><dt>{t.fulvicLabel}</dt><dd><bdi dir="ltr">{nf(lang, LAB.fulvic)} ± {nf(lang, LAB.fulvicMargin)} %</bdi></dd></div>
+              <div><dt>{t.fulvicLabel}</dt><dd><bdi dir="ltr">{nf(lang, fulvic)} ± {nf(lang, LAB.fulvicMargin)} %</bdi></dd></div>
               <div><dt>{t.method}</dt><dd>{LAB.method}</dd></div>
               <div><dt>{t.lab}</dt><dd>{t.labName}</dd></div>
             </dl>
@@ -79,7 +81,7 @@ export function LabSpotlight({ product }) {
 
 export function HeavyMetals() {
   const lang = useLang();
-  const t = pdpText(lang).lab;
+  const t = usePdp(lang).lab;
   const h = HM[lang] || HM.en;
   const [i, setI] = useState(0);
   const m = LAB.metals[i];
