@@ -1,6 +1,7 @@
 'use client';
 import { isHimalayan, localizeOrigin } from '@/lib/origin';
 import { useRef, useState } from 'react';
+import ImageLightbox from './ImageLightbox';
 import Link from './LLink';
 import { useT } from './LangProvider';
 
@@ -86,6 +87,14 @@ const ALC = {
 // Small icon per formula row (same order as lib/products.js).
 // How-to step icons: the measuring step shows the spoon.
 const STEP_ICON = { jar: 'spoon' };
+const GAL = {
+  en: { prev: 'Previous image', next: 'Next image', zoom: 'Enlarge image', close: 'Close' },
+  da: { prev: 'Forrige billede', next: 'Næste billede', zoom: 'Forstør billede', close: 'Luk' },
+  de: { prev: 'Vorheriges Bild', next: 'Nächstes Bild', zoom: 'Bild vergrößern', close: 'Schließen' },
+  fr: { prev: 'Image précédente', next: 'Image suivante', zoom: 'Agrandir l’image', close: 'Fermer' },
+  es: { prev: 'Imagen anterior', next: 'Imagen siguiente', zoom: 'Ampliar imagen', close: 'Cerrar' },
+  ar: { prev: 'الصورة السابقة', next: 'الصورة التالية', zoom: 'تكبير الصورة', close: 'إغلاق' },
+};
 const GUIDE = { en: 'See the full guide', da: 'Se hele vejledningen', de: 'Zur ganzen Anleitung', fr: 'Voir le guide complet', es: 'Ver la guía completa', ar: 'عرض الدليل الكامل' };
 
 export default function ProductView({ product }) {
@@ -107,6 +116,9 @@ export default function ProductView({ product }) {
     ...(product.gallery || []).map((g) => ({ ...g, cutout: false })),
   ];
   const [index, setIndex] = useState(0);
+  const [zoom, setZoom] = useState(false);
+  const swipe = useRef(null);
+  const g = useT(GAL);
   const slide = slides[index];
 
   useGSAP(
@@ -161,8 +173,31 @@ export default function ProductView({ product }) {
       )}
       <div className="container pdp-grid">
         <div className="pdp-gallery">
-          <div className={`pdp-media ${slide.cutout ? 'cutout' : 'photo'}${stage && index === 0 ? ' is-stage' : ''}`}>
-            <img key={slide.src} src={slide.src} alt={slide.alt} />
+          <div
+            className={`pdp-media ${slide.cutout ? 'cutout' : 'photo'}${stage && index === 0 ? ' is-stage' : ''}`}
+            onClick={() => setZoom(true)}
+            onTouchStart={(e) => { swipe.current = e.touches[0].clientX; }}
+            onTouchEnd={(e) => {
+              if (swipe.current == null || slides.length < 2) return;
+              const dx = e.changedTouches[0].clientX - swipe.current;
+              swipe.current = null;
+              if (Math.abs(dx) > 45) show((index + (dx < 0 ? 1 : -1) + slides.length) % slides.length);
+            }}
+          >
+            <img key={slide.src} src={slide.src} alt={slide.alt} width="1216" height="1200" decoding="async" fetchPriority="high" />
+            <button type="button" className="pdp-zoom" aria-label={g.zoom} onClick={(e) => { e.stopPropagation(); setZoom(true); }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2M11 8.5v5M8.5 11h5" /></svg>
+            </button>
+            {slides.length > 1 && (
+              <>
+                <button type="button" className="pdp-arrow is-prev" aria-label={g.prev} onClick={(e) => { e.stopPropagation(); show((index - 1 + slides.length) % slides.length); }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6" /></svg>
+                </button>
+                <button type="button" className="pdp-arrow is-next" aria-label={g.next} onClick={(e) => { e.stopPropagation(); show((index + 1) % slides.length); }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
+                </button>
+              </>
+            )}
             {stage && (
               <span className="pdp-tag">
                 <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 16 5v4.6c0 3.8-2.6 6.6-6 7.9-3.4-1.3-6-4.1-6-7.9V5z" /><path d="m7.2 10 2 2 3.8-4" /></svg>
@@ -285,6 +320,7 @@ export default function ProductView({ product }) {
           </div>
         </div>
       </div>
+      {zoom && <ImageLightbox slides={slides} index={index} onIndex={setIndex} onClose={() => setZoom(false)} labels={g} />}
     </section>
   );
 }
