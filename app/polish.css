@@ -228,3 +228,11 @@ html .pdp--alcove .pdp-thumbs button { border-radius: 50% 50% 10px 10px / 34% 34
 .bx-cta:disabled .bx-cta-price { animation: bx-pulse 1s ease-in-out infinite; }
 @keyframes bx-pulse { 50% { opacity: 0.35; } }
 @media (prefers-reduced-motion: reduce) { .bx-cta:disabled .bx-cta-price { animation: none; } }
+
+/* Gallery thumbnails: burgundy frame, thicker on the image you are viewing */
+html .pdp-thumbs button { position: relative; opacity: 0.8; box-shadow: none; }
+html .pdp-thumbs button::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1.5px rgba(88, 15, 27, 0.45); transition: box-shadow 0.25s; }
+html .pdp-thumbs button:hover { opacity: 1; }
+html .pdp-thumbs button:hover::after { box-shadow: inset 0 0 0 2px rgba(88, 15, 27, 0.8); }
+html .pdp-thumbs button.on { opacity: 1; box-shadow: 0 8px 20px rgba(64, 1, 10, 0.18); }
+html .pdp-thumbs button.on::after { box-shadow: inset 0 0 0 3px var(--burgundy); }
