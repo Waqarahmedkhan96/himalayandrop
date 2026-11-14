@@ -176,6 +176,10 @@ export default function ProductView({ product }) {
           <div
             className={`pdp-media ${slide.cutout ? 'cutout' : 'photo'}${stage && index === 0 ? ' is-stage' : ''}`}
             onClick={() => setZoom(true)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setZoom(true); } }}
+            role="button"
+            tabIndex={0}
+            aria-label={g.zoom}
             onTouchStart={(e) => { swipe.current = e.touches[0].clientX; }}
             onTouchEnd={(e) => {
               if (swipe.current == null || slides.length < 2) return;
@@ -185,19 +189,6 @@ export default function ProductView({ product }) {
             }}
           >
             <img key={slide.src} src={slide.src} alt={slide.alt} width="1216" height="1200" decoding="async" fetchPriority="high" />
-            <button type="button" className="pdp-zoom" aria-label={g.zoom} onClick={(e) => { e.stopPropagation(); setZoom(true); }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2M11 8.5v5M8.5 11h5" /></svg>
-            </button>
-            {slides.length > 1 && (
-              <>
-                <button type="button" className="pdp-arrow is-prev" aria-label={g.prev} onClick={(e) => { e.stopPropagation(); show((index - 1 + slides.length) % slides.length); }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6" /></svg>
-                </button>
-                <button type="button" className="pdp-arrow is-next" aria-label={g.next} onClick={(e) => { e.stopPropagation(); show((index + 1) % slides.length); }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
-                </button>
-              </>
-            )}
             {stage && (
               <span className="pdp-tag">
                 <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 16 5v4.6c0 3.8-2.6 6.6-6 7.9-3.4-1.3-6-4.1-6-7.9V5z" /><path d="m7.2 10 2 2 3.8-4" /></svg>
@@ -223,8 +214,8 @@ export default function ProductView({ product }) {
             </div>
           )}
           <div className="pdp-after">
-            <RatingLine className="pdp-rate-m" />
             <NutritionLabel product={product} kind={kind} />
+            <RatingLine className="pdp-rate-m" />
           </div>
         </div>
         <div className="pdp-info">

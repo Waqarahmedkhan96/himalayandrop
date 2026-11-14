@@ -44,15 +44,17 @@ export default function ImageLightbox({ slides, index, onIndex, onClose, labels 
         if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
       }}
     >
-      <button type="button" className="lb-x" onClick={onClose} aria-label={labels.close}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
-      </button>
       {n > 1 && (
         <button type="button" className="lb-nav lb-prev" onClick={() => go(-1)} aria-label={labels.prev}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6" /></svg>
         </button>
       )}
-      <img key={s.src} src={s.src} alt={s.alt || ''} className="lb-img" />
+      <div className="lb-card">
+        <img key={s.src} src={s.src} alt={s.alt || ''} className="lb-img" />
+        <button type="button" className="lb-x" onClick={onClose} aria-label={labels.close}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </div>
       {n > 1 && (
         <button type="button" className="lb-nav lb-next" onClick={() => go(1)} aria-label={labels.next}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
