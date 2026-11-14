@@ -1,6 +1,6 @@
 'use client';
 import { isHimalayan, localizeOrigin } from '@/lib/origin';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ImageLightbox from './ImageLightbox';
 import Link from './LLink';
 import { useT } from './LangProvider';
@@ -118,6 +118,18 @@ export default function ProductView({ product }) {
   const [index, setIndex] = useState(0);
   const [zoom, setZoom] = useState(false);
   const swipe = useRef(null);
+  const strip = useRef(null);
+  const [more, setMore] = useState(false);
+  // Show a "next" arrow at the end of the thumbnail strip while more thumbnails are hidden.
+  useEffect(() => {
+    const el = strip.current;
+    if (!el) return;
+    const check = () => setMore(Math.abs(el.scrollLeft) + el.clientWidth < el.scrollWidth - 6);
+    check();
+    el.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check);
+    return () => { el.removeEventListener('scroll', check); window.removeEventListener('resize', check); };
+  }, [slides.length]);
   const g = useT(GAL);
   const slide = slides[index];
 
@@ -197,7 +209,8 @@ export default function ProductView({ product }) {
             )}
           </div>
           {slides.length > 1 && (
-            <div className="pdp-thumbs" role="tablist" aria-label={t.images}>
+            <div className="pdp-thumbs-wrap">
+            <div className="pdp-thumbs" role="tablist" aria-label={t.images} ref={strip}>
               {slides.map((s, i) => (
                 <button
                   key={s.src}
@@ -211,6 +224,12 @@ export default function ProductView({ product }) {
                   <img src={s.src} alt="" loading="lazy" />
                 </button>
               ))}
+            </div>
+            {more && (
+              <button type="button" className="pdp-thumbs-next" aria-label={g.next} onClick={() => strip.current?.scrollBy({ left: (document.dir === 'rtl' ? -1 : 1) * 160, behavior: 'smooth' })}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
+              </button>
+            )}
             </div>
           )}
           <div className="pdp-after">
