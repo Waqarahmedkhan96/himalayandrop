@@ -54,6 +54,7 @@ export default function AnnouncementBar() {
   const lang = useLang();
   const items = T[lang] || T.en;
   const [left, setLeft] = useState(null);
+  const [cur, setCur] = useState(0);
   const over = left !== null && left <= 0;
   useEffect(() => {
     const tick = () => setLeft(END - Date.now());
@@ -61,6 +62,11 @@ export default function AnnouncementBar() {
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, []);
+  // On phones the three messages share one line and take turns.
+  useEffect(() => {
+    const id = setInterval(() => setCur((c) => (c + 1) % items.length), 4200);
+    return () => clearInterval(id);
+  }, [items.length]);
   useEffect(() => {
     const root = document.documentElement;
     if (over) root.setAttribute('data-cd', 'off'); else root.removeAttribute('data-cd');
@@ -78,7 +84,7 @@ export default function AnnouncementBar() {
     <div className="abar">
       <ul>
         {items.map(([b, r], i) => (
-          <li key={i}>
+          <li key={i} className={i === cur ? 'is-cur' : undefined}>
             <Link href={HREF[i]}>
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{ICON[i]}</svg>
               <span><strong>{b}</strong> {r}</span>

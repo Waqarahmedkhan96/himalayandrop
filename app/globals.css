@@ -23,7 +23,7 @@
   --cream-2: #efe2d3;
   --sand: #e4d4bd;
   --ink: #21161a;
-  --muted: #74655d;
+  --muted: #6b5c54;
   --line: rgba(33, 22, 26, 0.1);
 
   /* ── Himalayan Drop master palette (see the Colour Guide). Use these names, never new hex values. ── */
@@ -33,7 +33,7 @@
   --burgundy-ink: #2a0107;    /* darkest panels, overlays, headings */
   --gold-light: #eed9a6;      /* gold gradient: light */
   --gold-shadow: #b88f4d;     /* gold gradient: shadow */
-  --gold-text: #8a6429;       /* readable gold for small text on ivory (4.75:1) */
+  --gold-text: #7d5a22;       /* readable gold for small text on ivory (4.75:1) */
   --ivory: #f7f1e8;           /* main light background */
   --white: #ffffff;           /* clean cards and fields */
 

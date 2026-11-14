@@ -103,9 +103,12 @@ export default function OfferPopup() {
     const at = Number(String(seen || '').split(':')[1]);
     if (seen && at && Date.now() - at < AGAIN_AFTER) return;
     let shown = false;
+    let dead = false;
     const show = () => {
-      if (shown) return;
+      if (shown || dead) return;
       if (!getConsent()) return; // wait until the visitor has answered the cookie banner
+      // One thing at a time: wait while another dialog (cart, nutrition label, image viewer) is open.
+      if (document.querySelector('[aria-modal="true"]')) { setTimeout(show, 4000); return; }
       shown = true;
       lastFocus.current = document.activeElement;
       setOpen(true);
@@ -118,7 +121,7 @@ export default function OfferPopup() {
     window.addEventListener('scroll', onScroll, { passive: true });
     const onConsent = () => setTimeout(show, 1500);
     window.addEventListener('hd:consent', onConsent);
-    return () => { clearTimeout(timer); window.removeEventListener('scroll', onScroll); window.removeEventListener('hd:consent', onConsent); };
+    return () => { dead = true; clearTimeout(timer); window.removeEventListener('scroll', onScroll); window.removeEventListener('hd:consent', onConsent); };
   }, [blocked]);
 
   // Pause smooth scrolling, focus the dialog, close on Escape.
