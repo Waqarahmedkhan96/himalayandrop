@@ -301,3 +301,10 @@ html .pdp-thumbs button.on::after { box-shadow: inset 0 0 0 3px var(--burgundy);
   .md-timer { bottom: 56px; }
   .is-wheel .md-again { margin-bottom: 2px; }
 }
+
+/* Footer brand block (logo, tagline, social icons) centred on phones */
+@media (max-width: 767.98px) {
+  html .footer-top > div:first-child { text-align: center; display: flex; flex-direction: column; align-items: center; }
+  html .footer-top .tagline { margin-inline: auto; max-width: 30ch; }
+  html .footer-top .social { justify-content: center; }
+}
