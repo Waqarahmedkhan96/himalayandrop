@@ -327,6 +327,21 @@ html .pdp-thumbs button.on::after { box-shadow: inset 0 0 0 3px var(--burgundy);
   html .footer-top .social { justify-content: center; }
 }
 
+/* Phone sticky bar: smaller, like the IM8 reference (short dropdown, same width as the picker) */
+@media (max-width: 767.98px) {
+  .bx-sbar { padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); gap: 8px; }
+  .bx-sbar-pick { min-height: 46px; padding: 4px 14px; border-radius: 14px; }
+  .bx-sbar-txt strong { font-size: 13px; }
+  .bx-sbar-txt small { font-size: 12px; }
+  .bx-sbar-add { min-width: 96px; min-height: 46px; padding: 0 18px; border-radius: 14px; font-size: 14px; }
+  .bx-sbar-list { inset-inline-end: calc(12px + 96px + 8px); bottom: calc(100% + 6px); padding: 4px; border-radius: 14px; box-shadow: 0 -12px 28px -16px rgba(42, 1, 7, 0.45); }
+  .bx-sbar-list button { padding: 10px 12px; border-radius: 10px; }
+  .bx-sbar-list span { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+  .bx-sbar-list strong { font-size: 14px; font-weight: 600; }
+  .bx-sbar-list em { font-size: 10px; }
+  .bx-sbar-list b { display: none; }
+}
+
 /* Footer accordion headings: cream, lighter and more spaced for a quieter, more refined look */
 @media (max-width: 767.98px) {
   html .fc-head { padding: 20px 2px; font: 400 17px/1.1 var(--display); letter-spacing: 0.22em; color: var(--cream); }
