@@ -236,3 +236,68 @@ html .pdp-thumbs button:hover { opacity: 1; }
 html .pdp-thumbs button:hover::after { box-shadow: inset 0 0 0 2px rgba(88, 15, 27, 0.8); }
 html .pdp-thumbs button.on { opacity: 1; box-shadow: 0 8px 20px rgba(64, 1, 10, 0.18); }
 html .pdp-thumbs button.on::after { box-shadow: inset 0 0 0 3px var(--burgundy); }
+
+/* Phone buy bar: choose jars + ADD, visible until the real Add to cart button is on screen */
+.bx-sbar { display: none; }
+@media (max-width: 767.98px) {
+  .sticky-buy { display: none; }
+  .bx-sbar { position: fixed; z-index: 60; inset-inline: 0; bottom: 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(255, 250, 242, 0.97); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid rgba(88, 15, 27, 0.14); box-shadow: 0 -14px 30px -18px rgba(42, 1, 7, 0.45); transform: translateY(110%); transition: transform 0.5s var(--ease); }
+  .bx-sbar.on { transform: none; }
+  .bx-sbar-pick { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 52px; padding: 6px 16px; text-align: start; border: 1.5px solid rgba(88, 15, 27, 0.55); border-radius: 16px; background: #fffaf2; color: var(--burgundy); cursor: pointer; }
+  .bx-sbar-txt { min-width: 0; display: grid; gap: 2px; }
+  .bx-sbar-txt strong { font: 700 13.5px/1.2 var(--sans); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bx-sbar-txt small { font: 500 12.5px/1.2 var(--sans); color: var(--muted); white-space: nowrap; }
+  .bx-sbar-pick svg { flex: none; transition: transform 0.25s var(--ease); }
+  .bx-sbar-pick[aria-expanded='true'] svg { transform: rotate(180deg); }
+  .bx-sbar-add { flex: none; min-width: 112px; min-height: 52px; padding: 0 22px; border: 0; border-radius: 16px; background: var(--burgundy); color: #fff; font: 800 15px/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+  .bx-sbar-add:disabled { opacity: 0.7; cursor: progress; }
+  .bx-sbar button:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 2px; }
+  .bx-sbar-list { position: absolute; inset-inline: 12px; bottom: calc(100% + 8px); margin: 0; padding: 6px; list-style: none; border: 1.5px solid rgba(88, 15, 27, 0.4); border-radius: 18px; background: #fffaf2; box-shadow: 0 -20px 40px -20px rgba(42, 1, 7, 0.5); }
+  .bx-sbar-list li + li { border-top: 1px solid rgba(88, 15, 27, 0.1); }
+  .bx-sbar-list button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 12px; border: 0; border-radius: 12px; background: none; color: var(--burgundy); text-align: start; cursor: pointer; }
+  .bx-sbar-list li[aria-selected='true'] button { background: rgba(88, 15, 27, 0.07); }
+  .bx-sbar-list span { display: grid; gap: 3px; }
+  .bx-sbar-list strong { font: 700 14px/1.2 var(--sans); }
+  .bx-sbar-list em { font: 700 11px/1 var(--label); font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; color: #7d5a22; }
+  .bx-sbar-list b { font: 700 14px/1 var(--sans); white-space: nowrap; }
+  body.sbar-on .hdsw { bottom: 88px; }
+}
+@media (prefers-reduced-motion: reduce) { .bx-sbar { transition: none; } }
+
+/* Footer on phones: folding link groups (Shop open by default), like a store menu */
+.fc-head { all: unset; box-sizing: border-box; display: block; width: 100%; cursor: default; }
+.fc-sign { display: none; }
+.fc-links { display: block; }
+@media (max-width: 767.98px) {
+  html .footer-cols { grid-template-columns: 1fr; gap: 0; border-top: 1px solid rgba(226, 196, 135, 0.22); }
+  html .footer-col { border-bottom: 1px solid rgba(226, 196, 135, 0.22); }
+  html .footer-col h3 { margin: 0; }
+  .fc-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 2px; cursor: pointer; font: 400 22px/1.1 var(--display); letter-spacing: 0.04em; text-transform: uppercase; color: var(--gold-soft); }
+  .fc-head:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 2px; border-radius: 6px; }
+  .fc-sign { position: relative; display: block; flex: none; width: 18px; height: 18px; }
+  .fc-sign::before, .fc-sign::after { content: ''; position: absolute; inset-inline: 1px; top: 8px; height: 2px; border-radius: 2px; background: currentColor; transition: transform 0.3s var(--ease); }
+  .fc-sign::after { transform: rotate(90deg); }
+  .footer-col.is-open .fc-sign::after { transform: rotate(0deg); }
+  .fc-links { display: none; grid-template-columns: 1fr 1fr; gap: 0 16px; padding: 0 2px 18px; }
+  .footer-col.is-open .fc-links { display: grid; }
+  .fc-links a { padding: 9px 0; font-size: 14px; line-height: 1.3; color: rgba(247, 241, 232, 0.82); }
+}
+
+/* Myth cards on phones: the arrows + dots sit on the card itself instead of in a row under the deck */
+.md-cardnav { display: none; }
+@media (max-width: 767.98px) {
+  .md-section .bd-nav { display: none; }
+  .md-lift { position: relative; }
+  .md-cardnav { position: absolute; z-index: 5; inset-inline: 0; bottom: 34px; display: flex; align-items: center; justify-content: center; gap: 12px; pointer-events: none; }
+  .md-cardnav > * { pointer-events: auto; }
+  .md-cardnav button { width: 32px; height: 32px; padding: 0; border-radius: 50%; display: grid; place-items: center; background: rgba(244, 222, 170, 0.16); color: var(--gold-soft); border: 1px solid rgba(244, 222, 170, 0.45); cursor: pointer; }
+  .md-cardnav button svg { width: 15px; height: 15px; }
+  .md-cardnav button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  [dir='rtl'] .md-cardnav button svg { transform: scaleX(-1); }
+  .md-cardnav-dots { display: flex; gap: 6px; align-items: center; }
+  .md-cardnav-dots i { width: 6px; height: 6px; border-radius: 6px; background: rgba(244, 222, 170, 0.4); transition: width 0.4s var(--ease), background 0.3s; }
+  .md-cardnav-dots i.on { width: 20px; background: var(--gold); }
+  .is-wheel .md-card .bd-card-in { padding-bottom: 84px; }
+  .md-timer { bottom: 56px; }
+  .is-wheel .md-again { margin-bottom: 2px; }
+}
