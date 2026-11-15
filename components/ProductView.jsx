@@ -120,11 +120,15 @@ export default function ProductView({ product }) {
   const swipe = useRef(null);
   const strip = useRef(null);
   const [more, setMore] = useState(false);
+  const [less, setLess] = useState(false);
   // Show a "next" arrow at the end of the thumbnail strip while more thumbnails are hidden.
   useEffect(() => {
     const el = strip.current;
     if (!el) return;
-    const check = () => setMore(Math.abs(el.scrollLeft) + el.clientWidth < el.scrollWidth - 6);
+    const check = () => {
+      setMore(Math.abs(el.scrollLeft) + el.clientWidth < el.scrollWidth - 6);
+      setLess(Math.abs(el.scrollLeft) > 6);
+    };
     check();
     el.addEventListener('scroll', check, { passive: true });
     window.addEventListener('resize', check);
@@ -225,6 +229,11 @@ export default function ProductView({ product }) {
                 </button>
               ))}
             </div>
+            {less && (
+              <button type="button" className="pdp-thumbs-prev" aria-label={g.prev} onClick={() => strip.current?.scrollBy({ left: (document.dir === 'rtl' ? 1 : -1) * 160, behavior: 'smooth' })}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6" /></svg>
+              </button>
+            )}
             {more && (
               <button type="button" className="pdp-thumbs-next" aria-label={g.next} onClick={() => strip.current?.scrollBy({ left: (document.dir === 'rtl' ? -1 : 1) * 160, behavior: 'smooth' })}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
