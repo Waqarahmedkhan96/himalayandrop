@@ -326,3 +326,15 @@ html .pdp-thumbs button.on::after { box-shadow: inset 0 0 0 3px var(--burgundy);
   html .footer-top .tagline { margin-inline: auto; max-width: 30ch; }
   html .footer-top .social { justify-content: center; }
 }
+
+/* Footer accordion headings: cream, lighter and more spaced for a quieter, more refined look */
+@media (max-width: 767.98px) {
+  html .fc-head { padding: 20px 2px; font: 400 17px/1.1 var(--display); letter-spacing: 0.22em; color: var(--cream); }
+  html .fc-sign { width: 14px; height: 14px; color: var(--gold); }
+  html .fc-sign::before, html .fc-sign::after { top: 6.25px; height: 1.5px; inset-inline: 0; }
+  html .footer-col.is-open .fc-head { color: var(--cream); }
+  html .footer-col { border-bottom-color: rgba(246, 236, 217, 0.16); }
+  html .footer-cols { border-top-color: rgba(246, 236, 217, 0.16); }
+  html .fc-links a { color: rgba(246, 236, 217, 0.82); }
+}
+@media (max-width: 767.98px) { [dir='rtl'] .fc-head { letter-spacing: 0; font-size: 20px; } }
