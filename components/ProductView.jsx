@@ -251,16 +251,6 @@ export default function ProductView({ product }) {
             {stage && product.amount != null && <span className="pdp-subtag">{a.withSub.replace('{p}', formatMoney(Math.round(product.amount * (1 - SUBSCRIBE_PCT / 100) * 100) / 100, product.currency))}</span>}
           </p>
           <p className="desc">{product.description}</p>
-          {product.facts && (
-            <dl className="pdp-stats">
-              {product.facts.map(([v, l], i) => (
-                <div key={l}>
-                  <span className="ps-ico"><RealIcon name={factIcon(i, v, kind)} size={30} /></span>
-                  <span className="ps-txt"><dt><bdi>{v}</bdi></dt><dd>{l}</dd></span>
-                </div>
-              ))}
-            </dl>
-          )}
           {product.amount != null ? (
             <PurchaseBox product={product} />
           ) : (

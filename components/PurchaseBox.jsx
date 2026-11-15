@@ -7,7 +7,8 @@
 // subscription must be an active choice, never pre-selected.
 // Badges only state facts we can back up (the saving, the lowest price per
 // pack); no "best seller" claims. Settings live in lib/subscription.js.
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useCart } from '@/lib/cart';
 import { formatMoney } from '@/lib/shopify';
 import { SUBSCRIBE_PCT, TIERS, DAYS_PER_PACK, demoPlans, defaultInterval } from '@/lib/subscription';
@@ -15,7 +16,7 @@ import { useT } from './LangProvider';
 
 const T = {
   en: {
-    qty: 'Choose quantity', packs: (n) => (n === 1 ? '1 pack' : `${n} packs`), supply: '{d}-day supply', each: '{p} each',
+    qty: 'Choose quantity', packs: (n) => (n === 1 ? '1 jar' : `${n} jars`), addShort: 'Add', chooseAria: 'Choose quantity and supply', supply: '{d}-day supply', each: '{p} per jar',
     saveTag: (p) => `Save ${p}%`, bestValue: 'Best value',
     type: 'Purchase option', banner: 'Best price: save {pct}% on every order',
     sub: 'Subscribe & Save', every: 'Delivered every', days: (d) => `${d} days`, rec: 'Recommended',
@@ -32,7 +33,7 @@ const T = {
     ],
   },
   da: {
-    qty: 'Vælg antal', packs: (n) => (n === 1 ? '1 pakke' : `${n} pakker`), supply: 'Rækker {d} dage', each: '{p} pr. stk.',
+    qty: 'Vælg antal', packs: (n) => (n === 1 ? '1 krukke' : `${n} krukker`), addShort: 'Tilføj', chooseAria: 'Vælg antal og forsyning', supply: 'Rækker {d} dage', each: '{p} pr. krukke',
     saveTag: (p) => `Spar ${p} %`, bestValue: 'Bedste pris',
     type: 'Købsmulighed', banner: 'Bedste pris: spar {pct} % på hver ordre',
     sub: 'Abonnér & Spar', every: 'Levering hver', days: (d) => `${d}. dag`, rec: 'Anbefalet',
@@ -49,7 +50,7 @@ const T = {
     ],
   },
   de: {
-    qty: 'Menge wählen', packs: (n) => (n === 1 ? '1 Packung' : `${n} Packungen`), supply: 'Reicht {d} Tage', each: '{p} pro Stück',
+    qty: 'Menge wählen', packs: (n) => (n === 1 ? '1 Glas' : `${n} Gläser`), addShort: 'Hinzufügen', chooseAria: 'Menge und Reichweite wählen', supply: 'Reicht {d} Tage', each: '{p} pro Glas',
     saveTag: (p) => `${p} % sparen`, bestValue: 'Bester Preis',
     type: 'Kaufoption', banner: 'Bester Preis: {pct} % auf jede Bestellung',
     sub: 'Abo & Sparen', every: 'Lieferung alle', days: (d) => `${d} Tage`, rec: 'Empfohlen',
@@ -66,7 +67,7 @@ const T = {
     ],
   },
   fr: {
-    qty: 'Choisissez la quantité', packs: (n) => (n === 1 ? '1 unité' : `${n} unités`), supply: 'Pour {d} jours', each: '{p} l’unité',
+    qty: 'Choisissez la quantité', packs: (n) => (n === 1 ? '1 pot' : `${n} pots`), addShort: 'Ajouter', chooseAria: 'Choisir la quantité et la durée', supply: 'Pour {d} jours', each: '{p} le pot',
     saveTag: (p) => `-${p} %`, bestValue: 'Meilleur prix',
     type: 'Option d’achat', banner: 'Meilleur prix : -{pct} % sur chaque commande',
     sub: 'Abonnement', every: 'Livré tous les', days: (d) => `${d} jours`, rec: 'Recommandé',
@@ -83,7 +84,7 @@ const T = {
     ],
   },
   es: {
-    qty: 'Elige la cantidad', packs: (n) => (n === 1 ? '1 unidad' : `${n} unidades`), supply: 'Para {d} días', each: '{p} cada uno',
+    qty: 'Elige la cantidad', packs: (n) => (n === 1 ? '1 tarro' : `${n} tarros`), addShort: 'Añadir', chooseAria: 'Elegir cantidad y duración', supply: 'Para {d} días', each: '{p} por tarro',
     saveTag: (p) => `Ahorra ${p} %`, bestValue: 'Mejor precio',
     type: 'Opción de compra', banner: 'Mejor precio: ahorra {pct} % en cada pedido',
     sub: 'Suscríbete y ahorra', every: 'Entrega cada', days: (d) => `${d} días`, rec: 'Recomendado',
@@ -100,7 +101,7 @@ const T = {
     ],
   },
   ar: {
-    qty: 'اختر الكمية', packs: (n) => (n === 1 ? 'عبوة واحدة' : n === 2 ? 'عبوتان' : `${n} عبوات`), supply: 'تكفي {d} يوماً', each: '{p} للعبوة',
+    qty: 'اختر الكمية', packs: (n) => (n === 1 ? 'برطمان واحد' : n === 2 ? 'برطمانان' : `${n} برطمانات`), addShort: 'أضف', chooseAria: 'اختر الكمية والمدة', supply: 'تكفي {d} يوماً', each: '{p} للبرطمان',
     saveTag: (p) => `وفّر ${p}%`, bestValue: 'أفضل سعر',
     type: 'خيار الشراء', banner: 'أفضل سعر: وفّر {pct}% على كل طلب',
     sub: 'اشترك ووفّر', every: 'التوصيل كل', days: (d) => `${d} يوماً`, rec: 'موصى به',
@@ -131,6 +132,66 @@ function Check() {
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M5 12.5l4.5 4.5L19 7.5" />
     </svg>
+  );
+}
+
+// Phone-only bar at the bottom: choose jars (with the days they last) and add, without scrolling to the buy box.
+// It shows until the real "Add to cart" button is on screen, and again once you have scrolled past it.
+function StickyBar({ t, qty, setQty, tiers, maxTier, packDays, unitOf, money, total, onAdd, busy, tierPct }) {
+  const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(false);
+  const [host, setHost] = useState(null);
+  const box = useRef(null);
+  useEffect(() => setHost(document.body), []);
+  useEffect(() => {
+    const cta = document.querySelector('.bx-cta');
+    const foot = document.querySelector('footer');
+    if (!cta) return;
+    let ctaIn = false;
+    let atFoot = false;
+    const update = () => setShow(!ctaIn && !atFoot);
+    const a = new IntersectionObserver(([e]) => { ctaIn = e.isIntersecting; update(); });
+    a.observe(cta);
+    const b = foot && new IntersectionObserver(([e]) => { atFoot = e.isIntersecting; update(); });
+    if (foot) b.observe(foot);
+    return () => { a.disconnect(); b?.disconnect(); };
+  }, []);
+  useEffect(() => { if (!show) setOpen(false); document.body.classList.toggle('sbar-on', show); return () => document.body.classList.remove('sbar-on'); }, [show]);
+  useEffect(() => {
+    if (!open) return;
+    const away = (e) => { if (box.current && !box.current.contains(e.target)) setOpen(false); };
+    const esc = (e) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('pointerdown', away);
+    document.addEventListener('keydown', esc);
+    return () => { document.removeEventListener('pointerdown', away); document.removeEventListener('keydown', esc); };
+  }, [open]);
+  if (!host) return null;
+  const line = (n) => [t.packs(n), packDays ? fill(t.supply, { d: packDays * n }) : null].filter(Boolean).join(' · ');
+  const pct = tierPct(qty);
+  return createPortal(
+    <div className={`bx-sbar${show ? ' on' : ''}`} aria-hidden={!show} inert={!show} ref={box}>
+      {open && (
+        <ul className="bx-sbar-list" role="listbox" aria-label={t.chooseAria}>
+          {tiers.map(({ qty: n, pct: p }) => (
+            <li key={n} role="option" aria-selected={qty === n}>
+              <button type="button" onClick={() => { setQty(n); setOpen(false); }}>
+                <span><strong>{line(n)}</strong>{p > 0 && <em>{n === maxTier ? t.bestValue : t.saveTag(p)}</em>}</span>
+                <b>{money(unitOf(n) * n)}</b>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      <button type="button" className="bx-sbar-pick" aria-haspopup="listbox" aria-expanded={open} aria-label={t.chooseAria} onClick={() => setOpen((o) => !o)}>
+        <span className="bx-sbar-txt">
+          <strong>{line(qty)}</strong>
+          <small>{money(total)}{pct > 0 ? ` · ${t.saveTag(pct)}` : ''}</small>
+        </span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6" /></svg>
+      </button>
+      <button type="button" className="bx-sbar-add" onClick={onAdd} disabled={busy}>{t.addShort}</button>
+    </div>,
+    host,
   );
 }
 
@@ -177,6 +238,7 @@ export default function PurchaseBox({ product }) {
 
   return (
     <div className="bx" data-mode={mode}>
+      <StickyBar t={t} qty={qty} setQty={setQty} tiers={TIERS} maxTier={maxTier} packDays={packDays} unitOf={(n) => unit(mode, n)} money={money} total={total} onAdd={add} busy={busy} tierPct={tierPct} />
       {/* Step 1: quantity */}
       <p className="bx-label" id="bx-qty">{t.qty}</p>
       <div className="bx-qtys" role="radiogroup" aria-labelledby="bx-qty">

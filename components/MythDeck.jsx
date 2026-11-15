@@ -215,6 +215,15 @@ export default function MythDeck({ kind }) {
                 aria-hidden={!front}
               >
                 <div className="md-lift">
+                  {front && (
+                    <div className="md-cardnav" onPointerDown={(e) => e.stopPropagation()}>
+                      <button type="button" onClick={() => go(active - 1)} aria-label={t.prev}><Arrow d="M19 12H5M11 6l-6 6 6 6" /></button>
+                      <span className="md-cardnav-dots" aria-hidden="true">
+                        {items.map((x, k) => <i key={x.myth} className={k === active ? 'on' : ''} />)}
+                      </span>
+                      <button type="button" onClick={() => go(active + 1)} aria-label={t.next}><Arrow d="M5 12h14M13 6l6 6-6 6" /></button>
+                    </div>
+                  )}
                   <div className="md-flip">
                     <div className="bd-card-in md-face md-front">
                       <div className="bd-top">

@@ -1,7 +1,7 @@
 'use client';
 // Footer. The top edge is a Himalayan ridge silhouette, and the divider above
 // the small print is a gold mountain line that draws itself as you reach it.
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import Link from './LLink';
 import Logo from './Logo';
 import CookieSettingsLink from './CookieSettingsLink';
@@ -75,6 +75,8 @@ function SocialIcon({ name }) {
 
 export default function Footer() {
   const root = useRef(null);
+  // Phones: the link groups fold like an accordion. Shop starts open and stays open until the visitor closes it.
+  const [open, setOpen] = useState({ 0: true });
   const lang = useLang();
   const t = T[lang];
   const { footer, legal } = site[lang];
@@ -125,12 +127,19 @@ export default function Footer() {
               </div>
             </div>
             <div className="footer-cols">
-              {footer.map((col) => (
-                <div className="footer-col" key={col.title}>
-                  <h3>{col.title}</h3>
-                  {col.links.map(([label, href]) => (
-                    <Link key={label} href={href}>{label}</Link>
-                  ))}
+              {footer.map((col, i) => (
+                <div className={`footer-col${open[i] ? ' is-open' : ''}`} key={col.title}>
+                  <h3>
+                    <button type="button" className="fc-head" aria-expanded={!!open[i]} aria-controls={`fc-${i}`} onClick={() => setOpen((o) => ({ ...o, [i]: !o[i] }))}>
+                      <span>{col.title}</span>
+                      <i className="fc-sign" aria-hidden="true" />
+                    </button>
+                  </h3>
+                  <div className="fc-links" id={`fc-${i}`}>
+                    {col.links.map(([label, href]) => (
+                      <Link key={label} href={href}>{label}</Link>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
