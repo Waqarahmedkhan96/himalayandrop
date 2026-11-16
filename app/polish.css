@@ -254,6 +254,7 @@ html .pdp-thumbs button.on::after { box-shadow: inset 0 0 0 3px var(--burgundy);
   html .ck-actions { margin-top: 10px; }
   html .ck-btn { min-height: 40px; font-size: 12.5px; padding: 0 10px; }
   html .ck-more { margin-top: 4px; padding: 4px 8px; font-size: 12px; }
+}
 
 /* Phone buy bar: choose jars + ADD, visible until the real Add to cart button is on screen */
 .bx-sbar { display: none; }
@@ -362,3 +363,15 @@ html .pdp-thumbs button.on::after { box-shadow: inset 0 0 0 3px var(--burgundy);
 html .pdp-thumbs button::after { box-shadow: inset 0 0 0 1px rgba(88, 15, 27, 0.4); }
 html .pdp-thumbs button:hover::after { box-shadow: inset 0 0 0 1.5px rgba(88, 15, 27, 0.7); }
 html .pdp-thumbs button.on::after { box-shadow: inset 0 0 0 1.5px var(--burgundy); }
+
+/* Footer: boxed health notice centred under the gold mountain line; link-group headings are cream and bold on the footer colour (no white buttons) */
+html .footer .fc-head { -webkit-appearance: none; appearance: none; background: transparent; border: 0; box-shadow: none; padding: 0; margin: 0; width: 100%; text-align: start; color: var(--cream); font-family: var(--label); font-weight: 700; }
+@media (min-width: 768px) {
+  html .footer .fc-head { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.2; }
+}
+@media (max-width: 767.98px) {
+  html .footer .fc-head { padding: 20px 2px; font-family: var(--display); font-weight: 400; }
+}
+html .footer .footer-fda { max-width: 760px; margin: 6px auto 20px; padding: 16px 22px; border: 1px solid rgba(246, 236, 217, 0.5); text-align: center; font-size: 13px; line-height: 1.6; font-weight: 600; color: var(--cream); }
+@media (max-width: 767.98px) { html .footer .footer-fda { padding: 14px 16px; font-size: 12.5px; } }
+html .footer .disclaimer { margin-inline: auto; text-align: center; }
