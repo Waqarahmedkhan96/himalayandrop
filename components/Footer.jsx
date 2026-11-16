@@ -13,36 +13,42 @@ const T = {
     follow: 'Follow us',
     tagline: 'A modern approach to a timeless natural substance. Designed in Denmark.',
     disclaimer: 'Food supplement. Do not exceed the recommended daily dose. Food supplements should not be used as a substitute for a varied, balanced diet and a healthy lifestyle. Keep out of reach of children.',
+    fda: 'These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.',
     rights: 'All rights reserved.',
   },
   da: {
     follow: 'Følg os',
     tagline: 'En moderne tilgang til et tidløst naturstof. Designet i Danmark.',
     disclaimer: 'Kosttilskud. Den anbefalede daglige dosis bør ikke overskrides. Kosttilskud bør ikke anvendes som erstatning for en varieret og balanceret kost og en sund livsstil. Opbevares utilgængeligt for børn.',
+    fda: 'Disse udsagn er ikke evalueret af Food and Drug Administration. Dette produkt er ikke beregnet til at diagnosticere, behandle, helbrede eller forebygge sygdomme.',
     rights: 'Alle rettigheder forbeholdes.',
   },
   de: {
     follow: 'Folge uns',
     tagline: 'Ein moderner Zugang zu einer zeitlosen Naturessenz. Gestaltet in Dänemark.',
     disclaimer: 'Nahrungsergänzungsmittel. Die empfohlene tägliche Verzehrmenge nicht überschreiten. Nahrungsergänzungsmittel sind kein Ersatz für eine abwechslungsreiche und ausgewogene Ernährung und eine gesunde Lebensweise. Außerhalb der Reichweite von Kindern aufbewahren.',
+    fda: 'Diese Aussagen wurden von der Food and Drug Administration nicht bewertet. Dieses Produkt ist nicht dazu bestimmt, Krankheiten zu diagnostizieren, zu behandeln, zu heilen oder zu verhindern.',
     rights: 'Alle Rechte vorbehalten.',
   },
   fr: {
     follow: 'Suivez-nous',
     tagline: 'Une approche moderne d’une substance naturelle intemporelle. Conçu au Danemark.',
     disclaimer: 'Complément alimentaire. Ne pas dépasser la dose journalière recommandée. Les compléments alimentaires ne doivent pas être utilisés comme substituts d’un régime alimentaire varié et équilibré et d’un mode de vie sain. Tenir hors de portée des jeunes enfants.',
+    fda: 'Ces déclarations n’ont pas été évaluées par la Food and Drug Administration. Ce produit n’est pas destiné à diagnostiquer, traiter, guérir ou prévenir une maladie.',
     rights: 'Tous droits réservés.',
   },
   es: {
     follow: 'Síguenos',
     tagline: 'Una mirada moderna a una sustancia natural atemporal. Diseñado en Dinamarca.',
     disclaimer: 'Complemento alimenticio. No superar la dosis diaria expresamente recomendada. Los complementos alimenticios no deben utilizarse como sustituto de una dieta variada y equilibrada y de un estilo de vida saludable. Mantener fuera del alcance de los niños más pequeños.',
+    fda: 'Estas declaraciones no han sido evaluadas por la Food and Drug Administration. Este producto no está destinado a diagnosticar, tratar, curar ni prevenir ninguna enfermedad.',
     rights: 'Todos los derechos reservados.',
   },
   ar: {
     follow: 'تابعنا',
     tagline: 'رؤية عصرية لمادة طبيعية خالدة. مصمم في الدنمارك.',
     disclaimer: 'مكمل غذائي. لا تتجاوز الجرعة اليومية الموصى بها. لا تُستخدم المكملات الغذائية بديلاً عن نظام غذائي متنوع ومتوازن ونمط حياة صحي. يُحفظ بعيداً عن متناول الأطفال.',
+    fda: 'لم تقم إدارة الغذاء والدواء الأمريكية (FDA) بتقييم هذه البيانات. هذا المنتج غير مخصص لتشخيص أي مرض أو علاجه أو الشفاء منه أو الوقاية منه.',
     rights: 'جميع الحقوق محفوظة.',
   },
 };
@@ -149,6 +155,7 @@ export default function Footer() {
             <path className="draw" d={divider} fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
           </svg>
 
+          <p className="footer-fda">{t.fda}</p>
           <p className="disclaimer">{t.disclaimer}</p>
           <div className="footer-bottom">
             <span suppressHydrationWarning><bdi dir="ltr">© 2019 Himalayan Drop.</bdi> {t.rights}</span>
