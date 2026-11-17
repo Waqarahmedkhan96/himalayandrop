@@ -16,9 +16,11 @@ export const TEAM = [
   { id: 'nutri', name: 'Nasir Usman', role: 'Fitness and wellbeing coach, UK', photo: '/images/about/nasir.webp', photo2: '/images/about/nasir-gym.webp',
     short: 'Fitness and wellbeing coach with a Level 4 Certificate in Nutrition.',
     bio: ['Nasir is a fitness and wellbeing coach based in the UK. He holds a Level 4 Certificate in Nutrition for Weight Management and Athletic Performance.', 'He looks at Himalayan Drop from the point of view of training and everyday routines: how a daily supplement fits in, and how we describe it clearly and honestly.', 'He helps the team keep our guidance practical and within the rules.'] },
-  { id: 'mine', name: 'Karim Baig', role: 'Mining specialist, raw material harvesting',
-    short: 'Leads the harvest of our raw material near Skardu.',
-    bio: ['Karim is the mining specialist responsible for harvesting our raw material in the mountains near Skardu, above 5,000 metres.', 'He decides where and when we collect, and he keeps track of every batch from the rock to the lab.'] },
+  { id: 'mine', name: 'Anwar Ul Haq', role: 'Mining Engineer, Entrepreneur', photo: '/images/about/anwar.webp',
+    short: 'Pakistani mining engineer who leads our work from the mountain to the jar.',
+    bio: ['Anwar Ul Haq is a Pakistani mining engineer and international entrepreneur with 3 to 5 years of professional and business experience, specialising in mineral processing, natural resource development, shilajit purification, manufacturing and international trade.',
+      'He holds a Bachelor\u2019s degree in Mining Engineering from the University of Engineering and Technology (UET), Lahore, and combines that engineering background with hands-on experience in mineral processing and the development of natural health products.',
+      'As our mining engineer, he leads operations across the whole value chain: sourcing Himalayan shilajit in the high-altitude mountains of Skardu and Gilgit-Baltistan, then purification, processing, manufacturing, quality management, product development and international distribution.'] },
 ];
 
 const Drop = () => (
