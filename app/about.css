@@ -120,3 +120,7 @@
 .ab .ab-photo { border-radius: 16px; max-width: 460px; justify-self: center; }
 .ab .ab-stack { max-width: 380px; justify-self: center; }
 .ab .ab-trust h2 { font-size: clamp(24px, 5.6vw, 32px); margin-bottom: 26px; }
+
+/* Dialog photo for portrait pictures: taller crop so the head, shirt and tie show (not just a head) */
+.ab .ab-dph.tall { width: 100%; aspect-ratio: 4 / 4.7; max-height: 400px; }
+.ab .ab-dph.tall img { object-position: 50% 12%; }
