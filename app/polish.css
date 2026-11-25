@@ -279,7 +279,6 @@ html .pdp-thumbs button.on::after { box-shadow: inset 0 0 0 3px var(--burgundy);
   .bx-sbar-list strong { font: 700 14px/1.2 var(--sans); }
   .bx-sbar-list em { font: 700 11px/1 var(--label); font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; color: #7d5a22; }
   .bx-sbar-list b { font: 700 14px/1 var(--sans); white-space: nowrap; }
-  body.sbar-on .hdsw { bottom: 88px; }
 }
 @media (prefers-reduced-motion: reduce) { .bx-sbar { transition: none; } }
 
