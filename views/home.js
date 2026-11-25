@@ -4,10 +4,9 @@ import Hero from '@/components/Hero';
 import ProofThread from '@/components/ProofThread';
 import CertRidge from '@/components/CertRidge';
 import TopSection from '@/components/TopSection';
-import LightHero from '@/components/LightHero';
 import CollectionGallery from '@/components/CollectionGallery';
 import Reviews from '@/components/Reviews';
-import CertVaultSwitch from '@/components/CertVaultSwitch';
+import CertTabs from '@/components/CertTabs';
 import Newsletter from '@/components/Newsletter';
 import BenefitsExplorer from '@/components/BenefitsExplorer';
 import HomeBundlesSwitch from '@/components/HomeBundlesSwitch';
@@ -42,14 +41,10 @@ export default async function HomeView({ lang }) {
   return (
     <>
       <TopSection>
-        {/* Burgundy hero (default) and light hero: HeroSwitch shows one of the two. */}
         <div className="hv-burg">
           <Hero />
           <ProofThread />
           <CertRidge />
-        </div>
-        <div className="hv-light">
-          <LightHero />
         </div>
       </TopSection>
       <CollectionGallery products={products} />
@@ -57,7 +52,7 @@ export default async function HomeView({ lang }) {
       <WhyMedals />
       <Reviews />
       <HomeBundlesSwitch bundles={top3} />
-      <CertVaultSwitch />
+      <CertTabs cream />
       <Newsletter />
     </>
   );
