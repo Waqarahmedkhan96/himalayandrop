@@ -185,12 +185,10 @@ export default function Header() {
                               {it.img && <span className={`nav-thumb ${it.href === '/shop/' ? 'all' : ''}`}><img src={it.href === '/shop/' ? '/images/collection-lineup.webp' : it.img} alt="" loading="lazy" /></span>}
                               <span className="nav-txt">
                                 <strong>{it.label}</strong>
-                                <span>{it.text}</span>
-                                {it.blurb && !it.blurb.startsWith(it.text) && (
-                                  it.blurb.includes('•')
-                                    ? <em className="nav-benefits">{it.blurb.split(' • ').map((w) => w.charAt(0) + w.slice(1).toLocaleLowerCase()).join(' • ')}</em>
-                                    : <em className="nav-benefits">{it.blurb}</em>
-                                )}
+                                {/* Products show their benefit line (like the phone menu); other items show their short description */}
+                                <span>{it.blurb
+                                  ? (it.blurb.includes('•') ? it.blurb.split(' • ').map((w) => w.charAt(0) + w.slice(1).toLocaleLowerCase()).join(' • ') : it.blurb)
+                                  : it.text}</span>
                               </span>
                             </Link>
                           </li>
