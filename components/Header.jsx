@@ -185,8 +185,7 @@ export default function Header() {
                               {it.img && <span className={`nav-thumb ${it.href === '/shop/' ? 'all' : ''}`}><img src={it.href === '/shop/' ? '/images/collection-lineup.webp' : it.img} alt="" loading="lazy" /></span>}
                               <span className="nav-txt">
                                 <strong>{it.label}</strong>
-                                {/* Products: optional sub-line, then the benefit tags (like the phone menu); other items show their short description */}
-                                {it.sub && <span>{it.sub}</span>}
+                                {/* Products show their benefit tags (like the phone menu); other items show their short description */}
                                 <span>{it.blurb
                                   ? (it.blurb.includes('•') ? it.blurb.split(' • ').map((w) => w.charAt(0) + w.slice(1).toLocaleLowerCase()).join(' • ') : it.blurb)
                                   : it.text}</span>
