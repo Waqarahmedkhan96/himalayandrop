@@ -2,6 +2,7 @@
 // "View nutrition label" button under the product gallery. Opens the supplement facts (formulas) or the
 // typical analysis (resin) in a dialog, with the free-from list or the authorised claims under it.
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useLang } from './LangProvider';
 import { usePdp } from './OriginContext';
 import { pdpText } from '@/lib/pdp';
@@ -44,7 +45,7 @@ export default function NutritionLabel({ product, kind }) {
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 3h8l4 4v14H7z" /><path d="M14 3v5h5M10 12h6M10 16h6" /></svg>
         {b.open}
       </button>
-      {open && (
+      {open && createPortal(
         <div className="nl-modal" onMouseDown={(e) => { if (e.target === e.currentTarget) setOpen(false); }}>
           <div className="nl-dlg" role="dialog" aria-modal="true" aria-label={isFormula ? f.title : t.resinH} data-lenis-prevent>
             <button type="button" className="nl-x" ref={x} onClick={() => setOpen(false)} aria-label={b.close}>
@@ -100,7 +101,8 @@ export default function NutritionLabel({ product, kind }) {
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
