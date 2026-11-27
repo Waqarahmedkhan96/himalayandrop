@@ -1,0 +1,78 @@
+/* Comparison: "head to head". Grey hills and a grey card for the typical
+   market, burgundy peaks and a burgundy card for Himalayan Drop. Phones
+   show the two cards side by side under each attribute; desktop reads
+   straight across with the attribute in the middle. */
+
+html .hh-panel { position: relative; max-width: 1160px; margin: 0 auto; }
+html .hh-panel[hidden] { display: none; }
+html .hh-ridge { display: block; width: 100%; height: 84px; margin-bottom: -1px; }
+
+html .hh-heads { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; position: relative; }
+html .hh-h {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  text-align: center; padding: 14px 8px 14px; border-radius: 18px 18px 0 0; min-height: 132px;
+}
+html .hh-l { background: #e4dbcd; color: var(--muted); }
+html .hh-r { background: linear-gradient(180deg, #6a1425, #40060f); color: var(--gold-soft); }
+html .hh-h strong { font-family: var(--display); font-weight: 400; font-size: 16.5px; line-height: 1.2; }
+html .hh-h small { margin-top: 5px; font: 700 9.5px/1 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.75; }
+html .hh-h .cmp-jar { width: 48px; margin: 0 0 8px; opacity: 0.85; }
+html .hh-product { width: 96px; height: 78px; object-fit: contain; margin: -34px 0 6px; filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.4)); }
+html .hh-vs { display: none; }
+
+html .hh-rows { display: grid; gap: 0; }
+html .hh-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 14px; }
+html .hh-mid { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; color: var(--maroon); }
+html .hh-mid b { font-family: var(--display); font-weight: 400; font-size: 18px; color: var(--gold-text, #7a5a1c); }
+html .hh-ic {
+  width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; flex: none;
+  background: var(--maroon); color: var(--gold-soft); box-shadow: inset 0 0 0 1.5px rgba(226, 196, 135, 0.4);
+}
+html .hh-ic svg { width: 18px; height: 18px; }
+html .hh-th, html .hh-us { display: flex; gap: 8px; align-items: flex-start; padding: 12px; border-radius: 14px; font-size: 13px; line-height: 1.4; }
+html .hh-th { background: #ece5db; color: var(--muted); flex-direction: row; }
+html .hh-th .cmp-mark { display: none; }
+html .hh-us { background: linear-gradient(180deg, #5d1020, #3a0610); color: var(--cream); font-weight: 600; }
+html .hh-us .cmp-mark { flex: none; width: 17px; height: 17px; padding: 3px; border-radius: 50%; background: linear-gradient(180deg, #f2dca0, #c29a50); color: #3a0610; margin-top: 1px; }
+
+@media (min-width: 900px) {
+  html .hh-panel {
+    border-radius: 32px; overflow: hidden; padding: 0 56px 40px;
+    background: linear-gradient(90deg, #efe7da 0 50%, rgba(247, 241, 232, 0.6) 50%);
+  }
+  html .hh-ridge { height: 190px; margin: 0 -56px; width: calc(100% + 112px); }
+  html .hh-heads { grid-template-columns: 1fr 190px 1fr; gap: 0; margin-top: 8px; align-items: end; }
+  html .hh-h { background: none; padding: 6px 12px 22px; min-height: 0; border-radius: 0; }
+  html .hh-l, html .hh-r { background: none; }
+  html .hh-l { color: #8a7b74; }
+  html .hh-r { color: var(--maroon); }
+  html .hh-h strong { font-size: 24px; }
+  html .hh-h small { font-size: 11px; margin-top: 8px; }
+  html .hh-r small { color: var(--gold-text, #7a5a1c); opacity: 1; }
+  html .hh-h .cmp-jar { width: 92px; margin-bottom: 12px; }
+  html .hh-product { width: 210px; height: 150px; margin: -10px 0 8px; }
+  html .hh-vs {
+    display: grid; place-items: center; width: 80px; height: 80px; border-radius: 50%; justify-self: center; align-self: center;
+    margin-bottom: 38px; color: #f2dca0; font: italic 25px var(--display);
+    background: radial-gradient(circle, #5d1020 56%, #c9a05a 58%, #f2dca0 64%, #b8893f 72%);
+  }
+  html .hh-rows { gap: 14px; margin-top: 8px; }
+  html .hh-row { grid-template-columns: 1fr 190px 1fr; gap: 0; padding-top: 0; min-height: 84px; align-items: stretch; }
+  html .hh-mid { grid-column: auto; grid-row: 1; grid-area: auto; order: 2; flex-direction: column; justify-content: center; gap: 6px; position: relative; z-index: 1; text-align: center; }
+  html .hh-th { order: 1; justify-content: flex-end; text-align: end; padding: 20px 26px 20px 20px; font-size: 16px; border-start-start-radius: 20px; border-end-start-radius: 20px; border-start-end-radius: 0; border-end-end-radius: 0; align-items: center; background: rgba(212, 200, 184, 0.5); }
+  html .hh-th .cmp-mark { display: block; flex: none; color: #b9a99c; order: 2; }
+  html .hh-us { order: 3; padding: 20px 24px; font-size: 17px; align-items: center; border-start-start-radius: 0; border-end-start-radius: 0; border-start-end-radius: 20px; border-end-end-radius: 20px; background: linear-gradient(90deg, #5d1020, #3a0610); box-shadow: 0 18px 28px -20px rgba(64, 1, 10, 0.6); }
+  html .hh-us .cmp-mark { width: 26px; height: 26px; padding: 5px; }
+  html .hh-ic { width: 44px; height: 44px; box-shadow: inset 0 0 0 2px rgba(226, 196, 135, 0.4), 0 0 0 6px #f4ece0; }
+  html .hh-mid b { font-size: 16px; color: var(--maroon); }
+}
+
+html .cmp-note { text-align: center; margin-top: 18px; font-size: 12.5px; color: var(--muted); }
+html .hh-h .cmp-jar { display: block; }
+
+/* Right-to-left: the market side sits on the right, so the hills and the tint swap sides. */
+html[dir='rtl'] .hh-ridge { transform: scaleX(-1); }
+@media (min-width: 900px) {
+  html[dir='rtl'] .hh-panel { background: linear-gradient(270deg, #efe7da 0 50%, rgba(247, 241, 232, 0.6) 50%); }
+  html[dir='rtl'] .hh-us { background: linear-gradient(270deg, #5d1020, #3a0610); }
+}

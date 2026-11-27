@@ -8,14 +8,15 @@ import { useHandle } from './OriginContext';
 import { isHimalayan, localizeOrigin } from '@/lib/origin';
 
 const T = {
-  en: { eyebrow: 'Choose with confidence', h: 'Himalayan Drop', hg: 'vs. the market.', p: 'What goes into every jar, compared with what you often find elsewhere.', choose: 'Compare a product', market: ['Typical market', 'products'], note: 'The market column describes common practices, not any specific brand.', aria: (x) => `${x} compared with typical market products` },
-  da: { eyebrow: 'Vælg med ro i maven', h: 'Himalayan Drop', hg: 'mod markedet.', p: 'Hvad der kommer i hver krukke, sammenlignet med det, du ofte finder andre steder.', choose: 'Sammenlign et produkt', market: ['Typiske produkter', 'på markedet'], note: 'Kolonnen for markedet beskriver almindelig praksis, ikke et bestemt brand.', aria: (x) => `${x} sammenlignet med typiske produkter på markedet` },
-  de: { eyebrow: 'Mit Sicherheit wählen', h: 'Himalayan Drop', hg: 'im Vergleich.', p: 'Was in jedem Glas steckt, verglichen mit dem, was man anderswo oft findet.', choose: 'Produkt vergleichen', market: ['Typische', 'Marktprodukte'], note: 'Die Marktspalte beschreibt übliche Praktiken, keine bestimmte Marke.', aria: (x) => `${x} im Vergleich mit typischen Marktprodukten` },
-  fr: { eyebrow: 'Choisir en confiance', h: 'Himalayan Drop', hg: 'face au marché.', p: 'Ce qui entre dans chaque pot, comparé à ce que l’on trouve souvent ailleurs.', choose: 'Comparer un produit', market: ['Produits', 'courants'], note: 'La colonne marché décrit des pratiques courantes, pas une marque précise.', aria: (x) => `${x} comparé aux produits courants du marché` },
-  es: { eyebrow: 'Elige con confianza', h: 'Himalayan Drop', hg: 'frente al mercado.', p: 'Lo que lleva cada tarro, comparado con lo que se encuentra a menudo en otros lugares.', choose: 'Compara un producto', market: ['Productos', 'habituales'], note: 'La columna de mercado describe prácticas habituales, no una marca concreta.', aria: (x) => `${x} comparado con productos habituales del mercado` },
-  ar: { eyebrow: 'اختر بثقة', h: 'Himalayan Drop', hg: 'مقارنة بالسوق.', p: 'ما يدخل في كل عبوة، مقارنة بما تجده غالباً في أماكن أخرى.', choose: 'قارن منتجاً', market: ['منتجات', 'السوق المعتادة'], note: 'يصف عمود السوق الممارسات الشائعة، وليس علامة تجارية بعينها.', aria: (x) => `${x} مقارنة بمنتجات السوق المعتادة` },
+  en: { vs: 'VS', elsewhere: 'Elsewhere', ours: 'Our standard', eyebrow: 'Choose with confidence', h: 'Himalayan Drop', hg: 'vs. the market.', p: 'What goes into every jar, compared with what you often find elsewhere.', choose: 'Compare a product', market: ['Typical market', 'products'], note: 'The market column describes common practices, not any specific brand.', aria: (x) => `${x} compared with typical market products` },
+  da: { vs: 'MOD', elsewhere: 'Andre steder', ours: 'Vores standard', eyebrow: 'Vælg med ro i maven', h: 'Himalayan Drop', hg: 'mod markedet.', p: 'Hvad der kommer i hver krukke, sammenlignet med det, du ofte finder andre steder.', choose: 'Sammenlign et produkt', market: ['Typiske produkter', 'på markedet'], note: 'Kolonnen for markedet beskriver almindelig praksis, ikke et bestemt brand.', aria: (x) => `${x} sammenlignet med typiske produkter på markedet` },
+  de: { vs: 'VS', elsewhere: 'Anderswo', ours: 'Unser Standard', eyebrow: 'Mit Sicherheit wählen', h: 'Himalayan Drop', hg: 'im Vergleich.', p: 'Was in jedem Glas steckt, verglichen mit dem, was man anderswo oft findet.', choose: 'Produkt vergleichen', market: ['Typische', 'Marktprodukte'], note: 'Die Marktspalte beschreibt übliche Praktiken, keine bestimmte Marke.', aria: (x) => `${x} im Vergleich mit typischen Marktprodukten` },
+  fr: { vs: 'VS', elsewhere: 'Ailleurs', ours: 'Notre standard', eyebrow: 'Choisir en confiance', h: 'Himalayan Drop', hg: 'face au marché.', p: 'Ce qui entre dans chaque pot, comparé à ce que l’on trouve souvent ailleurs.', choose: 'Comparer un produit', market: ['Produits', 'courants'], note: 'La colonne marché décrit des pratiques courantes, pas une marque précise.', aria: (x) => `${x} comparé aux produits courants du marché` },
+  es: { vs: 'VS', elsewhere: 'En otros sitios', ours: 'Nuestro estándar', eyebrow: 'Elige con confianza', h: 'Himalayan Drop', hg: 'frente al mercado.', p: 'Lo que lleva cada tarro, comparado con lo que se encuentra a menudo en otros lugares.', choose: 'Compara un producto', market: ['Productos', 'habituales'], note: 'La columna de mercado describe prácticas habituales, no una marca concreta.', aria: (x) => `${x} comparado con productos habituales del mercado` },
+  ar: { vs: 'VS', elsewhere: 'في أماكن أخرى', ours: 'معيارنا', eyebrow: 'اختر بثقة', h: 'Himalayan Drop', hg: 'مقارنة بالسوق.', p: 'ما يدخل في كل عبوة، مقارنة بما تجده غالباً في أماكن أخرى.', choose: 'قارن منتجاً', market: ['منتجات', 'السوق المعتادة'], note: 'يصف عمود السوق الممارسات الشائعة، وليس علامة تجارية بعينها.', aria: (x) => `${x} مقارنة بمنتجات السوق المعتادة` },
 };
 import KindTabs from './KindTabs';
+import { Icon } from './Icons';
 
 function Check() {
   return (
@@ -44,26 +45,58 @@ function MarketJar() {
   );
 }
 
-function Table({ kind, active, rows, title, t }) {
+// One icon per row, in the order of the rows in lib/benefits.js.
+const ROW_ICONS = {
+  resin: ['pin', 'jar', 'filter', 'sun', 'flask', 'box'],
+  gummies: ['pin', 'scale', 'berry', 'flask', 'box'],
+  drops: ['pin', 'scale', 'drop', 'box', 'flask'],
+  capsules: ['pin', 'scale', 'capsule', 'flask', 'shield'],
+};
+
+// Grey low hills on the market side, burgundy peaks on ours.
+function Ridge() {
   return (
-    <div className="cmp-panel" data-tab-panel={kind.key} hidden={!active}>
-      <div className="cmp-grid" role="table" aria-label={t.aria(title)}>
-        <div className="cmp-row cmp-head" role="row">
-          <span className="cmp-label" role="columnheader" />
-          <div className="cmp-ours" role="columnheader">
-            <img loading="lazy" decoding="async" src={kind.image} alt="" className="cmp-product" />
-            <strong>Himalayan Drop<br />{title}</strong>
-          </div>
-          <div className="cmp-market" role="columnheader">
-            <MarketJar />
-            <strong>{t.market[0]}<br />{t.market[1]}</strong>
-          </div>
+    <svg className="hh-ridge" viewBox="0 0 1000 170" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="hh-peak" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#6b1426" />
+          <stop offset="1" stopColor="#40060f" />
+        </linearGradient>
+      </defs>
+      <path d="M0 170V120C60 108 110 118 175 106S295 98 360 112S455 106 500 120V170Z" fill="#d9cdbd" />
+      <path d="M500 170V108L556 68L590 90L667 14L729 76L771 48L840 94L896 64L1000 108V170Z" fill="url(#hh-peak)" />
+      <path d="M500 108L556 68L590 90L667 14L729 76L771 48L840 94L896 64L1000 108" fill="none" stroke="#e0b256" strokeWidth="2.4" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function Table({ kind, active, rows, title, t }) {
+  const icons = ROW_ICONS[kind.key];
+  return (
+    <div className="hh-panel" data-tab-panel={kind.key} hidden={!active}>
+      <Ridge />
+      <div className="hh-heads">
+        <div className="hh-h hh-l">
+          <MarketJar />
+          <strong>{t.market[0]} {t.market[1]}</strong>
+          <small>{t.elsewhere}</small>
         </div>
+        <span className="hh-vs" aria-hidden="true">{t.vs}</span>
+        <div className="hh-h hh-r">
+          <img loading="lazy" decoding="async" src={kind.image} alt="" className="hh-product" />
+          <strong>Himalayan Drop {title}</strong>
+          <small>{t.ours}</small>
+        </div>
+      </div>
+      <div className="hh-rows" role="table" aria-label={t.aria(title)}>
         {rows.map(([label, ours, market], i) => (
-          <div className={`cmp-row ${i === rows.length - 1 ? 'last' : ''}`} role="row" key={label}>
-            <span className="cmp-label" role="rowheader">{label}</span>
-            <div className="cmp-ours" role="cell"><Check /><span>{ours}</span></div>
-            <div className="cmp-market" role="cell"><Dash /><span>{market}</span></div>
+          <div className="hh-row" role="row" key={label}>
+            <div className="hh-mid" role="rowheader">
+              <span className="hh-ic"><Icon name={icons[i] || 'shield'} size={22} /></span>
+              <b>{label}</b>
+            </div>
+            <div className="hh-th" role="cell"><span>{market}</span><Dash /></div>
+            <div className="hh-us" role="cell"><Check /><span>{ours}</span></div>
           </div>
         ))}
       </div>
@@ -85,8 +118,8 @@ export default function Comparison({ initial = 'resin', id = 'compare' }) {
     if (prefersReducedMotion()) return;
     const panel = root.current.querySelector(`[data-tab-panel="${key}"]`);
     gsap.timeline({ defaults: { ease: 'expo.out' } })
-      .fromTo(panel.querySelector('.cmp-product'), { y: 30, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 1 })
-      .fromTo(panel.querySelectorAll('.cmp-row:not(.cmp-head)'), { y: 18, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.06, duration: 0.8 }, 0.1);
+      .fromTo(panel.querySelector('.hh-product'), { y: 30, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 1 })
+      .fromTo(panel.querySelectorAll('.hh-row'), { y: 18, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.06, duration: 0.8 }, 0.1);
   };
 
   useGSAP(
