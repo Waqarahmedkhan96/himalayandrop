@@ -31,7 +31,7 @@ html .hh-ic {
 html .hh-ic svg { width: 18px; height: 18px; }
 html .hh-th, html .hh-us { display: flex; gap: 8px; align-items: flex-start; padding: 12px; border-radius: 14px; font-size: 13px; line-height: 1.4; }
 html .hh-th { background: #ece5db; color: var(--muted); flex-direction: row; }
-html .hh-th .cmp-mark { display: none; }
+html .hh-th .cmp-mark { order: -1; flex: none; width: 16px; margin-top: 2px; color: #a99e94; }
 html .hh-us { background: linear-gradient(180deg, #5d1020, #3a0610); color: var(--cream); font-weight: 600; }
 html .hh-us .cmp-mark { flex: none; width: 17px; height: 17px; padding: 3px; border-radius: 50%; background: linear-gradient(180deg, #f2dca0, #c29a50); color: #3a0610; margin-top: 1px; }
 
@@ -59,8 +59,8 @@ html .hh-us .cmp-mark { flex: none; width: 17px; height: 17px; padding: 3px; bor
   html .hh-rows { gap: 14px; margin-top: 8px; }
   html .hh-row { grid-template-columns: 1fr 190px 1fr; gap: 0; padding-top: 0; min-height: 84px; align-items: stretch; }
   html .hh-mid { grid-column: auto; grid-row: 1; grid-area: auto; order: 2; flex-direction: column; justify-content: center; gap: 6px; position: relative; z-index: 1; text-align: center; }
-  html .hh-th { order: 1; justify-content: flex-end; text-align: end; padding: 20px 26px 20px 20px; font-size: 16px; border-start-start-radius: 20px; border-end-start-radius: 20px; border-start-end-radius: 0; border-end-end-radius: 0; align-items: center; background: rgba(212, 200, 184, 0.5); }
-  html .hh-th .cmp-mark { display: block; flex: none; color: #b9a99c; order: 2; }
+  html .hh-th { order: 1; justify-content: flex-start; text-align: start; padding: 20px 20px 20px 26px; font-size: 16px; border-start-start-radius: 20px; border-end-start-radius: 20px; border-start-end-radius: 0; border-end-end-radius: 0; align-items: center; background: rgba(212, 200, 184, 0.5); }
+  html .hh-th .cmp-mark { width: 18px; margin-top: 0; color: #b9a99c; }
   html .hh-us { order: 3; padding: 20px 24px; font-size: 17px; align-items: center; border-start-start-radius: 0; border-end-start-radius: 0; border-start-end-radius: 20px; border-end-end-radius: 20px; background: linear-gradient(90deg, #5d1020, #3a0610); box-shadow: 0 18px 28px -20px rgba(64, 1, 10, 0.6); }
   html .hh-us .cmp-mark { width: 26px; height: 26px; padding: 5px; }
   html .hh-ic { width: 44px; height: 44px; box-shadow: inset 0 0 0 2px rgba(226, 196, 135, 0.4), 0 0 0 6px #f4ece0; }
