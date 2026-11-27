@@ -80,3 +80,9 @@ html[dir='rtl'] .hh-ridge { transform: scaleX(-1); }
 /* The classic table also styles .cmp-jar; keep the head-to-head jar in the flow. */
 html .hh-h .cmp-jar { position: static; transform: none; top: auto; left: auto; margin: 0 0 8px; }
 @media (min-width: 900px) { html .hh-h .cmp-jar { margin-bottom: 12px; } }
+
+/* Switch between the new and the classic comparison. */
+html .hh-switch { display: flex; width: max-content; margin: 18px auto 18px; padding: 4px; gap: 4px; border-radius: 999px; background: #fff; box-shadow: 0 0 0 1px rgba(204, 162, 94, 0.4); }
+html .hh-switch button { appearance: none; border: 0; cursor: pointer; padding: 8px 18px; border-radius: 999px; background: transparent; color: var(--maroon); font: 700 12.5px/1 var(--sans); letter-spacing: 0.04em; }
+html .hh-switch button.is-on { background: var(--maroon); color: var(--gold-soft, #f2dca0); }
+html .hh-switch button:focus-visible { outline: 2px solid var(--gold, #c29a50); outline-offset: 2px; }
