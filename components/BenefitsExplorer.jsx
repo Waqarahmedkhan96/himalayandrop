@@ -81,7 +81,7 @@ function Panel({ kind, active, b, t }) {
         <ol className="bx-pills">
           {b.items.map((it, i) => (
             <li key={it.title} className="bx-pill" style={{ '--y': `${(pts[i].y / 560) * 100}%` }}>
-              <span className="bx-icon"><Icon name={it.icon} size={22} /></span>
+              <span className="bx-icon">{it.img ? <img src={it.img} alt="" loading="lazy" /> : <Icon name={it.icon} size={22} />}</span>
               <span className="bx-text">
                 <strong>{it.title}</strong>
                 <span>{it.text}</span>
