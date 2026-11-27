@@ -1,6 +1,6 @@
 'use client';
 // "Himalayan Drop vs the market" comparison, one table per product family.
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from '@/lib/gsap';
 import { getKinds, getComparison, getBenefits } from '@/lib/benefits';
 import { useLang } from './LangProvider';
@@ -45,6 +45,34 @@ function MarketJar() {
   );
 }
 
+// The earlier table design, kept as an alternative.
+function TableClassic({ kind, active, rows, title, t }) {
+  return (
+    <div className="cmp-panel" data-tab-panel={kind.key} hidden={!active}>
+      <div className="cmp-grid" role="table" aria-label={t.aria(title)}>
+        <div className="cmp-row cmp-head" role="row">
+          <span className="cmp-label" role="columnheader" />
+          <div className="cmp-ours" role="columnheader">
+            <img loading="lazy" decoding="async" src={kind.image} alt="" className="cmp-product" />
+            <strong>Himalayan Drop<br />{title}</strong>
+          </div>
+          <div className="cmp-market" role="columnheader">
+            <MarketJar />
+            <strong>{t.market[0]}<br />{t.market[1]}</strong>
+          </div>
+        </div>
+        {rows.map(([label, ours, market], i) => (
+          <div className={`cmp-row ${i === rows.length - 1 ? 'last' : ''}`} role="row" key={label}>
+            <span className="cmp-label" role="rowheader">{label}</span>
+            <div className="cmp-ours" role="cell"><Check /><span>{ours}</span></div>
+            <div className="cmp-market" role="cell"><Dash /><span>{market}</span></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // One icon per row, in the order of the rows in lib/benefits.js.
 const ROW_ICONS = {
   resin: ['pin', 'jar', 'filter', 'sun', 'flask', 'box'],
@@ -66,6 +94,7 @@ function Ridge() {
       <path d="M0 170V120C60 108 110 118 175 106S295 98 360 112S455 106 500 120V170Z" fill="#d9cdbd" />
       <path d="M500 170V108L556 68L590 90L667 14L729 76L771 48L840 94L896 64L1000 108V170Z" fill="url(#hh-peak)" />
       <path d="M500 108L556 68L590 90L667 14L729 76L771 48L840 94L896 64L1000 108" fill="none" stroke="#e0b256" strokeWidth="2.4" strokeLinejoin="round" />
+      <path d="M641 40L667 14L697 44L680 38L663 51Z" fill="#e8c97c" />
     </svg>
   );
 }
@@ -104,7 +133,7 @@ function Table({ kind, active, rows, title, t }) {
   );
 }
 
-export default function Comparison({ initial = 'resin', id = 'compare' }) {
+export default function Comparison({ initial = 'resin', id = 'compare', variant = 'headtohead' }) {
   const root = useRef(null);
   const lang = useLang();
   const t = T[lang];
@@ -113,13 +142,18 @@ export default function Comparison({ initial = 'resin', id = 'compare' }) {
   const comparison = himalayan ? localizeOrigin(getComparison(lang), lang) : getComparison(lang);
   const benefits = getBenefits(lang);
   const [active, setActive] = useState(initial);
+  // The head-to-head design is the default; ?compare=classic shows the earlier table.
+  const [look, setLook] = useState(variant);
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('compare') === 'classic') setLook('classic');
+  }, []);
 
   const animateIn = (key) => {
     if (prefersReducedMotion()) return;
     const panel = root.current.querySelector(`[data-tab-panel="${key}"]`);
     gsap.timeline({ defaults: { ease: 'expo.out' } })
-      .fromTo(panel.querySelector('.hh-product'), { y: 30, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 1 })
-      .fromTo(panel.querySelectorAll('.hh-row'), { y: 18, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.06, duration: 0.8 }, 0.1);
+      .fromTo(panel.querySelector('.hh-product, .cmp-product'), { y: 30, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 1 })
+      .fromTo(panel.querySelectorAll('.hh-row, .cmp-row:not(.cmp-head)'), { y: 18, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.06, duration: 0.8 }, 0.1);
   };
 
   useGSAP(
@@ -151,7 +185,7 @@ export default function Comparison({ initial = 'resin', id = 'compare' }) {
         </div>
         <KindTabs active={active} onChange={change} label={t.choose} />
         {kinds.map((k) => (
-          <Table key={k.key} kind={k} active={active === k.key} rows={comparison[k.key]} title={benefits[k.key].title} t={t} />
+          look === 'classic' ? <TableClassic key={k.key} kind={k} active={active === k.key} rows={comparison[k.key]} title={benefits[k.key].title} t={t} /> : <Table key={k.key} kind={k} active={active === k.key} rows={comparison[k.key]} title={benefits[k.key].title} t={t} />
         ))}
         <p className="cmp-note">{t.note}</p>
       </div>

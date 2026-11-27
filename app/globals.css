@@ -11,6 +11,7 @@
 @import './header-cart.css';
 @import './polish.css';
 @import './compare.css';
+@import './compare-classic.css';
 
 :root {
   --maroon: #580f1b;
